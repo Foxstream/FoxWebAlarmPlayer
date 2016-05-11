@@ -19,8 +19,9 @@ describe('AlarmRemover', function(){
 
     // TODO
     it('Alarms older than a week should be deleted', function(){
+        this.alarmRemover.apply();
         this.almPers.getAlarms(null, function(err, data){
-            expect(1).to.equal(1);
+            expect(data).to.equal(null);
         });  
     });
 

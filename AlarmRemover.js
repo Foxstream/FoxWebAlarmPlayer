@@ -30,5 +30,6 @@ function AlarmRemover(alarmPersistence, durationSeconds)
 
 AlarmRemover.prototype.start = start;
 AlarmRemover.prototype.stop = stop;
+AlarmRemover.prototype.apply = apply;
 
 module.exports = AlarmRemover;
