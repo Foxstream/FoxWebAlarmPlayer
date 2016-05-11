@@ -16,11 +16,11 @@ describe('AlarmRemover', function(){
     it('Old alarms are deleted every hour', function(){
         
         this.alarmRemover.start();
-        sinon.spy(this.alarmRemover, 'apply');
+        sinon.stub(this.alarmRemover, 'apply');
         console.log(this.alarmRemover.timer)
 
         this.clock.tick(1000*60*60);
-        expect(this.alarmRemover.apply.NotCalled).not.to.be.true;
+        expect(this.alarmRemover.apply.NotCalled).to.be.true;
 
         this.alarmRemover.apply.restore();
 
