@@ -15,8 +15,8 @@ function stop()
 
 function start()
 {    
-    if (this.timer)
-        this.timer = setInterval(apply.bind(this), 60*60*1000);    
+    if (!this.timer)
+        this.timer = setInterval(this.apply.bind(this), 60*60*1000);    
 }
 
 /**
