@@ -18,7 +18,7 @@ var _ = require("lodash");
 var async = require("async");
 
 var websrv = WebServer.BuildWebServer();
-var db = new sqlite3.Database("data/test.db")	
+var db = new sqlite3.Database("data/test.db");
 var almPers = new AlarmPersistence(db, "data");
 var userPers = new UserPersistence(db);
 var serverPers = new ServerPersistence(db);
