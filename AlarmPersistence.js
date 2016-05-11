@@ -196,7 +196,7 @@ function getAlarm(id, callback)
 }
 
 function deleteAlarm(id, callback){
-	// TODO
+	this.db.run("DELETE FROM alarm WHERE id=$id", {$id:id}, callback);
 }
 
 

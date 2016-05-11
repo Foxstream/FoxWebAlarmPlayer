@@ -28,7 +28,8 @@
   },
   "scripts": {
     "start": "node main.js",
-    "test": "mocha tests/ --recursive"
+    "test": "mocha tests/ --recursive",
+    "debug": "node-debug main.js"
   },
   "license": "ISC"
 }

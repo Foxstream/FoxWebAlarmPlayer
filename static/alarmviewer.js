@@ -23,16 +23,17 @@ app.factory('alarmdb', ['$http','$rootScope',
             
         obj.markashandled = function (alarmid, callback) {
             $http.put("/controller/alarm/"+alarmid+"/markashandled")
-    		.success(function (data) { callback(null, data); })
-    		.error(function (data) { callback({response: data}); });
+    		  .success(function (data) { callback(null, data); })
+    		  .error(function (data) { callback({response: data}); });
         };	
 
-        obj.delete = function(){
-
-        }
+        obj.delete = function(alarmid, callback){
+            $http.delete("/controller/alarm/"+alarmid)
+                .success(function (data){ callback(null, data); })
+                .error(function(data){ callback({response: data}); });
+        };
 
         return obj;
-    }
 }]);
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', function($scope, $rootScope, $window, alarmdb, alarmevents) {
@@ -56,7 +57,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.delete = function (alarmId){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to delete the alarm?")) {
-            alarmdb.delete(alarmid, function(err){ });
+            alarmdb.delete(alarmId, function(err){ });
         }
     }        
     
@@ -72,9 +73,20 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 			$scope.alarms.push(data);
 		
 	};
+
+    var deleteAlarm = function(event, alarmid){
+        var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
+
+        if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmid){
+            $window.alert("Current alarm was deleted.");
+        }
+
+        $scope.alarms.splice(pos, 1);
+    }
     
     var unbind1 = $rootScope.$on("alarm_create",alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
+    var unbind2 = $rootScope.$on("alarm_deleted", deleteAlarm);
 
     $scope.$on('$destroy', function () { unbind1(); unbind2(); });
 }]);
