@@ -1,33 +1,37 @@
 var chai = require('chai'),
     expect = chai.expect,
-    sqlite3 = require('sqlite3').verbose(),
+    sinon = require('sinon'),
     AlarmRemover = require('../AlarmRemover'),
-    AlarmPersistence = require('../AlarmPersistence'),
     fs = require('fs');
 
 
 describe('AlarmRemover', function(){
 
-    // before(function(){
-    //     this.db = new sqlite3.Database("tests/data/test.db");
-    //     this.almPers = new AlarmPersistence(this.db, "data");
-    //     this.alarmRemover = new AlarmRemover(this.almPers, 60*60*24*7);
+    // Runs before all tests
+    before(function(){
+        this.clock = sinon.useFakeTimers();
+        this.alarmRemover = new AlarmRemover(null, 60*60*24*7);
+    });
+    it('Old alarms are deleted every hour', function(){
+        
+        this.alarmRemover.start();
+        sinon.spy(this.alarmRemover, 'apply');
 
-    //     // Backup the test database
-    //     fs.createReadStream('tests/data/test.db').pipe(fs.createWriteStream('data/backup.db'));
-    // });
+        this.clock.tick(1000*60*60 - 1000);
+        expect(this.alarmRemover.apply.NotCalled).not.to.be.true;
 
-    // TODO
-    // it('Alarms older than a week should be deleted', function(){
-    //     this.alarmRemover.apply();
-    //     this.almPers.getAlarms(null, function(err, data){
-    //         expect(data).to.equal(null);
-    //     });  
-    // });
+        this.clock.tick(1000);
+        expect(this.alarmRemover.apply.calledOnce).not.to.be.true;
 
-    // after(function(){
-    //     // Backup the test database
-    //     fs.createReadStream('tests/data/backup.db').pipe(fs.createWriteStream('tests/data/test.db'));
-    // });
+        this.alarmRemover.apply.restore();
+
+        this.alarmRemover.stop();
+
+    });
+
+    // Runs after all tests
+    after(function(){
+        this.clock.restore();
+    });
 
 });

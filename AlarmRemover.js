@@ -19,12 +19,17 @@ function start()
         this.timer = setInterval(apply.bind(this), 60*60*1000);    
 }
 
-function AlarmRemover(alarmPersistence, durationSeconds)
+/**
+  * AlarmRemover constructor
+  * @param alarmPersistence reference to adequate AlarmPersistence object
+  * @param duration Alarms older than duration, in seconds, will be deleted
+  */
+function AlarmRemover(alarmPersistence, duration)
 {
-    if(!this) return new AlarmRemover(alarmPersistence, durationSeconds)
+    if(!this) return new AlarmRemover(alarmPersistence, duration)
     
     this.alarmPersistence = alarmPersistence;
-    this.duration = durationSeconds;
+    this.duration = duration;
     this.timer = null;
 }
 
