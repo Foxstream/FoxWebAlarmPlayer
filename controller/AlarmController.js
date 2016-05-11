@@ -89,6 +89,11 @@ function applyApp(app)
             }            				
         });
     });	
+
+    app.delete('/controller/alarm/:alarmid', auth.isValidUser, function(req, res){
+        
+    });
+
 }
 
 function AlarmController(alarmPersistence)

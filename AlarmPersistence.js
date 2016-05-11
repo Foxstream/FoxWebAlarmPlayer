@@ -195,6 +195,10 @@ function getAlarm(id, callback)
 	this.db.get("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm WHERE id=$id", {$id:id}, callback);
 }
 
+function deleteAlarm(id, callback){
+	// TODO
+}
+
 
 function deleteAlarmsOlderThan(timestamp, cb)
 {
@@ -227,6 +231,7 @@ AlarmPersistence.prototype.saveAlarm = saveAlarm;
 AlarmPersistence.prototype.getAlarms = getAlarms;
 AlarmPersistence.prototype.getAlarm = getAlarm;
 AlarmPersistence.prototype.deleteAlarmsOlderThan = deleteAlarmsOlderThan;
+AlarmPersistence.prototype.deleteAlarm = deleteAlarm;
 
 AlarmPersistence.prototype.getStreamAlarmImage = getStreamAlarmImage;
 

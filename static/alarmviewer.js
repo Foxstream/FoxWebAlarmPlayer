@@ -11,24 +11,28 @@ app.filter('asdate', function (){
 });
 
 app.factory('alarmdb', ['$http','$rootScope',
-  function($http, $rootScope){	  
-	var obj={}
-			
-	obj.getalarms=function(callback)
-	{
-		$http.get("/controller/alarms/handled")
-			.success(callback)
-			.error(function(){callback(null);});				
-    };
-        
-    obj.markashandled = function (alarmid, callback) {
-        $http.put("/controller/alarm/"+alarmid+"/markashandled")
-		.success(function (data) { callback(null, data); })
-		.error(function (data) { callback({response: data}); });
-    };	
-		
-	
-    return obj;
+    function($http, $rootScope){	  
+    	var obj={}
+    			
+    	obj.getalarms=function(callback)
+    	{
+    		$http.get("/controller/alarms/handled")
+    			.success(callback)
+    			.error(function(){callback(null);});				
+        };
+            
+        obj.markashandled = function (alarmid, callback) {
+            $http.put("/controller/alarm/"+alarmid+"/markashandled")
+    		.success(function (data) { callback(null, data); })
+    		.error(function (data) { callback({response: data}); });
+        };	
+
+        obj.delete = function(){
+
+        }
+
+        return obj;
+    }
 }]);
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', function($scope, $rootScope, $window, alarmdb, alarmevents) {
@@ -42,13 +46,19 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 		$scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
     };
         
-    $scope.markashandled = function (alarmId) {
+    $scope.markashandled = function (alarmId){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId)
                 $scope.currentalarm = undefined;
             alarmdb.markashandled(alarmId, function (err) { });
         }
-    };                
+    };        
+
+    $scope.delete = function (alarmId){
+        if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to delete the alarm?")) {
+            alarmdb.delete(alarmid, function(err){ });
+        }
+    }        
     
     var alarmUpdate=function(event, data){		
 		var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);

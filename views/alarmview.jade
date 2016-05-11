@@ -27,6 +27,7 @@ block content
                   th Site
                   th
                   th
+                  th
                 tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")          
                   td {{ x.timestamp | asdate }} 
                   td {{ x.cameraname }}      
@@ -37,7 +38,10 @@ block content
                         span(class='glyphicon glyphicon-film')
                   td 
                     button(ng-click='markashandled(x.id)', title='Mark as handled',class="btn btn-sm btn-default")
-                        span(class='glyphicon glyphicon-ok')        
+                        span(class='glyphicon glyphicon-ok')
+                  td
+                    button(ng-click='delete(x.id)', title='Delete',class="btn btn-sm btn-danger")
+                        span(class='glyphicon glyphicon-trash')       
 
                     
         
