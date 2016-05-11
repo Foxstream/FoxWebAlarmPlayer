@@ -1,0 +1,53 @@
+extends ./MainTemplate.jade
+
+block title
+  title Alarm information 
+
+block content
+  div(ng-app="alarmviewer", class='container-fluid')
+    .h3 Alarm list
+        
+    div(ng-controller='alarmcontroller')  
+        div(class='col-xs-12 col-sm-5')
+            div(class='h6')  
+                span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                span(ng-show='currentalarm==undefined') No alarm selected
+            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm')  
+            
+        div(class='col-xs-12 col-sm-7')
+            div(ng-controller='servercontroller')            
+                div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
+                    span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
+
+            table(class='table table-striped table-hover table-responsive table-condensed alarmtable')
+                tr
+                  th Date
+                  th Camera    
+                  th(class="hidden-xs") Server              
+                  th Site
+                  th
+                  th
+                tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")          
+                  td {{ x.timestamp | asdate }} 
+                  td {{ x.cameraname }}      
+                  td(class="hidden-xs") {{ x.hostname }}              
+                  td {{ x.sitename }} 
+                  td 
+                    button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Play',class="btn btn-sm btn-default")
+                        span(class='glyphicon glyphicon-film')
+                  td 
+                    button(ng-click='markashandled(x.id)', title='Mark as handled',class="btn btn-sm btn-default")
+                        span(class='glyphicon glyphicon-ok')        
+
+                    
+        
+                
+    
+  script(src='static/angular-1.3.15.min.js')   
+  script(src='static/app.js')  
+  script(src='static/AlarmData.js')  
+  script(src='static/EventSource4IE.js')  
+  script(src='static/EventSource.js')  
+  script(src='static/alarmviewer.js')  
+  script(src='static/serverviewer.js')  
+ 

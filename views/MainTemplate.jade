@@ -1,0 +1,39 @@
+﻿doctype html
+html
+  head
+    meta(name="viewport",content="width=device-width, initial-scale=1")
+    script(src='static/jquery-2.1.3.min.js')     
+    script(src='static/bootstrap.min.js')     
+    link(rel="stylesheet", href="static//css/bootstrap.min.css", media="screen")
+    link(rel="stylesheet", href="static//css/my.css", media="screen")
+    block title
+  body
+    div(class='container')   
+      div(class='jumbotron hidden-xs')
+        .h1 Web Alarm Player
+      div(class="navbar-header")
+        button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")            
+            a(class="navbar-brand", href="#") WebAlarmPlayer
+                
+      div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
+          ul(class="nav navbar-nav navbar-left")                               
+            if user.type == 1                      
+                li
+                    a(href="/alarmview") Alarms
+                li
+                    a(href="/userview") Users
+                li
+                    a(href="/serverview") Servers
+          
+          ul(class="nav navbar-nav navbar-right")
+            li 
+                a(href="/accountsettings")  
+                    span(class='glyphicon glyphicon-user') 
+                        =user.displayname      
+            li
+                a(href="/logout")
+                    span(class='glyphicon glyphicon-off', title='Disconnect')
+
+        block content
+    
+ 

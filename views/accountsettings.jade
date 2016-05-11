@@ -1,0 +1,38 @@
+﻿extends ./MainTemplate.jade
+
+block title
+  title Account settings
+
+block content
+  div(class='container-fluid')
+       .h3 Account settings
+       if user.shouldChangePassword
+            div(class='alert alert-danger') You must change your password
+
+       if message
+             div(class='alert alert-warning')
+                =message
+       
+       form(method='POST', class='col-xs-12 col-sm-6')
+           div(class="form-input") 
+                .h4 Display information  
+                .form-group
+                    label(for='usernameid') Display name  
+                    input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", required)            
+                button(name='PropUpdate', value='1', type='submit',  class="btn btn-sm btn-primary btn-block") Update            
+   
+       form(method='POST', class='col-xs-12 col-sm-6')
+           div(class="form-input") 
+                .h4 Change password
+                if user.shouldChangePassword==0
+                    .form-group
+                        label(for='oldpassword') Type your old password
+                        input(type='password', id='oldpassword', name='oldpassword' placeholder='Old password', class="form-control", required)
+                .form-group
+                    label(for='password1')  Type your new password
+                    input(type='password',  id='password1', name='password1' placeholder='New password', class="form-control", required)
+                .form-group
+                    label(for='password2')  Retype your new password
+                    input(type='password',  id='password2', name='password2' placeholder='New password', class="form-control", required)
+
+                button(name='PassUpdate', value='1', type='submit',  class="btn btn-sm btn-primary btn-block") Change password

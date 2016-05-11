@@ -1,0 +1,33 @@
+{
+  "name": "AlarmPlayer",
+  "version": "0.0.1",
+  "description": "NodejsWebApp1",
+  "main": "server.js",
+  "author": "Ionel",
+  "dependencies": {
+    "async": "^1.2.1",
+    "body-parser": "^1.13.1",
+    "events": "^1.0.2",
+    "express": "^4.12.4",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
+    "lodash": "^3.9.3",
+    "mkdirp": "^0.5.1",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "password-hash": "^1.2.2",
+    "password-hash-and-salt": "^0.1.2",
+    "rimraf": "^2.4.3",
+    "sqlite3": "^3.0.8",
+    "through": "^2.3.7",
+    "xml-stream": "^0.4.5",
+    "xml2js": "^0.4.9"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "license": "ISC"
+}

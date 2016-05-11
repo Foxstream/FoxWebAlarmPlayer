@@ -1,0 +1,62 @@
+﻿extends ./MainTemplate.jade
+
+block title
+  title User information 
+
+block content
+  div(ng-app="alarmviewer", class='container-fluid')
+      .h3 Server list
+      div(ng-controller='servercontroller')    
+        table(class='table table-striped table-hover table-responsive', ng-show='currentServer==undefined')
+            tr
+                th Adress
+                th Port
+                th Username
+                th Description
+                th 
+                th
+                th
+            tr(ng-repeat='x in servers')          
+                td {{ x.address }} 
+                td {{ x.port }} 
+                td {{ x.username }}           
+                td {{ x.description }}
+                td
+                    span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                    span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                td 
+                    button(ng-click='editServer(x.id)', title='Edit server',  class="btn btn-sm btn-default") 
+                        span(class='glyphicon glyphicon-edit')
+                td 
+                    button(ng-click='deleteServer(x.id)', title='Delete server',  class="btn btn-sm btn-danger") 
+                        span(class='glyphicon glyphicon-trash')
+
+        button(class="btn btn-sm btn-default", ng-click='initemptyserver()', ng-show='currentServer==undefined') New server
+
+        div(id='newserver', ng-show='currentServer!=undefined', class="form-input")
+            .form-group
+                label(for='id') Server address
+                input(type='text', id='login' placeholder='Adress', ng-model='currentServer.address', class="form-control")
+            .form-group
+                label(for='port') Server port
+                input(type='text', id='port' placeholder='Port', ng-model='currentServer.port', class="form-control")
+            .form-group
+                label(for='user') Login
+                input(type='text', id='user' placeholder='Username', ng-model='currentServer.username', class="form-control")
+            .form-group
+                label(for='password') Password
+                input(type='text', id='password' placeholder='Password', ng-model='currentServer.password', class="form-control")
+            .form-group
+                label(for='description') Server description
+                input(type='text', id='description' placeholder='Description', ng-model='currentServer.description', class="form-control")
+
+            button(ng-click='commitCurrentServer()' class="btn btn-sm btn-primary btn-block") OK
+            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="btn btn-sm btn-default btn-block") Cancel
+        
+        div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg  }}
+
+  script(src='static/angular-1.3.15.min.js')    
+  script(src='static/app.js')  
+  script(src='static/EventSource4IE.js')  
+  script(src='static/EventSource.js')  
+  script(src='static/serverviewer.js')  

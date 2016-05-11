@@ -1,0 +1,23 @@
+﻿body {
+}
+
+.form-input{
+    max-width:350px;
+    margin-left:auto;
+    margin-right:auto;        
+}
+
+.space-before{
+    margin-top:20px;
+}
+
+.alarmtable {
+    max-height:800px;
+    overflow-y:scroll;
+}
+
+.imagecanvas {
+       width:100%;
+       height:auto;
+       border:2px outset grey;
+}
