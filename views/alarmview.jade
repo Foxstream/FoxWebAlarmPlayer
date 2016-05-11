@@ -29,7 +29,7 @@ block content
                   th
                   th
                 tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")          
-                  td {{ x.timestamp | asdate }} 
+                  td {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
                   td {{ x.cameraname }}      
                   td(class="hidden-xs") {{ x.hostname }}              
                   td {{ x.sitename }} 
