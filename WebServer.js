@@ -28,11 +28,15 @@ function buildWebServer()
 function applyRoutes(app) {
         
     app.get('/', function (req, res) {        
-        res.redirect("/alarmview");        
-    });         
+        res.redirect("/live");        
+    });
 
     app.get('/alarmview', auth.IsValidUser, function (req, res) {
         res.render('alarmview', { user: req.user });
+    });
+
+    app.get('/live', auth.IsValidUser, function (req, res) {
+        res.render('liveview', { user: req.user });
     });
     
     app.get('/userview', auth.IsAdmin, function (req, res) {

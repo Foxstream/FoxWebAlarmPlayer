@@ -160,8 +160,9 @@ function Start()
 {
     var self = this;
     this.serverPersistence.getservers(function (err, data){
-        if(!err)
-            _.each(data, AddAndRequestConnect.bind(self));        
+        if(!err){
+            _.each(data, AddAndRequestConnect.bind(self));    
+        }
     })
 }
 

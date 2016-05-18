@@ -1,0 +1,27 @@
+extends ./MainTemplate.jade
+
+block title
+  title Live feeds
+
+block content
+  div(ng-app="alarmviewer", class='container-fluid')
+    .h3 Live Feeds
+
+    div(ng-controller='livecontroller')  
+        
+        div(class='col-xs-12 col-sm-5')
+            div(ng-repeat='c in cameras track by $index | orderBy: "-camid"')
+                h5 Cam_{{ c.camid }}
+                
+            
+       
+                
+
+    script(src='static/angular-1.3.15.min.js')   
+    script(src='static/app.js')  
+    script(src='static/AlarmData.js')  
+    script(src='static/EventSource4IE.js')  
+    script(src='static/EventSource.js')  
+    script(src='static/async.min.js')  
+    script(src='static/livecontroller.js')  
+    script(src='static/serverviewer.js')  
