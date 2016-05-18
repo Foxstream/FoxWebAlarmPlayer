@@ -5,12 +5,7 @@ app.factory('live', ['$http','$rootScope',
 
         obj.getCameras = function(callback){
             $http.get('/controller/live/cameras')
-                .success(function(cameras){
-                    cameras.sort(function(c1, c2){
-                        return c1.camid < c2.camid;
-                    });
-                    callback(cameras);
-                })
+                .success(callback)
                 .error(function(){ callback(null); });
         };
 
@@ -21,7 +16,5 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
     $scope.cameras = 'test';
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
-        console.debug(cameras);
     });
-
 }]);
