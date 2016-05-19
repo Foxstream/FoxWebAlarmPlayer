@@ -50,7 +50,6 @@ function applyApp(app){
                 });
         }, function(){
             // At this point, all servers have been considered and we can send the data to the client
-            console.log('cameras', cameras);
             res.send(cameras);
         });
     });

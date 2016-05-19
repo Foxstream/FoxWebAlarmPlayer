@@ -5,7 +5,16 @@ app.factory('live', ['$http','$rootScope',
 
         obj.getCameras = function(callback){
             $http.get('/controller/live/cameras')
-                .success(callback)
+                .success(function(cameras){
+                    cameras.forEach(function(c){
+                        if (!c.image){
+                            c.image = '/static/img/no_video.png';
+                        } else {
+                            c.image = 'data:image/jpeg;base64,' + c.image;
+                        }
+                    })
+                    callback(cameras);
+                })
                 .error(function(){ callback(null); });
         };
 
@@ -16,5 +25,6 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
     $scope.cameras = 'test';
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
+        console.log(cameras)
     });
 }]);

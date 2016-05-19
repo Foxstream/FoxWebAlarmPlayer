@@ -13,7 +13,7 @@ function buildWebServer()
         secret: 'azzfze6498ze7f9zef64f846&"(54f6efzeze',
         resave : false,
         saveUninitialized : true,
-        cookie: { httpOnly: true }
+        cookie: { httpOnly: true }  
     }));
     
     app.use('/static', express.static(__dirname + '/static'));
@@ -28,7 +28,7 @@ function buildWebServer()
 function applyRoutes(app) {
         
     app.get('/', function (req, res) {        
-        res.redirect("/live");        
+        res.redirect("/live");     
     });
 
     app.get('/alarmview', auth.IsValidUser, function (req, res) {

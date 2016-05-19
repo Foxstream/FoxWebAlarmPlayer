@@ -1,4 +1,3 @@
-
 var mkdirp = require('mkdirp');
 var path = require('path');
 var _ = require("lodash");

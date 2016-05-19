@@ -23,5 +23,26 @@
 }
 
 .camera {
-    display:inline-block;
+    text-align: center;
+    height: 30vh;
+    margin-bottom: 5vh;
+}
+
+.camera-image {
+    height: 100%;
+}
+
+.camera-name {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 1% 3%;
+  border-radius: 15%;
+  background-color: rgba(230, 66, 36, 0.4);
+}
+
+.camera-image:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
