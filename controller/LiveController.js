@@ -42,6 +42,35 @@ function applyApp(app){
             res.send(cameras);
         });
     });
+
+     app.get('/controller/live/:server/:camid', function(req, res){
+        console.log('Received request for live image')
+        console.log('server', req.params.server);
+        console.log('camera', req.params.camid);
+        // Get the right server by its id
+        var server = undefined;
+        self.serverManager.servers.some(function(s){
+            if (s.config.id == req.params.server){
+                server = s;
+                return true;
+            } else return false;
+        });
+        // Ask for image for the right camera
+        server.xmlclient.send({
+            "$": {
+                type:'live',
+                mode: 'jpg',
+                camid: req.params.camid
+            }}, function(err, img){
+                if (err){ 
+                    res.status(500);
+                    res.send(err);
+                } else {
+                    res.send(img.image[0].data);
+                }
+            });
+     });
+
 }
 
 function LiveController(serverManager) {

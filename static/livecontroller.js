@@ -23,6 +23,16 @@ app.factory('live', ['$http','$rootScope',
             .error(function(){ callback(null); });
         }
 
+        obj.getLiveImage = function(serverId, camId, callback){
+            $http.get('/controller/live/' + serverId + '/' + camId)
+            .success(function(image){
+                callback('data:image/jpeg;base64,' + image);
+            })
+            .error(function(err){ 
+                callback('/static/img/no_video.png');
+            });
+        }
+
         return obj;
 }]);
 
@@ -31,4 +41,17 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
         $scope.cameras = cameras;
         console.log(cameras)
     });
+
+    setInterval(function(){
+        if ($scope.cameras){
+            for (var site in $scope.cameras){
+                $scope.cameras[site].forEach(function(cam){
+                    live.getLiveImage(cam.serverId, cam.camid, function(image){
+                        cam.image = image;  
+                    });
+                });
+            }
+        }
+    }, 200);
+
 }]);
