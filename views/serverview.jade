@@ -13,7 +13,6 @@ block content
                 th Port
                 th Username
                 th Description
-                th Site
                 th 
                 th
                 th
@@ -22,7 +21,6 @@ block content
                 td {{ x.port }} 
                 td {{ x.username }}           
                 td {{ x.description }}
-                td {{ x.site }}
                 td
                     span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
                     span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
@@ -51,9 +49,6 @@ block content
             .form-group
                 label(for='description') Server description
                 input(type='text', id='description' placeholder='Description', ng-model='currentServer.description', class="form-control")
-            .form-group
-                label(for='site') Site
-                input(type='text', id='site' placeholder='Site', ng-model='currentServer.site', class="form-control")
 
             button(ng-click='commitCurrentServer()' class="btn btn-sm btn-primary btn-block") OK
             button(ng-click='currentServer=undefined;serverMsg=undefined',  class="btn btn-sm btn-default btn-block") Cancel

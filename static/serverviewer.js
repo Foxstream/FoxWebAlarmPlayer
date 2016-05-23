@@ -49,7 +49,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 username: "admin",
                 password: "",
                 description: "",
-                site: ""
             };
 
             $scope.serverMsg = undefined;

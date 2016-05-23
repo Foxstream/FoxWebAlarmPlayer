@@ -82,6 +82,7 @@ function BuildInternalServer(srv)
 function AddAndRequestConnect(s)
 {
     var srvElement = BuildInternalServer(s);
+
     this.servers.push(srvElement);
 
     RequestServerConnect.bind(this)(srvElement);

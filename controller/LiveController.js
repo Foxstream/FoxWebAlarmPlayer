@@ -15,19 +15,17 @@ function applyApp(app){
             servers = self.serverManager.servers;
 
         async.each(servers, function(s, cb){
+            var site = s.xmlclient.Configuration.equipment.site;
             s.xmlclient.send({
                 "$": {
                     type:"state",
                     id:1
                 }}, function(err, state){
                     if (!err){
-                        // Store the server in each camera to be ablt to ask for live
-                        // pictures later
                         var cameraList = state.camera.map(function(c){
                             c.$.serverId = s.config.id;
                             return c.$;
                         });
-                        var site = s.config.site;
                         // Add cameras to the list
                         if (site in cameras){
                             cameras[site] = cameras[site].concat(cameraList);
@@ -38,7 +36,6 @@ function applyApp(app){
                     } 
                 });
         }, function(){
-            console.log(cameras)
             res.send(cameras);
         });
     });
