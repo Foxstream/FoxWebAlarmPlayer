@@ -50,8 +50,6 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     serverManager.on("alarm_update", function (alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });    
     
     serverManager.start();
-
-    console.log(serverManager.servers)
     
     alarmRemover.start();
     

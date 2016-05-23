@@ -8,13 +8,13 @@ function applyApp(app){
     var self = this;
 
      app.get('/controller/live/cameras', function(req, res){
-        // Return the list of cameras for each site (not each server), but no live images
+
+        console.log('Building camera list');
        
-        var cameras = [],
+        var cameras = {},
             servers = self.serverManager.servers;
 
         async.each(servers, function(s, cb){
-            var camera = {};
             s.xmlclient.send({
                 "$": {
                     type:"state",
@@ -30,7 +30,7 @@ function applyApp(app){
                         var site = s.config.site;
                         // Add cameras to the list
                         if (site in cameras){
-                            cameras[site].push(cameraList);
+                            cameras[site] = cameras[site].concat(cameraList);
                         } else {
                             cameras[site] = cameraList;
                         }
@@ -38,7 +38,7 @@ function applyApp(app){
                     } 
                 });
         }, function(){
-            console.log(cameras);
+            console.log(cameras)
             res.send(cameras);
         });
     });
