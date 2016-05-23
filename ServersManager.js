@@ -75,7 +75,7 @@ function BuildInternalServer(srv)
 {
     var xmlclient = new FoxXmlClient(srv.address, srv.port, srv.username, srv.password);
     var alarmclient = new FoxXmlAlarmClient(xmlclient);
-    
+
     return { config : srv, alarmclient : alarmclient, xmlclient : xmlclient };    
 }
 
@@ -161,7 +161,7 @@ function Start()
     var self = this;
     this.serverPersistence.getservers(function (err, data){
         if(!err){
-            _.each(data, AddAndRequestConnect.bind(self));    
+            _.each(data, AddAndRequestConnect.bind(self));
         }
     })
 }

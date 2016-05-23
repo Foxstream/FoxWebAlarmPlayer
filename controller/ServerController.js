@@ -42,6 +42,8 @@ function applyApp(app) {
     
     app.post('/controller/server', auth.IsAdmin, function (req, res) {
         var server = req.body;
+                console.log(server)
+
         self.serverPersistence.addserver(server, function (err) {
             if (!err)
                 res.json(server);

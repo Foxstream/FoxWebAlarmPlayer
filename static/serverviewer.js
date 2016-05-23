@@ -24,7 +24,7 @@ app.factory('serverdb', ['$http', '$rootScope',
         obj.addserver = function (server, callback) {
             $http.post("/controller/server", server)
 			.success(callback.bind(null, null))
-			.error(function () { callback("Unable to add the server."); });
+			.error(function (err) { console.dir(err);callback("Unable to add the server."); });
         }            
         
         return obj;
@@ -48,7 +48,8 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 port: 4000,
                 username: "admin",
                 password: "",
-                description: ""
+                description: "",
+                site: ""
             };
 
             $scope.serverMsg = undefined;

@@ -2,7 +2,7 @@
 
 function open(cb) {
     var self = this;
-    this.db.run("CREATE TABLE IF NOT EXISTS server (id INTEGER PRIMARY KEY, address TEXT, port INTEGER, username TEXT, password TEXT, description TEXT )", cb);
+    this.db.run("CREATE TABLE IF NOT EXISTS server (id INTEGER PRIMARY KEY, address TEXT, port INTEGER, username TEXT, password TEXT, description TEXT , site varchar (50))", cb);
 }
 
 function close() {
@@ -10,8 +10,8 @@ function close() {
 }
 
 function updateserver(server, cb) {    
-    this.db.run("UPDATE server SET address=?, port=?, username=?, password=?, description=? WHERE id=?",
-	     [server.address, server.port, server.username, server.password, server.description, server.id], cb);    
+    this.db.run("UPDATE server SET address=?, port=?, username=?, password=?, description=?, site=? WHERE id=?",
+	     [server.address, server.port, server.username, server.password, server.description, server.site, server.id], cb);    
 }
 
 function deleteserver(serverId, cb) {
@@ -19,8 +19,8 @@ function deleteserver(serverId, cb) {
 }
 
 function addserver(server, cb) {
-    this.db.run("INSERT INTO server(id, address, port, username, password, description) VALUES(?, ?, ?, ?, ?, ?)",
-	       [server.id, server.address, server.port, server.username, server.password, server.description,],
+    this.db.run("INSERT INTO server(id, address, port, username, password, description, site) VALUES(?, ?, ?, ?, ?, ?, ?)",
+	       [server.id, server.address, server.port, server.username, server.password, server.description, server.site],
 	       function (err) {
         if (!err)
             server.id = this.lastID;
@@ -30,11 +30,11 @@ function addserver(server, cb) {
 }
 
 function getserver(id, cb) {
-    this.db.get("SELECT id, address, port, username, password, description FROM server WHERE id=?", id, cb);
+    this.db.get("SELECT id, address, port, username, password, description, site FROM server WHERE id=?", id, cb);
 }
 
 function getservers(cb) {
-    this.db.all("SELECT id, address, port, username, password, description FROM server", cb);
+    this.db.all("SELECT id, address, port, username, password, description, site FROM server", cb);
 }
 
 
