@@ -23,6 +23,10 @@ app.factory('live', ['$http','$rootScope',
 }]);
 
 app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", function($scope, $rootScope, $window, live) {
+    
+    $scope.liveImage = '/static/img/no_video.png';
+    var liveInterval;
+
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
@@ -34,6 +38,18 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
         }
         console.log(cameras);
     });
+
+    $scope.showLiveFeed = function(serverId, camId){
+        if (liveInterval){
+            clearInterval(liveInterval);
+        }
+
+        liveInterval = setInterval(function(){
+            live.getLiveImage(serverId, camId, function(image){
+                $scope.liveImage = image;
+            });
+        }, 40);
+    }
 
     // LIVE PICTURES
     // setInterval(function(){

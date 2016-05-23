@@ -29,6 +29,7 @@
 }
 
 .camera-image {
+  display: inline-block;
     height: 100%;
 }
 
@@ -45,4 +46,13 @@
 .camera-image:hover {
     cursor: pointer;
     font-weight: bold;
+}
+
+.live-canvas {
+    text-align: center;
+    box-shadow: 0 0 5px white;
+}
+
+.live-canvas img {
+    height: 50vh;
 }
