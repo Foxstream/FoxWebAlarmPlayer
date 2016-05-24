@@ -4,13 +4,15 @@ html
     meta(name="viewport",content="width=device-width, initial-scale=1")
     script(src='static/jquery-2.1.3.min.js')     
     script(src='static/bootstrap.min.js')     
-    link(rel="stylesheet", href="static//css/bootstrap.min.css", media="screen")
-    link(rel="stylesheet", href="static//css/my.css", media="screen")
+    link(rel="stylesheet", href="static/css/bootstrap.min.css", media="screen")
+    link(rel="stylesheet", href="static/css/my.css", media="screen")
     block title
   body
-    div(class='container')   
-      div(class='jumbotron hidden-xs')
-        .h1 Web Alarm Player
+    div(class='container-fluid')   
+      div(class='jumbotron hidden-sm hidden-xs')
+        img(src='/static/img/logo-foxstream.gif')
+        h1 FoxWebAlarmPlayer
+      
       div(class="navbar-header")
         button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")            
             a(class="navbar-brand", href="#") WebAlarmPlayer
