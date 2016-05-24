@@ -1,2 +1,2 @@
-data/images/
-tests/data/images/
+./data/test.db
+./tests/data/images/
