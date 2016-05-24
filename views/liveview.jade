@@ -11,13 +11,16 @@ block content
         
         div(class='col-lg-6')
             div(ng-repeat='(site, cams) in cameras track by $index')
-                h5 {{ site }}
-                div(ng-repeat='c in cams track by $index | orderBy: "-camid"'
-                    class='col-lg-6 col-sm-6 camera'
-                    ng-click='showLiveFeed(c.serverId, c.camid)')
-                    img(src='{{ c.image }}'
-                        class='camera-image')
-                    h5(class='camera-name') Cam_{{ $index + 1 }}
+                h5 
+                    a(href='#collapse{{$index}}' data-toggle='collapse'){{ site }}
+                div(id='collapse{{ $index }}'
+                    class='collapse')
+                    div(ng-repeat='c in cams track by $index | orderBy: "-camid"'
+                        class='col-lg-6 col-sm-6 camera'
+                        ng-click='showLiveFeed(c.serverId, c.camid)')
+                        img(src='{{ c.image }}'
+                            class='camera-image')
+                        h5(class='camera-name') Cam_{{ $index + 1 }}
 
         div(class='col-lg-6 live-canvas')
             img(src='{{ liveImage }}')
