@@ -51,15 +51,24 @@ function checkuser(username, password, cb) {
     var self = this;
     async.waterfall([
         function (local_cb) {
-            self.db.get("SELECT id, login, displayname, password, type FROM user WHERE login=?", username, local_cb);
+            self.db.get("SELECT id, login, displayname, password, type FROM user WHERE login=?", username, function(err, user){
+                if (err){
+                    local_cb(err, null);
+                } else {
+                    local_cb(null, user);
+                }
+            }); 
         },
         function (user, local_cb) {
-            if (user)
-                passwordHash(password).verifyAgainst(user.password, function (err, verified) { local_cb(err, verified, user) });
+            if (user){
+                passwordHash(password).verifyAgainst(user.password, function (err, verified) {
+                    local_cb(err, verified, user)
+                }); 
+            }
             else
-                local_cb(null, false);
+                local_cb(null, false, null);
         },
-        function (verified, user, local_cb) {            
+        function (verified, user, local_cb) {   
             if (verified || (user && user.password == '')) {
                 user.shouldChangePassword = password == '';
                 user.password = undefined;
