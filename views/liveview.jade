@@ -17,7 +17,7 @@ block content
                     class='collapse')
                     div(ng-repeat='c in cams track by $index | orderBy: "-camid"'
                         class='col-lg-6 col-sm-6 camera'
-                        ng-click='showLiveFeed(c.serverId, c.camid)')
+                        ng-click='showLiveFeed(c.serverId, c.camid, c.acq_fps)')
                         img(src='{{ c.image }}'
                             class='camera-image')
                         h5(class='camera-name') Cam_{{ $index + 1 }}

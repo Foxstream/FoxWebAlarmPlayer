@@ -39,7 +39,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
         console.log(cameras);
     });
 
-    $scope.showLiveFeed = function(serverId, camId){
+    $scope.showLiveFeed = function(serverId, camId, fps){
         if (liveInterval){
             clearInterval(liveInterval);
         }
@@ -48,7 +48,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
             live.getLiveImage(serverId, camId, function(image){
                 $scope.liveImage = image;
             });
-        }, 40);
+        }, 1000 / fps);
     }
 
     // LIVE PICTURES
