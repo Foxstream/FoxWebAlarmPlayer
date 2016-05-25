@@ -200,6 +200,16 @@ nav
                     height: 50%;
                 }
 
+                i.glyphicon
+                {
+                    font-size: $navbar-mobile-height / 2;
+                    position: absolute;
+                    top: 10%;
+                    left: 50%;
+                    transform: translate(-50%);
+                }
+
+
                 .link 
                 {
                     line-height: normal;

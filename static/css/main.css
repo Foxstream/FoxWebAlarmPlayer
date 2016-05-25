@@ -106,6 +106,12 @@ nav {
           left: 50%;
           transform: translate(-50%);
           height: 50%; }
+        nav ul li i.glyphicon {
+          font-size: 7.5vh;
+          position: absolute;
+          top: 10%;
+          left: 50%;
+          transform: translate(-50%); }
         nav ul li .link {
           line-height: normal;
           position: absolute;
