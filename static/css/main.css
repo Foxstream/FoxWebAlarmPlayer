@@ -47,7 +47,7 @@ nav {
         width: 100%;
         height: 100%; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   nav {
     height: 6vh;
     margin-top: 1vh;
@@ -80,10 +80,10 @@ nav {
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 15px solid #e44333; }
+        border-top: 8px solid #e44333; }
       nav ul li.active:hover::after {
-        border-top: 15px solid #fc5e5a; } }
-@media screen and (max-width: 767px) {
+        border-top: 8px solid #fc5e5a; } }
+@media screen and (max-width: 991px) {
   nav {
     height: 15vh;
     position: absolute;
@@ -94,7 +94,10 @@ nav {
       height: 15vh;
       line-height: 15vh; }
       nav ul li {
-        width: 33.3vw; } }
+        width: 33.3vw;
+        font-weight: bold; }
+      nav ul li.active a {
+        color: #e44333; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;

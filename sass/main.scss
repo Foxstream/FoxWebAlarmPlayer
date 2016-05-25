@@ -11,7 +11,8 @@ $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 15vh;
 
 // Resopnsive design
-$breakpoint: 768px;
+// $breakpoint: 768px;
+$breakpoint: 992px;
 
 /**
   * ********************** STYLES **********************
@@ -152,11 +153,11 @@ nav
                 height: 0;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
-                border-top: 15px solid $fox-red;
+                border-top: 8px solid $fox-red;
             }
             li.active:hover::after
             {
-                border-top: 15px solid $menu-item-hover;
+                border-top: 8px solid $menu-item-hover;
             }
         }
     }
@@ -181,6 +182,11 @@ nav
             li
             {
                 width: 33.3vw;
+                font-weight: bold;
+            }
+            li.active a
+            {
+                color: $fox-red;
             }
 
         }
