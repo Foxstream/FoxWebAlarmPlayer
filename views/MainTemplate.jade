@@ -10,7 +10,7 @@ html
   body
 
       div(class='container-fluid')
-        header(class='hidden-sm hidden-xs')
+        header(class='hidden-xs')
           img(src='/static/img/logo-foxstream.gif')
           h1 FoxWebAlarmPlayer 
 
@@ -18,15 +18,13 @@ html
           ul
 
             if user.type == 1                      
-                li(class='nav-item active')
+                li(class='active')
                     a(href="/alarmview"
-                      class='nav-link') Alarms
+                      class='nav-link') Alarmes
                 li
-                    a(href="/live") Live
+                    a(href="/live") Direct
                 li
-                    a(href="/userview") Users
-                li
-                    a(href="/serverview") Servers 
+                    a(href="/userview") Paramètres
 
 
       div(class='container-fluid')

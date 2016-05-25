@@ -1,10 +1,21 @@
 /**
   * ********************** STYLES **********************
   */
+body {
+  padding-top: 1vh; }
+
+a {
+  color: black;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none;
+  font-weight: bold; }
+
 header {
   position: relative;
-  height: 15vh;
-  line-height: 15vh;
+  height: 12vh;
+  line-height: 12vh;
   vertical-align: middle; }
   header img {
     display: inline-block;
@@ -23,31 +34,67 @@ header {
     color: #e44333; }
 
 nav {
-  margin-top: 1vh;
-  height: 8vh;
-  width: 100vw;
-  background-color: #e44333;
-  color: white;
-  text-align: right; }
+  width: 100vw; }
   nav ul {
+    padding: 0;
     list-style: none;
-    height: 8vh;
-    line-height: 8vh;
-    vertical-align: middle;
-    margin-right: 3%; }
+    vertical-align: middle; }
     nav ul li {
       display: inline-block;
-      width: 8%;
       text-align: center; }
       nav ul li a {
-        color: white; }
-    nav ul li:hover {
-      background-color: #fc5e5a;
-      cursor: pointer; }
-      nav ul li:hover a {
-        color: white;
-        text-decoration: none; }
+        display: inline-block;
+        width: 100%;
+        height: 100%; }
 
+@media screen and (min-width: 768px) {
+  nav {
+    height: 6vh;
+    margin-top: 1vh;
+    text-align: right;
+    background-color: #e44333;
+    color: white; }
+    nav ul {
+      margin-right: 3%;
+      height: 6vh;
+      line-height: 6vh; }
+      nav ul li {
+        width: 8%;
+        position: relative; }
+        nav ul li a {
+          color: white; }
+      nav ul li:hover {
+        background-color: #fc5e5a;
+        cursor: pointer; }
+        nav ul li:hover a {
+          color: white;
+          text-decoration: none;
+          font-weight: normal; }
+      nav ul li.active::after {
+        content: ' ';
+        position: absolute;
+        top: 6vh;
+        left: 50%;
+        transform: translate(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 15px solid #e44333; }
+      nav ul li.active:hover::after {
+        border-top: 15px solid #fc5e5a; } }
+@media screen and (max-width: 767px) {
+  nav {
+    height: 15vh;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    box-shadow: -2px -2px 1px #4c545e; }
+    nav ul {
+      height: 15vh;
+      line-height: 15vh; }
+      nav ul li {
+        width: 33.3vw; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;
