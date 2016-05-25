@@ -47,7 +47,7 @@ nav {
         width: 100%;
         height: 100%; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   nav {
     height: 6vh;
     margin-top: 1vh;
@@ -63,6 +63,8 @@ nav {
         position: relative; }
         nav ul li a {
           color: white; }
+        nav ul li img {
+          display: none; }
       nav ul li:hover {
         background-color: #fc5e5a;
         cursor: pointer; }
@@ -83,7 +85,7 @@ nav {
         border-top: 8px solid #e44333; }
       nav ul li.active:hover::after {
         border-top: 8px solid #fc5e5a; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   nav {
     height: 15vh;
     position: absolute;
@@ -95,7 +97,21 @@ nav {
       line-height: 15vh; }
       nav ul li {
         width: 33.3vw;
-        font-weight: bold; }
+        font-weight: bold;
+        position: relative;
+        border: solid black 1px; }
+        nav ul li img {
+          position: absolute;
+          top: 10%;
+          left: 50%;
+          transform: translate(-50%);
+          height: 50%; }
+        nav ul li .link {
+          line-height: normal;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%);
+          bottom: 10%; }
       nav ul li.active a {
         color: #e44333; } }
 .form-input {

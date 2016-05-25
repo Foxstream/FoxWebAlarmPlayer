@@ -11,8 +11,8 @@ $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 15vh;
 
 // Resopnsive design
-$breakpoint: 768px;
-// $breakpoint: 992px;
+// $breakpoint: 768px;
+$breakpoint: 992px;
 
 /**
   * ********************** STYLES **********************
@@ -128,6 +128,11 @@ nav
                     color: white;
                 }
 
+                img 
+                {
+                    display: none;
+                }
+
             }
             li:hover 
             {
@@ -183,6 +188,27 @@ nav
             {
                 width: 33.3vw;
                 font-weight: bold;
+                position: relative;
+                border: solid black 1px;
+
+                img
+                {
+                    position: absolute;
+                    top: 10%;
+                    left: 50%;
+                    transform: translate(-50%);
+                    height: 50%;
+                }
+
+                .link 
+                {
+                    line-height: normal;
+                    position: absolute;
+                    left: 50%;
+                    transform: translate(-50%);
+                    bottom: 10%;
+                }
+
             }
             li.active a
             {

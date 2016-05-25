@@ -15,7 +15,7 @@ html
       div(class='container-fluid')
         header(class='hidden-xs')
           img(src='/static/img/logo-foxstream.gif')
-          h1 FoxWebAlarmPlayer 
+          h1 FoxWebAlarmPlayer
 
       nav(role='navigation' 
           ng-controller='navbarcontroller')
@@ -24,11 +24,17 @@ html
             if user.type == 1                      
                 li(ng-class='{ active: isActive("alarmview") }')
                     a(href="/alarmview"
-                      class='nav-link') Alarmes
+                      class='nav-link') 
+                        img(src='static/img/alert.png') 
+                        span(class='link') Alarmes
                 li(ng-class='{ active: isActive("live") }')
-                    a(href="/live") Direct
+                    a(href="/live") 
+                      img(src='static/img/live.png') 
+                      span(class='link') Direct
                 li(ng-class='{ active: isActive("userview") }')
-                    a(href="/userview") Paramètres
+                    a(href="/userview") 
+                        img(src='static/img/settings.png') 
+                        span(class='link') Paramètres
 
 
       div(class='container-fluid')
