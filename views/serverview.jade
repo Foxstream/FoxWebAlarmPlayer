@@ -1,11 +1,10 @@
 ﻿extends ./MainTemplate.jade
 
 block title
-  title User information 
+  title Serveurs
 
 block content
   div(class='container-fluid')
-      .h3 Server list
       div(ng-controller='servercontroller')    
         table(class='table table-striped table-hover table-responsive', ng-show='currentServer==undefined')
             tr

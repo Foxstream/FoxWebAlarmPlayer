@@ -1,11 +1,10 @@
 ﻿extends ./MainTemplate.jade
 
 block title
-  title Account settings
+  title Compte utilisateur
 
 block content
   div(class='container-fluid')
-       .h3 Account settings
        if user.shouldChangePassword
             div(class='alert alert-danger') You must change your password
 
