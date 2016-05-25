@@ -3,7 +3,10 @@ html
   head
     meta(name="viewport",content="width=device-width, initial-scale=1")
     script(src='static/jquery-2.1.3.min.js')     
-    script(src='static/bootstrap.min.js')     
+    script(src='static/bootstrap.min.js')   
+    script(src='static/angular-1.3.15.min.js')
+    script(src='static/app.js')
+    script(src='static/navbarcontroller.js')  
     link(rel="stylesheet", href="static/css/bootstrap.min.css", media="screen")
     link(rel="stylesheet", href="static/css/main.css", media="screen")
     block title
@@ -14,20 +17,21 @@ html
           img(src='/static/img/logo-foxstream.gif')
           h1 FoxWebAlarmPlayer 
 
-      nav(role='navigation')
+      nav(role='navigation' 
+          ng-app='alarmviewer'
+          ng-controller='navbarcontroller')
           ul
 
             if user.type == 1                      
-                li(class='active')
+                li(ng-class='{ active: isActive("alarmview") }')
                     a(href="/alarmview"
                       class='nav-link') Alarmes
-                li
+                li(ng-class='{ active: isActive("live") }')
                     a(href="/live") Direct
-                li
+                li(ng-class='{ active: isActive("userview") }')
                     a(href="/userview") Paramètres
 
 
       div(class='container-fluid')
         block content
-    
  
