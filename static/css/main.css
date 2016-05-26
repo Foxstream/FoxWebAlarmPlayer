@@ -21,11 +21,13 @@ ul {
 @media screen and (min-width: 992px) {
   .container-fluid.content {
     margin-top: 10vh; } }
-input, label, button {
-  margin-top: 1vh; }
-
 input {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
   width: 100%; }
+
+label, button {
+  margin-bottom: 1vh; }
 
 button {
   border-style: solid;
@@ -52,7 +54,11 @@ button.button-gray {
     margin: auto;
     width: 50%; }
 
+  label {
+    margin-top: 1vh; }
+
   button {
+    margin-top: 1vh;
     width: 10vw; } }
 @media screen and (max-width: 991px) {
   label {

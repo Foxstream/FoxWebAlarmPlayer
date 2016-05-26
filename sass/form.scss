@@ -1,11 +1,13 @@
-input, label, button
+input
 {
     margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 100%;
 }
 
-input 
+label, button
 {
-    width: 100%;
+    margin-bottom: 1vh;
 }
 
 button
@@ -46,8 +48,15 @@ button.button-gray
         width: 50%;
     }
 
-    button 
+    label
     {
+        margin-top: 1vh;
+    }
+
+
+    button
+    {
+        margin-top: 1vh;
         width: 10vw;
     }
 
@@ -61,11 +70,6 @@ button.button-gray
     {
         margin-top: 5vh;
         text-indent: 5vw;
-    }
-
-    input 
-    {
-
     }
 
     button 
