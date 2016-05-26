@@ -1,6 +1,3 @@
-/**
-  * ********************** STYLES **********************
-  */
 body {
   padding-top: 1vh; }
 
@@ -101,9 +98,9 @@ nav {
         font-weight: bold;
         position: relative; }
         nav ul li i.glyphicon {
-          font-size: 4.8vh;
+          font-size: 4vh;
           position: absolute;
-          top: 15%;
+          top: 20%;
           left: 50%;
           transform: translate(-50%); }
         nav ul li .link {
@@ -113,7 +110,10 @@ nav {
           transform: translate(-50%);
           bottom: 10%; }
       nav ul li.active a {
-        color: #e44333; } }
+        color: #e44333; }
+
+  nav.nav-connection {
+    display: none; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;

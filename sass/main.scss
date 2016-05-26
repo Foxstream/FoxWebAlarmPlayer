@@ -1,3 +1,6 @@
+// ******************************************* SASS variables
+
+
 // Colors
 $fox-red:#e44333;
 $fox-gray:#4c545e;
@@ -14,9 +17,6 @@ $navbar-mobile-height: 12vh;
 // $breakpoint: 768px;
 $breakpoint: 992px;
 
-/**
-  * ********************** STYLES **********************
-  */
 
 // ******************************************* General rules
 
@@ -44,191 +44,13 @@ ul
     vertical-align: middle;
 }
 
-// *********************************************** Header
-
-header 
-{
-    position: relative;
-    // border: solid black 2px;
-    height: $header-height;
-    line-height: $header-height;
-    vertical-align: middle;
-
-    img 
-    {
-        display: inline-block;
-        height: 90%;
-        position: relative;
-        left: 2%;
-    }
-
-    h1 
-    {
-        display: inline;
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translate(0,-50%);
-        margin: 0;
-        padding: 0;
-        font-size: 2em;
-        color: $fox-red;
-    }
-
-} 
 
 
-// *********************************************** Navbar
+// *********************************************** Imports
 
-nav
-{
-    width: 100vw;
-
-    ul 
-    {
-
-        li
-        {
-            display: inline-block;
-            text-align: center;
-
-            a
-            {
-                display: inline-block;
-                width: 100%;
-                height: 100%;
-            }
-
-        } 
-
-    }
-
-}
-
-// Desktop
-@media screen and (min-width: $breakpoint)
-{
-    nav
-    {
-        margin-bottom: 5vh;
-        height: $navbar-desktop-height;
-        margin-top: 1vh;
-        text-align: right;
-        background-color: $fox-red;
-        color: white;
-        height: $navbar-desktop-height;
-        line-height: $navbar-desktop-height;
-        padding-right: 3%;
-
-        ul 
-        {
-
-            li 
-            {
-                width: 8%;
-                position: relative;
-
-                a 
-                {
-                    color: white;
-                }
-
-                i.glyphicon
-                {
-                    display:none;
-                }
-
-            }
-            li:hover 
-            {
-                background-color: $menu-item-hover;
-                cursor: pointer;
-
-                a
-                {
-                    color: white;
-                    text-decoration: none;
-                    font-weight: normal; // weird : prevents movement of the arrow on active item
-                }
-
-            }
-            li.active::after // Arrow under active item
-            {
-                content: ' ';
-                position: absolute;
-                top: $navbar-desktop-height;
-                left: 50%;
-                transform: translate(-50%);
-                width: 0;
-                height: 0;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-top: 8px solid $fox-red;
-            }
-            li.active:hover::after
-            {
-                border-top: 8px solid $menu-item-hover;
-            }
-        }
-    }
-}
-
-// Mobile
-@media screen and (max-width: ($breakpoint - 1px))
-{
-    nav
-    {
-        height: $navbar-mobile-height;
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        box-shadow: -2px -2px 1px $fox-gray;
-
-        ul 
-        {
-            height: $navbar-mobile-height;
-            line-height: $navbar-mobile-height;
-
-            li
-            {
-                width: 33.3vw;
-                font-weight: bold;
-                position: relative;
-
-                i.glyphicon
-                {
-                    font-size: $navbar-mobile-height / 2.5;
-                    position: absolute;
-                    top: 15%;
-                    left: 50%;
-                    transform: translate(-50%);
-                }
-
-
-                .link 
-                {
-                    line-height: normal;
-                    position: absolute;
-                    left: 50%;
-                    transform: translate(-50%);
-                    bottom: 10%;
-                }
-
-            }
-            li.active a
-            {
-                color: $fox-red;
-            }
-
-        }
-
-    }
-}
-
-
-
-
-
+@import "header.scss";
+@import "navbar.scss";
+@import "login.scss";
 
 
 

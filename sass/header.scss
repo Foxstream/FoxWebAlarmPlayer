@@ -1,0 +1,30 @@
+header 
+{
+    position: relative;
+    // border: solid black 2px;
+    height: $header-height;
+    line-height: $header-height;
+    vertical-align: middle;
+
+    img 
+    {
+        display: inline-block;
+        height: 90%;
+        position: relative;
+        left: 2%;
+    }
+
+    h1 
+    {
+        display: inline;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translate(0,-50%);
+        margin: 0;
+        padding: 0;
+        font-size: 2em;
+        color: $fox-red;
+    }
+
+} 
