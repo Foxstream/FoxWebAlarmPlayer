@@ -8,7 +8,7 @@ $menu-item-hover:#fc5e5a;
 // Block sizes
 $header-height: 12vh;
 $navbar-desktop-height: 6vh;
-$navbar-mobile-height: 15vh;
+$navbar-mobile-height: 12vh;
 
 // Resopnsive design
 // $breakpoint: 768px;
@@ -35,6 +35,13 @@ a:hover
 {
     text-decoration: none;
     font-weight: bold;
+}
+
+ul
+{
+    padding: 0;
+    list-style: none;
+    vertical-align: middle;
 }
 
 // *********************************************** Header
@@ -79,9 +86,6 @@ nav
 
     ul 
     {
-        padding: 0;
-        list-style: none;
-        vertical-align: middle;
 
         li
         {
@@ -106,17 +110,18 @@ nav
 {
     nav
     {
+        margin-bottom: 5vh;
         height: $navbar-desktop-height;
         margin-top: 1vh;
         text-align: right;
         background-color: $fox-red;
         color: white;
+        height: $navbar-desktop-height;
+        line-height: $navbar-desktop-height;
+        padding-right: 3%;
 
         ul 
         {
-            margin-right: 3%;
-            height: $navbar-desktop-height;
-            line-height: $navbar-desktop-height;
 
             li 
             {
@@ -128,9 +133,9 @@ nav
                     color: white;
                 }
 
-                img 
+                i.glyphicon
                 {
-                    display: none;
+                    display:none;
                 }
 
             }
@@ -189,16 +194,6 @@ nav
                 width: 33.3vw;
                 font-weight: bold;
                 position: relative;
-                border: solid black 1px;
-
-                img
-                {
-                    position: absolute;
-                    top: 10%;
-                    left: 50%;
-                    transform: translate(-50%);
-                    height: 50%;
-                }
 
                 i.glyphicon
                 {
