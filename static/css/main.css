@@ -18,16 +18,15 @@ ul {
   font-size: 1.5em;
   color: #e44333; }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 50em) {
   .container-fluid.content {
     margin-top: 10vh; } }
-input {
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  width: 100%; }
+table {
+  width: 100%;
+  text-align: center; }
 
-label, button {
-  margin-bottom: 1vh; }
+input {
+  width: 100%; }
 
 button {
   border-style: solid;
@@ -49,25 +48,27 @@ button.button-gray {
   border-color: #4c545e;
   color: #4c545e; }
 
-@media screen and (min-width: 992px) {
-  form {
+@media screen and (min-width: 50em) {
+  .form {
     margin: auto;
     width: 50%; }
+    .form input {
+      margin-top: 1vh;
+      margin-bottom: 1vh; }
+    .form label {
+      margin-bottom: 1vh; }
+    .form button {
+      margin-top: 1vh;
+      margin-bottom: 1vh; }
 
   label {
     margin-top: 1vh; }
 
   button {
-    margin-top: 1vh;
     width: 10vw; } }
-@media screen and (max-width: 991px) {
-  label {
-    margin-top: 5vh;
-    text-indent: 5vw; }
-
+@media screen and (max-width: 49em) {
   button {
     width: 45%;
-    margin-top: 3vh;
     margin-left: 0;
     margin-right: 0;
     font-size: 1.2em; }
@@ -76,6 +77,17 @@ button.button-gray {
     width: 100%;
     margin-left: 0;
     margin-right: 0; }
+
+  .form input {
+    margin-top: 1vh;
+    margin-bottom: 1vh; }
+  .form label {
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+    text-indent: 5vw; }
+  .form button {
+    margin-top: 3vh;
+    margin-bottom: 1vh; }
 
   .divider {
     display: inline-block;
@@ -109,7 +121,7 @@ nav {
       width: 100%;
       height: 100%; }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 50em) {
   nav {
     margin-bottom: 5vh;
     height: 6vh;
@@ -122,18 +134,22 @@ nav {
     padding-right: 3%; }
     nav ul li {
       width: 8%;
-      position: relative; }
+      position: relative;
+      border-left: solid #ea533d 1px;
+      border-right: solid #ea533d 1px; }
       nav ul li a {
         color: white; }
       nav ul li i.glyphicon {
         display: none; }
     nav ul li:hover {
-      background-color: #fc5e5a;
+      background-color: #cf3c2d;
       cursor: pointer; }
       nav ul li:hover a {
         color: white;
         text-decoration: none;
         font-weight: normal; }
+    nav ul li.active {
+      background-color: #cf3c2d; }
     nav ul li.active::after {
       content: ' ';
       position: absolute;
@@ -144,10 +160,10 @@ nav {
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
-      border-top: 9px solid #e44333; }
+      border-top: 9px solid #cf3c2d; }
     nav ul li.active:hover::after {
-      border-top: 8px solid #fc5e5a; } }
-@media screen and (max-width: 991px) {
+      border-top: 8px solid #cf3c2d; } }
+@media screen and (max-width: 49em) {
   nav {
     height: 12vh;
     position: absolute;
@@ -178,10 +194,10 @@ nav {
 
   nav.nav-connection {
     display: none; } }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 50em) {
   .foxstream-header {
     display: none; } }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 49em) {
   .foxstream-header {
     margin-top: 10vh;
     text-align: center; }

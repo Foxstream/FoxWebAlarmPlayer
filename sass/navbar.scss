@@ -45,6 +45,8 @@ nav
             {
                 width: 8%;
                 position: relative;
+                border-left: solid rgb(234, 83, 61) 1px;
+                border-right: solid rgb(234, 83, 61) 1px;
 
                 a 
                 {
@@ -59,7 +61,7 @@ nav
             }
             li:hover 
             {
-                background-color: $menu-item-hover;
+                background-color: $fox-dark-red;
                 cursor: pointer;
 
                 a
@@ -69,6 +71,10 @@ nav
                     font-weight: normal; // weird : prevents movement of the arrow on active item
                 }
 
+            }
+            li.active
+            {
+                background-color: $fox-dark-red;
             }
             li.active::after // Arrow under active item
             {
@@ -81,18 +87,18 @@ nav
                 height: 0;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
-                border-top: 9px solid $fox-red;
+                border-top: 9px solid $fox-dark-red;
             }
             li.active:hover::after
             {
-                border-top: 8px solid $menu-item-hover;
+                border-top: 8px solid $fox-dark-red;
             }
         }
     }
 }
 
 // Mobile
-@media screen and (max-width: ($breakpoint - 1px))
+@media screen and (max-width: ($breakpoint - 1em))
 {
     nav
     {

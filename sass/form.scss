@@ -1,13 +1,6 @@
 input
 {
-    margin-top: 1vh;
-    margin-bottom: 1vh;
     width: 100%;
-}
-
-label, button
-{
-    margin-bottom: 1vh;
 }
 
 button
@@ -38,14 +31,34 @@ button.button-gray
     color: $fox-gray;
 }
 
+
 // Desktop
 @media screen and (min-width: $breakpoint)
 {
 
-    form 
+    // When used inside a classic form display (not in table lines), form elements need more margin
+    .form 
     {
         margin: auto;
         width: 50%;
+
+        input 
+        {
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+        }
+
+        label
+        {
+            margin-bottom: 1vh;
+        }
+
+        button
+        {
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+        }
+
     }
 
     label
@@ -53,29 +66,20 @@ button.button-gray
         margin-top: 1vh;
     }
 
-
     button
     {
-        margin-top: 1vh;
         width: 10vw;
     }
 
 }
 
 // Mobile
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $breakpoint - 1em)
 {
-
-    label
-    {
-        margin-top: 5vh;
-        text-indent: 5vw;
-    }
 
     button 
     {
         width: 45%;
-        margin-top: 3vh;
         margin-left: 0;
         margin-right: 0;
         font-size: 1.2em;
@@ -87,6 +91,31 @@ button.button-gray
         margin-left: 0;
         margin-right: 0;
     }
+
+    .form // Displqy in colun (for example login page)
+    {
+
+        input 
+        {
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+        }
+
+        label
+        {
+            margin-top: 5vh;
+            margin-bottom: 1vh;
+            text-indent: 5vw;
+        }
+
+        button
+        {
+            margin-top: 3vh;
+            margin-bottom: 1vh;
+        }
+
+    }
+
 
     .divider // Easy way to put space between two buttons on a line
     {

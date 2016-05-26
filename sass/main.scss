@@ -3,8 +3,8 @@
 
 // Colors
 $fox-red:#e44333;
+$fox-dark-red:#cf3c2d;
 $fox-gray:#4c545e;
-$menu-item-hover:#fc5e5a;
 
 // Font;
 
@@ -15,8 +15,7 @@ $navbar-mobile-height: 12vh;
 
 // Resopnsive design
 // $breakpoint: 768px;
-$breakpoint: 992px;
-
+$breakpoint: 50em;
 
 // ******************************************* General rules
 
@@ -58,6 +57,12 @@ ul
     }
 }
 
+table
+{
+    width: 100%;
+    text-align: center;
+}
+
 
 // *********************************************** Imports
 
@@ -65,6 +70,7 @@ ul
 @import "header.scss";
 @import "navbar.scss";
 @import "login.scss";
+@import "alarms.scss";
 
 
 

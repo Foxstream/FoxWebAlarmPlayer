@@ -7,41 +7,38 @@ block content
   div(class='container-fluid')
         
     div(ng-controller='alarmcontroller')  
-        div(class='col-xs-12 col-sm-5')
-            div(class='h6')  
-                span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
-                span(ng-show='currentalarm==undefined') No alarm selected
-            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm')  
-            
+       
         div(class='col-xs-12 col-sm-7')
             div(ng-controller='servercontroller')            
                 div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
-            table(class='table table-striped table-hover table-responsive table-condensed alarmtable')
+            table(class='alarmtable')
                 tr
-                  th Date
-                  th Camera    
-                  th(class="hidden-xs") Server              
-                  th Site
-                  th
-                  th
-                  th
+                  th(class='check')
+                  th(class='drop')
+                  th(class='date') Date
+                  th(class='video')
+                  th(class='camera') Camera
+                  th(class='site') Site
+                  th(class='handle')
                 tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")          
+                  td 
+                    input(type='checkbox') 
+                  td
+                    input(type='checkbox')
                   td {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
+                  td Video
                   td {{ x.cameraname }}      
-                  td(class="hidden-xs") {{ x.hostname }}              
                   td {{ x.sitename }} 
                   td 
-                    button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Play',class="btn btn-sm btn-default")
-                        span(class='glyphicon glyphicon-film')
-                  td 
-                    button(ng-click='markashandled(x.id)', title='Mark as handled',class="btn btn-sm btn-default")
-                        span(class='glyphicon glyphicon-ok')
-                  td
-                    button(ng-click='delete(x.id)', title='Delete',class="btn btn-sm btn-danger")
-                        span(class='glyphicon glyphicon-trash')       
+                    button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
 
+        div(class='col-xs-12 col-sm-5')
+            div(class='h6')  
+                span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                span(ng-show='currentalarm==undefined') No alarm selected
+            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm')  
                     
         
                 
