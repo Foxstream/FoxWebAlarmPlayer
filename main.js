@@ -57,6 +57,7 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     almControler.on("alarm_deleted", function (alarmId){ sse.sendMessage('alarm_deleted', alarmId) });
 
     websrv.listen(8001);
+    console.log('\n\nServer listening on port 8001\n\n');
 
 })
 

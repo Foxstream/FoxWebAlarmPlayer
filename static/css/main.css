@@ -14,6 +14,65 @@ ul {
   list-style: none;
   vertical-align: middle; }
 
+.app-name {
+  font-size: 1.5em;
+  color: #e44333; }
+
+@media screen and (min-width: 992px) {
+  .container-fluid.content {
+    margin-top: 10vh; } }
+input, label, button {
+  margin-top: 1vh;
+  margin-bottom: 1vh; }
+
+input {
+  width: 100%; }
+
+button {
+  border-style: solid;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+  background-color: white;
+  text-align: center;
+  padding: 0; }
+
+button:hover {
+  font-weight: bold; }
+
+button.button-red {
+  border-color: #e44333;
+  color: #e44333; }
+
+button.button-gray {
+  border-color: #4c545e;
+  color: #4c545e; }
+
+@media screen and (min-width: 992px) {
+  form {
+    margin: auto;
+    width: 50%; }
+
+  button {
+    width: 10vw; } }
+@media screen and (max-width: 991px) {
+  label {
+    margin-top: 3vh; }
+
+  button {
+    width: 45%;
+    margin-top: 3vh;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.2em; }
+
+  button.full-width {
+    width: 90vw;
+    margin-left: 0;
+    margin-right: 0; }
+
+  .divider {
+    display: inline-block;
+    width: 10%; } }
 header {
   position: relative;
   height: 12vh;
@@ -31,9 +90,7 @@ header {
     top: 50%;
     transform: translate(0, -50%);
     margin: 0;
-    padding: 0;
-    font-size: 2em;
-    color: #e44333; }
+    padding: 0; }
 
 nav {
   width: 100vw; }
@@ -114,6 +171,15 @@ nav {
 
   nav.nav-connection {
     display: none; } }
+@media screen and (min-width: 992px) {
+  .foxstream-header {
+    display: none; } }
+@media screen and (max-width: 992px) {
+  .foxstream-header {
+    margin-top: 10vh;
+    text-align: center; }
+    .foxstream-header img {
+      margin-bottom: 5vh; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;

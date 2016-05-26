@@ -14,15 +14,28 @@ html
     div(class='container-fluid')
     header(class='hidden-xs')
       img(src='/static/img/logo-foxstream.gif')
-      h1 FoxWebAlarmPlayer
+      h1(class='app-name') FoxWebAlarmPlayer
 
     nav(role='navigation' class='nav-connection')
         span(class='nav-link') 
             span(class='link') Connexion
 
+    div(class='container-fluid content')
+        div(class='foxstream-header')
+            img(src='static/img/logo-foxstream.gif')
+            br
+            span(class='app-name') FoxWebAlarmPlayer
 
-    form(class="form-input", action='/login', method='POST')
-        h3(class="form-signin-heading") Please sign in
-        input(type='text', name='username',class="form-control", placeholder='Username',required, autofocus)
-        input(type='password', name='password', class="form-control", placeholder='Password', required)
-        button(class="btn btn-lg btn-primary btn-block", type='submit') Sign in        
+
+        .row
+            form(action='/login', method='POST')
+                div(class='col-sm-6 col-xs-12')
+                    label(for='username') Login :
+                div(class='col-lg-6 col-sm-6 col-xs-12')
+                    input(type='text', name='username', placeholder='Username',required, autofocus)
+                div(class='col-lg-6 col-sm-6 col-xs-12')
+                    label(for='password') Mot de passe :
+                div(class='col-sm-6 col-xs-12')
+                    input(type='password', name='password', placeholder='Password', required)
+                div(class='col-sm-6 col-sm-offset-6 col-xs-12 col-xs-offset-0')
+                    button(type='submit' class='button-red full-width') Connexion     

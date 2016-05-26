@@ -44,10 +44,24 @@ ul
     vertical-align: middle;
 }
 
+.app-name // App name in header or on login page on mobile devices
+{
+    font-size: 1.5em;
+    color: $fox-red;
+}
+
+@media screen and (min-width: $breakpoint)
+{
+    .container-fluid.content 
+    {
+        margin-top: 10vh;
+    }
+}
 
 
 // *********************************************** Imports
 
+@import "form.scss";
 @import "header.scss";
 @import "navbar.scss";
 @import "login.scss";
