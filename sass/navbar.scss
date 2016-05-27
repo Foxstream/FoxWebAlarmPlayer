@@ -84,7 +84,33 @@ nav
 }
 
 
+@media screen and (max-width: ($tablet-breakpoint - 1px))
+{
+    nav
+    {
+        height: $navbar-tablet-height;
 
+        ul 
+        {
+            height: $navbar-tablet-height;
+            line-height: $navbar-tablet-height;
+
+            li
+            {
+                width: 15vw;
+
+                i.glyphicon
+                {
+                    font-size: $navbar-tablet-height / 3;
+                }
+
+            }
+
+        }
+
+    }
+
+}
 
 // Desktop
 @media screen and (min-width: $tablet-breakpoint)

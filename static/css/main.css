@@ -153,6 +153,47 @@ nav {
       width: 100%;
       height: 100%; }
 
+@media screen and (max-width: 991px) {
+  nav {
+    height: 12vh;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    box-shadow: -2px -2px 1px #566171; }
+    nav ul {
+      height: 12vh;
+      line-height: 12vh; }
+      nav ul li {
+        width: 33.3vw;
+        font-weight: bold;
+        position: relative; }
+        nav ul li i.glyphicon {
+          font-size: 4vh;
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translate(-50%); }
+        nav ul li .link {
+          line-height: normal;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%);
+          bottom: 10%; }
+      nav ul li.active a {
+        color: #e44333; }
+
+  nav.nav-connection {
+    display: none; } }
+@media screen and (max-width: 991px) {
+  nav {
+    height: 6vh; }
+    nav ul {
+      height: 6vh;
+      line-height: 6vh; }
+      nav ul li {
+        width: 15vw; }
+        nav ul li i.glyphicon {
+          font-size: 2vh; } }
 @media screen and (min-width: 992px) {
   nav {
     margin-bottom: 5vh;
@@ -195,37 +236,6 @@ nav {
       border-top: 9px solid #cf3c2d; }
     nav ul li.active:hover::after {
       border-top: 8px solid #cf3c2d; } }
-@media screen and (max-width: 991px) {
-  nav {
-    height: 12vh;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    box-shadow: -2px -2px 1px #566171; }
-    nav ul {
-      height: 12vh;
-      line-height: 12vh; }
-      nav ul li {
-        width: 33.3vw;
-        font-weight: bold;
-        position: relative; }
-        nav ul li i.glyphicon {
-          font-size: 4vh;
-          position: absolute;
-          top: 20%;
-          left: 50%;
-          transform: translate(-50%); }
-        nav ul li .link {
-          line-height: normal;
-          position: absolute;
-          left: 50%;
-          transform: translate(-50%);
-          bottom: 10%; }
-      nav ul li.active a {
-        color: #e44333; }
-
-  nav.nav-connection {
-    display: none; } }
 @media screen and (min-width: 992px) {
   .foxstream-header {
     display: none; } }
