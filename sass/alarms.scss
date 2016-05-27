@@ -1,5 +1,5 @@
 // Desktop
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
 
     .alarmtable
@@ -61,7 +61,7 @@
 
 
 // Mobile
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $mobile-breakpoint - 1px)
 {
 
     .alarmtable

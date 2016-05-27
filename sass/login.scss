@@ -1,6 +1,6 @@
 // Specific style rules for the login page
 
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
     .foxstream-header
     {
@@ -9,7 +9,7 @@
 }
 
 
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $mobile-breakpoint - 1px)
 {
     .foxstream-header
     {

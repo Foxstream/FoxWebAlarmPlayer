@@ -37,7 +37,7 @@ button.button-gray
 
 
 // Desktop
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
 
     // When used inside a classic form display (not in table lines), form elements need more margin
@@ -85,7 +85,7 @@ button.button-gray
 
 
 // Mobile
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $mobile-breakpoint - 1px)
 {
 
     button 

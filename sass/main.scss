@@ -16,6 +16,7 @@ $fox-light-gray: #c8d4d9;
 $header-height: 12vh;
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 12vh;
+$navbar-tablet-height: 8vh;
 $action-bar-mobile-height: 10vh;
 
 // This is used to set the height of important elements
@@ -24,7 +25,8 @@ $main-element-size: 60vh;
 
 
 // Resopnsive design
-$breakpoint: 992px;
+$tablet-breakpoint: 992px;
+$mobile-breakpoint: 992px;
 
 // ******************************************* General rules
 
@@ -59,7 +61,7 @@ ul
     color: $fox-red;
 }
 
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
     .container-fluid.content 
     {
@@ -88,7 +90,7 @@ td
 
 
 // On mobile devices, remove the padding set by bootstrap
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $mobile-breakpoint - 1px)
 {
     .col-xs-12
     {
@@ -103,7 +105,7 @@ td
     width: 100%;
 }
 
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
     .actions
     {
@@ -113,7 +115,7 @@ td
     }
 }
 
-@media screen and (max-width: $breakpoint - 1px)
+@media screen and (max-width: $mobile-breakpoint - 1px)
 {
     .actions
     {

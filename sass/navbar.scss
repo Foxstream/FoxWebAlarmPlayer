@@ -23,8 +23,71 @@ nav
 
 }
 
+
+// Mobile
+@media screen and (max-width: ($mobile-breakpoint - 1px))
+{
+    nav
+    {
+        height: $navbar-mobile-height;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        box-shadow: -2px -2px 1px $fox-dark-gray;
+
+        ul 
+        {
+            height: $navbar-mobile-height;
+            line-height: $navbar-mobile-height;
+
+            li
+            {
+                width: 33.3vw;
+                font-weight: bold;
+                position: relative;
+
+                i.glyphicon
+                {
+                    font-size: $navbar-mobile-height / 3;
+                    position: absolute;
+                    top: 20%;
+                    left: 50%;
+                    transform: translate(-50%);
+                }
+
+
+                .link 
+                {
+                    line-height: normal;
+                    position: absolute;
+                    left: 50%;
+                    transform: translate(-50%);
+                    bottom: 10%;
+                }
+
+            }
+            li.active a
+            {
+                color: $fox-red;
+            }
+
+        }
+
+    }
+
+    // Don't show the navigation bar on mobile
+    nav.nav-connection
+    {
+        display: none;
+    }
+
+}
+
+
+
+
 // Desktop
-@media screen and (min-width: $breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
     nav
     {
@@ -97,61 +160,3 @@ nav
     }
 }
 
-// Mobile
-@media screen and (max-width: ($breakpoint - 1px))
-{
-    nav
-    {
-        height: $navbar-mobile-height;
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        box-shadow: -2px -2px 1px $fox-dark-gray;
-
-        ul 
-        {
-            height: $navbar-mobile-height;
-            line-height: $navbar-mobile-height;
-
-            li
-            {
-                width: 33.3vw;
-                font-weight: bold;
-                position: relative;
-
-                i.glyphicon
-                {
-                    font-size: $navbar-mobile-height / 3;
-                    position: absolute;
-                    top: 20%;
-                    left: 50%;
-                    transform: translate(-50%);
-                }
-
-
-                .link 
-                {
-                    line-height: normal;
-                    position: absolute;
-                    left: 50%;
-                    transform: translate(-50%);
-                    bottom: 10%;
-                }
-
-            }
-            li.active a
-            {
-                color: $fox-red;
-            }
-
-        }
-
-    }
-
-    // Don't show the navigation bar on mobile
-    nav.nav-connection
-    {
-        display: none;
-    }
-
-}
