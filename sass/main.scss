@@ -105,7 +105,7 @@ td
     width: 100%;
 }
 
-@media screen and (min-width: $tablet-breakpoint)
+@media screen and (min-width: $mobile-breakpoint)
 {
     .actions
     {
@@ -115,7 +115,7 @@ td
     }
 }
 
-@media screen and (max-width: $mobile-breakpoint - 1px)
+@media screen and (max-width: $tablet-breakpoint - 1px)
 {
     .actions
     {

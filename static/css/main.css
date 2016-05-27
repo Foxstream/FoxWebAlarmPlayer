@@ -41,12 +41,12 @@ th {
 .actions {
   width: 100%; }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .actions {
     text-align: right;
     padding-right: 2%;
     margin-bottom: 2vh; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .actions {
     height: 10vh;
     line-height: 10vh; }
