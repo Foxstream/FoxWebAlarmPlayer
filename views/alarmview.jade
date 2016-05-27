@@ -46,7 +46,7 @@ block content
                       td(class='camera') {{ x.cameraname }}      
                       td(class='site') {{ x.sitename }} 
                       td(class='handle') 
-                        button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
+                        button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
 
         div(class='col-xs-12 col-sm-5 desktop-video-player')
             div(class='h6')  

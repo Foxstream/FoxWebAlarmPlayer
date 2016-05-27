@@ -45,8 +45,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     });        
     
     $scope.alarmclick = function(alarmid){
+        console.log('alarmclick called')
         if (!mobile){ // On desktop, play the alarm
-            var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
+            var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
             $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
         }  
         if (mobile){ // On mobile, collapse detail
@@ -65,12 +66,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
     }
         
-    $scope.markashandled = function (alarmId){
+    $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId)
                 $scope.currentalarm = undefined;
             alarmdb.markashandled(alarmId, function (err) { });
         }
+        $event.stopPropagation();
     };        
 
     $scope.delete = function (alarmId){
@@ -80,8 +82,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     }        
     
     var alarmUpdate=function(event, data){		
-		var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
-		
+		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0)
                 $window.alert("Current alarm was marked as handled.");
@@ -91,20 +92,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 			$scope.alarms.push(data);
 		
 	};
-
-    var deleteAlarm = function(event, alarmid){
-        var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
-
-        if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmid){
-            $window.alert("Current alarm was deleted.");
-        }
-
-        $scope.alarms.splice(pos, 1);
-    }
     
     var unbind1 = $rootScope.$on("alarm_create",alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
-    var unbind2 = $rootScope.$on("alarm_deleted", deleteAlarm);
 
     $scope.$on('$destroy', function () { unbind1(); unbind2(); });
 }]);
