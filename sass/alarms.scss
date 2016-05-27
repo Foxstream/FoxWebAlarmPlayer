@@ -5,6 +5,9 @@
     .alarmtable
     {
 
+        max-height: $main-element-size;
+        overflow: scroll;
+
         thead 
         {
             background-color: $fox-red;
@@ -40,5 +43,45 @@
 // Mobile
 @media screen and (max-width: $breakpoint - 1em)
 {
+
+    .alarmtable
+    {
+
+        max-height: 100%;
+        overflow: hidden;
+        text-align: left;
+
+        thead
+        {
+            display: none;
+        }
+
+        // Hide columns that should only be visible on desktop devices
+        .check, .handle
+        {
+            display: none;
+        }
+
+        tbody
+        {
+            td
+            {
+                display: block; // Table displayed in column on mobile
+            }
+        }
+
+        // This line acts as a dropdown menu
+        .date
+        {
+            border: solid $fox-gray 2px;
+        }
+
+    }
+
+
+    .desktop-video-player
+    {
+        display: none;
+    }
 
 }

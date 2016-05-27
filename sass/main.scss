@@ -16,6 +16,11 @@ $header-height: 12vh;
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 12vh;
 
+// This is used to set the height of important elements
+// such as the video player or the alarm table
+$main-element-size: 60vh;
+
+
 // Resopnsive design
 // $breakpoint: 768px;
 $breakpoint: 50em;
@@ -128,8 +133,8 @@ tbody::before
 }
 
 .imagecanvas {
-       width:100%;
-       height:auto;
+       width: $main-element-size;
+       height: $main-element-size;
        border:2px outset grey;
 }
 

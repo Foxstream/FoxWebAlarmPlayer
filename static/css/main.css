@@ -47,7 +47,7 @@ tbody::before {
   margin-bottom: 2vh;
   padding-right: 2%; }
 
-input {
+input[type=text] {
   width: 100%; }
 
 button {
@@ -230,16 +230,35 @@ nav {
     .foxstream-header img {
       margin-bottom: 5vh; } }
 @media screen and (min-width: 50em) {
-  .alarmtable thead {
-    background-color: #e44333;
-    color: white; }
-  .alarmtable tbody tr:nth-child(even) {
-    background-color: #c8d4d9; }
-  .alarmtable tbody tr:hover {
-    background-color: #788493;
-    color: white;
-    cursor: pointer; }
-  .alarmtable .drop, .alarmtable .video {
+  .alarmtable {
+    max-height: 60vh;
+    overflow: scroll; }
+    .alarmtable thead {
+      background-color: #e44333;
+      color: white; }
+    .alarmtable tbody tr:nth-child(even) {
+      background-color: #c8d4d9; }
+    .alarmtable tbody tr:hover {
+      background-color: #788493;
+      color: white;
+      cursor: pointer; }
+    .alarmtable .drop, .alarmtable .video {
+      display: none; } }
+@media screen and (max-width: 49em) {
+  .alarmtable {
+    max-height: 100%;
+    overflow: hidden;
+    text-align: left; }
+    .alarmtable thead {
+      display: none; }
+    .alarmtable .check, .alarmtable .handle {
+      display: none; }
+    .alarmtable tbody td {
+      display: block; }
+    .alarmtable .date {
+      border: solid #788493 2px; }
+
+  .desktop-video-player {
     display: none; } }
 .form-input {
   max-width: 350px;
@@ -254,8 +273,8 @@ nav {
   overflow-y: scroll; }
 
 .imagecanvas {
-  width: 100%;
-  height: auto;
+  width: 60vh;
+  height: 60vh;
   border: 2px outset grey; }
 
 .cam {
