@@ -18,7 +18,7 @@ $navbar-mobile-height: 12vh;
 $action-bar-mobile-height: 10vh;
 
 // This is used to set the height of important elements
-// such as the video player or the alarm table
+// such as the alarm table
 $main-element-size: 60vh;
 
 
@@ -164,8 +164,8 @@ tbody::before
 }
 
 .imagecanvas {
-       width: $main-element-size;
-       height: $main-element-size;
+       width: 100%;
+       height: auto;
        border:2px outset grey;
 }
 

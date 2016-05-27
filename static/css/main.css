@@ -285,8 +285,8 @@ nav {
   overflow-y: scroll; }
 
 .imagecanvas {
-  width: 60vh;
-  height: 60vh;
+  width: 100%;
+  height: auto;
   border: 2px outset grey; }
 
 .cam {
