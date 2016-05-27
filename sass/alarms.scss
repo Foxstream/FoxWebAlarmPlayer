@@ -76,17 +76,15 @@
             display: none;
         }
 
-        // Hide columns that should only be visible on desktop devices
-        .check, .handle, .play
-        {
-            display: none;
-        }
-
         tbody
         {
             td
             {
-                display: block; // Table displayed in column on mobile
+                display: none; 
+            }
+            td.date
+            {
+                display: block;
             }
         }
 

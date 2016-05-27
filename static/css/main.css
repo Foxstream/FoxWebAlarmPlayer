@@ -268,9 +268,9 @@ nav {
     text-align: left; }
     .alarmtable thead {
       display: none; }
-    .alarmtable .check, .alarmtable .handle, .alarmtable .play {
-      display: none; }
     .alarmtable tbody td {
+      display: none; }
+    .alarmtable tbody td.date {
       display: block; }
     .alarmtable .date {
       border: solid #788493 2px; }

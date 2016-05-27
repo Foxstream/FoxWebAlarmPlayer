@@ -40,14 +40,30 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     
     $scope.currentalarm=undefined;
     
-    alarmdb.getalarms(function(data){ $scope.alarms=data;});        
+    alarmdb.getalarms(function(data){ 
+        $scope.alarms=data;
+    });        
     
-    $scope.playalarm=function(alarmId){
-        if (!mobile){ // Alarm are played automatically in mobile version
-            var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmId);
+    $scope.alarmclick = function(alarmid){
+        if (!mobile){ // On desktop, play the alarm
+            var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
             $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
+        }  
+        if (mobile){ // On mobile, collapse detail
+            var camera = $('#alarm-'+alarmid);
+            camera.parent().find('td.camera, td.site')
+                .slideUp();
+            if (camera.find('td.camera').css('display') === 'none'){
+               camera.find('td.camera, td.site')
+                    .css('display', 'block')
+                    .hide()
+                    .slideDown();             
+                } else {
+                    camera.find('td.camera, td.site')
+                        .slideUp(); 
+                }
         }
-    };
+    }
         
     $scope.markashandled = function (alarmId){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {

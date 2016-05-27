@@ -31,7 +31,8 @@ block content
                     th(class='handle')
                   tbody
                     tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', 
-                    ng-click='playalarm(x.id)'
+                    ng-click='alarmclick(x.id)'
+                    id='alarm-{{ x.id }}'
                     ng-class="{active: x.id==currentalarm.id}")
                       td(class='check')
                         input(type='checkbox') 
