@@ -15,6 +15,7 @@ $fox-light-gray: #c8d4d9;
 $header-height: 12vh;
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 12vh;
+$action-bar-mobile-height: 10vh;
 
 // This is used to set the height of important elements
 // such as the video player or the alarm table
@@ -95,16 +96,46 @@ tbody::before
     background: transparent;
 }
 
+// On mobile devices, remove the padding set by bootstrap
+@media screen and (max-width: $breakpoint - 1em)
+{
+    .col-xs-12
+    {
+        padding: 0;
+    }
+}
 
-// Black containing the buttons at the top of the page
+
+// ************************************************** Action bar
 .actions
 {
     width: 100%;
-    text-align: right;
-    margin-bottom: 2vh;
-    padding-right: 2%;
 }
 
+@media screen and (min-width: $breakpoint)
+{
+    .actions
+    {
+        text-align: right;
+        padding-right: 2%;
+        margin-bottom: 2vh;
+    }
+}
+
+@media screen and (max-width: $breakpoint - 1em)
+{
+    .actions
+    {
+        height: $action-bar-mobile-height;
+        line-height: $action-bar-mobile-height;
+
+        button
+        {
+            line-height: 1.5em;
+        }
+
+    }
+}
 
 // *********************************************** Imports
 

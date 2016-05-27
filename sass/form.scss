@@ -1,4 +1,4 @@
-input[type=text]
+input:not([type=checkbox])
 {
     width: 100%;
 }
@@ -12,6 +12,7 @@ button
     text-align: center;
     padding: 0;
     min-width: 7em;
+    line-height: 1.5em;
 }
 
 button:hover
@@ -89,7 +90,7 @@ button.button-gray
 
     button 
     {
-        width: 45%;
+        width: 48%;
         margin-left: 0;
         margin-right: 0;
         font-size: 1.2em;
@@ -129,7 +130,7 @@ button.button-gray
     .divider // Easy way to create space between two buttons on a line
     {
         display: inline-block;
-        width: 10%;
+        width: 4%;
     }
 
 }

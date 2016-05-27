@@ -41,13 +41,24 @@ tbody::before {
   height: 1em;
   background: transparent; }
 
+@media screen and (max-width: 49em) {
+  .col-xs-12 {
+    padding: 0; } }
 .actions {
-  width: 100%;
-  text-align: right;
-  margin-bottom: 2vh;
-  padding-right: 2%; }
+  width: 100%; }
 
-input[type=text] {
+@media screen and (min-width: 50em) {
+  .actions {
+    text-align: right;
+    padding-right: 2%;
+    margin-bottom: 2vh; } }
+@media screen and (max-width: 49em) {
+  .actions {
+    height: 10vh;
+    line-height: 10vh; }
+    .actions button {
+      line-height: 1.5em; } }
+input:not([type=checkbox]) {
   width: 100%; }
 
 button {
@@ -57,7 +68,8 @@ button {
   background-color: white;
   text-align: center;
   padding: 0;
-  min-width: 7em; }
+  min-width: 7em;
+  line-height: 1.5em; }
 
 button:hover {
   font-weight: bold; }
@@ -94,7 +106,7 @@ button.button-gray {
     width: 1vw; } }
 @media screen and (max-width: 49em) {
   button {
-    width: 45%;
+    width: 48%;
     margin-left: 0;
     margin-right: 0;
     font-size: 1.2em; }
@@ -117,7 +129,7 @@ button.button-gray {
 
   .divider {
     display: inline-block;
-    width: 10%; } }
+    width: 4%; } }
 header {
   position: relative;
   height: 12vh;
@@ -246,7 +258,7 @@ nav {
       display: none; } }
 @media screen and (max-width: 49em) {
   .alarmtable {
-    max-height: 100%;
+    max-height: 78vh;
     overflow: hidden;
     text-align: left; }
     .alarmtable thead {
