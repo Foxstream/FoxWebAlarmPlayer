@@ -1,5 +1,6 @@
 body {
-  padding-top: 1vh; }
+  padding: 1vh 0 0 0;
+  margin: 0; }
 
 a {
   color: black;
@@ -40,6 +41,12 @@ tbody::before {
   height: 1em;
   background: transparent; }
 
+.actions {
+  width: 100%;
+  text-align: right;
+  margin-bottom: 2vh;
+  padding-right: 2%; }
+
 input {
   width: 100%; }
 
@@ -50,7 +57,7 @@ button {
   background-color: white;
   text-align: center;
   padding: 0;
-  min-width: 8em; }
+  min-width: 7em; }
 
 button:hover {
   font-weight: bold; }
@@ -80,7 +87,11 @@ button.button-gray {
     margin-top: 1vh; }
 
   button {
-    width: 10vw; } }
+    width: 10vw; }
+
+  .divider {
+    display: inline-block;
+    width: 1vw; } }
 @media screen and (max-width: 49em) {
   button {
     width: 45%;

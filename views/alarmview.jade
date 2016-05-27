@@ -13,6 +13,11 @@ block content
                 div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
+            div(class='actions')
+              button(class='button-gray') Bouton 1
+              .divider
+              button(class='button-red') Bouton 2
+
             table(class='alarmtable')
                 thead
                   tr

@@ -11,7 +11,7 @@ button
     background-color: white;
     text-align: center;
     padding: 0;
-    min-width: 8em;
+    min-width: 7em;
 }
 
 button:hover
@@ -30,6 +30,9 @@ button.button-gray
     border-color: $fox-dark-gray;
     color: $fox-dark-gray;
 }
+
+
+
 
 
 // Desktop
@@ -71,7 +74,14 @@ button.button-gray
         width: 10vw;
     }
 
+    .divider // Easy way to create space between two buttons on a line
+    {
+        display: inline-block;
+        width: 1vw;
+    }
+
 }
+
 
 // Mobile
 @media screen and (max-width: $breakpoint - 1em)
@@ -116,10 +126,10 @@ button.button-gray
 
     }
 
-
-    .divider // Easy way to put space between two buttons on a line
+    .divider // Easy way to create space between two buttons on a line
     {
         display: inline-block;
         width: 10%;
     }
+
 }

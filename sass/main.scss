@@ -9,7 +9,7 @@ $fox-gray: #788493;
 $fox-light-gray: #c8d4d9;
 
 
-// Font;
+// Font
 
 // Block sizes
 $header-height: 12vh;
@@ -24,7 +24,8 @@ $breakpoint: 50em;
 
 body 
 {
-    padding-top: 1vh;
+    padding: 1vh 0 0 0;
+    margin: 0;
 }
 
 a 
@@ -90,6 +91,14 @@ tbody::before
 }
 
 
+// Black containing the buttons at the top of the page
+.actions
+{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 2vh;
+    padding-right: 2%;
+}
 
 
 // *********************************************** Imports
