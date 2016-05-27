@@ -14,25 +14,27 @@ block content
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
             table(class='alarmtable')
-                tr
-                  th(class='check')
-                  th(class='drop')
-                  th(class='date') Date
-                  th(class='video')
-                  th(class='camera') Camera
-                  th(class='site') Site
-                  th(class='handle')
-                tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")          
-                  td 
-                    input(type='checkbox') 
-                  td
-                    input(type='checkbox')
-                  td {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
-                  td Video
-                  td {{ x.cameraname }}      
-                  td {{ x.sitename }} 
-                  td 
-                    button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
+                thead
+                  tr
+                    th(class='check')
+                    th(class='drop')
+                    th(class='date') Date
+                    th(class='video')
+                    th(class='camera') Caméra
+                    th(class='site') Site
+                    th(class='handle')
+                  tbody
+                    tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")
+                      td(class='check')
+                        input(type='checkbox') 
+                      td(class='drop')
+                        input(type='checkbox')
+                      td(class='date') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
+                      td(class='video') Video
+                      td(class='camera') {{ x.cameraname }}      
+                      td(class='site') {{ x.sitename }} 
+                      td(class='handle') 
+                        button(ng-click='playalarm(x.id)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
 
         div(class='col-xs-12 col-sm-5')
             div(class='h6')  

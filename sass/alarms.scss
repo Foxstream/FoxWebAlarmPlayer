@@ -1,0 +1,44 @@
+// Desktop
+@media screen and (min-width: $breakpoint)
+{
+
+    .alarmtable
+    {
+
+        thead 
+        {
+            background-color: $fox-red;
+            color: white;
+        }
+
+        tbody
+        {
+            tr:nth-child(even)
+            {
+                background-color: $fox-light-gray;
+            }
+
+            tr:hover
+            {
+                background-color: $fox-gray;
+                color: white;
+                cursor: pointer;
+            }
+        }
+
+        // Hide columns that should only be visible on mobile devices
+        .drop, .video
+        {
+            display: none;
+        }
+
+    }
+
+}
+
+
+// Mobile
+@media screen and (max-width: $breakpoint - 1em)
+{
+
+}

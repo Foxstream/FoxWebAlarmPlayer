@@ -4,7 +4,10 @@
 // Colors
 $fox-red:#e44333;
 $fox-dark-red:#cf3c2d;
-$fox-gray:#4c545e;
+$fox-dark-gray:#566171;
+$fox-gray: #788493;
+$fox-light-gray: #c8d4d9;
+
 
 // Font;
 
@@ -65,8 +68,28 @@ table
 
 td
 {
-    padding: 0.2em;
+    padding: 0.4em;
+    min-width: 1em;
 }
+
+  th 
+  {
+      font-weight: normal;
+      padding: 0.4em;
+      text-align: center;
+  }
+
+// More space between thead and tbody
+// CSS doesn't care about margins on table rows, which sucks
+tbody::before 
+{
+    content: ' ';
+    display: block;
+    height: 1em;
+    background: transparent;
+}
+
+
 
 
 // *********************************************** Imports
@@ -101,7 +124,7 @@ td
        border:2px outset grey;
 }
 
-.camera {
+.cam {
     text-align: center;
     height: 30vh;
     margin-bottom: 5vh;

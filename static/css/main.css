@@ -26,7 +26,19 @@ table {
   text-align: center; }
 
 td {
-  padding: 0.2em; }
+  padding: 0.4em;
+  min-width: 1em; }
+
+th {
+  font-weight: normal;
+  padding: 0.4em;
+  text-align: center; }
+
+tbody::before {
+  content: ' ';
+  display: block;
+  height: 1em;
+  background: transparent; }
 
 input {
   width: 100%; }
@@ -48,8 +60,8 @@ button.button-red {
   color: #e44333; }
 
 button.button-gray {
-  border-color: #4c545e;
-  color: #4c545e; }
+  border-color: #566171;
+  color: #566171; }
 
 @media screen and (min-width: 50em) {
   .form {
@@ -172,7 +184,7 @@ nav {
     position: absolute;
     bottom: 0;
     text-align: center;
-    box-shadow: -2px -2px 1px #4c545e; }
+    box-shadow: -2px -2px 1px #566171; }
     nav ul {
       height: 12vh;
       line-height: 12vh; }
@@ -206,6 +218,18 @@ nav {
     text-align: center; }
     .foxstream-header img {
       margin-bottom: 5vh; } }
+@media screen and (min-width: 50em) {
+  .alarmtable thead {
+    background-color: #e44333;
+    color: white; }
+  .alarmtable tbody tr:nth-child(even) {
+    background-color: #c8d4d9; }
+  .alarmtable tbody tr:hover {
+    background-color: #788493;
+    color: white;
+    cursor: pointer; }
+  .alarmtable .drop, .alarmtable .video {
+    display: none; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;
@@ -223,7 +247,7 @@ nav {
   height: auto;
   border: 2px outset grey; }
 
-.camera {
+.cam {
   text-align: center;
   height: 30vh;
   margin-bottom: 5vh; }
