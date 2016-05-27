@@ -4,6 +4,7 @@
 // Colors
 $fox-red:#e44333;
 $fox-dark-red:#cf3c2d;
+$fox-light-red: #ff6151;
 $fox-dark-gray:#566171;
 $fox-gray: #788493;
 $fox-light-gray: #c8d4d9;
@@ -23,8 +24,7 @@ $main-element-size: 60vh;
 
 
 // Resopnsive design
-// $breakpoint: 768px;
-$breakpoint: 50em;
+$breakpoint: 768px;
 
 // ******************************************* General rules
 
@@ -86,18 +86,9 @@ td
       text-align: center;
   }
 
-// More space between thead and tbody
-// CSS doesn't care about margins on table rows, which sucks
-tbody::before 
-{
-    content: ' ';
-    display: block;
-    height: 1em;
-    background: transparent;
-}
 
 // On mobile devices, remove the padding set by bootstrap
-@media screen and (max-width: $breakpoint - 1em)
+@media screen and (max-width: $breakpoint - 1px)
 {
     .col-xs-12
     {
@@ -122,7 +113,7 @@ tbody::before
     }
 }
 
-@media screen and (max-width: $breakpoint - 1em)
+@media screen and (max-width: $breakpoint - 1px)
 {
     .actions
     {

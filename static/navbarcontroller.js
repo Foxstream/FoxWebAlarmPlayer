@@ -2,7 +2,6 @@ app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', functio
 
     $scope.isActive = function(href){
         var url = $location.absUrl().split('/').slice(-1)[0];
-        console.log(href, href === url);
         return href === url;
     }
 

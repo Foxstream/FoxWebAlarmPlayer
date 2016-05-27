@@ -98,7 +98,7 @@ nav
 }
 
 // Mobile
-@media screen and (max-width: ($breakpoint - 1em))
+@media screen and (max-width: ($breakpoint - 1px))
 {
     nav
     {

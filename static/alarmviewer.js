@@ -43,8 +43,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     alarmdb.getalarms(function(data){ $scope.alarms=data;});        
     
     $scope.playalarm=function(alarmId){
-		var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmId);
-		$scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
+        if (!mobile){ // Alarm are played automatically in mobile version
+            var pos=$scope.alarms.map(function(e) { return e.id; }).indexOf(alarmId);
+            $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
+        }
     };
         
     $scope.markashandled = function (alarmId){

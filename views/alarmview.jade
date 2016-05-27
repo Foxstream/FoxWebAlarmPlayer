@@ -22,15 +22,21 @@ block content
                 thead
                   tr
                     th(class='check')
+                      input(type='checkbox')
+                    th(class='play')
                     th(class='date') Date
                     th(class='video')
                     th(class='camera') Caméra
                     th(class='site') Site
                     th(class='handle')
                   tbody
-                    tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', ng-class="{active: x.id==currentalarm.id}")
+                    tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', 
+                    ng-click='playalarm(x.id)'
+                    ng-class="{active: x.id==currentalarm.id}")
                       td(class='check')
                         input(type='checkbox') 
+                      td(class='play')
+                        span(class='glyphicon glyphicon-play')
                       td(class='date') 
                         span(class='drop')
                           input(type='checkbox')
