@@ -19,7 +19,7 @@ ul {
   font-size: 1.5em;
   color: #e44333; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .container-fluid.content {
     margin-top: 10vh; } }
 table {
@@ -35,18 +35,18 @@ th {
   padding: 0.4em;
   text-align: center; }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .col-xs-12 {
     padding: 0; } }
 .actions {
   width: 100%; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .actions {
     text-align: right;
     padding-right: 2%;
     margin-bottom: 2vh; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .actions {
     height: 10vh;
     line-height: 10vh; }
@@ -76,7 +76,7 @@ button.button-gray {
   border-color: #566171;
   color: #566171; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .form {
     margin: auto;
     width: 50%; }
@@ -98,7 +98,7 @@ button.button-gray {
   .divider {
     display: inline-block;
     width: 1vw; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   button {
     width: 48%;
     margin-left: 0;
@@ -153,7 +153,7 @@ nav {
       width: 100%;
       height: 100%; }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   nav {
     margin-bottom: 5vh;
     height: 6vh;
@@ -195,7 +195,7 @@ nav {
       border-top: 9px solid #cf3c2d; }
     nav ul li.active:hover::after {
       border-top: 8px solid #cf3c2d; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   nav {
     height: 12vh;
     position: absolute;
@@ -226,16 +226,16 @@ nav {
 
   nav.nav-connection {
     display: none; } }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .foxstream-header {
     display: none; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .foxstream-header {
     margin-top: 10vh;
     text-align: center; }
     .foxstream-header img {
       margin-bottom: 5vh; } }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
   .alarmtable {
     max-height: 60vh;
     overflow: scroll; }
@@ -261,7 +261,7 @@ nav {
       visibility: hidden; }
     .alarmtable .drop, .alarmtable .video {
       display: none; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .alarmtable {
     max-height: 78vh;
     overflow: hidden;

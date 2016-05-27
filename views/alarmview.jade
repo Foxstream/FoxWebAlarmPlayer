@@ -8,7 +8,7 @@ block content
         
     div(ng-controller='alarmcontroller')  
        
-        div(class='col-xs-12 col-sm-7')
+        div(class='col-xs-12 col-md-7')
             div(ng-controller='servercontroller')            
                 div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
@@ -48,7 +48,7 @@ block content
                       td(class='handle') 
                         button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
 
-        div(class='col-xs-12 col-sm-5 desktop-video-player')
+        div(class='col-xs-12 col-md-5 desktop-video-player')
             div(class='h6')  
                 span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                 span(ng-show='currentalarm==undefined') No alarm selected
