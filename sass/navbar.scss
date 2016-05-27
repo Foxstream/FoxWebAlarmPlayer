@@ -24,12 +24,12 @@ nav
 }
 
 
-// Mobile
-@media screen and (max-width: ($mobile-breakpoint - 1px))
+// Tablet
+@media screen and (max-width: ($tablet-breakpoint - 1px))
 {
     nav
     {
-        height: $navbar-mobile-height;
+        height: $navbar-tablet-height;
         position: absolute;
         bottom: 0;
         text-align: center;
@@ -37,18 +37,18 @@ nav
 
         ul 
         {
-            height: $navbar-mobile-height;
-            line-height: $navbar-mobile-height;
+            height: $navbar-tablet-height;
+            line-height: $navbar-tablet-height;
 
             li
             {
-                width: 33.3vw;
+                width: 15vw;
                 font-weight: bold;
                 position: relative;
 
                 i.glyphicon
                 {
-                    font-size: $navbar-mobile-height / 3;
+                    font-size: $navbar-tablet-height / 3;
                     position: absolute;
                     top: 20%;
                     left: 50%;
@@ -83,25 +83,25 @@ nav
 
 }
 
-
-@media screen and (max-width: ($tablet-breakpoint - 1px))
+// Mobile and tablet
+@media screen and (max-width: ($mobile-breakpoint - 1px))
 {
     nav
     {
-        height: $navbar-tablet-height;
+        height: $navbar-mobile-height;
 
         ul 
         {
-            height: $navbar-tablet-height;
-            line-height: $navbar-tablet-height;
+            height: $navbar-mobile-height;
+            line-height: $navbar-mobile-height;
 
             li
             {
-                width: 15vw;
+                width: 33.3vw;
 
                 i.glyphicon
                 {
-                    font-size: $navbar-tablet-height / 3;
+                    font-size: $navbar-mobile-height / 3;
                 }
 
             }
@@ -111,6 +111,9 @@ nav
     }
 
 }
+
+
+
 
 // Desktop
 @media screen and (min-width: $tablet-breakpoint)

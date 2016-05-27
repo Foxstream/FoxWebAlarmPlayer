@@ -60,8 +60,8 @@
 }
 
 
-// Mobile
-@media screen and (max-width: $mobile-breakpoint - 1px)
+// Mobile and tablet
+@media screen and (max-width: $tablet-breakpoint - 1px)
 {
 
     .alarmtable
