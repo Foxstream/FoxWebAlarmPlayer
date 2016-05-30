@@ -32,8 +32,10 @@ nav
         height: $navbar-tablet-height;
         position: absolute;
         bottom: 0;
+        background-color: white;
+        z-index: 2; // Prevents scrollable content to cause small display glitches
         text-align: center;
-        box-shadow: -2px -2px 1px $fox-dark-gray;
+        border: solid black 3px;
 
         ul 
         {
@@ -83,7 +85,7 @@ nav
 
 }
 
-// Mobile and tablet
+// Mobile
 @media screen and (max-width: ($mobile-breakpoint - 1px))
 {
     nav

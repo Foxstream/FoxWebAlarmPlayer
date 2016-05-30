@@ -159,8 +159,10 @@ nav {
     height: 6vh;
     position: absolute;
     bottom: 0;
+    background-color: white;
+    z-index: 2;
     text-align: center;
-    box-shadow: -2px -2px 1px #566171; }
+    border: solid black 3px; }
     nav ul {
       height: 6vh;
       line-height: 6vh; }
@@ -274,8 +276,8 @@ nav {
       display: none; } }
 @media screen and (max-width: 991px) {
   .alarm-accordion {
+    position: relative;
     z-index: 1;
-    border: solid red 5px;
     height: 69vh;
     overflow: scroll; }
     .alarm-accordion .alarm-date {
