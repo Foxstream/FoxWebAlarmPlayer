@@ -44,26 +44,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.alarms=data;
     });        
     
-    $scope.alarmclick = function(alarmid){
-        console.log('alarmclick called')
-        if (!mobile){ // On desktop, play the alarm
-            var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
-            $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
-        }  
-        if (mobile){ // On mobile, collapse detail
-            var camera = $('#alarm-'+alarmid);
-            camera.parent().find('td.camera, td.site')
-                .slideUp();
-            if (camera.find('td.camera').css('display') === 'none'){
-               camera.find('td.camera, td.site')
-                    .css('display', 'block')
-                    .hide()
-                    .slideDown();             
-                } else {
-                    camera.find('td.camera, td.site')
-                        .slideUp(); 
-                }
-        }
+    $scope.playalarm = function(alarmid){
+        var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
+        $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
     }
         
     $scope.markashandled = function (alarmId, $event){

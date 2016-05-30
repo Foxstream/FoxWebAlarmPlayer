@@ -59,47 +59,24 @@
 
 }
 
-
-// Mobile and tablet
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-
-    .alarmtable
+    .alarm-accordion
     {
-
-        max-height: 100vh - $navbar-mobile-height - $action-bar-mobile-height;
-        overflow: hidden;
-        text-align: left;
-
-        thead
+        .alarm-date
         {
-            display: none;
+            display: inline-block;
+            width: 100%;
+            border: solid $fox-gray 1px;
+            padding: 1em;
         }
 
-        tbody
+        .alarm-details
         {
-            td
-            {
-                display: none; 
-            }
-            td.date
-            {
-                display: block;
-            }
-        }
-
-        // This line acts as a dropdown menu
-        .date
-        {
-            border: solid $fox-gray 2px;
+            padding: 1em;
+            border: solid $fox-gray 1px;
         }
 
     }
-
-
-    .desktop-video-player
-    {
-        display: none;
-    }
-
 }
+

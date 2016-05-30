@@ -18,20 +18,19 @@ block content
               .divider
               button(class='button-red') Tout acquitter
 
-            table(class='alarmtable')
+            table(class='alarmtable hidden-sm hidden-xs')
                 thead
                   tr
                     th(class='check')
                       input(type='checkbox')
                     th(class='play')
                     th(class='date') Date
-                    th(class='video')
                     th(class='camera') Caméra
                     th(class='site') Site
                     th(class='handle')
                   tbody
                     tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', 
-                    ng-click='alarmclick(x.id)'
+                    ng-click='playalarm(x.id)'
                     id='alarm-{{ x.id }}'
                     ng-class="{active: x.id==currentalarm.id}")
                       td(class='check')
@@ -39,28 +38,33 @@ block content
                       td(class='play')
                         span(class='glyphicon glyphicon-play')
                       td(class='date') 
-                        span(class='drop')
-                          input(type='checkbox')
                         {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
-                      td(class='video') Video
                       td(class='camera') {{ x.cameraname }}      
                       td(class='site') {{ x.sitename }} 
                       td(class='handle') 
                         button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
 
-        div(class='col-xs-12 col-md-5 desktop-video-player')
+
+            div(class='alarm-accordion hidden-md hidden-lg' id='accordion')
+                div(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', class='panel')
+                    a(href='#alarm{{x.id}}', 
+                      class='alarm-date',
+                      data-toggle='collapse', 
+                      data-parent='#accordion') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                    div(id='alarm{{x.id}}', class='collapse alarm-details')
+                        p Caméra : {{ x.cameraname }}
+                        p Site : {{ x.sitename }}
+
+        div(class='col-xs-12 col-md-5 desktop-video-player hidden-xs hidden-sm')
             div(class='h6')  
                 span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                 span(ng-show='currentalarm==undefined') No alarm selected
             imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm')  
                     
-        
-                
-    
 
-  script(src='static/AlarmData.js')  
-  script(src='static/EventSource4IE.js')  
-  script(src='static/EventSource.js')  
-  script(src='static/alarmviewer.js')  
+  script(src='static/AlarmData.js')
+  script(src='static/EventSource4IE.js')
+  script(src='static/EventSource.js')
+  script(src='static/alarmviewer.js')
   script(src='static/serverviewer.js')  
  

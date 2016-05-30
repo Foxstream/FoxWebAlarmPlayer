@@ -8,7 +8,8 @@ a {
 
 a:hover {
   text-decoration: none;
-  font-weight: bold; }
+  font-weight: bold;
+  color: black; }
 
 ul {
   padding: 0;
@@ -239,7 +240,7 @@ nav {
 @media screen and (min-width: 992px) {
   .foxstream-header {
     display: none; } }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .foxstream-header {
     margin-top: 10vh;
     text-align: center; }
@@ -272,21 +273,14 @@ nav {
     .alarmtable .drop, .alarmtable .video {
       display: none; } }
 @media screen and (max-width: 991px) {
-  .alarmtable {
-    max-height: 78vh;
-    overflow: hidden;
-    text-align: left; }
-    .alarmtable thead {
-      display: none; }
-    .alarmtable tbody td {
-      display: none; }
-    .alarmtable tbody td.date {
-      display: block; }
-    .alarmtable .date {
-      border: solid #788493 2px; }
-
-  .desktop-video-player {
-    display: none; } }
+  .alarm-accordion .alarm-date {
+    display: inline-block;
+    width: 100%;
+    border: solid #788493 1px;
+    padding: 1em; }
+  .alarm-accordion .alarm-details {
+    padding: 1em;
+    border: solid #788493 1px; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;
