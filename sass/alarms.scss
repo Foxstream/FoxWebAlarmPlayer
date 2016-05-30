@@ -63,8 +63,12 @@
 {
     .alarm-accordion
     {
-        position: relative;
-        height: 80vh - $action-bar-mobile-height - $navbar-tablet-height;
+        // position: relative;
+        // position: fixed;
+        // top:0;
+        z-index: 1;
+        border: solid red 5px;
+        height: 100vh - $header-height - $action-bar-mobile-height - 3vh - $navbar-tablet-height;
         overflow: scroll;
 
         .alarm-date
@@ -83,4 +87,13 @@
 
     }
 }
+
+@media screen and (max-width: $mobile-breakpoint - 1px)
+{
+    .alarm-accordion
+    {
+        height: 100vh - $action-bar-mobile-height - $navbar-mobile-height - 2vh;
+    }
+}
+
 

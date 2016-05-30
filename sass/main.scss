@@ -1,6 +1,5 @@
 // ******************************************* SASS variables
 
-
 // Colors
 $fox-red:#e44333;
 $fox-dark-red:#cf3c2d;
@@ -64,7 +63,7 @@ ul
 
 @media screen and (min-width: $tablet-breakpoint)
 {
-    .container-fluid.content 
+    .container-fluid.content
     {
         margin-top: 10vh;
     }
@@ -89,11 +88,6 @@ th
     text-align: center;
 }
 
-.accordion-item
-{
-    position: relative;
-}
-
 
 // On mobile devices, remove the padding set by bootstrap
 @media screen and (max-width: $mobile-breakpoint - 1px)
@@ -111,7 +105,7 @@ th
     width: 100%;
 }
 
-@media screen and (min-width: $mobile-breakpoint)
+@media screen and (min-width: $tablet-breakpoint)
 {
     .actions
     {
