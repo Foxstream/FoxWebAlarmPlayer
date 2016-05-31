@@ -35,7 +35,7 @@ nav
         background-color: white;
         z-index: 2; // Prevents scrollable content to cause small display glitches
         text-align: center;
-        border: solid black 3px;
+        border-top: solid $fox-gray 2px;
 
         ul 
         {
@@ -91,7 +91,6 @@ nav
     nav
     {
         height: $navbar-mobile-height;
-
         ul 
         {
             height: $navbar-mobile-height;

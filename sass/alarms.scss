@@ -74,14 +74,20 @@
             display: inline-block;
             width: 100%;
             border: solid $fox-gray 1px;
-            padding: 1em;
+            padding: 2vh 5vw;
+            font-size: 1.4em;
+            font-weight: bold;
         }
 
         .alarm-details
         {
             padding: 1em;
-            border: solid $fox-gray 1px;
         }
+
+        // .accordion-item
+        // {
+        //     margin-bottom: 0; // Overriding bootstrap property for .panel
+        // }
 
     }
 }
@@ -90,7 +96,7 @@
 {
     .alarm-accordion
     {
-        height: 100vh - $action-bar-mobile-height - $navbar-mobile-height - 2vh;
+        height: 100vh - $action-bar-mobile-height - $navbar-mobile-height;
     }
 }
 

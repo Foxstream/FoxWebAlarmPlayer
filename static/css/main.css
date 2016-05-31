@@ -1,6 +1,7 @@
 body {
   padding: 1vh 0 0 0;
-  margin: 0; }
+  margin: 0;
+  height: 100vh; }
 
 a {
   color: black;
@@ -162,7 +163,7 @@ nav {
     background-color: white;
     z-index: 2;
     text-align: center;
-    border: solid black 3px; }
+    border-top: solid #788493 2px; }
     nav ul {
       height: 6vh;
       line-height: 6vh; }
@@ -284,13 +285,14 @@ nav {
       display: inline-block;
       width: 100%;
       border: solid #788493 1px;
-      padding: 1em; }
+      padding: 2vh 5vw;
+      font-size: 1.4em;
+      font-weight: bold; }
     .alarm-accordion .alarm-details {
-      padding: 1em;
-      border: solid #788493 1px; } }
+      padding: 1em; } }
 @media screen and (max-width: 767px) {
   .alarm-accordion {
-    height: 76vh; } }
+    height: 78vh; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;
