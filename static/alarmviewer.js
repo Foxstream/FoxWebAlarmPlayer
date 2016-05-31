@@ -134,6 +134,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0)
                 $window.alert("Current alarm was marked as handled.");
             $scope.alarms[pos] = data;
+            if ($scope.selected.indexOf(data.id) >= 0){
+                $scope.selected.splice($scope.selected.indexOf(data.id), 1);
+            }
         }
 		else
 			$scope.alarms.push(data);
