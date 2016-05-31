@@ -145,6 +145,7 @@ th
 @import "navbar.scss";
 @import "login.scss";
 @import "alarms.scss";
+@import "imageplayer.scss";
 
 
 
@@ -162,12 +163,6 @@ th
 .alarmtable {
     max-height:800px;
     overflow-y:scroll;
-}
-
-.imagecanvas {
-       width: 100%;
-       height: auto;
-       border:2px outset grey;
 }
 
 .cam {

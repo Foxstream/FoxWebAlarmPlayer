@@ -11,7 +11,7 @@ div
             button(id='next', ng-click="nextImage()", ng-disabled="playing", class="btn btn-sm btn-default", title='Next image') 
                 span(class='glyphicon glyphicon-step-forward')
 
-        span  Image {{currentIdx}}/{{ alarm.Images.length }} 
+        span  Image {{currentIdx + 1}}/{{ alarm.Images.length }} 
         button(id='osd', ng-click="toggleOsd()", class="btn btn-sm btn-default", title='Toggle osd', data-toggle="button")
             span(class='glyphicon glyphicon-sunglasses')
 

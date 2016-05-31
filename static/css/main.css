@@ -294,10 +294,15 @@ nav {
       font-size: 1.4em;
       font-weight: bold; }
     .alarm-accordion .alarm-details {
-      padding: 1em; } }
+      padding: 1em 0; } }
 @media screen and (max-width: 767px) {
   .alarm-accordion {
     height: 78vh; } }
+.imagecanvas {
+  width: 100%;
+  height: auto;
+  border: 2px outset grey; }
+
 .form-input {
   max-width: 350px;
   margin-left: auto;
@@ -309,11 +314,6 @@ nav {
 .alarmtable {
   max-height: 800px;
   overflow-y: scroll; }
-
-.imagecanvas {
-  width: 100%;
-  height: auto;
-  border: 2px outset grey; }
 
 .cam {
   text-align: center;

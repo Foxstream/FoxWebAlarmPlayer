@@ -169,7 +169,7 @@ app.directive('imagewithosd', function() {
                             for (var j = 0; j < points.length; j++)
                                 ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
                             ctx.closePath(); 
-                            ctx.stroke();                            
+                            ctx.stroke();
                         }
                     }
                 }
