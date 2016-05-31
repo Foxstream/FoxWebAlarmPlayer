@@ -13,10 +13,11 @@ block content
                 div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
+            //- Mobile buttons
             div(class='actions')
-              button(class='button-gray') Sélectionner
-              .divider
-              button(class='button-red') Tout acquitter
+                button(class='button-secondary hidden-md hidden-lg') Sélectionner
+                .divider
+                button(class='button-primary' ng-click='handleall()') Tout acquitter
 
             table(class='alarmtable hidden-sm hidden-xs')
                 thead
@@ -38,11 +39,11 @@ block content
                       td(class='play')
                         span(class='glyphicon glyphicon-play')
                       td(class='date') 
-                        {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
-                      td(class='camera') {{ x.cameraname }}      
-                      td(class='site') {{ x.sitename }} 
-                      td(class='handle') 
-                        button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-red") Acquitter
+                         {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} 
+                      td(class='camera') {{ x.cameraname }}
+                      td(class='site') {{ x.sitename }}
+                      td(class='handle')
+                        button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
 
 
             div(class='alarm-accordion hidden-md hidden-lg' id='accordion')

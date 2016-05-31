@@ -198,6 +198,9 @@ function deleteAlarm(id, callback){
 	this.db.run("DELETE FROM alarm WHERE id=$id", {$id:id}, callback);
 }
 
+function markAllAsHandled(callback){
+	this.db.run("UPDATE alarm SET handled=1", callback);
+}
 
 function deleteAlarmsOlderThan(timestamp, cb)
 {
@@ -231,6 +234,7 @@ AlarmPersistence.prototype.getAlarms = getAlarms;
 AlarmPersistence.prototype.getAlarm = getAlarm;
 AlarmPersistence.prototype.deleteAlarmsOlderThan = deleteAlarmsOlderThan;
 AlarmPersistence.prototype.deleteAlarm = deleteAlarm;
+AlarmPersistence.prototype.markAllAsHandled = markAllAsHandled;
 
 AlarmPersistence.prototype.getStreamAlarmImage = getStreamAlarmImage;
 

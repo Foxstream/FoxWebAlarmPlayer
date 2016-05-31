@@ -53,7 +53,8 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     
     alarmRemover.start();
     
-    almControler.on("alarm_handled", function (alarm){ sse.sendMessage('alarm_update', JSON.stringify(alarm)); });    
+    almControler.on("alarm_handled", function (alarm){ sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
+    almControler.on("all_alarms_handled", function(alarm){ sse.sendMessage('all_alarms_handled') });
     almControler.on("alarm_deleted", function (alarmId){ sse.sendMessage('alarm_deleted', alarmId) });
 
     websrv.listen(8001);

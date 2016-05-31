@@ -64,15 +64,32 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             alarmdb.markashandled(alarmId, function (err) { });
         }
         $event.stopPropagation();
-    };        
+    };   
+
+    $scope.handleall = function(callback){
+        // Copy the alarm list to avoid handling new alarms
+        var alarms = [];
+        $scope.alarms.forEach(function(a){
+            alarms.push(a);
+        });
+        console.log('alarmes');
+        console.log(alarms);
+        if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
+            alarms.forEach(function(a){
+                console.log(a);
+                alarmdb.markashandled(a.id);
+            });
+            $scope.currentalarm = undefined;
+        }
+    }     
 
     $scope.delete = function (alarmId){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to delete the alarm?")) {
             alarmdb.delete(alarmId, function(err){ });
         }
-    }        
+    }
     
-    var alarmUpdate=function(event, data){		
+    var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0)
@@ -82,12 +99,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 		else
 			$scope.alarms.push(data);
 		
-	};
-    
-    var unbind1 = $rootScope.$on("alarm_create",alarmUpdate);
+	}
+
+    var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
 
-    $scope.$on('$destroy', function () { unbind1(); unbind2(); });
+    $scope.$on('$destroy', function () { unbind1(); unbind2(); unbind3(); });
+
 }]);
 
 
@@ -129,7 +147,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                         scope.loading = false;
                         scope.playing = true;
                         scope.currentIdx = 0;
-                    }, 0);                                     
+                    }, 0);
                });
 		  });
 	  }
@@ -176,7 +194,7 @@ app.directive('imagewithosd', function() {
 		  }
 		  
           scope.$watch('image', repaintImage);
-          scope.$watch('osd', repaintImage);                                
+          scope.$watch('osd', repaintImage);                   
 		  repaintImage();
 	  }
   };

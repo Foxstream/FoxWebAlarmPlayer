@@ -85,10 +85,11 @@ function applyApp(app)
             }                
             else {
                 res.status(404);
-                res.end(err);                
+                res.end(err);
             }            				
         });
     });	
+
 
     app.delete('/controller/alarm/:alarmid', auth.IsValidUser, function(req, res){
         self.AlarmPersistence.deleteAlarm(req.params.alarmid, function(err){

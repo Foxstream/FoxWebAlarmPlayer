@@ -2,13 +2,13 @@ div
     imagewithosd(imgwidth='{{imgwidth}}', imgheight='{{imgheight}}', image='alarm.Images[currentIdx].Image', osd='showOsd ? alarm.Images[currentIdx].OSD : undefined')
     div(id='play_controller', ng-show='alarm!=undefined && !loading')
         div(class="btn-group")
-            button(id='prev', ng-click="prevImage()", ng-disabled="playing", class="btn btn-sm btn-default", title='Previous image')
+            button(id='prev', ng-click="prevImage()", ng-disabled="playing", class="btn btn-sm btn-default", title='Image précédente')
                 span(class='glyphicon glyphicon-step-backward')
             button(id='play', ng-click="playing=true", ng-disabled="playing", class="btn btn-sm btn-default", title='Play') 
                 span(class='glyphicon glyphicon-play')
             button(id='stop', ng-click="playing=false", ng-disabled="!playing", class="btn btn-sm btn-default", title='Stop') 
                 span(class='glyphicon glyphicon-stop')
-            button(id='next', ng-click="nextImage()", ng-disabled="playing", class="btn btn-sm btn-default", title='Next image') 
+            button(id='next', ng-click="nextImage()", ng-disabled="playing", class="btn btn-sm btn-default", title='Image suivante') 
                 span(class='glyphicon glyphicon-step-forward')
 
         span  Image {{currentIdx + 1}}/{{ alarm.Images.length }} 

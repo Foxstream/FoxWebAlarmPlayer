@@ -20,13 +20,13 @@ button:hover
     font-weight: bold;
 }
 
-button.button-red
+button.button-primary
 {
     border-color: $fox-red;
     color: $fox-red;
 }
 
-button.button-gray
+button.button-secondary
 {
     border-color: $fox-dark-gray;
     color: $fox-dark-gray;

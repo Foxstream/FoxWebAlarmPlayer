@@ -75,11 +75,11 @@ button {
 button:hover {
   font-weight: bold; }
 
-button.button-red {
+button.button-primary {
   border-color: #e44333;
   color: #e44333; }
 
-button.button-gray {
+button.button-secondary {
   border-color: #566171;
   color: #566171; }
 
