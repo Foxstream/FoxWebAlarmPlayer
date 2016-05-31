@@ -42,7 +42,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
 
-    alarmdb.getalarms(function(data){ 
+    alarmdb.getalarms(function(data){
         $scope.alarms = data;
     });
     
@@ -68,6 +68,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $event.stopPropagation();
     };   
 
+    $scope.handleSelected = function(){
+        if (window.confirm("Êtes-vous sûr de vouloir acquitter " + $scope.selected.length +" alarmes ?")){
+            $scope.selected.forEach(function(alarmid){
+                alarmdb.markashandled(alarmid);
+            });
+        }
+    }
+
     $scope.handleall = function(callback){
         // Copy the alarm list to avoid handling new alarms
         var alarms = [];
@@ -78,7 +86,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         console.log(alarms);
         if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
             alarms.forEach(function(a){
-                console.log(a);
                 alarmdb.markashandled(a.id);
             });
             $scope.currentalarm = undefined;
