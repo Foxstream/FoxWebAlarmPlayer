@@ -39,10 +39,11 @@ app.factory('alarmdb', ['$http','$rootScope',
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', function($scope, $rootScope, $window, alarmdb, alarmevents) {
     
     $scope.currentalarm=undefined;
-    
+    $scope.selected = [];
+
     alarmdb.getalarms(function(data){ 
-        $scope.alarms=data;
-    });        
+        $scope.alarms = data;
+    });
     
     $scope.playalarm = function(alarmid){
          var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
@@ -86,6 +87,19 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.delete = function (alarmId){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to delete the alarm?")) {
             alarmdb.delete(alarmId, function(err){ });
+        }
+    }
+
+    $scope.isSelected = function(id){
+        return $scope.selected.indexOf(id) >= 0;
+    }
+
+    $scope.updateSelection = function(id, event){
+        event.stopPropagation();
+        if($scope.isSelected(id)){
+            $scope.selected.splice($scope.selected.indexOf(id), 1);
+        } else {
+            $scope.selected.push(id);
         }
     }
     

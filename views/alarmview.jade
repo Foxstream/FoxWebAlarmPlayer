@@ -15,6 +15,9 @@ block content
 
             //- Mobile buttons
             div(class='actions')
+                button(class='button-secondary',
+                        ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                .divider
                 button(class='button-secondary hidden-md hidden-lg') Sélectionner
                 .divider
                 button(class='button-primary' ng-click='handleall()') Tout acquitter
@@ -35,7 +38,7 @@ block content
                     id='alarm-{{ x.id }}'
                     ng-class="{active: x.id==currentalarm.id}")
                       td(class='check')
-                        input(type='checkbox') 
+                        input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)')
                       td(class='play')
                         span(class='glyphicon glyphicon-play')
                       td(class='date') 

@@ -3,6 +3,11 @@ input:not([type=checkbox])
     width: 100%;
 }
 
+input[type=checkbox]
+{
+    @include transform(scale(1.5));
+}
+
 button
 {
     border-style: solid;
