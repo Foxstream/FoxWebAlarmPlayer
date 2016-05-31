@@ -181,12 +181,28 @@ nav {
           position: absolute;
           top: 20%;
           left: 50%;
-          transform: translate(-50%); }
+          transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */ }
         nav ul li .link {
           line-height: normal;
           position: absolute;
           left: 50%;
           transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */
           bottom: 10%; }
       nav ul li.active a {
         color: #e44333; }
