@@ -40,6 +40,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     
     $scope.currentalarm=undefined;
     $scope.selected = [];
+    $scope.isSelectedAll = false;
 
     alarmdb.getalarms(function(data){ 
         $scope.alarms = data;
@@ -98,9 +99,26 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         event.stopPropagation();
         if($scope.isSelected(id)){
             $scope.selected.splice($scope.selected.indexOf(id), 1);
+            if ($scope.isSelectedAll) $scope.isSelectedAll = false;
         } else {
             $scope.selected.push(id);
+            if ($scope.selected.length === $scope.alarms.length){
+                $scope.isSelectedAll = true;
+            }
         }
+    }
+
+    $scope.selectAll = function(){
+        if ($scope.isSelectedAll){
+            $scope.selected = [];
+        } else {
+            $scope.alarms.forEach(function(a){
+                if ($scope.selected.indexOf(a.id) < 0){
+                    $scope.selected.push(a.id);
+                }
+            });
+        }
+        $scope.isSelectedAll = !($scope.isSelectedAll);
     }
     
     var alarmUpdate = function(event, data){
