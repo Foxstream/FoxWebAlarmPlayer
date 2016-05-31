@@ -45,8 +45,16 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     });        
     
     $scope.playalarm = function(alarmid){
-        var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
-        $scope.currentalarm = pos==-1?undefined:$scope.alarms[pos];
+         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
+         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
+        // On mobile, closing the accordion should unselect the alarm
+        if (mobile){
+            if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
+                console.log('same alarm');
+                selectedAlarm = undefined;
+            }
+        }
+         $scope.currentalarm = selectedAlarm;
     }
         
     $scope.markashandled = function (alarmId, $event){

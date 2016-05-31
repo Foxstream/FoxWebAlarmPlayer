@@ -49,12 +49,13 @@ block content
                 div(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', class='panel accordion-item')
                     a(href='#alarm{{x.id}}',
                       class='alarm-date',
+                      ng-click='playalarm(x.id)',
                       data-toggle='collapse',
                       data-parent='#accordion') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                     div(id='alarm{{x.id}}', class='collapse alarm-details')
                         p Caméra : {{ x.cameraname }}
                         p Site : {{ x.sitename }}
-                        imageplayer(imgwidth=320, imgheight=500, alarm='currentalarm')  
+                        imageplayer(imgwidth=320, imgheight=320, alarm='currentalarm')  
 
         div(class='col-xs-12 col-md-5 desktop-video-player hidden-xs hidden-sm')
             div(class='h6')  
