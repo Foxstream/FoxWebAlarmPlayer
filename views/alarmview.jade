@@ -76,7 +76,7 @@ block content
                               ng-click='updateSelection(x.id, $event)',
                               ng-show='currentalarm == undefined')
                         {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-                    div(id='alarm{{x.id}}', class='collapse alarm-details' ng-class='in: x.id==currentalarm.id')
+                    div(id='alarm{{x.id}}', class='collapse alarm-details' ng-class='{ in: x.id==currentalarm.id }')
                         imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
                         p Caméra : {{ x.cameraname }}
                         p Site : {{ x.sitename }}

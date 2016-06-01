@@ -43,7 +43,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.isSelectedAll = false;
 
     alarmdb.getalarms(function(data){
-        console.log(data);
         $scope.alarms = data;
     });
     
@@ -62,8 +61,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
-            if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId)
-                $scope.currentalarm = undefined;
+            if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId){
+                var nextAlarm = $scope.getNextAlarm();
+                if (nextAlarm !== -1){
+                    $scope.currentalarm = $scope.alarms[nextAlarm];
+                    console.log($scope.currentalarm);   
+                } else {
+                    $scope.currentalarm = undefined;
+                }
+            }
             alarmdb.markashandled(alarmId, function (err) { });
         }
         $event.stopPropagation();
@@ -80,12 +86,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if ($scope.alarms.length < 2){
             nextAlarm = -1;
         } else {
-            var nextAlarm = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
-            if (nextAlarm === $scope.alarms.length - 1){
+            var position = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
+            if (position === $scope.alarms.length - 1){
                 nextAlarm = 0;
+            } else {
+                nextAlarm = position + 1;
             }
         }
-        console.log(nextAlarm);
         return nextAlarm;
     }
 
@@ -147,10 +154,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             });
         }
         $scope.isSelectedAll = !($scope.isSelectedAll);
-    }
-    
-    var getNextAlarm = function(){
-        
     }
 
 
