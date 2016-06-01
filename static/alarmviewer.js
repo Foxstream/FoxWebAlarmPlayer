@@ -43,6 +43,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.isSelectedAll = false;
 
     alarmdb.getalarms(function(data){
+        console.log(data);
         $scope.alarms = data;
     });
     
@@ -57,7 +58,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             }
         }
          $scope.currentalarm = selectedAlarm;
-         console.log($scope.currentalarm)
     }
         
     $scope.markashandled = function (alarmId, $event){
@@ -70,7 +70,23 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };   
 
     $scope.markcurrentashandled = function($event){
-        $scope.markashandled($scope.currentalarm.id, $event);
+        var nextAlarm = $scope.getNextAlarm();
+        //$scope.markashandled($scope.currentalarm.id, $event);
+        $scope.currentalarm = nextAlarm;
+    }
+
+    $scope.getNextAlarm = function(){
+        var nextAlarm;
+        if ($scope.alarms.length < 2){
+            nextAlarm = -1;
+        } else {
+            var nextAlarm = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
+            if (nextAlarm === $scope.alarms.length - 1){
+                nextAlarm = 0;
+            }
+        }
+        console.log(nextAlarm);
+        return nextAlarm;
     }
 
     $scope.handleSelected = function(){
@@ -133,6 +149,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.isSelectedAll = !($scope.isSelectedAll);
     }
     
+    var getNextAlarm = function(){
+        
+    }
+
+
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
@@ -151,7 +172,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
 
-    $scope.$on('$destroy', function () { unbind1(); unbind2(); unbind3(); });
+    $scope.$on('$destroy', function () { unbind1(); unbind2(); });
 
 }]);
 

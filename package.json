@@ -5,6 +5,7 @@
   "main": "server.js",
   "author": "Ionel",
   "dependencies": {
+    "angular": "^1.5.6",
     "async": "^1.2.1",
     "body-parser": "^1.13.1",
     "events": "^1.0.2",
@@ -24,8 +25,20 @@
     "xml2js": "^0.4.9"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.6",
     "chai": "^3.5.0",
-    "sinon": "^1.17.4"
+    "karma": "^0.13.22",
+    "karma-chai-sinon": "^0.1.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.3",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sinon-chai": "^1.2.0",
+    "lolex": "^1.5.0",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0"
   },
   "scripts": {
     "start": "nodemon main.js",
