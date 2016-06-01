@@ -49,14 +49,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.playalarm = function(alarmid){
          var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
          var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
-        // On mobile, closing the accordion should unselect the alarm
         if (mobile){
+            $scope.selected = [];
+            // closing the accordion should stop playing the current alarm and show the checkboxes
             if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
-                console.log('same alarm');
                 selectedAlarm = undefined;
             }
         }
          $scope.currentalarm = selectedAlarm;
+         console.log($scope.currentalarm)
     }
         
     $scope.markashandled = function (alarmId, $event){
@@ -67,6 +68,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
         $event.stopPropagation();
     };   
+
+    $scope.markcurrentashandled = function($event){
+        $scope.markashandled($scope.currentalarm.id, $event);
+    }
 
     $scope.handleSelected = function(){
         if (window.confirm("Êtes-vous sûr de vouloir acquitter " + $scope.selected.length +" alarmes ?")){

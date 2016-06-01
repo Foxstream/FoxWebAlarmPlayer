@@ -71,7 +71,8 @@ input[type=checkbox] {
   -o-transform: scale(1.5);
   /* Opera */
   -moz-transform: scale(1.5);
-  /* Firefox */ }
+  /* Firefox */
+  margin-right: 5%; }
 
 button {
   border-style: solid;
@@ -92,7 +93,8 @@ button.button-primary {
 
 button.button-secondary {
   border-color: #566171;
-  color: #566171; }
+  color: #566171;
+  margin-right: 4%; }
 
 @media screen and (min-width: 992px) {
   .form {

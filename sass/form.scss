@@ -6,6 +6,7 @@ input:not([type=checkbox])
 input[type=checkbox]
 {
     @include transform(scale(1.5));
+    margin-right: 5%;
 }
 
 button
@@ -35,6 +36,7 @@ button.button-secondary
 {
     border-color: $fox-dark-gray;
     color: $fox-dark-gray;
+    margin-right: 4%
 }
 
 

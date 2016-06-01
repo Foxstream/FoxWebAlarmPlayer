@@ -11,11 +11,11 @@ var mobile = (viewportWidth < breakpoint);
   * Sets all necesssary event handlers for the desktop version
   */ 
 var applyDesktop = function(){
-
+  
 }
 
 var applyMobile = function(){
-
+  
 }
 
 

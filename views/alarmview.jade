@@ -13,15 +13,29 @@ block content
                 div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
                     span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
-            //- Mobile buttons
-            div(class='actions')
+            //- Desktop buttons 
+            div(class='actions hidden-xs hidden-sm')
                 button(class='button-secondary',
                         ng-click='handleSelected()',
                         ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-                .divider
-                button(class='button-secondary hidden-md hidden-lg') Sélectionner
-                .divider
-                button(class='button-primary' ng-click='handleall()') Tout acquitter
+                button(class='button-primary',
+                        ng-click='handleall()') Tout acquitter
+
+             //- Mobile buttons 
+            div(class='actions hidden-lg hidden-md')
+                button(class='button-secondary full-width',
+                        ng-click='handleSelected()',
+                        ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                button(class='button-primary full-width',
+                        ng-click='handleall()',
+                        ng-show='currentalarm == undefined') Tout acquitter
+                button(class='button-secondary',
+                    ng-show='currentalarm != undefined',
+                    ng-click='') Alarme suivante
+                button(class='button-primary',
+                    ng-show='currentalarm != undefined',
+                    ng-click='markcurrentashandled($event)') Acquitter
+
 
             table(class='alarmtable hidden-sm hidden-xs')
                 thead
@@ -56,9 +70,14 @@ block content
                       class='alarm-date',
                       ng-click='playalarm(x.id)',
                       data-toggle='collapse',
-                      data-parent='#accordion') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                      data-parent='#accordion') 
+                        input(type='checkbox',
+                              ng-checked='isSelected(x.id)',
+                              ng-click='updateSelection(x.id, $event)',
+                              ng-show='currentalarm == undefined')
+                        {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                     div(id='alarm{{x.id}}', class='collapse alarm-details')
-                        imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')  
+                        imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
                         p Caméra : {{ x.cameraname }}
                         p Site : {{ x.sitename }}
 
