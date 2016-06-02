@@ -52,9 +52,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if (mobile){
             $scope.selected = [];
             // closing the accordion should stop playing the current alarm and show the checkboxes
-            // if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
-            //     selectedAlarm = undefined;
-            // }
+            if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
+                selectedAlarm = undefined;
+            }
          }
          $scope.currentalarm = selectedAlarm;
     }
