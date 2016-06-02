@@ -36,7 +36,7 @@ app.factory('alarmdb', ['$http','$rootScope',
         return obj;
 }]);
 
-app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', function($scope, $rootScope, $window, alarmdb, alarmevents) {
+app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
     
     $scope.currentalarm=undefined;
     $scope.selected = [];
@@ -49,14 +49,17 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.playalarm = function(alarmid){
         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
-        if (mobile){
-            $scope.selected = [];
+        
+        if (device !== 'desktop'){
             // closing the accordion should stop playing the current alarm and show the checkboxes
             if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
                 selectedAlarm = undefined;
+            } else {
+                $scope.selected = [];
             }
          }
          $scope.currentalarm = selectedAlarm;
+
     }
         
     $scope.markashandled = function (alarmId, $event){
@@ -79,6 +82,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         var nextAlarm = $scope.getNextAlarm();
         //$scope.markashandled($scope.currentalarm.id, $event);
         $scope.currentalarm = nextAlarm;
+    }
+
+    $scope.shownextalarm = function(){
+        var nextAlarm = $scope.getNextAlarm();
     }
 
     $scope.getNextAlarm = function(){

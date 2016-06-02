@@ -31,7 +31,7 @@ block content
                         ng-show='currentalarm == undefined') Tout acquitter
                 button(class='button-secondary',
                     ng-show='currentalarm != undefined',
-                    ng-click='') Alarme suivante
+                    ng-click='shownextalarm()') Alarme suivante
                 button(class='button-primary',
                     ng-show='currentalarm != undefined',
                     ng-click='markcurrentashandled($event)') Acquitter
@@ -46,7 +46,7 @@ block content
                     th(class='date') Date
                     th(class='camera') Caméra
                     th(class='site') Site
-                    th(class='handle')
+                    th(class='handle') 
                   tbody
                     tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', 
                     ng-click='playalarm(x.id)'
