@@ -19,11 +19,11 @@ app.directive('swiper', function(){
         restrict: 'E',
         replace: true,
         link: function(scope, element, attrs){
-            // element = div.swipe
 
             var currentPosition = 0;
 
             $(element).on("swipeleft", function(){
+                console.log('event captured')
                 var minPosition = -(scope.alarms.length - 1) * 100;
                 var maxPosition = 0;
                 currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition);

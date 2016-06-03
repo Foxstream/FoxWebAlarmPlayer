@@ -1,7 +1,7 @@
 div(class="swiper")
     div(class="slides-container")
         div(ng-repeat="x in alarms" class="slide")
-            imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
+            imageplayer(imgwidth=370, imgheight=320, alarm='alarms[0]')
             ul
                 li 
                     b Caméra:  

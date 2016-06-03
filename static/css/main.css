@@ -6,7 +6,7 @@ body {
   padding: 1vh 0 0 0;
   margin: 0;
   height: 100%;
-  overflow: auto; }
+  overflow: hidden; }
 
 a {
   color: black;
@@ -81,9 +81,25 @@ th {
   display: inline-block;
   width: 100%;
   height: 100%;
-  font-size: 1.5em; }
-  .slide ul li {
-    line-height: 2em; }
+  overflow: hidden;
+  font-size: 1.3em;
+  position: relative; }
+  .slide .imageplayer {
+    height: 70%;
+    text-align: center; }
+    .slide .imageplayer .imagecanvas {
+      text-align: center;
+      height: 80%;
+      width: auto; }
+    .slide .imageplayer .play_controller {
+      height: 20%; }
+  .slide ul {
+    position: absolute;
+    bottom: 0;
+    padding: 5%; }
+    .slide ul li {
+      text-indent: 0.2em;
+      line-height: 1.3em; }
 
 input:not([type=checkbox]) {
   width: 100%; }
