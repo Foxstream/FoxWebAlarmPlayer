@@ -64,23 +64,14 @@ block content
                         button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
 
 
-            swiper(class="hidden-md hidden-lg")
-            //- div(class='alarm-accordion hidden-md hidden-lg' id='accordion')
-            //-     div(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', class='panel accordion-item')
-            //-         a(href='#alarm{{x.id}}',
-            //-           class='alarm-date',
-            //-           ng-click='playalarm(x.id)',
-            //-           data-toggle='collapse',
-            //-           data-parent='#accordion') 
-            //-             input(type='checkbox',
-            //-                   ng-checked='isSelected(x.id)',
-            //-                   ng-click='updateSelection(x.id, $event)',
-            //-                   ng-show='currentalarm === undefined')
-            //-             {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-            //-         div(id='alarm{{x.id}}', class='collapse alarm-details')
-            //-             imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
-            //-             p Caméra : {{ x.cameraname }}
-            //-             p Site : {{ x.sitename }}
+
+            div(class="alarmlist hidden-lg hidden-md" ng-show="currentalarm === undefined")
+              ul
+                li(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+
+
+            swiper(class="hidden-md hidden-lg" ng-show='currentalarm !== undefined')
+      
 
         div(class='col-xs-12 col-md-5 desktop-video-player hidden-xs hidden-sm')
             div(class='h6')  

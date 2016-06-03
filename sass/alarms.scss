@@ -61,15 +61,14 @@
 
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-    .alarm-accordion
+
+    .alarmlist
     {
-
-        position: relative;
-        z-index: 1;
-        height: 100vh - $header-height - $action-bar-mobile-height - 3vh - $navbar-tablet-height;
-        overflow: scroll;
-
-        .alarm-date
+        ul 
+        {
+            
+        }
+        li
         {
             display: inline-block;
             width: 100%;
@@ -78,26 +77,13 @@
             font-size: 1.4em;
             font-weight: bold;
         }
-
-        .alarm-details
-        {
-            padding: 1em 0;
-        }
-
-        // .accordion-item
-        // {
-        //     margin-bottom: 0; // Overriding bootstrap property for .panel
-        // }
-
     }
+
 }
 
 @media screen and (max-width: $mobile-breakpoint - 1px)
 {
-    .alarm-accordion
-    {
-        height: 100vh - $action-bar-mobile-height - $navbar-mobile-height;
-    }
+    
 }
 
 

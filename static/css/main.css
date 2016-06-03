@@ -352,23 +352,13 @@ nav {
     .alarmtable .drop, .alarmtable .video {
       display: none; } }
 @media screen and (max-width: 991px) {
-  .alarm-accordion {
-    position: relative;
-    z-index: 1;
-    height: 69vh;
-    overflow: scroll; }
-    .alarm-accordion .alarm-date {
-      display: inline-block;
-      width: 100%;
-      border: solid #788493 1px;
-      padding: 2vh 5vw;
-      font-size: 1.4em;
-      font-weight: bold; }
-    .alarm-accordion .alarm-details {
-      padding: 1em 0; } }
-@media screen and (max-width: 767px) {
-  .alarm-accordion {
-    height: 78vh; } }
+  .alarmlist li {
+    display: inline-block;
+    width: 100%;
+    border: solid #788493 1px;
+    padding: 2vh 5vw;
+    font-size: 1.4em;
+    font-weight: bold; } }
 .imagecanvas {
   width: 100%;
   height: auto;
