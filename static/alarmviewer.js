@@ -10,6 +10,21 @@ app.filter('asdate', function (){
    }
 });
 
+
+
+app.directive('swiper', function(){
+
+    return {
+        templateUrl: '/swiper',
+        restrict: 'E',
+        replace: true
+    }
+
+});
+
+
+
+
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){	  
     	var obj={}

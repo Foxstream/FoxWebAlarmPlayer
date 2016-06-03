@@ -51,6 +51,10 @@ function applyRoutes(app) {
         res.render('imageplayer');
     });
 
+    app.get('/swiper', auth.IsValidUser, function (req, res) {
+        res.render('swiper');
+    });
+
 }
 
 module.exports.BuildWebServer = buildWebServer;
