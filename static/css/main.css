@@ -372,15 +372,19 @@ nav {
 .imagecanvas {
   width: 100%;
   height: auto;
-  border: 2px outset grey; }
+  border: 2px outset #788493; }
 
 #play_controller .osd {
   width: 100%; }
   #play_controller .osd button {
     width: 20%;
+    min-width: 20%;
     border: solid #788493 1px;
     margin: 2.5%; }
 
+@media screen and (max-width: 991px) {
+  .imageplayer {
+    width: 100%; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;
