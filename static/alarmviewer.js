@@ -68,7 +68,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 var nextAlarm = $scope.getNextAlarm();
                 if (nextAlarm !== -1){
                     $scope.currentalarm = $scope.alarms[nextAlarm];
-                    console.log($scope.currentalarm);   
                 } else {
                     $scope.currentalarm = undefined;
                 }
@@ -86,6 +85,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
+        if (nextAlarm !== -1){
+             // THIS IS SO WRONG, SHOULD CREATE A DIRECTIVE
+            var alarmid = $scope.alarms[nextAlarm].id;
+            $('#alarm'+$scope.currentalarm.id).collapse('hide');
+            setTimeout(function(){
+                $('#alarm'+alarmid).collapse('show');
+            }, 500);
+        }
+        $scope.playalarm(alarmid);
     }
 
     $scope.getNextAlarm = function(){
@@ -117,8 +125,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.alarms.forEach(function(a){
             alarms.push(a);
         });
-        console.log('alarmes');
-        console.log(alarms);
         if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
             alarms.forEach(function(a){
                 alarmdb.markashandled(a.id);
