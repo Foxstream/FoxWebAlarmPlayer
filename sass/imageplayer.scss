@@ -49,13 +49,18 @@
 
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-    #play_controller .osd
+    .imageplayer
     {
-
-        button
+        width: 100%;
+        #play_controller .osd
         {
+            
+            button
+            {
+            }
         }
     }
+
 }
 
 @media screen and (max-width: $mobile-breakpoint - 1px)
