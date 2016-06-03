@@ -17,7 +17,48 @@ app.directive('swiper', function(){
     return {
         templateUrl: '/swiper',
         restrict: 'E',
-        replace: true
+        replace: true,
+        link: function(scope, element, attrs){
+            // element = div.swipe
+
+            var currentPosition = 0;
+
+            $(element).on("swipeleft", function(){
+                var minPosition = -(scope.alarms.length - 1) * 100;
+                var maxPosition = 0;
+                currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition);
+                $(this).find('.slides-container').animate({
+                    left: currentPosition+"%"
+                }, 500);
+            });
+
+            $(element).on("swiperight", function(){
+                var minPosition = -(scope.alarms.length - 1) * 100;
+                var maxPosition = 0;
+                currentPosition = getNewSliderPosition(currentPosition, -1, minPosition, maxPosition);
+                $(this).find('.slides-container').animate({
+                    left: currentPosition + "%"
+                }, 500);
+            });
+
+            var getNewSliderPosition = function(currentPosition, direction, minPosition, maxPosition){
+                var newPosition;
+                if (direction > 0){ // sliding left
+                    newPosition = currentPosition - 100;
+                }
+                else {
+                    newPosition = currentPosition + 100;
+                }
+                
+                if (newPosition < minPosition){
+                  newPosition = minPosition;
+                } else if (newPosition > maxPosition){
+                  newPosition = maxPosition;
+                }
+                return newPosition;
+            }
+        }
+
     }
 
 });
@@ -259,7 +300,7 @@ app.directive('imagewithosd', function() {
 	  scope:{image:"=", osd:"=", imgwidth:"@", imgheight:"@"},
 	  replace: true,
 	  template: '<canvas class="imagecanvas"/>',
-	  link: function(scope, elem, attrs) {		  
+	  link: function(scope, elem, attrs) {
 		  var canvas = elem[0];
 		  
 		  function repaintImage()

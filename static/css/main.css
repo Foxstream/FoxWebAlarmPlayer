@@ -73,6 +73,7 @@ th {
   .swiper {
     height: 73vh; } }
 .slides-container {
+  height: 100%;
   position: relative; }
 
 .slide {
