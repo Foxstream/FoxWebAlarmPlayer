@@ -374,6 +374,13 @@ nav {
   height: auto;
   border: 2px outset grey; }
 
+#play_controller .osd {
+  width: 100%; }
+  #play_controller .osd button {
+    width: 20%;
+    border: solid #788493 1px;
+    margin: 2.5%; }
+
 .form-input {
   max-width: 350px;
   margin-left: auto;

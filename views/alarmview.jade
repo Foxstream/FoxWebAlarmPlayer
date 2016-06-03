@@ -64,7 +64,7 @@ block content
                         button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
 
 
-            swiper
+            swiper(class="hidden-md hidden-lg")
             //- div(class='alarm-accordion hidden-md hidden-lg' id='accordion')
             //-     div(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', class='panel accordion-item')
             //-         a(href='#alarm{{x.id}}',

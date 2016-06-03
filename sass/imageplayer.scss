@@ -5,7 +5,65 @@
        border:2px outset grey;
 }
 
+
+// NOT SUPPORTED BY IE 9
+// #play_controller .osd
+// {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-content: flex-start;
+//     align-items: flex-start;
+
+//     button
+//     {
+//         flex-grow: 1;
+//         flex-basis: 1px;
+//     }
+// }
+
+#play_controller .osd
+{
+    width: 100%;
+    button
+    {
+        width: 20%;
+        border: solid $fox-gray 1px;
+        margin: 2.5%;
+    }
+}
+
+
+@media screen and (min-width: $tablet-breakpoint)
+{
+    #play_controller .osd
+    {
+        button
+        {
+
+        }
+    }
+}
+
+
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-    
+    #play_controller .osd
+    {
+
+        button
+        {
+        }
+    }
+}
+
+@media screen and (max-width: $mobile-breakpoint - 1px)
+{
+    #play_controller .osd
+    {
+        button
+        {
+        }
+    }
 }
