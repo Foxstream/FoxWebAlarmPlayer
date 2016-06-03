@@ -1,4 +1,11 @@
 div(class="swiper")
     div(class="slides-container")
         div(ng-repeat="x in alarms" class="slide")
-            {{ x.id }}
+            imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
+            ul
+                li 
+                    b Caméra:  
+                    {{ x.cameraname }}
+                li  
+                    b Site : 
+                    {{ x.sitename }}
