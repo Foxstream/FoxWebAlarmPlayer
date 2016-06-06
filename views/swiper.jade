@@ -1,6 +1,6 @@
 div(class="swiper")
     div(class="slides-container")
-        div(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" class="slide" id="#slide{{ x.id }}")
+        div(ng-repeat="x in alarms | filter: {handled:0} | orderBy: 'timestamp'" class="slide" id="#slide{{ x.id }}")
             imageplayer(imgwidth=370, imgheight=320, alarm='x')
             ul
                 li

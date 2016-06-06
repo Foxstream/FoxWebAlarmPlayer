@@ -212,13 +212,9 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watch('alarms', function(){
-
-            });
-
             scope.$watchGroup(['currentalarm', 'alarms'], function(){
                 // Position the slider on the right alarm
-                if (scope.currentalarm !== undefined){ 
+                if (scope.currentalarm !== undefined){
                     var position = scope.alarms.length - 1 - scope.alarms.map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
