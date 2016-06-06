@@ -12,7 +12,7 @@ app.filter('asdate', function (){
 
 
 app.factory('alarmdb', ['$http','$rootScope',
-    function($http, $rootScope){	  
+    function($http, $rootScope){
     	var obj={}
     			
     	obj.getalarms=function(callback)
@@ -141,7 +141,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     }     
 
     $scope.delete = function (alarmId){
-        if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to delete the alarm?")) {
+        if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Êtes-vous sûr de vouloir acquiter cette alarme ??")) {
             alarmdb.delete(alarmId, function(err){ });
         }
     }
@@ -215,7 +215,7 @@ app.directive('swiper', function(){
             scope.$watchGroup(['currentalarm', 'alarms'], function(){
                 // Position the slider on the right alarm
                 if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.length - 1 - scope.alarms.map(function(a){
+                    var position = scope.alarms.map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
