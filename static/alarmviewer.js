@@ -90,17 +90,18 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getNextAlarm = function(){
         var nextAlarm;
-        if ($scope.alarms.length < 2){
-            nextAlarm = -1;
+        var notHandled = $scope.getNotHandledAlarms();
+        if (notHandled.length < 2){
+            return -1;
         } else {
-            var position = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
-            if (position === $scope.alarms.length - 1){
+            var position = notHandled.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
+            if (position === notHandled.length - 1){
                 nextAlarm = 0;
             } else {
                 nextAlarm = position + 1;
             }
+            return $scope.alarms.map(function(a){ return a.id }).indexOf(notHandled[nextAlarm].id);
         }
-        return nextAlarm;
     }
 
     $scope.getPreviousAlarm = function(){
@@ -176,6 +177,12 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.isSelectedAll = !($scope.isSelectedAll);
     }
 
+    $scope.getNotHandledAlarms = function(){
+        return $scope.alarms.filter(function(a){
+            return a.handled === 0;
+        });
+    }
+
 
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
@@ -212,10 +219,12 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watchGroup(['currentalarm', 'alarms'], function(){
+            scope.$watch('currentalarm', function(){
                 // Position the slider on the right alarm
                 if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.map(function(a){
+                    var position = scope.alarms.filter(function(a){
+                        return a.handled === 0;
+                    }).map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
@@ -227,7 +236,11 @@ app.directive('swiper', function(){
             });
 
             $(element).on("swipeleft", function(){
-                var minPosition = -(scope.alarms.length - 1) * 100;
+                debugger;
+                var notHandled = scope.alarms.filter(function(a){
+                    return a.handled === 0;
+                });
+                var minPosition = -(notHandled.length - 1) * 100;
                 if (currentPosition > minPosition){
                     scope.shownextalarm();
                 }
@@ -278,7 +291,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                if (!newVal) return;
 
                scope.playing = false;
-               scope.loading = true;    	                 
+               scope.loading = true;
                 LoadImages($http, newVal, function () {
                     $timeout(function () {// a timeout is needed aw we can be called from a non http context
                         scope.loading = false;
@@ -291,7 +304,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
   };
 }]);
 
-app.directive('imagewithosd', function() {
+app.directive('imagewithosd', function(){
   return {
 	  restrict: 'E', 
 	  scope:{image:"=", osd:"=", imgwidth:"@", imgheight:"@"},
