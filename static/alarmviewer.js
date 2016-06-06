@@ -229,14 +229,13 @@ app.directive('swiper', function(){
             $(element).on("swipeleft", function(){
                 var minPosition = -(scope.alarms.length - 1) * 100;
                 if (currentPosition > minPosition){
-                    scope.showpreviousalarm();
+                    scope.shownextalarm();
                 }
             });
 
             $(element).on("swiperight", function(){
-                var minPosition = -(scope.alarms.length - 1) * 100;
                 if (currentPosition < 0){
-                    scope.shownextalarm();
+                    scope.showpreviousalarm();
                 }
             });
 
