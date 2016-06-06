@@ -33,4 +33,21 @@ describe('first test', function(){
     });
 
 
+    it('GetPreviousAlarm should return the previous alarm to play on mobile or -1', function(){
+        
+        scope.currentalarm = alarm3;
+        expect(scope.getPreviousAlarm()).to.equal(1);
+        scope.currentalarm = alarm2;
+        expect(scope.getPreviousAlarm()).to.equal(0);
+
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(2);
+
+        scope.alarms.splice(1, 2);
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(-1);
+
+    });
+
+
 });

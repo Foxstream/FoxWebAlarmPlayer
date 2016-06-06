@@ -25,52 +25,33 @@ app.directive('swiper', function(){
 
             scope.$watch('currentalarm', function(){
                 // Position the slider on the right alarm
-                if(scope.currentalarm && scope.currentalarm !== undefined){
-                    var minPosition = -(scope.alarms.length - 1) * 100;
-                    var steps = scope.alarms.map(function(a){ return a.id }).indexOf(scope.currentalarm.id);
-                    currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition, steps);
+                if (scope.currentalarm !== undefined){
+                    var position = scope.alarms.length - 1 - scope.alarms.map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
                     $(element).find('.slides-container').animate({
-                        left: currentPosition+"%"
+                        left: offset+"%"
                     }, 500);
+                    currentPosition = offset;
                 }
             });
 
             $(element).on("swipeleft", function(){
                 var minPosition = -(scope.alarms.length - 1) * 100;
-                currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition);
-                $(this).find('.slides-container').animate({
-                    left: currentPosition+"%"
-                }, 500);
+                if (currentPosition > minPosition){
+                    scope.showpreviousalarm();
+                }
             });
 
             $(element).on("swiperight", function(){
                 var minPosition = -(scope.alarms.length - 1) * 100;
-                currentPosition = getNewSliderPosition(currentPosition, -1, minPosition, maxPosition);
-                $(this).find('.slides-container').animate({
-                    left: currentPosition + "%"
-                }, 500);
+                if (currentPosition < 0){
+                    scope.shownextalarm();
+                }
             });
 
-            var getNewSliderPosition = function(currentPosition, direction, minPosition, maxPosition, steps){
-                steps = steps || 1;
-
-                var newPosition;
-                if (direction > 0){ // sliding left
-                    newPosition = currentPosition - 100;
-                }
-                else {
-                    newPosition = currentPosition + 100;
-                }
-                
-                if (newPosition < minPosition){
-                  newPosition = minPosition;
-                } else if (newPosition > maxPosition){
-                  newPosition = maxPosition;
-                }
-                return newPosition;
-            }
         }
-
     }
 
 });
@@ -117,17 +98,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.playalarm = function(alarmid){
         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
-        
-        if (device !== 'desktop'){
-            // closing the accordion should stop playing the current alarm and show the checkboxes
-            if ($scope.currentalarm && alarmid === $scope.currentalarm.id){
-                selectedAlarm = undefined;
-            } else {
-                $scope.selected = [];
-            }
-         }
-         $scope.currentalarm = selectedAlarm;
-
+        $scope.currentalarm = selectedAlarm;
     }
         
     $scope.markashandled = function (alarmId, $event){
@@ -154,14 +125,17 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
         if (nextAlarm !== -1){
-             // THIS IS SO WRONG, SHOULD CREATE A DIRECTIVE
             var alarmid = $scope.alarms[nextAlarm].id;
-            $('#alarm'+$scope.currentalarm.id).collapse('hide');
-            setTimeout(function(){
-                $('#alarm'+alarmid).collapse('show');
-            }, 500);
+            $scope.playalarm(alarmid);
         }
-        $scope.playalarm(alarmid);
+    }
+
+    $scope.showpreviousalarm = function(){
+        var previousAlarm = $scope.getPreviousAlarm();
+        if (previousAlarm !== -1){
+            var alarmid = $scope.alarms[previousAlarm].id;
+            $scope.playalarm(alarmid);
+        }
     }
 
     $scope.getNextAlarm = function(){
@@ -177,6 +151,21 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             }
         }
         return nextAlarm;
+    }
+
+    $scope.getPreviousAlarm = function(){
+        var previousAlarm;
+        if ($scope.alarms.length < 2){
+            previousAlarm = -1;
+        } else {
+            var position = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
+            if (position === 0){
+                previousAlarm = $scope.alarms.length - 1;
+            } else {
+                previousAlarm = position - 1;
+            }
+        }
+        return previousAlarm;
     }
 
     $scope.handleSelected = function(){
