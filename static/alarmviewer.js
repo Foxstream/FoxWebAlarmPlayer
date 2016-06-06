@@ -106,17 +106,18 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getPreviousAlarm = function(){
         var previousAlarm;
-        if ($scope.alarms.length < 2){
-            previousAlarm = -1;
+        var notHandled = $scope.getNotHandledAlarms();
+        if (notHandled.length < 2){
+            return -1;
         } else {
-            var position = $scope.alarms.map(function(e) { return e.id; }).indexOf($scope.currentalarm.id);
+            var position = notHandled.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
             if (position === 0){
-                previousAlarm = $scope.alarms.length - 1;
+                previousAlarm = notHandled.length - 1;
             } else {
                 previousAlarm = position - 1;
             }
+            return $scope.alarms.map(function(a){ return a.id }).indexOf(notHandled[previousAlarm].id);
         }
-        return previousAlarm;
     }
 
     $scope.handleSelected = function(){

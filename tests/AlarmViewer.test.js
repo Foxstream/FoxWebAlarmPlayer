@@ -49,7 +49,7 @@ describe('Alarmviewer controller tests', function(){
         expect(scope.getNextAlarm()).to.equal(1);
 
         // Returns -1 when there is no next alarm
-        scope.alarms.splice(1, 3);
+        scope.alarms = [alarm1];
         scope.currentalarm = alarm1;
         expect(scope.getNextAlarm()).to.equal(-1);
 
@@ -58,17 +58,30 @@ describe('Alarmviewer controller tests', function(){
 
     it('GetPreviousAlarm should return the previous alarm to play on mobile or -1', function(){
         
-        // scope.currentalarm = alarm3;
-        // expect(scope.getPreviousAlarm()).to.equal(1);
-        // scope.currentalarm = alarm2;
-        // expect(scope.getPreviousAlarm()).to.equal(0);
+        // Should ignore alarm2 because it is marked as handled
+        scope.currentalarm = alarm3;
+        expect(scope.getPreviousAlarm()).to.equal(0);
+        // Normal use case
+        scope.currentalarm = alarm4;
+        expect(scope.getPreviousAlarm()).to.equal(2);
 
-        // scope.currentalarm = alarm1;
-        // expect(scope.getPreviousAlarm()).to.equal(2);
+        // Beginning of list
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(3);
 
-        // scope.alarms.splice(1, 2);
-        // scope.currentalarm = alarm1;
-        // expect(scope.getPreviousAlarm()).to.equal(-1);
+        // Handled alarm at end of list
+        scope.alarms.push(alarm5);
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(3);
+
+        // Handled alarm at beginning of list
+        scope.alarms.unshift(alarm5);
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(4);
+
+        scope.alarms = [alarm1];
+        scope.currentalarm = alarm1;
+        expect(scope.getPreviousAlarm()).to.equal(-1);
 
     });
 
