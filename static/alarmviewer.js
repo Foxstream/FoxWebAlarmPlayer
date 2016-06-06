@@ -11,54 +11,6 @@ app.filter('asdate', function (){
 });
 
 
-
-app.directive('swiper', function(){
-
-    return {
-        templateUrl: '/swiper',
-        restrict: 'E',
-        replace: true,
-        link: function(scope, element, attrs){
-
-            var currentPosition = 0;
-            var maxPosition = 0;
-
-            scope.$watch('currentalarm', function(){
-                // Position the slider on the right alarm
-                if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.length - 1 - scope.alarms.map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 500);
-                    currentPosition = offset;
-                }
-            });
-
-            $(element).on("swipeleft", function(){
-                var minPosition = -(scope.alarms.length - 1) * 100;
-                if (currentPosition > minPosition){
-                    scope.showpreviousalarm();
-                }
-            });
-
-            $(element).on("swiperight", function(){
-                var minPosition = -(scope.alarms.length - 1) * 100;
-                if (currentPosition < 0){
-                    scope.shownextalarm();
-                }
-            });
-
-        }
-    }
-
-});
-
-
-
-
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){	  
     	var obj={}
@@ -104,9 +56,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId){
-                var nextAlarm = $scope.getNextAlarm();
-                if (nextAlarm !== -1){
-                    $scope.currentalarm = $scope.alarms[nextAlarm];
+                var previousAlarm = $scope.getPreviousAlarm();
+                if (previousAlarm !== -1){
+                    $scope.currentalarm = $scope.alarms[previousAlarm];
                 } else {
                     $scope.currentalarm = undefined;
                 }
@@ -117,9 +69,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.markcurrentashandled = function($event){
-        var nextAlarm = $scope.getNextAlarm();
-        //$scope.markashandled($scope.currentalarm.id, $event);
-        $scope.currentalarm = nextAlarm;
+        $scope.markashandled($scope.currentalarm.id, $event);
     }
 
     $scope.shownextalarm = function(){
@@ -250,6 +200,57 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 }]);
 
 
+
+app.directive('swiper', function(){
+
+    return {
+        templateUrl: '/swiper',
+        restrict: 'E',
+        replace: true,
+        link: function(scope, element, attrs){
+
+            var currentPosition = 0;
+            var maxPosition = 0;
+
+            scope.$watch('alarms', function(){
+
+            });
+
+            scope.$watchGroup(['currentalarm', 'alarms'], function(){
+                // Position the slider on the right alarm
+                if (scope.currentalarm !== undefined){ 
+                    var position = scope.alarms.length - 1 - scope.alarms.map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').animate({
+                        left: offset+"%"
+                    }, 500);
+                    currentPosition = offset;
+                }
+            });
+
+            $(element).on("swipeleft", function(){
+                var minPosition = -(scope.alarms.length - 1) * 100;
+                if (currentPosition > minPosition){
+                    scope.showpreviousalarm();
+                }
+            });
+
+            $(element).on("swiperight", function(){
+                var minPosition = -(scope.alarms.length - 1) * 100;
+                if (currentPosition < 0){
+                    scope.shownextalarm();
+                }
+            });
+
+        }
+    }
+
+});
+
+
+
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
 	  restrict: 'E', 
@@ -310,7 +311,7 @@ app.directive('imagewithosd', function() {
 			  canvas.width = scope.imgwidth;
 			  canvas.height = scope.imgheight;
 			  
-                if (!scope.image) {
+                if (!scope.image){
                     ctx.fillStyle = "grey";
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }

@@ -4,11 +4,11 @@ div(class="swiper")
             imageplayer(imgwidth=370, imgheight=320, alarm='x')
             ul
                 li
-                    {{ x.id }}
+                    h2 {{ x.id }}
                 li
                     {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 
-                    b Caméra:  
+                    b Caméra:
                     {{ x.cameraname }}
                 li  
                     b Site : 
