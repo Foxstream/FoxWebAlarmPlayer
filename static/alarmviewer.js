@@ -21,11 +21,22 @@ app.directive('swiper', function(){
         link: function(scope, element, attrs){
 
             var currentPosition = 0;
+            var maxPosition = 0;
+
+            scope.$watch('currentalarm', function(){
+                // Position the slider on the right alarm
+                if(scope.currentalarm && scope.currentalarm !== undefined){
+                    var minPosition = -(scope.alarms.length - 1) * 100;
+                    var steps = scope.alarms.map(function(a){ return a.id }).indexOf(scope.currentalarm.id);
+                    currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition, steps);
+                    $(element).find('.slides-container').animate({
+                        left: currentPosition+"%"
+                    }, 500);
+                }
+            });
 
             $(element).on("swipeleft", function(){
-                console.log('event captured')
                 var minPosition = -(scope.alarms.length - 1) * 100;
-                var maxPosition = 0;
                 currentPosition = getNewSliderPosition(currentPosition, 1, minPosition, maxPosition);
                 $(this).find('.slides-container').animate({
                     left: currentPosition+"%"
@@ -34,14 +45,15 @@ app.directive('swiper', function(){
 
             $(element).on("swiperight", function(){
                 var minPosition = -(scope.alarms.length - 1) * 100;
-                var maxPosition = 0;
                 currentPosition = getNewSliderPosition(currentPosition, -1, minPosition, maxPosition);
                 $(this).find('.slides-container').animate({
                     left: currentPosition + "%"
                 }, 500);
             });
 
-            var getNewSliderPosition = function(currentPosition, direction, minPosition, maxPosition){
+            var getNewSliderPosition = function(currentPosition, direction, minPosition, maxPosition, steps){
+                steps = steps || 1;
+
                 var newPosition;
                 if (direction > 0){ // sliding left
                     newPosition = currentPosition - 100;
@@ -131,7 +143,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             alarmdb.markashandled(alarmId, function (err) { });
         }
         $event.stopPropagation();
-    };   
+    };
 
     $scope.markcurrentashandled = function($event){
         var nextAlarm = $scope.getNextAlarm();

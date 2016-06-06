@@ -1,8 +1,10 @@
 div(class="swiper")
     div(class="slides-container")
         div(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" class="slide")
-            imageplayer(imgwidth=370, imgheight=320, alarm='alarms[0]')
+            imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm')
             ul
+                li
+                    {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 
                     b Caméra:  
                     {{ x.cameraname }}
