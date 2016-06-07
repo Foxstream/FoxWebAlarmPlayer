@@ -28,12 +28,6 @@ app.factory('alarmdb', ['$http','$rootScope',
     		  .error(function (data) { callback({response: data}); });
         };	
 
-        obj.delete = function(alarmid, callback){
-            $http.delete("/controller/alarm/"+alarmid)
-                .success(function (data){ callback(null, data); })
-                .error(function(data){ callback({response: data}); });
-        };
-
         return obj;
 }]);
 
@@ -44,8 +38,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.isSelectedAll = false;
 
     alarmdb.getalarms(function(data){
-        $scope.alarms = data;
-    });
+        $scope.alarms = data; });
     
     $scope.playalarm = function(alarmid){
         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
@@ -222,35 +215,35 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watchCollection('alarms', function(){
-                 if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').css({
-                        left: offset+"%"
-                    });
-                    currentPosition = offset;
-                }
-            });
+            // scope.$watchCollection('alarms', function(){
+            //      if (scope.currentalarm !== undefined){
+            //         var position = scope.getNotHandledAlarms().map(function(a){
+            //             return a.id;
+            //         }).indexOf(scope.currentalarm.id);
+            //         var offset = -position * 100;
+            //         $(element).find('.slides-container').css({
+            //             left: offset+"%"
+            //         });
+            //         currentPosition = offset;
+            //     }
+            // });
 
-            scope.$watch('currentalarm', function(){
-                // Position the slider on the right alarm
-                if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 500);
-                    currentPosition = offset;
-                }
-            });
+            // scope.$watch('currentalarm', function(){
+            //     // Position the slider on the right alarm
+            //     if (scope.currentalarm !== undefined){
+            //         var position = scope.getNotHandledAlarms().map(function(a){
+            //             return a.id;
+            //         }).indexOf(scope.currentalarm.id);
+            //         var offset = -position * 100;
+            //         $(element).find('.slides-container').animate({
+            //             left: offset+"%"
+            //         }, 500);
+            //         currentPosition = offset;
+            //     }
+            // });
 
             $(element).on("swipeleft", function(){
-                debugger;
+                alert('You tried to swipe');
                 var notHandled = scope.getNotHandledAlarms();
                 var minPosition = -(notHandled.length - 1) * 100;
                 if (currentPosition > minPosition){
@@ -259,6 +252,7 @@ app.directive('swiper', function(){
             });
 
             $(element).on("swiperight", function(){
+                alert('You tried to swipe');
                 if (currentPosition < 0){
                     scope.showpreviousalarm();
                 }
@@ -274,7 +268,7 @@ app.directive('swiper', function(){
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
 	  restrict: 'E', 
-	  scope:{alarm:"=", imgwidth:"@", imgheight:"@"},
+	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", playing: "@"},
 	  replace: true,
 	  templateUrl: '/imageplayer',
 	  link: function(scope, elem, attrs) {
@@ -300,7 +294,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             $interval(function () { if (scope.playing) scope.nextImage(); }, 500);
 		  
             scope.$watch('alarm', function (newVal, oldVal){
-               if (!newVal) return;
+               if (newVal === oldVal) return;
 
                scope.playing = false;
                scope.loading = true;
@@ -356,7 +350,7 @@ app.directive('imagewithosd', function(){
 		  }
 		  
           scope.$watch('image', repaintImage);
-          scope.$watch('osd', repaintImage);                   
+          scope.$watch('osd', repaintImage);
 		  repaintImage();
 	  }
   };
