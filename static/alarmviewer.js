@@ -188,8 +188,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
-            if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0)
+            if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0){
                 $window.alert("Current alarm was marked as handled.");
+                $scope.currentalarm = undefined;
+            }
             $scope.alarms[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
@@ -220,12 +222,23 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
+            scope.$watchCollection('alarms', function(){
+                 if (scope.currentalarm !== undefined){
+                    var position = scope.getNotHandledAlarms().map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').css({
+                        left: offset+"%"
+                    });
+                    currentPosition = offset;
+                }
+            });
+
             scope.$watch('currentalarm', function(){
                 // Position the slider on the right alarm
                 if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.filter(function(a){
-                        return a.handled === 0;
-                    }).map(function(a){
+                    var position = scope.getNotHandledAlarms().map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
@@ -238,9 +251,7 @@ app.directive('swiper', function(){
 
             $(element).on("swipeleft", function(){
                 debugger;
-                var notHandled = scope.alarms.filter(function(a){
-                    return a.handled === 0;
-                });
+                var notHandled = scope.getNotHandledAlarms();
                 var minPosition = -(notHandled.length - 1) * 100;
                 if (currentPosition > minPosition){
                     scope.shownextalarm();
@@ -296,7 +307,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 LoadImages($http, newVal, function () {
                     $timeout(function () {// a timeout is needed aw we can be called from a non http context
                         scope.loading = false;
-                        scope.playing = true;
+                        // scope.playing = true;
                         scope.currentIdx = 0;
                     }, 0);
                });
