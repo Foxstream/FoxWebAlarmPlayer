@@ -64,7 +64,7 @@ block content
 
             div(class="alarmlist hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
-                li(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                li(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)") {{ x.id }} {{ x.timestamp }}
 
 
             swiper(class="hidden-md hidden-lg",

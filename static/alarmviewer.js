@@ -215,15 +215,15 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watchCollection('alarms', function(){
+            scope.$watchCollection('alarms', function(){  
                  if (scope.currentalarm !== undefined){
                     var position = scope.getNotHandledAlarms().map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
-                    $(element).find('.slides-container').css({
+                    $(element).find('.slides-container').animate({
                         left: offset+"%"
-                    });
+                    }, 100);
                     currentPosition = offset;
                 }
             });
