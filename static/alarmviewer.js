@@ -215,35 +215,34 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            // scope.$watchCollection('alarms', function(){
-            //      if (scope.currentalarm !== undefined){
-            //         var position = scope.getNotHandledAlarms().map(function(a){
-            //             return a.id;
-            //         }).indexOf(scope.currentalarm.id);
-            //         var offset = -position * 100;
-            //         $(element).find('.slides-container').css({
-            //             left: offset+"%"
-            //         });
-            //         currentPosition = offset;
-            //     }
-            // });
+            scope.$watchCollection('alarms', function(){
+                 if (scope.currentalarm !== undefined){
+                    var position = scope.getNotHandledAlarms().map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').css({
+                        left: offset+"%"
+                    });
+                    currentPosition = offset;
+                }
+            });
 
-            // scope.$watch('currentalarm', function(){
-            //     // Position the slider on the right alarm
-            //     if (scope.currentalarm !== undefined){
-            //         var position = scope.getNotHandledAlarms().map(function(a){
-            //             return a.id;
-            //         }).indexOf(scope.currentalarm.id);
-            //         var offset = -position * 100;
-            //         $(element).find('.slides-container').animate({
-            //             left: offset+"%"
-            //         }, 500);
-            //         currentPosition = offset;
-            //     }
-            // });
+            scope.$watch('currentalarm', function(){
+                // Position the slider on the right alarm
+                if (scope.currentalarm !== undefined){
+                    var position = scope.getNotHandledAlarms().map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').animate({
+                        left: offset+"%"
+                    }, 500);
+                    currentPosition = offset;
+                }
+            });
 
             $(element).on("swipeleft", function(){
-                alert('You tried to swipe');
                 var notHandled = scope.getNotHandledAlarms();
                 var minPosition = -(notHandled.length - 1) * 100;
                 if (currentPosition > minPosition){
@@ -252,7 +251,6 @@ app.directive('swiper', function(){
             });
 
             $(element).on("swiperight", function(){
-                alert('You tried to swipe');
                 if (currentPosition < 0){
                     scope.showpreviousalarm();
                 }
