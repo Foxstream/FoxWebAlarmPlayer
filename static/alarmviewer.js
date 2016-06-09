@@ -36,6 +36,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.currentalarm=undefined;
     $scope.selected = [];
     $scope.isSelectedAll = false;
+    $scope.alarms = [];
 
     alarmdb.getalarms(function(data){
         $scope.alarms = data; });
@@ -178,6 +179,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     }
 
 
+    $scope.nextSlide = function(){
+        
+    }
+
+
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
@@ -229,7 +235,6 @@ app.directive('swiper', function(){
             });
 
             scope.$watch('currentalarm', function(){
-                // Position the slider on the right alarm
                 if (scope.currentalarm !== undefined){
                     var position = scope.getNotHandledAlarms().map(function(a){
                         return a.id;
@@ -242,19 +247,21 @@ app.directive('swiper', function(){
                 }
             });
 
-            $(element).on("swipeleft", function(){
-                var notHandled = scope.getNotHandledAlarms();
-                var minPosition = -(notHandled.length - 1) * 100;
-                if (currentPosition > minPosition){
-                    scope.shownextalarm();
-                }
-            });
+            //var hammer = new Hammer($(element));
 
-            $(element).on("swiperight", function(){
-                if (currentPosition < 0){
-                    scope.showpreviousalarm();
-                }
-            });
+            // $(element).on("swipeleft", function(){
+            //     var notHandled = scope.getNotHandledAlarms();
+            //     var minPosition = -(notHandled.length - 1) * 100;
+            //     if (currentPosition > minPosition){
+            //         scope.shownextalarm();
+            //     }
+            // });
+
+            // $(element).on("swiperight", function(){
+            //     if (currentPosition < 0){
+            //         scope.showpreviousalarm();
+            //     }
+            // });
 
         }
     }

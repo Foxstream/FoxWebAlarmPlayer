@@ -1,4 +1,4 @@
-﻿var app = angular.module('alarmviewer', []);
+﻿var app = angular.module('alarmviewer', ['ngTouch']);
 
 var tabletBreakpoint = 992;
 var mobileBreakpoint = 768;
