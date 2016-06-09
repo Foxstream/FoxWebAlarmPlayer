@@ -72,7 +72,7 @@ block content
             div(class="alarmlist hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
                 li(ng-show='getNotHandledAlarms().length === 0') Aucune alarme
-                li(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)") {{ x.id }} {{ x.timestamp }}
+                li(ng-repeat="x in alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
 
 
             swiper(class="hidden-md hidden-lg",
@@ -84,7 +84,7 @@ block content
             div(class='h6')
                 span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                 span(ng-show='currentalarm==undefined') No alarm selected
-            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm')
+            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', currentalarm='currentalarm')
                     
 
   script(src='static/AlarmData.js')

@@ -273,16 +273,17 @@ app.directive('swiper', function(){
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
 	  restrict: 'E', 
-	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", playing: "@"},
+	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", playing: "@", currentalarm: "="},
 	  replace: true,
 	  templateUrl: '/imageplayer',
 	  link: function(scope, elem, attrs) {
             scope.rootElement = elem;
             scope.loading = false;
             scope.currentIdx = 0;
-            scope.playing = false;
             scope.showOsd = true;
-                
+            scope.playing = true;
+            console.debug(scope.alarm);
+
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
             }
@@ -296,18 +297,28 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                     scope.currentIdx = (scope.currentIdx - 1 + scope.alarm.nbimages) % scope.alarm.nbimages;
             }
 
-            $interval(function () { if (scope.playing) scope.nextImage(); }, 500);
+            $interval(function () { 
+                console.debug('\n Player debug');
+                console.debug(scope.rootElement);
+                console.debug('playing', scope.playing)
+                console.debug('alarm', scope.alarm);
+                console.debug('currentalarm', scope.currentalarm);
+                if (scope.playing && scope.currentalarm && scope.alarm && scope.currentalarm.id === scope.alarm.id){
+                    console.debug('PLAYING')
+                    scope.nextImage(); 
+                }
+            }, 500);
 		  
             scope.$watch('alarm', function (newVal, oldVal){
                if (newVal === oldVal) return;
-
                scope.playing = false;
                scope.loading = true;
                 LoadImages($http, newVal, function () {
-                    $timeout(function () {// a timeout is needed aw we can be called from a non http context
+                    $timeout(function () {// a timeout is needed as we can be called from a non http context
                         scope.loading = false;
-                        // scope.playing = true;
+                        scope.playing = true;
                         scope.currentIdx = 0;
+                        console.debug(scope.playing)
                     }, 0);
                });
 		  });
