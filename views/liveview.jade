@@ -14,12 +14,12 @@ block content
                     a(href='#collapse{{$index}}' data-toggle='collapse'){{ site }}
                 div(id='collapse{{ $index }}'
                     class='collapse')
-                    div(ng-repeat='c in cams track by $index | orderBy: "-camid"'
+                    div(ng-repeat='c in cams | orderBy: "camid" track by $index '
                         class='col-lg-6 col-sm-6 cam'
                         ng-click='showLiveFeed(c.serverId, c.camid, c.acq_fps)')
                         img(src='{{ c.image }}'
                             class='camera-image')
-                        h5(class='camera-name') Cam_{{ $index + 1 }}
+                        h5(class='camera-name') Cam_{{ c.camid }}
 
         div(class='col-lg-6 live-canvas')
             img(src='{{ liveImage }}')
