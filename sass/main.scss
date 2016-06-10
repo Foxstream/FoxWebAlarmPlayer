@@ -167,3 +167,17 @@ th
     max-height:800px;
     overflow-y:scroll;
 }
+
+// Bootstrap needs the .panel class for accordions, but this class adds a big margin
+.accordion-item
+{
+    margin-bottom: 0;
+}
+
+
+
+
+
+
+
+

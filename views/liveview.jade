@@ -6,10 +6,10 @@ block title
 block content
   div(class='container-fluid')
 
-    div(ng-controller='livecontroller')  
+    div(ng-controller='livecontroller')
         
         div(class='col-lg-6', id='camera-list')
-            div(ng-repeat='(site, cams) in cameras track by $index')
+            div(ng-repeat='(site, cams) in cameras track by $index' class='panel accordion-item')
                 h5 
                     a(href='#collapse{{$index}}', data-toggle='collapse',
                     class="site-name", data-parent='#camera-list'){{ site }}
