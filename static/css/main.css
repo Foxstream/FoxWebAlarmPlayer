@@ -372,7 +372,7 @@ nav {
 @media screen and (max-width: 991px) {
   .imageplayer {
     width: 100%; } }
-.camera-list .site-name {
+#camera-list .site-name {
   display: inline-block;
   width: 100%;
   border: solid #788493 1px;
