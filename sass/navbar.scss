@@ -10,7 +10,7 @@ nav
             display: inline-block;
             text-align: center;
 
-            a
+            a:link, a:visited, a:hover, a:active
             {
                 display: inline-block;
                 width: 100%;
@@ -141,9 +141,10 @@ nav
                 border-left: solid rgb(234, 83, 61) 1px;
                 border-right: solid rgb(234, 83, 61) 1px;
 
-                a 
+                a:link, a:visited, a:hover, a:active
                 {
                     color: white;
+                    font-weight: normal;
                 }
 
                 i.glyphicon
@@ -156,14 +157,6 @@ nav
             {
                 background-color: $fox-dark-red;
                 cursor: pointer;
-
-                a
-                {
-                    color: white;
-                    text-decoration: none;
-                    font-weight: normal; // weird : prevents movement of the arrow on active item
-                }
-
             }
             li.active
             {
