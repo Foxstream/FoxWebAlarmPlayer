@@ -1,0 +1,13 @@
+// Maybe try to refactor, these rules are nearly the same as the ones used to style mobile
+// alarm list
+
+.camera-list {
+    .site-name {
+        display: inline-block;
+        width: 100%;
+        border: solid $fox-gray 1px;
+        padding: 2vh 5vw;
+        font-size: 1.4em;
+        font-weight: bold;  
+    }
+}
