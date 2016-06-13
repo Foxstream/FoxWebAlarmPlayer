@@ -31,15 +31,17 @@ app.factory('alarmdb', ['$http','$rootScope',
         return obj;
 }]);
 
+
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
     
-    $scope.currentalarm=undefined;
+    $scope.currentalarm = undefined;
     $scope.selected = [];
     $scope.isSelectedAll = false;
     $scope.alarms = [];
 
     alarmdb.getalarms(function(data){
-        $scope.alarms = data; });
+        $scope.alarms = data; 
+    });
     
     $scope.playalarm = function(alarmid){
         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
@@ -176,11 +178,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         return $scope.alarms.filter(function(a){
             return a.handled === 0;
         });
-    }
-
-
-    $scope.nextSlide = function(){
-        
     }
 
 

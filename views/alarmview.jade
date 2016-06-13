@@ -19,7 +19,8 @@ block content
                         ng-click='handleSelected()',
                         ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
                 button(class='button-primary',
-                        ng-click='handleall()') Tout acquitter
+                        ng-click='handleall()',
+                        ng-show='getNotHandledAlarms().length > 0') Tout acquitter
 
              //- Mobile buttons 
             div(class='actions hidden-lg hidden-md')
