@@ -53,19 +53,24 @@ function applyApp(app){
             } else return false;
         });
         // Ask for image for the right camera
-        server.xmlclient.send({
-            "$": {
-                type:'live',
-                mode: 'jpg',
-                camid: req.params.camid
-            }}, function(err, img){
-                if (err){ 
-                    res.status(500);
-                    res.send(err);
-                } else {
-                    res.send(img.image[0].data);
-                }
-            });
+        if (!server){
+            res.status(500);
+            res.send(null);
+        } else {
+            server.xmlclient.send({
+                "$": {
+                    type:'live',
+                    mode: 'jpg',
+                    camid: req.params.camid
+                }}, function(err, img){
+                    if (err){ 
+                        res.status(500);
+                        res.send(err);
+                    } else {
+                        res.send(img.image[0].data);
+                    }
+                });
+        }
      });
 
 }

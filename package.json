@@ -22,7 +22,7 @@
     "sqlite3": "^3.0.8",
     "through": "^2.3.7",
     "xml-stream": "^0.4.5",
-    "xml2js": "^0.4.9"
+    "xml2js": "^0.4.16"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.6",

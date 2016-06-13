@@ -12,32 +12,32 @@ block content
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel accordion-item')
                 h5 
                     a(href='#collapse{{$index}}', data-toggle='collapse',
-                    class="site-name", data-parent='#camera-list'){{ site }}
+                    class="site-name", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}'
                     class='collapse')
                     div(ng-repeat='c in cams | orderBy: "camid" track by $index',
                         ng-if='$index % 2 === 0',
                         class='row')
                         //- Those crazy things you have to do when using bootstrap
-                        div(class='col-lg-6 cam'
-                            ng-click='showLiveFeed(c.serverId, c.camid, c.acq_fps)')
-                            img(src='{{ c.image }}'
+                        div(class='col-lg-6 cam' )
+                            img(src='{{ c.image }}',
+                                ng-click='playlivefeed(c.serverId, c.camid, c.acq_fps)',
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ c.camid }}
                         div(class='col-lg-6 cam',
                             ng-ig='cams.length > ($index + 1)',
-                            ng-click='showLiveFeed(cams[$index].serverId, cams[$index].camid, cams[$index].acq_fps)')
+                            ng-click='playLiveFeed(cams[$index].serverId, cams[$index].camid, cams[$index].acq_fps)')
                             img(src='{{ cams[$index].image }}'
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ cams[$index].camid }}
 
         div(class='col-lg-6 live-canvas')
-            img(src='{{ liveImage }}')
+            liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
 
 
     script(src='static/AlarmData.js')  
     script(src='static/EventSource4IE.js')  
     script(src='static/EventSource.js')  
     script(src='static/async.min.js')  
-    script(src='static/livecontroller.js')  
-    script(src='static/serverviewer.js')  
+    script(src='static/livecontroller.js')
+    script(src='static/serverviewer.js')

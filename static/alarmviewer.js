@@ -247,22 +247,6 @@ app.directive('swiper', function(){
                 }
             });
 
-            //var hammer = new Hammer($(element));
-
-            // $(element).on("swipeleft", function(){
-            //     var notHandled = scope.getNotHandledAlarms();
-            //     var minPosition = -(notHandled.length - 1) * 100;
-            //     if (currentPosition > minPosition){
-            //         scope.shownextalarm();
-            //     }
-            // });
-
-            // $(element).on("swiperight", function(){
-            //     if (currentPosition < 0){
-            //         scope.showpreviousalarm();
-            //     }
-            // });
-
         }
     }
 
@@ -298,13 +282,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             }
 
             $interval(function () { 
-                console.debug('\n Player debug');
-                console.debug(scope.rootElement);
-                console.debug('playing', scope.playing)
-                console.debug('alarm', scope.alarm);
-                console.debug('currentalarm', scope.currentalarm);
                 if (scope.playing && scope.currentalarm && scope.alarm && scope.currentalarm.id === scope.alarm.id){
-                    console.debug('PLAYING')
                     scope.nextImage(); 
                 }
             }, 500);
@@ -314,7 +292,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                scope.playing = false;
                scope.loading = true;
                 LoadImages($http, newVal, function () {
-                    $timeout(function () {// a timeout is needed as we can be called from a non http context
+                    $timeout(function () {
                         scope.loading = false;
                         scope.playing = true;
                         scope.currentIdx = 0;
@@ -358,7 +336,7 @@ app.directive('imagewithosd', function(){
                             ctx.moveTo(points[0].x * canvas.width / scope.image.width, points[0].y * canvas.height / scope.image.height);
                             for (var j = 0; j < points.length; j++)
                                 ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
-                            ctx.closePath(); 
+                            ctx.closePath();
                             ctx.stroke();
                         }
                     }

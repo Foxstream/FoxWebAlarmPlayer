@@ -24,8 +24,7 @@ app.factory('live', ['$http','$rootScope',
 
 app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", function($scope, $rootScope, $window, live) {
     
-    $scope.liveImage = '/static/img/no_video.png';
-    var liveInterval;
+    $scope.selectedcamera;
 
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
@@ -36,19 +35,10 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
                 });
             });
         }
-        console.log(cameras);
     });
 
-    $scope.showLiveFeed = function(serverId, camId, fps){
-        if (liveInterval){
-            clearInterval(liveInterval);
-        }
-
-        liveInterval = setInterval(function(){
-            live.getLiveImage(serverId, camId, function(image){
-                $scope.liveImage = image;
-            });
-        }, 1000 / fps);
+    $scope.playlivefeed = function(serverId, camId, fps){
+        $scope.selectedcamera = [serverId, camId, fps];
     }
 
     // LIVE PICTURES
@@ -65,3 +55,45 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", fun
     // }, 40);
 
 }]);
+
+app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($http, $interval, $timeout, live) {
+  return {
+      restrict: 'E',
+      scope:{imgwidth:"@", imgheight:"@", playing: "@", camera: "="},
+      replace: true,
+      templateUrl: '/liveplayer',
+      link: function(scope, elem, attrs) {
+            // scope.rootElement = elem;
+            // scope.loading = false;
+            scope.showOsd = true;
+            scope.playing = true;
+            scope.liveInterval;
+            scope.image;
+
+            scope.toggleOsd = function () {
+                scope.showOsd = !scope.showOsd;
+            }
+            scope.$watch('camera', function (newVal, oldVal){
+                console.log(scope.camera);
+                if (newVal === oldVal) return;
+
+               if (scope.liveInterval){
+                    clearInterval(liveInterval);
+                }
+
+                liveInterval = setInterval(function(){
+                    // console.debug(scope.selectedcamera);
+                    live.getLiveImage(scope.camera[1], scope.camera[1], function(image){
+                        scope.image = image;
+                        console.log('\n\n\nImage', image);
+                    });
+                }, 1000);
+
+          }, true);
+      }
+  };
+}]);
+
+
+
+
