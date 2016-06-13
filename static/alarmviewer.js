@@ -50,9 +50,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
             if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId){
-                var previousAlarm = $scope.getPreviousAlarm();
-                if (previousAlarm !== -1){
-                    $scope.currentalarm = $scope.alarms[previousAlarm];
+                var nextAlarm = $scope.getNextAlarm();
+                if (nextAlarm !== -1){
+                    $scope.currentalarm = $scope.alarms[nextAlarm];
                 } else {
                     $scope.currentalarm = undefined;
                 }
