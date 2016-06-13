@@ -6,9 +6,9 @@
     {
 
         max-height: $main-element-size;
-        overflow: scroll;
+        overflow-y: scroll;
 
-        thead 
+        thead
         {
             border-top: solid $fox-red 2px;
             border-bottom: solid $fox-red 2px;

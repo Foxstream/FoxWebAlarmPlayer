@@ -20,7 +20,7 @@ $action-bar-mobile-height: 10vh;
 
 // This is used to set the height of important elements
 // such as the alarm table
-$main-element-size: 70vh;
+$main-element-size: 60vh;
 
 
 // Resopnsive design
@@ -161,11 +161,6 @@ th
 
 .space-before{
     margin-top:20px;
-}
-
-.alarmtable {
-    max-height:800px;
-    overflow-y:scroll;
 }
 
 // Bootstrap needs the .panel class for accordions, but this class adds a big margin

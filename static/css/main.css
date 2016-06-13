@@ -324,8 +324,8 @@ nav {
       margin-bottom: 5vh; } }
 @media screen and (min-width: 992px) {
   .alarmtable {
-    max-height: 70vh;
-    overflow: scroll; }
+    max-height: 60vh;
+    overflow-y: scroll; }
     .alarmtable thead {
       border-top: solid #e44333 2px;
       border-bottom: solid #e44333 2px; }
@@ -373,7 +373,7 @@ nav {
   .imageplayer {
     width: 100%; } }
 #camera-list {
-  height: 70vh;
+  height: 60vh;
   overflow: scroll; }
   #camera-list .site-name {
     display: inline-block;
@@ -405,10 +405,6 @@ nav {
 
 .space-before {
   margin-top: 20px; }
-
-.alarmtable {
-  max-height: 800px;
-  overflow-y: scroll; }
 
 .accordion-item {
   margin-bottom: 0; }
