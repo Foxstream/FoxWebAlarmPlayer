@@ -16,19 +16,19 @@ block content
                 th
                 th
             tr(ng-repeat='x in servers')          
-                td {{ x.address }} 
-                td {{ x.port }} 
-                td {{ x.username }}           
-                td {{ x.description }}
+                td 
+                    input(type="text" value="{{ x.address }}")
+                td 
+                    input(type="text" value="{{ x.port }}")
+                td 
+                    input(type="text" value="{{ x.username }}")     
+                td 
+                    input(type="text" value="{{ x.description }}")
                 td
                     span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
                     span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
                 td 
-                    button(ng-click='editServer(x.id)', title='Edit server',  class="btn btn-sm btn-default") 
-                        span(class='glyphicon glyphicon-edit')
-                td 
-                    button(ng-click='deleteServer(x.id)', title='Delete server',  class="btn btn-sm btn-danger") 
-                        span(class='glyphicon glyphicon-trash')
+                    button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
         button(class="btn btn-sm btn-default", ng-click='initemptyserver()', ng-show='currentServer==undefined') New server
 
