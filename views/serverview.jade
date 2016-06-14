@@ -6,31 +6,32 @@ block title
 block content
   div(class='container-fluid')
       div(ng-controller='servercontroller')    
-        table(class='table table-striped table-hover table-responsive', ng-show='currentServer==undefined')
-            tr
-                th Adress
-                th Port
-                th Username
-                th Description
-                th 
-                th
-                th
-            tr(ng-repeat='x in servers')          
-                td 
-                    input(type="text" value="{{ x.address }}")
-                td 
-                    input(type="text" value="{{ x.port }}")
-                td 
-                    input(type="text" value="{{ x.username }}")     
-                td 
-                    input(type="text" value="{{ x.description }}")
-                td
-                    span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
-                    span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
-                td 
-                    button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
+        div(class='table')
+            table
+                thead
+                    tr
+                        th Adresse
+                        th Port
+                        th Login
+                        th Description
+                        th 
+                        th
+                tr(ng-repeat='x in servers')          
+                    td 
+                        input(type="text" value="{{ x.address }}")
+                    td 
+                        input(type="text" value="{{ x.port }}")
+                    td 
+                        input(type="text" value="{{ x.username }}")     
+                    td 
+                        input(type="text" value="{{ x.description }}")
+                    td
+                        span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                        span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                    td 
+                        button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
-        button(class="btn btn-sm btn-default", ng-click='initemptyserver()', ng-show='currentServer==undefined') New server
+        button(class="button-primary", ng-click='initemptyserver()', ng-show='currentServer==undefined') Ajouter un serveur
 
         div(id='newserver', ng-show='currentServer!=undefined', class="form-input")
             .form-group

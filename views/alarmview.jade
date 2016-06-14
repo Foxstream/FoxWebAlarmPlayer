@@ -37,11 +37,11 @@ block content
                     ng-show='currentalarm != undefined',
                     ng-click='markcurrentashandled($event)') Acquitter
 
-            div(class='alarmtable hidden-sm hidden-xs')
+            div(class='table alarmtable hidden-sm hidden-xs')
               table
                   thead
                     tr
-                      th(class='check')
+                      th(class='check') 
                         input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
                       th(class='play')
                       th(class='date') Date

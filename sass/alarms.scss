@@ -4,28 +4,9 @@
 
     .alarmtable
     {
-
-        max-height: 60vh;
-        overflow-y: scroll;
-
-        thead
-        {
-            border-top: solid $fox-red 2px;
-            border-bottom: solid $fox-red 2px;
-        }
-
         tbody
         {
-            tr:nth-child(even)
-            {
-                background-color: $fox-light-gray;
-            }
-
-            tr:hover
-            {
-                background-color: $fox-light-gray;
-                cursor: pointer;
-            }
+            
             tr.active
             {
 

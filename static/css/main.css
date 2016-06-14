@@ -186,6 +186,18 @@ button.button-secondary {
   .divider {
     display: inline-block;
     width: 4%; } }
+.table {
+  max-height: 60vh;
+  overflow-y: scroll; }
+  .table thead {
+    border-top: solid #e44333 2px;
+    border-bottom: solid #e44333 2px; }
+  .table tbody tr:nth-child(even) {
+    background-color: #c8d4d9; }
+  .table tbody tr:hover {
+    background-color: #c8d4d9;
+    cursor: pointer; }
+
 header {
   position: relative;
   height: 12vh;
@@ -339,31 +351,20 @@ nav {
     .foxstream-header img {
       margin-bottom: 5vh; } }
 @media screen and (min-width: 992px) {
-  .alarmtable {
-    max-height: 60vh;
-    overflow-y: scroll; }
-    .alarmtable thead {
-      border-top: solid #e44333 2px;
-      border-bottom: solid #e44333 2px; }
-    .alarmtable tbody tr:nth-child(even) {
-      background-color: #c8d4d9; }
-    .alarmtable tbody tr:hover {
-      background-color: #c8d4d9;
-      cursor: pointer; }
-    .alarmtable tbody tr.active {
-      background-color: #788493;
-      color: white; }
-      .alarmtable tbody tr.active .glyphicon {
-        visibility: visible;
-        color: #e44333; }
-      .alarmtable tbody tr.active button {
-        background: linear-gradient(0deg, #cf3c2d, #ff6151);
-        color: white;
-        border: none; }
-    .alarmtable .glyphicon {
-      visibility: hidden; }
-    .alarmtable .drop, .alarmtable .video {
-      display: none; } }
+  .alarmtable tbody tr.active {
+    background-color: #788493;
+    color: white; }
+    .alarmtable tbody tr.active .glyphicon {
+      visibility: visible;
+      color: #e44333; }
+    .alarmtable tbody tr.active button {
+      background: linear-gradient(0deg, #cf3c2d, #ff6151);
+      color: white;
+      border: none; }
+  .alarmtable .glyphicon {
+    visibility: hidden; }
+  .alarmtable .drop, .alarmtable .video {
+    display: none; } }
 @media screen and (max-width: 991px) {
   .alarmlist li {
     display: inline-block;

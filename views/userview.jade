@@ -4,29 +4,34 @@ block title
   title Utilisateurs 
 
 block content
-  div(class='container-fluid')
-      div(ng-controller='usercontroller')    
-        table(class='table table-striped table-hover table-responsive', ng-show='currentUser==undefined')
-          tr
-            th Login
-            th Display name
-            th Admin
-            th Password reset
-            th Delete
-          tr(ng-repeat='x in users')          
-            td 
-              input(type="text" value="{{ x.login }}")
-            td 
-              input(type="text" value="{{ x.displayname }}")
-            td
-                span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator') 
-            td 
-                button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default") 
-                    span(class='glyphicon glyphicon-lock')
-            td 
-                button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
-        button(class="btn btn-sm btn-default", ng-click='currentUser=""', ng-show='currentUser==undefined') New user
+  div(class='container-fluid')
+
+      div(ng-controller='usercontroller')  
+
+        div(class="table usertable") 
+          table
+            thead
+              tr
+                th Login
+                th Display name
+                th Admin
+                th Password reset
+                th Delete
+            tr(ng-repeat='x in users')          
+              td 
+                input(type="text" value="{{ x.login }}")
+              td 
+                input(type="text" value="{{ x.displayname }}")
+              td
+                  span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator') 
+              td 
+                  button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default") 
+                      span(class='glyphicon glyphicon-lock')
+              td 
+                  button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
+
+        button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
 
         div(id='newuser', ng-show='currentUser!=undefined', class="form-input")
             h4(class="form-signin-heading") New user login
