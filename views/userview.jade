@@ -9,20 +9,19 @@ block content
 
       div(ng-controller='usercontroller')  
 
-        div(class="table responsive-table usertable") 
+        button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
+
+        div(class="table usertable hidden-xs hidden-sm")
           table
             thead
               tr
-                th
                 th Login
                 th Nom affiché
                 th Admin
                 th Reset mot de passe
-                th
+                th Delete
             tbody
-              tr(ng-repeat='x in users' )
-                td(class="lineheader") 
-                  {{ x.login }}
+              tr(ng-repeat='x in users')
                 td
                   input(type="text" value="{{ x.login }}")
                 td
@@ -35,7 +34,29 @@ block content
                 td 
                     button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
-        button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
+        div(class="userlist hidden-md hidden-lg" id="alarmlist")
+            div(ng-repeat='x in users', class='panel accordion-item')
+              h5 
+                a(href='#collapse{{$index}}', data-toggle='collapse',
+                class="drop", data-parent='#alarmlist') {{ x.login }}
+              div(id='collapse{{ $index }}', class='collapse')
+                form
+                  .form-group
+                    label(for="login") Login
+                    input(type="text", class="form-control",
+                      id="login", value="{{ x.login }}")
+                  .form-group
+                    label(for="displayname") Login
+                    input(type="text", class="form-control",
+                      id="displayname", value="{{ x.displayname }}")
+                  div(class="form-group row")
+                      div(class="col-xs-6" style="text-align: right")
+                        label(for="admin") Admin
+                      .col-xs-6
+                        input(type="checkbox", id="admin")
+                  .form-group
+                    button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer l'utilisateur
+                
 
         div(id='newuser', ng-show='currentUser!=undefined', class="form-input")
             h4(class="form-signin-heading") New user login
@@ -43,7 +64,7 @@ block content
             button(ng-click='addCurrentUser()', class="btn btn-sm btn-primary btn-block") Add user
             button(ng-click='currentUser=undefined', class="btn btn-sm btn-default btn-block") Cancel
 
-        div(class='alert alert-warning space-before', ng-show='userMsg !=undefined') {{ userMsg  }}
+        div(class='alert alert-warning space-before', ng-show='userMsg !=undefined') {{ userMsg }}
 
 
   script(src='static/userviewer.js')
