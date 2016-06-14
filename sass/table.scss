@@ -24,3 +24,53 @@
     }
 
 }
+
+@media screen and (max-width: $tablet-breakpoint - 1px)
+{
+    .responsive-table
+    {
+
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+            background: none;
+        }
+
+        thead
+        {
+            display: none;
+        }
+
+        tbody
+        {
+
+            tr 
+            {
+                border: solid $fox-gray 1px;
+            }
+
+            td 
+            {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                height: 50px;
+            }
+
+            td:before
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+            }
+
+        }
+
+
+    }
+}
+
+
+

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   height: 100vh;
   overflow: hidden; }
@@ -198,6 +199,26 @@ button.button-secondary {
     background-color: #c8d4d9;
     cursor: pointer; }
 
+@media screen and (max-width: 991px) {
+  .responsive-table table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
+    display: block;
+    background: none; }
+  .responsive-table thead {
+    display: none; }
+  .responsive-table tbody tr {
+    border: solid #788493 1px; }
+  .responsive-table tbody td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    height: 50px; }
+  .responsive-table tbody td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap; } }
 header {
   position: relative;
   height: 12vh;
@@ -431,6 +452,15 @@ nav {
     font-size: 1.4em;
     font-weight: bold; }
 
+@media screen and (max-width: 991px) {
+  .usertable td:nth-of-type(1):before {
+    content: "Login"; }
+  .usertable td:nth-of-type(2):before {
+    content: "Nom affiché"; }
+  .usertable td:nth-of-type(3):before {
+    content: "Admin"; }
+  .usertable td:nth-of-type(4):before {
+    content: "Reset mot de passe"; } }
 .form-input {
   max-width: 350px;
   margin-left: auto;

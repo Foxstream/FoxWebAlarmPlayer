@@ -9,27 +9,28 @@ block content
 
       div(ng-controller='usercontroller')  
 
-        div(class="table usertable") 
+        div(class="table responsive-table usertable") 
           table
             thead
               tr
                 th Login
-                th Display name
+                th Nom affiché
                 th Admin
-                th Password reset
-                th Delete
-            tr(ng-repeat='x in users')          
-              td 
-                input(type="text" value="{{ x.login }}")
-              td 
-                input(type="text" value="{{ x.displayname }}")
-              td
-                  span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator') 
-              td 
-                  button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default") 
-                      span(class='glyphicon glyphicon-lock')
-              td 
-                  button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
+                th Reset mot de passe
+                th
+            tbody
+              tr(ng-repeat='x in users')
+                td
+                  input(type="text" value="{{ x.login }}")
+                td
+                  input(type="text" value="{{ x.displayname }}")
+                td
+                    span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator') 
+                td
+                    button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default") 
+                        span(class='glyphicon glyphicon-lock')
+                td 
+                    button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
         button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
 
