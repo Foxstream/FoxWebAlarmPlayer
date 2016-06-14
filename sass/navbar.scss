@@ -75,6 +75,11 @@ nav
 
         }
 
+        .submenu
+        {
+            display: none;
+        }
+
     }
 
     // Don't show the navigation bar on mobile
@@ -180,6 +185,30 @@ nav
                 border-top: 8px solid $fox-dark-red;
             }
         }
+
+        .submenu
+        {
+            display: block;
+            position: absolute;
+            right: 0;
+            z-index: 10;
+            background-color: $fox-red;
+            min-width: 200px;
+
+            ul 
+            {
+                width: 100%;
+                li 
+                {
+                    width: 100%;
+                    display: block;
+                    text-align: left;
+                    text-indent: 5%;
+                }
+            }
+
+        }
+
     }
 }
 

@@ -82,10 +82,8 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
                 }
 
                 liveInterval = setInterval(function(){
-                    // console.debug(scope.selectedcamera);
-                    live.getLiveImage(scope.camera[1], scope.camera[1], function(image){
+                    live.getLiveImage(scope.camera[0], scope.camera[1], function(image){
                         scope.image = image;
-                        console.log('\n\n\nImage', image);
                     });
                 }, 1000);
 

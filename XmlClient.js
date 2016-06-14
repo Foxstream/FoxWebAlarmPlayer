@@ -11,9 +11,9 @@ function connect(successCallback)
 {		
 	var self=this;
 	
-	console.log("Conecting with " + this.Host);	
+	console.log("Conecting with " + this.Host);
 	
-	if(this.client)	
+	if(this.client)
 		return;
 				
 	this.client = net.connect({host:this.Host, port: this.Port},

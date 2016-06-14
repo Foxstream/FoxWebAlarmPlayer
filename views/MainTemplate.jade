@@ -35,10 +35,27 @@ html
                     a(href="/live") 
                       i(class='glyphicon glyphicon-play') 
                       span(class='link') Direct
-                li(ng-class='{ active: isActive("userview") }')
-                    a(href="/userview") 
+                li(ng-class='{ active: isActive("userview") }',
+                    ng-mouseover='showsubmenu = true',
+                    ng-mouseleave='showsubmenu = false')
+                    a(href='/accountsettings')
                         i(class='glyphicon glyphicon-cog') 
                         span(class='link') Paramètres
+                    div(class="submenu" ng-show='showsubmenu')
+                      ul
+                        li(ng-class='{ active: isActive("accountsettings") }')
+                          a(href='/accountsettings')
+                            span(class='link') Paramètres du compte
+                        li(ng-class='{ active: isActive("serverview") }')
+                          a(href='/serverview')
+                            span(class='link') Serveurs
+                        li(ng-class='{ active: isActive("account") }')
+                          a(href='/userview')
+                            span(class='link') Utilisateurs
+                        li(ng-class='{ active: isActive("account") }')
+                          a(href='/logout')
+                            span(class='link') Déconnexion
+
 
 
       div

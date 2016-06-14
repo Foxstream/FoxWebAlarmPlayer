@@ -20,7 +20,7 @@ $action-bar-mobile-height: 10vh;
 
 // This is used to set the height of important elements
 // such as the alarm table
-$main-element-size: 60vh;
+$main-element-size: 70vh;
 
 
 // Resopnsive design
@@ -167,6 +167,11 @@ th
 .accordion-item
 {
     margin-bottom: 0;
+}
+
+.padding 
+{
+    padding: 0 5%;
 }
 
 
