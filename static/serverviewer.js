@@ -35,6 +35,10 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.currentserver = undefined;
         $scope.serverMsg = undefined;
         $scope.servers = [];
+
+        $scope.back = function(){
+            $window.location.href = '/accountsettings';
+        }
         
         serverdb.getservers(function (data) { $scope.servers = data; });
         

@@ -6,32 +6,70 @@ block title
 block content
   div(class='container-fluid')
       div(ng-controller='servercontroller')    
-        div(class='table')
-            table
-                thead
-                    tr
-                        th Adresse
-                        th Port
-                        th Login
-                        th Description
-                        th 
-                        th
-                tr(ng-repeat='x in servers')          
-                    td 
-                        input(type="text" value="{{ x.address }}")
-                    td 
-                        input(type="text" value="{{ x.port }}")
-                    td 
-                        input(type="text" value="{{ x.username }}")     
-                    td 
-                        input(type="text" value="{{ x.description }}")
-                    td
-                        span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
-                        span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
-                    td 
-                        button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
-        button(class="button-primary", ng-click='initemptyserver()', ng-show='currentServer==undefined') Ajouter un serveur
+        //- Desktop buttons 
+        div(class='actions hidden-xs hidden-sm')
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentUser==undefined') Nouveau serveur
+
+         //- Mobile buttons 
+        div(class='actions hidden-lg hidden-md')
+            button(class="button-secondary" ng-click='back()') Retour
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentUser==undefined') Ajouter
+
+        div(class="table servertable hidden-xs hidden-sm")
+            div(class='table')
+                table
+                    thead
+                        tr
+                            th Adresse
+                            th Port
+                            th Login
+                            th Description
+                            th 
+                            th
+                    tr(ng-repeat='x in servers')          
+                        td 
+                            input(type="text" value="{{ x.address }}")
+                        td 
+                            input(type="text" value="{{ x.port }}")
+                        td 
+                            input(type="text" value="{{ x.username }}")     
+                        td 
+                            input(type="text" value="{{ x.description }}")
+                        td
+                            span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                            span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                        td 
+                            button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
+
+
+        div(class="userlist hidden-md hidden-lg" id="serverlist")
+            div(ng-repeat='x in servers', class='panel accordion-item')
+                h5 
+                    a(href='#collapse{{$index}}', data-toggle='collapse',
+                        class="drop", data-parent='#serverlist') {{ x.description }}
+                div(id='collapse{{ $index }}', class='collapse')
+                    form
+                        .form-group
+                            label(for="address") Adresse
+                            input(type="text", class="form-control",
+                              id="address", value="{{ x.address }}")
+                        .form-group
+                            label(for="port") Port
+                            input(type="text", class="form-control",
+                              id="port", value="{{ x.port }}")
+                        .form-group
+                            label(for="username") Login
+                            input(type="text", class="form-control",
+                              id="username", value="{{ x.username }}")
+                        .form-group
+                            label(for="description") Description
+                            input(type="text", class="form-control",
+                              id="description", value="{{ x.description }}")
+                      .form-group
+                        button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer le serveur
+
+
 
         div(id='newserver', ng-show='currentServer!=undefined', class="form-input")
             .form-group
