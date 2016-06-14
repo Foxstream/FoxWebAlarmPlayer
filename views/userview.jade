@@ -13,13 +13,16 @@ block content
           table
             thead
               tr
+                th
                 th Login
                 th Nom affiché
                 th Admin
                 th Reset mot de passe
                 th
             tbody
-              tr(ng-repeat='x in users')
+              tr(ng-repeat='x in users' )
+                td(class="lineheader") 
+                  {{ x.login }}
                 td
                   input(type="text" value="{{ x.login }}")
                 td

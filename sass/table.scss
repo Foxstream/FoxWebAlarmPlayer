@@ -11,6 +11,12 @@
 
     tbody
     {
+
+        .lineheader
+        {
+            display: none;
+        }
+
         tr:nth-child(even)
         {
             background-color: $fox-light-gray;
@@ -32,7 +38,6 @@
 
         table, thead, tbody, th, td, tr { 
             display: block; 
-            background: none;
         }
 
         thead
@@ -46,6 +51,15 @@
             tr 
             {
                 border: solid $fox-gray 1px;
+            }
+
+            .lineheader
+            {
+                display: block;
+                border: solid $fox-gray 1px;
+                padding: 2vh 5vw;
+                font-size: 1.4em;
+                font-weight: bold;
             }
 
             td 

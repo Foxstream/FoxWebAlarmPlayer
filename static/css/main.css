@@ -193,6 +193,8 @@ button.button-secondary {
   .table thead {
     border-top: solid #e44333 2px;
     border-bottom: solid #e44333 2px; }
+  .table tbody .lineheader {
+    display: none; }
   .table tbody tr:nth-child(even) {
     background-color: #c8d4d9; }
   .table tbody tr:hover {
@@ -201,12 +203,17 @@ button.button-secondary {
 
 @media screen and (max-width: 991px) {
   .responsive-table table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
-    display: block;
-    background: none; }
+    display: block; }
   .responsive-table thead {
     display: none; }
   .responsive-table tbody tr {
     border: solid #788493 1px; }
+  .responsive-table tbody .lineheader {
+    display: block;
+    border: solid #788493 1px;
+    padding: 2vh 5vw;
+    font-size: 1.4em;
+    font-weight: bold; }
   .responsive-table tbody td {
     border: none;
     position: relative;
@@ -453,13 +460,13 @@ nav {
     font-weight: bold; }
 
 @media screen and (max-width: 991px) {
-  .usertable td:nth-of-type(1):before {
-    content: "Login"; }
   .usertable td:nth-of-type(2):before {
-    content: "Nom affiché"; }
+    content: "Login"; }
   .usertable td:nth-of-type(3):before {
-    content: "Admin"; }
+    content: "Nom affiché"; }
   .usertable td:nth-of-type(4):before {
+    content: "Admin"; }
+  .usertable td:nth-of-type(5):before {
     content: "Reset mot de passe"; } }
 .form-input {
   max-width: 350px;
