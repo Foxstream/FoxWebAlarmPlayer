@@ -177,10 +177,24 @@ th
     padding: 0 5%;
 }
 
+@media screen and (max-width: $tablet-breakpoint - 1px)
+{
 
+    .main-element
+    {
+        height: 100vh - $navbar-tablet-height - $action-bar-mobile-height - $header-height - 4vh;
+        overflow: scroll;
+    }
+}
 
+@media screen and (max-width: $mobile-breakpoint - 1px)
+{
+    .main-element
+    {
+        height: 100vh - $navbar-mobile-height - $action-bar-mobile-height - 1vh;
+    }
 
-
+}
 
 
 

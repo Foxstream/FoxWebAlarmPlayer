@@ -43,9 +43,9 @@ block content
                             button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
 
-        div(class="userlist hidden-md hidden-lg" id="serverlist")
+        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist")
             div(ng-repeat='x in servers', class='panel accordion-item')
-                h5 
+                h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
                         class="drop", data-parent='#serverlist') {{ x.description }}
                 div(id='collapse{{ $index }}', class='collapse')

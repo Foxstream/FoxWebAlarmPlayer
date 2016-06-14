@@ -116,7 +116,7 @@ input[type=checkbox] {
   /* Firefox */
   margin-right: 5%; }
 
-button, .link-button-swag {
+button {
   display: inline-block;
   border-style: solid;
   border-width: 0.2em;
@@ -448,5 +448,13 @@ nav {
 
 .padding {
   padding: 0 5%; }
+
+@media screen and (max-width: 991px) {
+  .main-element {
+    height: 68vh;
+    overflow: scroll; } }
+@media screen and (max-width: 767px) {
+  .main-element {
+    height: 77vh; } }
 
 /*# sourceMappingURL=main.css.map */

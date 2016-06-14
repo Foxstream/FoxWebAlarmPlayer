@@ -41,7 +41,7 @@ block content
                 td 
                     button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
-        div(class="userlist hidden-md hidden-lg" id="alarmlist")
+        div(class="userlist main-element hidden-md hidden-lg" id="alarmlist")
             div(ng-repeat='x in users', class='panel accordion-item')
               h5 
                 a(href='#collapse{{$index}}', data-toggle='collapse',
