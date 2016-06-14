@@ -31,7 +31,7 @@ app.factory('userdb', ['$http',
     }]);
 
 
-app.controller('usercontroller', ["$scope",  "$window", "userdb", function ($scope, $window, userdb) {
+app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", function ($scope, $window, $location, userdb) {
         
         $scope.currentUser = undefined;
         $scope.userMsg = undefined;
@@ -39,9 +39,13 @@ app.controller('usercontroller', ["$scope",  "$window", "userdb", function ($sco
                 
         userdb.getusers(function (data) { $scope.users = data; });
         
-        var updateMessage =function(err)
+        var updateMessage = function(err)
         {            
             $scope.userMsg  = err ? ("An error occured : " + err) : this+"";
+        }
+
+        $scope.back = function(){
+            $window.location.href = '/accountsettings';
         }
 
         $scope.resetPassword = function (id) { 

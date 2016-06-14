@@ -9,7 +9,14 @@ block content
 
       div(ng-controller='usercontroller')  
 
-        button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
+        //- Desktop buttons 
+        div(class='actions hidden-xs hidden-sm')
+            button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Nouvel utilisateur
+
+         //- Mobile buttons 
+        div(class='actions hidden-lg hidden-md')
+            button(class="button-secondary" ng-click='back()') Retour
+            button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Ajouter
 
         div(class="table usertable hidden-xs hidden-sm")
           table

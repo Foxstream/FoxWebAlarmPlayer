@@ -11,6 +11,7 @@ input[type=checkbox]
 
 button
 {
+    display: inline-block;
     border-style: solid;
     border-width: 0.2em;
     border-radius: 0.5em;
@@ -38,8 +39,6 @@ button.button-secondary
     color: $fox-dark-gray;
     margin-right: 4%
 }
-
-
 
 
 
