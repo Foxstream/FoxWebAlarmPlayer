@@ -420,6 +420,16 @@ nav {
     display: inline-block;
     width: 100%; }
 
+.menu-mobile {
+  margin-top: 2vh; }
+  .menu-mobile li a {
+    display: inline-block;
+    width: 100%;
+    border: solid #788493 1px;
+    padding: 2vh 5vw;
+    font-size: 1.4em;
+    font-weight: bold; }
+
 .form-input {
   max-width: 350px;
   margin-left: auto;

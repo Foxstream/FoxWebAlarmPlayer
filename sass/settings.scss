@@ -1,0 +1,14 @@
+.menu-mobile
+{
+    margin-top: 2vh;
+    li a
+    {
+        display: inline-block;
+        width: 100%;
+        border: solid $fox-gray 1px;
+        padding: 2vh 5vw;
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+}
