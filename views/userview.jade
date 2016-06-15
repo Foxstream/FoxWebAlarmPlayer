@@ -62,7 +62,9 @@ block content
                       .col-xs-6
                         input(type="checkbox", id="admin")
                   .form-group
-                    button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer l'utilisateur
+                     button(ng-click='',  class="button-secondary full-width") Reset mot de passe
+                  .form-group
+                      button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer l'utilisateur
                 
 
         div(id='newuser', ng-show='currentUser!=undefined', class="form-input")

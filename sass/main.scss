@@ -153,9 +153,6 @@ th
 @import "live.scss";
 @import "settings.scss";
 
-
-
-
 .form-input{
     max-width:350px;
     margin-left:auto;
@@ -179,7 +176,6 @@ th
 
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-
     .main-element
     {
         height: 100vh - $navbar-tablet-height - $action-bar-mobile-height - $header-height - 4vh;
