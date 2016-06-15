@@ -15,26 +15,31 @@ function applyApp(app){
             servers = self.serverManager.servers;
 
         async.each(servers, function(s, cb){
-            var site = s.xmlclient.Configuration.equipment.site;
-            s.xmlclient.send({
-                "$": {
-                    type:"state",
-                    id:1
-                }}, function(err, state){
-                    if (!err){
-                        var cameraList = state.camera.map(function(c){
-                            c.$.serverId = s.config.id;
-                            return c.$;
-                        });
-                        // Add cameras to the list
-                        if (site in cameras){
-                            cameras[site] = cameras[site].concat(cameraList);
-                        } else {
-                            cameras[site] = cameraList;
-                        }
-                        cb(); 
-                    } 
-                });
+            if (!s.xmlclient.Configuration){
+                res.status(500);
+                res.end();
+            } else {
+                var site = s.xmlclient.Configuration.equipment.site;
+                s.xmlclient.send({
+                    "$": {
+                        type:"state",
+                        id:1
+                    }}, function(err, state){
+                        if (!err){
+                            var cameraList = state.camera.map(function(c){
+                                c.$.serverId = s.config.id;
+                                return c.$;
+                            });
+                            // Add cameras to the list
+                            if (site in cameras){
+                                cameras[site] = cameras[site].concat(cameraList);
+                            } else {
+                                cameras[site] = cameraList;
+                            }
+                            cb(); 
+                        } 
+                    });
+            }
         }, function(){
             res.send(cameras);
         });

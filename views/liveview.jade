@@ -25,11 +25,11 @@ block content
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ c.camid }}
                         div(class='col-lg-6 cam',
-                            ng-ig='cams.length > ($index + 1)',
-                            ng-click='playLiveFeed(cams[$index].serverId, cams[$index].camid, cams[$index].acq_fps)')
-                            img(src='{{ cams[$index].image }}'
+                            ng-if='cams.length > ($index + 1)',
+                            ng-click='playlivefeed(cams[$index + 1].serverId, cams[$index + 1].camid, cams[$index + 1].acq_fps)')
+                            img(src='{{ cams[$index + 1].image }}'
                                 class='camera-image')
-                            h5(class='camera-name') Cam_{{ cams[$index].camid }}
+                            h5(class='camera-name') Cam_{{ cams[$index + 1].camid }}
 
         div(class='col-lg-6 live-canvas')
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
