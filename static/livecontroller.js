@@ -22,9 +22,11 @@ app.factory('live', ['$http','$rootScope',
         return obj;
 }]);
 
-app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", function($scope, $rootScope, $window, live) {
+app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", function($scope, $rootScope, $window, live, device) {
     
     $scope.selectedcamera;
+
+    $scope.device = device;
 
     live.getCameras(function(cameras){
         $scope.cameras = cameras;

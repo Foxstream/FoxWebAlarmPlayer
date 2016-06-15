@@ -1,23 +1,26 @@
 // Maybe try to refactor, these rules are nearly the same as the ones used to style mobile
 // alarm list
 
-#camera-list {
+#camera-list 
+{
 
     height: $main-element-size;
     overflow: scroll;
 
-    .cam {
+    .cam 
+    {
         text-align: center;
-        height: 20vh;
         margin-bottom: 5vh;
     }
 
-    .camera-image {
+    .camera-image 
+    {
         display: inline-block;
-        height: 100%;
+        width: 90%;
     }
 
-    .camera-name {
+    .camera-name 
+    {
       // position: absolute;
       // bottom: 2%;
       // left: 50%;
@@ -28,34 +31,51 @@
       // color: white;
     }
 
-    .camera-image:hover {
+    .camera-image:hover 
+    {
         cursor: pointer;
         font-weight: bold;
     }
 
-    .live-canvas {
-        text-align: center;
-        box-shadow: 0 0 5px white;
-    }
-
-    .live-canvas img {
-        height: 50vh;
-    }
-
 }
 
-.liveplayer 
+
+.live-canvas
 {
-    width: 100%;
+    padding: 2%;
+    text-align: center;
+    box-shadow: 0 0 5px white;
 
     img 
     {
-        display: inline-block;
+        height: 50vh;
+    }
+
+    .liveplayer 
+    {
         width: 100%;
+
+        img 
+        {
+            display: inline-block;
+        }
+
     }
 
 }
 
+@media screen and (min-width: $tablet-breakpoint)
+{
+    #camera-list 
+    {
+        .camera-image 
+        {
+            display: inline-block;
+            height: 20vh;
+            width: auto;
+        }
+    }
+}
 
 
 

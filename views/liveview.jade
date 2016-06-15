@@ -7,37 +7,44 @@ block content
   div(class='container-fluid')
 
     div(ng-controller='livecontroller')
+
+        //- Mobile buttons 
+        div(class='actions hidden-lg hidden-md')
+            button(class='button-secondary',
+                    ng-click='selectedcamera = undefined',
+                    ng-show='selectedcamera !== undefined') Retour
         
-        div(class='col-lg-6', id='camera-list')
+
+        div(class='col-lg-6', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel accordion-item')
-                h5 
+                h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
                     class="drop", data-parent='#camera-list') {{ site }}
-                div(id='collapse{{ $index }}'
+                div(id='collapse{{ $index }}',
                     class='collapse')
                     div(ng-repeat='c in cams | orderBy: "camid" track by $index',
                         ng-if='$index % 2 === 0',
                         class='row')
                         //- Those crazy things you have to do when using bootstrap
-                        div(class='col-lg-6 cam' )
+                        div(class='col-xs-6 cam' )
                             img(src='{{ c.image }}',
                                 ng-click='playlivefeed(c.serverId, c.camid, c.acq_fps)',
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ c.camid }}
-                        div(class='col-lg-6 cam',
+                        div(class='col-xs-6 cam',
                             ng-if='cams.length > ($index + 1)',
                             ng-click='playlivefeed(cams[$index + 1].serverId, cams[$index + 1].camid, cams[$index + 1].acq_fps)')
                             img(src='{{ cams[$index + 1].image }}'
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ cams[$index + 1].camid }}
 
-        div(class='col-lg-6 live-canvas')
+        div(class='col-lg-6 live-canvas' ng-show="device === 'desktop' || selectedcamera !== undefined")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
 
 
-    script(src='static/AlarmData.js')  
-    script(src='static/EventSource4IE.js')  
-    script(src='static/EventSource.js')  
-    script(src='static/async.min.js')  
+    script(src='static/AlarmData.js')
+    script(src='static/EventSource4IE.js')
+    script(src='static/EventSource.js')
+    script(src='static/async.min.js')
     script(src='static/livecontroller.js')
     script(src='static/serverviewer.js')

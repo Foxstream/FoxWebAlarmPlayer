@@ -13,7 +13,7 @@ app.filter('asdate', function (){
 
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
-    	var obj={}
+    	var obj={};
     			
     	obj.getalarms=function(callback)
     	{
@@ -26,7 +26,7 @@ app.factory('alarmdb', ['$http','$rootScope',
             $http.put("/controller/alarm/"+alarmid+"/markashandled")
     		  .success(function (data) { callback(null, data); })
     		  .error(function (data) { callback({response: data}); });
-        };	
+        };
 
         return obj;
 }]);

@@ -425,26 +425,30 @@ nav {
   overflow: scroll; }
   #camera-list .cam {
     text-align: center;
-    height: 20vh;
     margin-bottom: 5vh; }
   #camera-list .camera-image {
     display: inline-block;
-    height: 100%; }
+    width: 90%; }
   #camera-list .camera-image:hover {
     cursor: pointer;
     font-weight: bold; }
-  #camera-list .live-canvas {
-    text-align: center;
-    box-shadow: 0 0 5px white; }
-  #camera-list .live-canvas img {
+
+.live-canvas {
+  padding: 2%;
+  text-align: center;
+  box-shadow: 0 0 5px white; }
+  .live-canvas img {
     height: 50vh; }
-
-.liveplayer {
-  width: 100%; }
-  .liveplayer img {
-    display: inline-block;
+  .live-canvas .liveplayer {
     width: 100%; }
+    .live-canvas .liveplayer img {
+      display: inline-block; }
 
+@media screen and (min-width: 992px) {
+  #camera-list .camera-image {
+    display: inline-block;
+    height: 20vh;
+    width: auto; } }
 .menu-mobile {
   margin-top: 2vh; }
   .menu-mobile li a {
