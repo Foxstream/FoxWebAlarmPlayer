@@ -26,7 +26,7 @@ block content
                         ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
                 button(class='button-primary full-width',
                         ng-click='handleall()',
-                        ng-show='currentalarm == undefined') Tout acquitter
+                        ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
                 button(class='button-secondary',
                     ng-show='currentalarm != undefined',
                     ng-click='currentalarm = undefined') Retour
