@@ -34,11 +34,11 @@ block content
                 td
                   input(type="text" value="{{ x.displayname }}")
                 td
-                    span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator') 
+                    span(class='glyphicon glyphicon-wrench', ng-show='x.type==1', title='Administrator')
                 td
-                    button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default") 
+                    button(ng-click='resetPassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset password',  class="btn btn-sm btn-default")
                         span(class='glyphicon glyphicon-lock')
-                td 
+                td
                     button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
         div(class="userlist main-element hidden-md hidden-lg" id="alarmlist")

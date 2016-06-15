@@ -24,4 +24,23 @@ header
         padding: 0;
     }
 
+    .connection-errors
+    {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+
+        .alert.alert-danger
+        {
+            width: 50vw;
+            line-height: 0;
+            margin: 1% 0;
+            padding: 2%;
+            color: white;
+            background-color: $fox-red;
+        }
+
+    }
+
 } 

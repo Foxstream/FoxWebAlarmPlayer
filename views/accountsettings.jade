@@ -26,7 +26,13 @@ block content
           //- Mobile buttons 
           div(class='actions hidden-lg hidden-md')
               button(class='button-secondary',
-                      ng-click='showMenu = true') Retour
+                      ng-click='showMenu = true',
+                      ng-show='!fieldsModified') Retour
+              button(class='button-secondary',
+                      ng-click='showMenu = true',
+                      ng-show='fieldsModified') Annuler
+              button(class="button-primary",
+                      ng-click='', ng-show="fieldsModified") Valider
 
           if user.shouldChangePassword
               div(class='alert alert-danger') Veuillez changer votre mot de passe
@@ -38,7 +44,7 @@ block content
           form(method='POST', class='col-xs-12 col-md-6 padding')
                 div(class="form-group row")
                     label(for='usernameid') Login
-                    input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", required)
+                    input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", ng-change="true", required)
                 button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Appliquer
        
           form(method='POST', class='col-xs-12 col-md-6 padding')

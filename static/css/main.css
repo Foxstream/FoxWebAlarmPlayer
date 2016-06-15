@@ -227,6 +227,26 @@ header {
     transform: translate(0, -50%);
     margin: 0;
     padding: 0; }
+  header .connection-errors {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari and Chrome */
+    -o-transform: translate(-50%, -50%);
+    /* Opera */
+    -moz-transform: translate(-50%, -50%);
+    /* Firefox */ }
+    header .connection-errors .alert.alert-danger {
+      width: 50vw;
+      line-height: 0;
+      margin: 1% 0;
+      padding: 2%;
+      color: white;
+      background-color: #e44333; }
 
 nav {
   width: 100vw; }

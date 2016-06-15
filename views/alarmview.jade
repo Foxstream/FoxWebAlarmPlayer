@@ -9,9 +9,6 @@ block content
     div(ng-controller='alarmcontroller')
        
         div(class='col-xs-12 col-md-7')
-            div(ng-controller='servercontroller')            
-                div(ng-repeat='x in servers | filter: {connected: false}' class="label label-danger")                     
-                    span(class='glyphicon glyphicon-warning-sign')   {{ x.description }} ( {{x.username}}@{{x.address}} ) disconnected
 
             //- Desktop buttons 
             div(class='actions hidden-xs hidden-sm')
