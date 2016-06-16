@@ -15,10 +15,12 @@ block content
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
-            button(class="button-secondary" ng-click='back()') Retour
-            button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser==undefined') Ajouter
+            button(class="button-secondary" ng-click='back()', ng-show="currentUser === undefined") Retour
+            button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser === undefined') Ajouter
+            button(ng-click='currentUser=undefined', class="button-secondary", ng-show="currentUser !== undefined") Annuler
+            button(ng-click='addCurrentUser()', class="button-primary", ng-show="currentUser !== undefined") Valider
 
-        div(class="table usertable hidden-xs hidden-sm")
+        div(class="table usertable hidden-xs hidden-sm", ng-show="currentUser === undefined")
           table
             thead
               tr
@@ -41,7 +43,7 @@ block content
                 td
                     button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
-        div(class="userlist main-element hidden-md hidden-lg" id="alarmlist")
+        div(class="userlist main-element hidden-md hidden-lg" id="alarmlist", ng-show="currentUser === undefined")
             div(ng-repeat='x in users', class='panel accordion-item')
               h5 
                 a(href='#collapse{{$index}}', data-toggle='collapse',
@@ -67,11 +69,12 @@ block content
                       button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer l'utilisateur
                 
 
-        div(id='newuser', ng-show='currentUser!=undefined', class="form-input")
-            h4(class="form-signin-heading") New user login
-            input(type='text', id='login' placeholder='Login', ng-model='currentUser', class="form-control")
-            button(ng-click='addCurrentUser()', class="btn btn-sm btn-primary btn-block") Add user
-            button(ng-click='currentUser=undefined', class="btn btn-sm btn-default btn-block") Cancel
+        div(id='newuser', ng-show='currentUser !== undefined', class="main-element col-xs-12 col-md-6 col-md-offset-3")
+            .h4 Ajouter un utilisateur
+            .form-group 
+              input(type='text', id='login' placeholder='Login', ng-model='currentUser', class="form-control")
+            button(ng-click='currentUser=undefined', class="button-secondary hidden-xs hidden-sm") Annuler
+            button(ng-click='addCurrentUser()', class="button-primary hidden-xs hidden-sm") Valider
 
         div(class='alert alert-warning space-before', ng-show='userMsg !=undefined') {{ userMsg }}
 
