@@ -1,12 +1,11 @@
 html {
-  height: 100vh;
   overflow: hidden; }
 
 body {
   padding: 1vh 0 0 0;
   margin: 0;
   height: 100%;
-  overflow: hidden; }
+  overflow: auto; }
 
 a:link, a:visited, a:hover, a:active {
   color: black;
@@ -132,9 +131,6 @@ button {
   min-width: 7em;
   line-height: 1.5em; }
 
-button:hover {
-  font-weight: bold; }
-
 button.button-primary {
   border-color: #e44333;
   color: #e44333; }
@@ -150,7 +146,8 @@ button.button-secondary {
     font-size: 1.2em; }
 
   button {
-    width: 10vw; }
+    min-width: 10vw;
+    padding: 0 5%; }
 
   .divider {
     display: inline-block;

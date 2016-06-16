@@ -5,44 +5,52 @@ block title
 
 block content
   div(class='container-fluid')
-      div(ng-controller='servercontroller')    
+      div(ng-controller='servercontroller')
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined') Nouveau serveur
+            button(class="button-secondary", ng-click='reset()', ng-show='serversForm.$dirty') Annuler
+            button(class="button-primary", ng-click='', ng-show='serversForm.$dirty') Valider
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined && serversForm.$pristine') Nouveau serveur
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
-            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined") Retour
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined') Ajouter
+
+            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined && serversForm.$pristine") Retour
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined && serversForm.$pristine') Ajouter
+
+            button(class="button-secondary", ng-click='reset()', ng-show='serversForm.$dirty') Annuler
+            button(class="button-primary", ng-click='', ng-show='serversForm.$dirty') Valider
+
             button(class="button-secondary", ng-click='currentServer=undefined;serverMsg=undefined', ng-show="currentServer !== undefined") Annuler
             button(class="button-primary", ng-click='commitCurrentServer()', ng-show='currentServer!==undefined') Valider
 
         div(class="table servertable hidden-xs hidden-sm", ng-show="currentServer === undefined")
             div(class='table')
-                table
-                    thead
-                        tr
-                            th Adresse
-                            th Port
-                            th Login
-                            th Description
-                            th 
-                            th
-                    tr(ng-repeat='x in servers')
-                        td 
-                            input(type="text" value="{{ x.address }}")
-                        td 
-                            input(type="text" value="{{ x.port }}")
-                        td 
-                            input(type="text" value="{{ x.username }}")     
-                        td 
-                            input(type="text" value="{{ x.description }}")
-                        td
-                            span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
-                            span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
-                        td 
-                            button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
+                form(name="serversForm")
+                    table
+                        thead
+                            tr
+                                th Adresse
+                                th Port
+                                th Login
+                                th Description
+                                th 
+                                th
+                        tr(ng-repeat='x in servers')
+                            td
+                                input(type="text" ng-model="x.address")
+                            td
+                                input(type="text" ng-model="x.port")
+                            td
+                                input(type="text" ng-model="x.username")
+                            td
+                                input(type="text" ng-model="x.description")
+                            td
+                                span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                                span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                            td
+                                button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
 
         div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="currentServer === undefined")
@@ -51,23 +59,23 @@ block content
                     a(href='#collapse{{$index}}', data-toggle='collapse',
                         class="drop", data-parent='#serverlist') {{ x.description }}
                 div(id='collapse{{ $index }}', class='collapse')
-                    form
+                    form(name="serversForm")
                         .form-group
                             label(for="address") Adresse
                             input(type="text", class="form-control",
-                              id="address", value="{{ x.address }}")
+                              id="address", ng-model="x.address")
                         .form-group
                             label(for="port") Port
                             input(type="text", class="form-control",
-                              id="port", value="{{ x.port }}")
+                              id="port", ng-model="x.port")
                         .form-group
                             label(for="username") Login
                             input(type="text", class="form-control",
-                              id="username", value="{{ x.username }}")
+                              id="username", ng-model="x.username")
                         .form-group
                             label(for="description") Description
                             input(type="text", class="form-control",
-                              id="description", value="{{ x.description }}")
+                              id="description", ng-model="x.description")
                         button(ng-click='deleteServer(x.id)', title='Supprimer le serveur',  class="button-primary full-width") Supprimer le serveur
 
 
@@ -96,6 +104,6 @@ block content
         div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg }}
 
 
-  script(src='static/EventSource4IE.js')  
-  script(src='static/EventSource.js')  
-  script(src='static/serverviewer.js')  
+  script(src='static/EventSource4IE.js')
+  script(src='static/EventSource.js')
+  script(src='static/serverviewer.js')

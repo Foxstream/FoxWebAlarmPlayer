@@ -35,14 +35,18 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.currentserver = undefined;
         $scope.serverMsg = undefined;
         $scope.servers = [];
+        $scope.originalServers = [];
         $scope.device = device;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';
         }
         
-        serverdb.getservers(function (data) { $scope.servers = data; });
-        
+        serverdb.getservers(function (data){
+            $scope.servers = data;
+            $scope.originalServers = angular.copy($scope.servers);
+        });
+
         var updateMessage = function (err) {
             $scope.serverMsg = err ? ("Une erreur s'est produite : " + err) : this+"";
         }
@@ -53,10 +57,15 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 port: 4000,
                 username: "admin",
                 password: "",
-                description: "",
+                description: ""
             };
 
             $scope.serverMsg = undefined;
+        }
+
+        $scope.reset = function(){
+            $scope.servers = angular.copy($scope.originalServers);
+            $scope.serversForm.$setPristine();
         }
         
         $scope.deleteServer = function (id) {

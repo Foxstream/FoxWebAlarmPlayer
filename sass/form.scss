@@ -3,6 +3,11 @@ input:not([type=checkbox])
     width: 100%;
 }
 
+// .ng-dirty
+// {
+//     border: solid blue 3px;
+// }
+
 input:focus
 {
     border: solid 1px rgba($fox-red, 0.8) !important;
@@ -31,7 +36,7 @@ button
 
 button:hover
 {
-    font-weight: bold;
+    // font-weight: bold;
 }
 
 button.button-primary
@@ -67,7 +72,8 @@ button.button-secondary
 
     button
     {
-        width: 10vw;
+        min-width: 10vw;
+        padding: 0 5%;
     }
 
     .divider // Easy way to create space between two buttons on a line
@@ -75,8 +81,6 @@ button.button-secondary
         display: inline-block;
         width: 1vw;
     }
-
-
 
 }
 
