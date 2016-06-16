@@ -1,66 +1,59 @@
 ﻿extends ./MainTemplate.jade
 
 block title
-  title Compte utilisateur
+	title Compte utilisateur
 
 block content
-  div(class='container-fluid content' ng-controller='accountController')
 
-      div(class='menu-mobile', ng-show="showMenu && device !== 'desktop'")
-        ul
-          li
-            a(href='#', ng-click='showMenu = false')
-              span(class='link') Paramètres du compte
-          li
-            a(href='/serverview')
-              span(class='link') Serveurs
-          li
-            a(href='/userview')
-              span(class='link') Utilisateurs
-          li
-            a(href='/logout')
-              span(class='link') Déconnexion
+	div(class='container-fluid content' ng-controller='accountController')
 
-
-      div(ng-show="device === 'desktop' || !showMenu")
-          //- Mobile buttons 
-          div(class='actions hidden-lg hidden-md')
-              button(class='button-secondary',
-                      ng-click='showMenu = true',
-                      ng-show='!fieldsModified') Retour
-              button(class='button-secondary',
-                      ng-click='showMenu = true',
-                      ng-show='fieldsModified') Annuler
-              button(class="button-primary",
-                      ng-click='', ng-show="fieldsModified") Valider
-
-          if user.shouldChangePassword
-              div(class='alert alert-danger') Veuillez changer votre mot de passe
-
-          if message
-               div(class='alert alert-warning')
-                  =message
-        
-          form(method='POST', class='col-xs-12 col-md-6 padding')
-                div(class="form-group row")
-                    label(for='usernameid') Login
-                    input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", ng-change="true", required)
-                button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Appliquer
-       
-          form(method='POST', class='col-xs-12 col-md-6 padding')
-              .h4 Changer de mot de passe
-              if user.shouldChangePassword==0
-                  div(class="form-group row")
-                      label(for='oldpassword') Mot de passe courant
-                      input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", required)
-              div(class="form-group row")
-                  label(for='password1') Nouveau mot de passe
-                  input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", required)
-              div(class="form-group row")
-                  label(for='password2') Confirmer le mot de passe
-                  input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", required)
-
-              button(name='PassUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Enregistrer
+		div(class='menu-mobile', ng-show="showMenu && device !== 'desktop'")
+			ul
+				li
+					a(href='#', ng-click='showMenu = false')
+						span(class='link') Paramètres du compte
+				li
+					a(href='/serverview')
+						span(class='link') Serveurs
+				li
+					a(href='/userview')
+						span(class='link') Utilisateurs
+				li
+					a(href='/logout')
+						span(class='link') Déconnexion
 
 
-  script(src='static/accountcontroller.js')
+		div(ng-show="device === 'desktop' || !showMenu")
+			//- Mobile buttons 
+			div(class='actions hidden-lg hidden-md')
+				button(class='button-secondary',
+						ng-click='showMenu = true') Retour
+				button(class='button-secondary',
+						ng-click='showMenu = true') Annuler
+				button(class="button-primary",
+						ng-click='', ng-show="fieldsModified") Valider
+
+
+			form(method='POST', class='col-xs-12 col-md-6 padding')
+				div(class="form-group row")
+					label(for='usernameid') Login
+					input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", required)
+				button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Appliquer
+
+			form(method='POST', class='col-xs-12 col-md-6 padding')
+				.h4 Changer de mot de passe
+				if user.shouldChangePassword==0
+					div(class="form-group row")
+						label(for='oldpassword') Mot de passe courant
+						input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", required)
+				div(class="form-group row")
+					label(for='password1') Nouveau mot de passe
+					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", required)
+				div(class="form-group row")
+					label(for='password2') Confirmer le mot de passe
+					input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", required)
+
+				button(name='PassUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Enregistrer
+
+
+	script(src='static/accountcontroller.js')
