@@ -24,23 +24,21 @@ block content
 
 
 		div(ng-show="device === 'desktop' || !showMenu")
-			//- Mobile buttons 
+			Mobile buttons 
 			div(class='actions hidden-lg hidden-md')
 				button(class='button-secondary',
 						ng-click='showMenu = true') Retour
-				button(class='button-secondary',
-						ng-click='showMenu = true') Annuler
-				button(class="button-primary",
-						ng-click='', ng-show="fieldsModified") Valider
+				button(class="button-primary", ng-show="passwordForm.$dirty",
+						ng-click='') Valider
 
 
-			form(method='POST', class='col-xs-12 col-md-6 padding')
+			form(method='POST', class='col-xs-12 col-md-6 padding', name="loginForm")
 				div(class="form-group row")
 					label(for='usernameid') Login
-					input(type='text', id='username', name='username', placeholder='Display name',value=user.displayname, class="form-control", required)
+					input(type='text', id='username', name='username', placeholder='Display name', ng-model="user.displayname", class="form-control", required)
 				button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Appliquer
 
-			form(method='POST', class='col-xs-12 col-md-6 padding')
+			form(method='POST', class='col-xs-12 col-md-6 padding', name="passwordForm")
 				.h4 Changer de mot de passe
 				if user.shouldChangePassword==0
 					div(class="form-group row")
