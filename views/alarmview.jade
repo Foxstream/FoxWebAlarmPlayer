@@ -7,6 +7,21 @@ block content
   div(class='container-fluid content')
         
     div(ng-controller='alarmcontroller')
+
+        //- Mobile buttons 
+        div(class='actions hidden-lg hidden-md')
+            button(class='button-secondary full-width',
+                    ng-click='handleSelected()',
+                    ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+            button(class='button-primary full-width',
+                    ng-click='handleall()',
+                    ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
+            button(class='button-secondary',
+                ng-show='currentalarm != undefined',
+                ng-click='currentalarm = undefined') Retour
+            button(class='button-primary',
+                ng-show='currentalarm != undefined',
+                ng-click='markcurrentashandled($event)') Acquitter
        
         div(class='col-xs-12 col-md-7')
 
@@ -18,21 +33,6 @@ block content
                 button(class='button-primary',
                         ng-click='handleall()',
                         ng-show='getNotHandledAlarms().length > 0') Tout acquitter
-
-             //- Mobile buttons 
-            div(class='actions hidden-lg hidden-md')
-                button(class='button-secondary full-width',
-                        ng-click='handleSelected()',
-                        ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-                button(class='button-primary full-width',
-                        ng-click='handleall()',
-                        ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
-                button(class='button-secondary',
-                    ng-show='currentalarm != undefined',
-                    ng-click='currentalarm = undefined') Retour
-                button(class='button-primary',
-                    ng-show='currentalarm != undefined',
-                    ng-click='markcurrentashandled($event)') Acquitter
 
             div(class='table alarmtable hidden-sm hidden-xs')
               table
