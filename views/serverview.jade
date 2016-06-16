@@ -9,14 +9,14 @@ block content
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentUser==undefined') Nouveau serveur
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined') Nouveau serveur
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
             button(class="button-secondary" ng-click='back()') Retour
             button(class="button-primary", ng-click='currentServer=""', ng-show='currentUser==undefined') Ajouter
 
-        div(class="table servertable hidden-xs hidden-sm")
+        div(class="table servertable hidden-xs hidden-sm", ng-show="currentServer === undefined")
             div(class='table')
                 table
                     thead
@@ -27,7 +27,7 @@ block content
                             th Description
                             th 
                             th
-                    tr(ng-repeat='x in servers')          
+                    tr(ng-repeat='x in servers')
                         td 
                             input(type="text" value="{{ x.address }}")
                         td 
@@ -43,7 +43,7 @@ block content
                             button(ng-click='deleteServer(x.id)', title='Delete server',  class="button-primary") Supprimer
 
 
-        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist")
+        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="currentServer === undefined")
             div(ng-repeat='x in servers', class='panel accordion-item')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
@@ -71,25 +71,26 @@ block content
 
 
 
-        div(id='newserver', ng-show='currentServer!=undefined', class="form-input")
+        div(id='newserver', ng-show='currentServer !== undefined', class="form-input")
+            .h4 Ajouter un serveur
             .form-group
-                label(for='id') Server address
-                input(type='text', id='login' placeholder='Adress', ng-model='currentServer.address', class="form-control")
+                label(for='id') Adresse
+                input(type='text', id='login' placeholder='Adresse', ng-model='currentServer.address', class="form-control")
             .form-group
-                label(for='port') Server port
+                label(for='port') Port
                 input(type='text', id='port' placeholder='Port', ng-model='currentServer.port', class="form-control")
             .form-group
                 label(for='user') Login
-                input(type='text', id='user' placeholder='Username', ng-model='currentServer.username', class="form-control")
+                input(type='text', id='user' placeholder='Login', ng-model='currentServer.username', class="form-control")
             .form-group
-                label(for='password') Password
-                input(type='text', id='password' placeholder='Password', ng-model='currentServer.password', class="form-control")
+                label(for='password') Mot de passe
+                input(type='text', id='password' placeholder='Mot de passe', ng-model='currentServer.password', class="form-control")
             .form-group
-                label(for='description') Server description
+                label(for='description') Description
                 input(type='text', id='description' placeholder='Description', ng-model='currentServer.description', class="form-control")
 
-            button(ng-click='commitCurrentServer()' class="btn btn-sm btn-primary btn-block") OK
-            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="btn btn-sm btn-default btn-block") Cancel
+            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="button-secondary") Annuler
+            button(ng-click='commitCurrentServer()' class="button-primary") Valider
         
         div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg  }}
 

@@ -43,8 +43,8 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         serverdb.getservers(function (data) { $scope.servers = data; });
         
         var updateMessage = function (err) {
-            $scope.serverMsg = err ? ("An error occured : " + err) : this+"";
-        }        
+            $scope.serverMsg = err ? ("Une erreur s'est produite : " + err) : this+"";
+        }
         
         $scope.initemptyserver = function () {
             $scope.currentServer = {
@@ -65,7 +65,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             
             $scope.serverMsg = "Deleting server...";
             serverdb.deleteserver(id, function (err) {
-                updateMessage.call("Server deleted", err);
+                updateMessage.call("Le serveur a bien été supprimé", err);
                 if (!err)
                     $scope.servers.splice(pos, 1);
             });
@@ -83,7 +83,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             
             if ($scope.currentServer.id)
                 serverdb.updateserver($scope.currentServer, function (err, newserver) {
-                    updateMessage.call("Server updated", err);
+                    updateMessage.call("Vos modifications ont été enregistrées", err);
                     if (!err) {                        
                         var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentServer.id);
                         $scope.servers[pos] = $scope.currentServer;
@@ -92,7 +92,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 })
             else
                 serverdb.addserver($scope.currentServer, function (err, newserver) {
-                    updateMessage.call("Server added", err);
+                    updateMessage.call("Le serveur a bien été ajouté", err);
                     if (!err) {
                         $scope.currentServer = undefined;
                         $scope.servers.push(newserver);
