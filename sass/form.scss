@@ -54,33 +54,15 @@ button.button-secondary
 {
 
     // When used inside a classic form display (not in table lines), form elements need more margin
-    .form 
+    .form
     {
-        margin: auto;
-        width: 50%;
 
-        input 
+        button 
         {
-            margin-top: 1vh;
-            margin-bottom: 1vh;
+            width: 48%;
+            font-size: 1.2em;
         }
 
-        label
-        {
-            margin-bottom: 1vh;
-        }
-
-        button
-        {
-            margin-top: 1vh;
-            margin-bottom: 1vh;
-        }
-
-    }
-
-    label
-    {
-        margin-top: 1vh;
     }
 
     button
@@ -93,6 +75,8 @@ button.button-secondary
         display: inline-block;
         width: 1vw;
     }
+
+
 
 }
 
@@ -116,29 +100,6 @@ button.button-secondary
         margin-right: 0;
     }
 
-    .form // Displqy in colun (for example login page)
-    {
-
-        input 
-        {
-            margin-top: 1vh;
-            margin-bottom: 1vh;
-        }
-
-        label
-        {
-            margin-top: 5vh;
-            margin-bottom: 1vh;
-            text-indent: 5vw;
-        }
-
-        button
-        {
-            margin-top: 3vh;
-            margin-bottom: 1vh;
-        }
-
-    }
 
     .divider // Easy way to create space between two buttons on a line
     {

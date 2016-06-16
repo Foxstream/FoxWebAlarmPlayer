@@ -30,11 +30,12 @@ app.factory('serverdb', ['$http', '$rootScope',
         return obj;
     }]);
 
-app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', function ($rootScope, $scope, $window, serverdb, alarmevents) {
+app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', 'device', function ($rootScope, $scope, $window, serverdb, alarmevents, device) {
         
         $scope.currentserver = undefined;
         $scope.serverMsg = undefined;
         $scope.servers = [];
+        $scope.device = device;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';

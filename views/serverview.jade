@@ -13,8 +13,10 @@ block content
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
-            button(class="button-secondary" ng-click='back()') Retour
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentUser==undefined') Ajouter
+            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined") Retour
+            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined') Ajouter
+            button(class="button-secondary", ng-click='currentServer=undefined;serverMsg=undefined', ng-show="currentServer !== undefined") Annuler
+            button(class="button-primary", ng-click='commitCurrentServer()', ng-show='currentServer!==undefined') Valider
 
         div(class="table servertable hidden-xs hidden-sm", ng-show="currentServer === undefined")
             div(class='table')
@@ -66,12 +68,11 @@ block content
                             label(for="description") Description
                             input(type="text", class="form-control",
                               id="description", value="{{ x.description }}")
-                      .form-group
-                        button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary full-width") Supprimer le serveur
+                        button(ng-click='deleteServer(x.id)', title='Supprimer le serveur',  class="button-primary full-width") Supprimer le serveur
 
 
 
-        div(id='newserver', ng-show='currentServer !== undefined', class="form-input")
+        div(id='newserver', ng-show='currentServer !== undefined' class="main-element col-xs-12 col-md-6 col-md-offset-3")
             .h4 Ajouter un serveur
             .form-group
                 label(for='id') Adresse
@@ -89,10 +90,10 @@ block content
                 label(for='description') Description
                 input(type='text', id='description' placeholder='Description', ng-model='currentServer.description', class="form-control")
 
-            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="button-secondary") Annuler
-            button(ng-click='commitCurrentServer()' class="button-primary") Valider
+            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="button-secondary", ng-show="device === 'desktop'") Annuler
+            button(ng-click='commitCurrentServer()', class="button-primary", ng-show="device === 'desktop'") Valider
         
-        div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg  }}
+        div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg }}
 
 
   script(src='static/EventSource4IE.js')  
