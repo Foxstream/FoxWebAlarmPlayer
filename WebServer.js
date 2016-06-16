@@ -13,7 +13,7 @@ function buildWebServer()
         secret: 'azzfze6498ze7f9zef64f846&"(54f6efzeze',
         resave : false,
         saveUninitialized : true,
-        cookie: { httpOnly: true }  
+        cookie: { httpOnly: true }
     }));
     
     app.use('/static', express.static(__dirname + '/static'));
@@ -21,7 +21,6 @@ function buildWebServer()
     app.set('views', __dirname + '/views')
     app.set('view engine', 'jade')
     
-
     return app;
 }
 

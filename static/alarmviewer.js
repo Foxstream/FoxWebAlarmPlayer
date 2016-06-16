@@ -40,7 +40,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.alarms = [];
 
     alarmdb.getalarms(function(data){
-        $scope.alarms = data; 
+        $scope.alarms = data;
     });
     
     $scope.playalarm = function(alarmid){

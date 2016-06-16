@@ -5,7 +5,7 @@ block title
 
 block content
 
-	div(class='container-fluid content' ng-controller='accountController')
+	div(class='container-fluid content', ng-controller='accountController')
 
 		div(class='menu-mobile', ng-show="showMenu && device !== 'desktop'")
 			ul
@@ -22,34 +22,33 @@ block content
 					a(href='/logout')
 						span(class='link') Déconnexion
 
-
 		div(ng-show="device === 'desktop' || !showMenu")
 			//- Mobile buttons 
 			div(class='actions hidden-lg hidden-md')
 				button(class='button-secondary',
 						ng-click='showMenu = true') Retour
-				button(class="button-primary", ng-show="passwordForm.$dirty",
+				button(class="button-primary", ng-show="loginForm.$dirty || passwordForm.$dirty",
 						ng-click='') Valider
 
 
 			form(method='POST', class='col-xs-12 col-md-6 padding', name="loginForm")
 				div(class="form-group row")
-					label(for='usernameid') Login
-					input(type='text', id='username', name='username', placeholder='Display name', ng-model="user.displayname", class="form-control", required)
-				button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Appliquer
+					label(for='displayname') Nom affiché
+					input(type='text', id='displayname', name='displayname', placeholder='Nom affiché', ng-model="user.displayname", class="form-control", required)
+				button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs", ng-disabled="loginForm.$pristine") Appliquer
 
 			form(method='POST', class='col-xs-12 col-md-6 padding', name="passwordForm")
 				.h4 Changer de mot de passe
 				if user.shouldChangePassword==0
 					div(class="form-group row")
 						label(for='oldpassword') Mot de passe courant
-						input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", required)
+						input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", ng-model="password.old", required)
 				div(class="form-group row")
 					label(for='password1') Nouveau mot de passe
-					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", required)
+					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", ng-model="password.new" required)
 				div(class="form-group row")
 					label(for='password2') Confirmer le mot de passe
-					input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", required)
+					input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", ng-model="password.confirm", required)
 
 				button(name='PassUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs") Enregistrer
 

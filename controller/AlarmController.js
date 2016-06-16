@@ -56,7 +56,7 @@ function applyApp(app)
 		var stream = self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid);		
 		stream.on('error',function(){res.end()});
 		res.writeHead(200, {'Content-Type': 'image/jpeg'});	
-		stream.pipe(res);		
+		stream.pipe(res);
 	});
 	
 	app.get('/controller/alarm/:alarmid/image/:imgid/osd', auth.IsValidUser, function(req, res){				

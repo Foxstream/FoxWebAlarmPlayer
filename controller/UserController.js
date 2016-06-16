@@ -15,6 +15,11 @@ function applyApp(app) {
         });
     });
     
+    app.get('/controller/user/me', auth.IsValidUser, function(req, res){
+        console.log('\nok\n');
+        res.send(req.user);
+    });
+
     app.get('/controller/user/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {            
             if (data)
