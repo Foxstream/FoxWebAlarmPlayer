@@ -70,7 +70,7 @@ th {
     height: 64vh; } }
 @media screen and (max-width: 767px) {
   .swiper {
-    height: 73vh; } }
+    height: 75vh; } }
 .slides-container {
   height: 100%;
   position: relative; }
@@ -291,14 +291,14 @@ nav {
     display: none; } }
 @media screen and (max-width: 767px) {
   nav {
-    height: 12vh; }
+    height: 10vh; }
     nav ul {
-      height: 12vh;
-      line-height: 12vh; }
+      height: 10vh;
+      line-height: 10vh; }
       nav ul li {
         width: 33.3vw; }
         nav ul li i.glyphicon {
-          font-size: 4vh; } }
+          font-size: 3.33333vh; } }
 @media screen and (min-width: 992px) {
   nav {
     margin-bottom: 5vh;
@@ -459,6 +459,6 @@ nav {
     overflow: scroll; } }
 @media screen and (max-width: 767px) {
   .main-element {
-    height: 77vh; } }
+    height: 79vh; } }
 
 /*# sourceMappingURL=main.css.map */
