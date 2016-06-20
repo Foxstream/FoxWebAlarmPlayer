@@ -40,7 +40,11 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     });
 
     $scope.playlivefeed = function(serverId, camId, fps){
-        $scope.selectedcamera = [serverId, camId, fps];
+        $scope.selectedcamera = {
+            server: serverId, 
+            camId: camId, 
+            fps: fps
+        };
     }
 
     // LIVE PICTURES
@@ -76,7 +80,6 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
                 scope.showOsd = !scope.showOsd;
             }
             scope.$watch('camera', function (newVal, oldVal){
-                console.log(scope.camera);
                 if (newVal === oldVal) return;
 
                if (scope.liveInterval){
@@ -84,7 +87,7 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
                 }
 
                 liveInterval = setInterval(function(){
-                    live.getLiveImage(scope.camera[0], scope.camera[1], function(image){
+                    live.getLiveImage(scope.camera.server, scope.camera.camId, function(image){
                         scope.image = image;
                     });
                 }, 1000);
