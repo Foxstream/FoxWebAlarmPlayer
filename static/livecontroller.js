@@ -39,10 +39,11 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         }
     });
 
-    $scope.playlivefeed = function(serverId, camId, fps){
+    $scope.playlivefeed = function(site, serverId, camId, fps){
+        $scope.currentsite = site;
         $scope.selectedcamera = {
-            server: serverId, 
-            camId: camId, 
+            server: serverId,
+            camId: camId,
             fps: fps
         };
     }
@@ -69,26 +70,24 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
       replace: true,
       templateUrl: '/liveplayer',
       link: function(scope, elem, attrs) {
-            // scope.rootElement = elem;
-            // scope.loading = false;
             scope.showOsd = true;
             scope.playing = true;
             scope.liveInterval;
-            scope.image;
+            scope.image = 'image';
 
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
             }
             scope.$watch('camera', function (newVal, oldVal){
                 if (newVal === oldVal) return;
-
-               if (scope.liveInterval){
+                if (scope.liveInterval){
                     clearInterval(liveInterval);
                 }
 
                 liveInterval = setInterval(function(){
                     live.getLiveImage(scope.camera.server, scope.camera.camId, function(image){
                         scope.image = image;
+                        console.log(image);
                     });
                 }, 1000);
 
@@ -98,7 +97,7 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
 }]);
 
 
-app.directive('swiper', function(){
+app.directive('liveswiper', function(){
 
     return {
         templateUrl: '/liveswiper',
@@ -109,7 +108,7 @@ app.directive('swiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watchCollection('alarms', function(){  
+            scope.$watchCollection('alarms', function(){
                  if (scope.currentalarm !== undefined){
                     var position = scope.getNotHandledAlarms().map(function(a){
                         return a.id;

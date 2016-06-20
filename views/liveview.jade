@@ -28,12 +28,12 @@ block content
                         //- Those crazy things you have to do when using bootstrap
                         div(class='col-xs-6 cam' )
                             img(src='{{ c.image }}',
-                                ng-click='playlivefeed(c.serverId, c.camid, c.acq_fps)',
+                                ng-click='playlivefeed(site, c.serverId, c.camid, c.acq_fps)',
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ c.camid }}
                         div(class='col-xs-6 cam',
                             ng-if='cams.length > ($index + 1)',
-                            ng-click='playlivefeed(cams[$index + 1].serverId, cams[$index + 1].camid, cams[$index + 1].acq_fps)')
+                            ng-click='playlivefeed(site, cams[$index + 1].serverId, cams[$index + 1].camid, cams[$index + 1].acq_fps)')
                             img(src='{{ cams[$index + 1].image }}'
                                 class='camera-image')
                             h5(class='camera-name') Cam_{{ cams[$index + 1].camid }}
@@ -41,9 +41,8 @@ block content
         div(class='col-lg-6 live-canvas' ng-show="device === 'desktop'")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
 
-        swiper(class="hidden-md hidden-lg",
-                    ng-show='selectedcamera !== undefine¡d',
-                    cameras='{{ cameras }}')
+        liveswiper(class="hidden-md hidden-lg",
+                    ng-show='selectedcamera !== undefined')
 
 
     script(src='static/AlarmData.js')

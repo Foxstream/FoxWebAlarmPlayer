@@ -408,7 +408,7 @@ nav {
     margin-bottom: 5vh; }
   #camera-list .camera-image {
     display: inline-block;
-    width: 90%; }
+    width: 25vh; }
   #camera-list .camera-image:hover {
     cursor: pointer;
     font-weight: bold; }
