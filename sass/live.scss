@@ -77,5 +77,18 @@
     }
 }
 
+// @media screen and (max-width: $tablet-breakpoint - 1px)
+// {
+//     .liveplayer
+//     {
+//         img
+//         {
+//             position: relative;
+//             left: 50%;
+//             @include transform(translate(-50%));
+//         }
+//     }
+// }
+
 
 

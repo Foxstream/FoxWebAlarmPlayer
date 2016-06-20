@@ -1,6 +1,5 @@
 div(class="liveplayer")
     img(src='{{ image }}')
-    p Image : {{ image }}
     div(id='play_controller', ng-show='image!==undefined && !loading')
         div(class="osd")
             button(id='play', ng-click="playing=true", ng-disabled="playing", title='Play')

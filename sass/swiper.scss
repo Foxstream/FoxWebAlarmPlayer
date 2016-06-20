@@ -38,12 +38,12 @@
     font-size: 1.3em;
     position: relative;
 
-    .imageplayer
+    .imageplayer, .liveplayer
     {
         height: 70%;
         text-align: center;
 
-        .imagecanvas
+        .imagecanvas, img
         {
             text-align: center;
             height: 80%;

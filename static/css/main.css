@@ -83,14 +83,14 @@ th {
   overflow: hidden;
   font-size: 1.3em;
   position: relative; }
-  .slide .imageplayer {
+  .slide .imageplayer, .slide .liveplayer {
     height: 70%;
     text-align: center; }
-    .slide .imageplayer .imagecanvas {
+    .slide .imageplayer .imagecanvas, .slide .imageplayer img, .slide .liveplayer .imagecanvas, .slide .liveplayer img {
       text-align: center;
       height: 80%;
       width: auto; }
-    .slide .imageplayer .play_controller {
+    .slide .imageplayer .play_controller, .slide .liveplayer .play_controller {
       height: 20%; }
   .slide ul {
     position: absolute;

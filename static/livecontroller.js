@@ -108,24 +108,11 @@ app.directive('liveswiper', function(){
             var currentPosition = 0;
             var maxPosition = 0;
 
-            scope.$watchCollection('alarms', function(){
-                 if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 100);
-                    currentPosition = offset;
-                }
-            });
-
-            scope.$watch('currentalarm', function(){
-                if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
+            scope.$watch('selectedcamera', function(){
+                if (scope.selectedcamera !== undefined){
+                    var position = scope.cameras[scope.currentsite].map(function(c){
+                        return c.camid;
+                    }).indexOf(scope.selectedcamera.camId);
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"
