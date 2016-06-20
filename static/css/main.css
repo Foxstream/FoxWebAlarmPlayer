@@ -460,5 +460,9 @@ nav {
 @media screen and (max-width: 767px) {
   .main-element {
     height: 79vh; } }
+.tabs li {
+  display: inline-block;
+  border: solid #788493 1px;
+  padding: 1px; }
 
 /*# sourceMappingURL=main.css.map */

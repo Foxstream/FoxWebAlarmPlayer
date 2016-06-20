@@ -30,14 +30,22 @@ block content
 				button(class="button-primary", ng-show="loginForm.$dirty || passwordForm.$dirty",
 						ng-click='') Valider
 
+			div(class="tabs")
+				ul
+					li(ng-click="tab = 'loginForm'",
+						ng-class="{active: tab==='loginForm'}") Informations affichées
+					li(ng-click="tab = 'passwordForm'",
+						ng-class="{active: tab==='passwoForm'}") Changer de mot de passe
 
-			form(method='POST', class='col-xs-12 col-md-6 padding', name="loginForm")
+
+			form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3 padding', name="loginForm", ng-show="tab === 'loginForm'")
+				.h4 Informations affichées
 				div(class="form-group row")
 					label(for='displayname') Nom affiché
 					input(type='text', id='displayname', name='displayname', placeholder='Nom affiché', ng-model="user.displayname", class="form-control", required)
 				button(name='PropUpdate', value='1', type='submit',  class="button-primary hidden-sm hidden-xs", ng-disabled="loginForm.$pristine") Appliquer
 
-			form(method='POST', class='col-xs-12 col-md-6 padding', name="passwordForm")
+			form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3 padding', name="passwordForm", ng-show="tab === 'passwordForm'")
 				.h4 Changer de mot de passe
 				if user.shouldChangePassword==0
 					div(class="form-group row")

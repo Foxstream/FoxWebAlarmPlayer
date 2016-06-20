@@ -191,3 +191,23 @@ th
     }
 
 }
+
+
+.tabs
+{
+    li 
+    {
+        display: inline-block;
+        border: solid $fox-gray 1px;
+        padding: 1px;
+    }
+
+    li.active
+    {
+        background-color: $fox-red;
+    }
+}
+
+
+
+
