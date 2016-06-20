@@ -1,4 +1,4 @@
-div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousalarm()')
+div(class="swiper" ng-swipe-left='shownextcamera()' ng-swipe-right='showpreviouscamera()')
     div(class="slides-container")
         div(ng-repeat="x in cameras[currentsite]" class="slide" id="#slide{{ x.id }}")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")

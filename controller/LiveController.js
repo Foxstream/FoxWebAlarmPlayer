@@ -26,7 +26,9 @@ function applyApp(app){
                         id:1
                     }}, function(err, state){
                         if (!err){
+                            debugger;
                             var cameraList = state.camera.map(function(c){
+                                console.log('\n\n', c);
                                 c.$.serverId = s.config.id;
                                 return c.$;
                             });
@@ -36,7 +38,7 @@ function applyApp(app){
                             } else {
                                 cameras[site] = cameraList;
                             }
-                            cb(); 
+                            cb();
                         } 
                     });
             }

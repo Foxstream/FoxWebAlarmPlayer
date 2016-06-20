@@ -32,6 +32,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
+                console.log(cam); 
                 live.getLiveImage(cam.serverId, cam.camid, function(image){
                     cam.image = image;
                 });
@@ -60,6 +61,51 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     //         }
     //     }
     // }, 40);
+
+
+    $scope.shownextcamera = function(){
+        var nextCamera = $scope.getNextCamera();
+        if (nextCamera !== -1){
+            var cam = $scope.cameras[$scope.currentsite][nextCamera];
+            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.camid, cam.acq_fps);
+        }
+    }
+
+    $scope.showpreviouscamera = function(){
+        var previousCamera = $scope.getPreviousCamera();
+        if (previousCamera !== -1){
+            var cam = $scope.cameras[$scope.currentsite][previousCamera];
+            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.camid, cam.acq_fps);
+        }
+    }
+
+    $scope.getNextCamera = function(){
+        var displayedCameras = $scope.cameras[$scope.currentsite];
+        if (displayedCameras.length < 2){
+            return -1;
+        } else {
+            var position = displayedCameras.map(function(c){ return c.camid; }).indexOf($scope.selectedcamera.camId);
+            if (position === displayedCameras.length - 1){
+                return 0;
+            } else {
+                return position + 1;
+            }
+        }
+    }
+
+    $scope.getPreviousCamera = function(){
+        var displayedCameras = $scope.cameras[$scope.currentsite];
+        if (displayedCameras.length < 2){
+            return -1;
+        } else {
+            var position = displayedCameras.map(function(c){ return c.camid; }).indexOf($scope.selectedcamera.camId);
+            if (position === 0){
+                return displayedCameras.length - 1;
+            } else {
+                return position - 1;
+            }
+        }
+    }
 
 }]);
 

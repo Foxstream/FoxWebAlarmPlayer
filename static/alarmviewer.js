@@ -257,7 +257,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", playing: "@", currentalarm: "="},
 	  replace: true,
 	  templateUrl: '/imageplayer',
-	  link: function(scope, elem, attrs) {
+	  link: function(scope, elem, attrs){
             scope.rootElement = elem;
             scope.loading = false;
             scope.currentIdx = 0;
