@@ -58,6 +58,10 @@ function applyRoutes(app) {
         res.render('swiper');
     });
 
+    app.get('/liveswiper', auth.IsValidUser, function (req, res) {
+        res.render('liveswiper');
+    });
+
 }
 
 module.exports.BuildWebServer = buildWebServer;

@@ -95,5 +95,46 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
 }]);
 
 
+app.directive('swiper', function(){
+
+    return {
+        templateUrl: '/liveswiper',
+        restrict: 'E',
+        replace: true,
+        link: function(scope, element, attrs){
+
+            var currentPosition = 0;
+            var maxPosition = 0;
+
+            scope.$watchCollection('alarms', function(){  
+                 if (scope.currentalarm !== undefined){
+                    var position = scope.getNotHandledAlarms().map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').animate({
+                        left: offset+"%"
+                    }, 100);
+                    currentPosition = offset;
+                }
+            });
+
+            scope.$watch('currentalarm', function(){
+                if (scope.currentalarm !== undefined){
+                    var position = scope.getNotHandledAlarms().map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
+                    var offset = -position * 100;
+                    $(element).find('.slides-container').animate({
+                        left: offset+"%"
+                    }, 500);
+                    currentPosition = offset;
+                }
+            });
+
+        }
+    }
+
+});
 
 

@@ -1,0 +1,13 @@
+div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousalarm()')
+    div(class="slides-container")
+        div(ng-repeat="x in cameras" class="slide" id="#slide{{ x.id }}")
+            liveplayer(imgwidth=370, imgheight=320, camera='selectedcamera')
+            ul
+                li
+                    Direct
+                li 
+                    b Caméra : 
+                    {{ x[1] }}
+                li  
+                    b Site : 
+                    {{ x[0] }}
