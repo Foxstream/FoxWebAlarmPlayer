@@ -195,19 +195,37 @@ th
 
 .tabs
 {
+
     li 
     {
         display: inline-block;
-        border: solid $fox-gray 1px;
-        padding: 1px;
+        padding: 5px 10px;
     }
 
-    li.active
+    li:hover
     {
-        background-color: $fox-red;
+        cursor: pointer;
+    }
+
+    .active
+    {
+        border-bottom: solid $fox-red 3px;
+        color: $fox-red;
     }
 }
 
+@media screen and (max-width: $tablet-breakpoint - 1px)
+{
+    .tabs
+    {
+        width: 100%;
+        li 
+        {
+            width: 50%;
+            text-align: center;
+        }
+    }
 
+}
 
 

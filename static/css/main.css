@@ -462,7 +462,18 @@ nav {
     height: 79vh; } }
 .tabs li {
   display: inline-block;
-  border: solid #788493 1px;
-  padding: 1px; }
+  padding: 5px 10px; }
+.tabs li:hover {
+  cursor: pointer; }
+.tabs .active {
+  border-bottom: solid #e44333 3px;
+  color: #e44333; }
+
+@media screen and (max-width: 991px) {
+  .tabs {
+    width: 100%; }
+    .tabs li {
+      width: 50%;
+      text-align: center; } }
 
 /*# sourceMappingURL=main.css.map */

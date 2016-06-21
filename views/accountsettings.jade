@@ -30,12 +30,12 @@ block content
 				button(class="button-primary", ng-show="loginForm.$dirty || passwordForm.$dirty",
 						ng-click='') Valider
 
-			div(class="tabs")
+			div(class="tabs col-xs-12 col-md-6 col-md-offset-3 padding")
 				ul
 					li(ng-click="tab = 'loginForm'",
 						ng-class="{active: tab==='loginForm'}") Informations affichées
 					li(ng-click="tab = 'passwordForm'",
-						ng-class="{active: tab==='passwoForm'}") Changer de mot de passe
+						ng-class="{active: tab==='passwordForm'}") Changer de mot de passe
 
 
 			form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3 padding', name="loginForm", ng-show="tab === 'loginForm'")
