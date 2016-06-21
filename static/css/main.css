@@ -38,20 +38,6 @@ ul {
 @media screen and (max-width: 767px) {
   .col-xs-12 {
     padding: 0; } }
-.actions {
-  width: 100%; }
-
-@media screen and (min-width: 992px) {
-  .actions {
-    text-align: right;
-    padding-right: 2%;
-    margin-bottom: 2vh; } }
-@media screen and (max-width: 991px) {
-  .actions {
-    height: 10vh;
-    line-height: 10vh; }
-    .actions button {
-      line-height: 1.5em; } }
 .swiper {
   border: solid #788493 1px;
   overflow-x: hidden;
@@ -94,13 +80,11 @@ ul {
       text-indent: 0.2em;
       line-height: 1.3em; }
 
+/**
+  * Many rules to style form elements
+  */
 input:not([type=checkbox]) {
   width: 100%; }
-
-input:focus {
-  border: solid 1px rgba(228, 67, 51, 0.8) !important;
-  box-shadow: 0 1px 1px rgba(228, 67, 51, 0.1) inset, 0 0 8px rgba(228, 67, 51, 0.6);
-  outline: 0 none; }
 
 input[type=checkbox] {
   transform: scale(1.5);
@@ -113,6 +97,11 @@ input[type=checkbox] {
   -moz-transform: scale(1.5);
   /* Firefox */
   margin-right: 5%; }
+
+input:focus {
+  border: solid 1px rgba(228, 67, 51, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(228, 67, 51, 0.1) inset, 0 0 8px rgba(228, 67, 51, 0.6);
+  outline: 0 none; }
 
 button {
   display: inline-block;
@@ -135,17 +124,9 @@ button.button-secondary {
   margin-right: 4%; }
 
 @media screen and (min-width: 992px) {
-  .form button {
-    width: 48%;
-    font-size: 1.2em; }
-
   button {
     min-width: 10vw;
-    padding: 0 5%; }
-
-  .divider {
-    display: inline-block;
-    width: 1vw; } }
+    padding: 0 5%; } }
 @media screen and (max-width: 991px) {
   button {
     width: 48%;
@@ -156,11 +137,7 @@ button.button-secondary {
   button.full-width {
     width: 100%;
     margin-left: 0;
-    margin-right: 0; }
-
-  .divider {
-    display: inline-block;
-    width: 4%; } }
+    margin-right: 0; } }
 /**
   * Scrollable wrapper div for tables
   */
@@ -175,9 +152,8 @@ button.button-secondary {
       border-bottom: solid #e44333 2px; }
       .table-container table thead th {
         font-weight: normal;
-        padding: 0.4em; }
-    .table-container table tbody .lineheader {
-      display: none; }
+        padding: 0.4em;
+        text-align: center; }
     .table-container table tbody td {
       padding: 0.4em;
       min-width: 1em; }
@@ -358,6 +334,23 @@ nav {
           display: block;
           text-align: left;
           text-indent: 5%; } }
+/**
+  * Action buttons at the top of the page
+  */
+.actions {
+  width: 100%; }
+
+@media screen and (min-width: 992px) {
+  .actions {
+    text-align: right;
+    padding-right: 2%;
+    margin-bottom: 2vh; } }
+@media screen and (max-width: 991px) {
+  .actions {
+    height: 10vh;
+    line-height: 10vh; }
+    .actions button {
+      line-height: 1.5em; } }
 @media screen and (min-width: 992px) {
   .foxstream-header {
     display: none; } }
@@ -445,27 +438,6 @@ nav {
     font-size: 1.4em;
     font-weight: bold; }
 
-.form-input {
-  max-width: 350px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.space-before {
-  margin-top: 20px; }
-
-.accordion-item {
-  margin-bottom: 0; }
-
-.padding {
-  padding: 0 5%; }
-
-@media screen and (max-width: 991px) {
-  .main-element {
-    height: 68vh;
-    overflow: scroll; } }
-@media screen and (max-width: 767px) {
-  .main-element {
-    height: 79vh; } }
 .tabs {
   margin-bottom: 15px; }
   .tabs li {
@@ -483,5 +455,12 @@ nav {
     .tabs li {
       width: 50%;
       text-align: center; } }
+@media screen and (max-width: 991px) {
+  .main-element {
+    height: 68vh;
+    overflow: scroll; } }
+@media screen and (max-width: 767px) {
+  .main-element {
+    height: 79vh; } }
 
 /*# sourceMappingURL=main.css.map */

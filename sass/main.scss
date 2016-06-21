@@ -97,26 +97,11 @@ ul {
 @import "imageplayer.scss";
 @import "live.scss";
 @import "settings.scss";
+@import "tabs.scss";
 
-.form-input{
-    max-width:350px;
-    margin-left:auto;
-    margin-right:auto;        
-}
 
-.space-before{
-    margin-top:20px;
-}
 
-// Bootstrap needs the .panel class for accordions, but this class adds a big margin
-.accordion-item {
-    margin-bottom: 0;
-}
-
-.padding {
-    padding: 0 5%;
-}
-
+// Main elements on mobile : should be exactily big enough to fit on page
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
     .main-element {
@@ -132,36 +117,3 @@ ul {
     }
 
 }
-
-
-.tabs {
-
-    margin-bottom: 15px;
-
-    li {
-        display: inline-block;
-        padding: 5px 10px;
-    }
-
-    li:hover {
-        cursor: pointer;
-    }
-
-    .active {
-        border-bottom: solid $fox-red 3px;
-        color: $fox-red;
-    }
-}
-
-@media screen and (max-width: $tablet-breakpoint - 1px){
-    .tabs {
-        width: 100%;
-        li {
-            width: 50%;
-            text-align: center;
-        }
-    }
-
-}
-
-

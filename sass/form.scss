@@ -1,22 +1,26 @@
+/**
+  * Many rules to style form elements
+  */
+
+
 input:not([type=checkbox]){
     width: 100%;
 }
 
-// .ng-dirty
-// {
-//     border: solid blue 3px;
-// }
+// Checkboxes are not big enough (in tables for example)
+input[type=checkbox]{ 
+    @include transform(scale(1.5));
+    margin-right: 5%;
+}
 
+// Overriding bootstrap blue glow on focus
 input:focus {
     border: solid 1px rgba($fox-red, 0.8) !important;
     box-shadow: 0 1px 1px rgba($fox-red, 0.1) inset, 0 0 8px rgba($fox-red, 0.6);
     outline: 0 none;
 }
 
-input[type=checkbox]{
-    @include transform(scale(1.5));
-    margin-right: 5%;
-}
+
 
 button {
     display: inline-block;
@@ -30,9 +34,6 @@ button {
     line-height: 1.5em;
 }
 
-button:hover {
-    // font-weight: bold;
-}
 
 button.button-primary {
     border-color: $fox-red;
@@ -47,52 +48,33 @@ button.button-secondary {
 
 
 
-// Desktop
+// Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
-
-    // When used inside a classic form display (not in table lines), form elements need more margin
-    .form {
-
-        button {
-            width: 48%;
-            font-size: 1.2em;
-        }
-
-    }
 
     button {
         min-width: 10vw;
         padding: 0 5%;
     }
 
-    .divider {
-        display: inline-block;
-        width: 1vw;
-    }
-
 }
 
 
-// Mobile and tablet
+// Tablets and phones
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
+    // Default : two buttons of the same size on one line
     button {
-        width: 48%;
+        width: 48%; 
         margin-left: 0;
         margin-right: 0;
         font-size: 1.2em;
     }
 
+    // Bigger button, alone on a line
     button.full-width {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-    }
-
-
-    .divider {
-        display: inline-block;
-        width: 4%;
     }
 
 }
