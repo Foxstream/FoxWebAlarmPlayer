@@ -14,37 +14,27 @@ function applyApp(app){
         var cameras = {},
             servers = self.serverManager.servers;
 
-        async.each(servers, function(s, cb){
+        servers.forEach(function(s){
             if (!s.xmlclient.Configuration){
                 res.status(500);
                 res.end();
             } else {
+                debugger;
+                var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
+                    c.serverId = s.config.id;
+                    return c;
+                });
+                console.log(cameraList);
                 var site = s.xmlclient.Configuration.equipment.site;
-                s.xmlclient.send({
-                    "$": {
-                        type:"state",
-                        id:1
-                    }}, function(err, state){
-                        if (!err){
-                            debugger;
-                            var cameraList = state.camera.map(function(c){
-                                console.log('\n\n', c);
-                                c.$.serverId = s.config.id;
-                                return c.$;
-                            });
-                            // Add cameras to the list
-                            if (site in cameras){
-                                cameras[site] = cameras[site].concat(cameraList);
-                            } else {
-                                cameras[site] = cameraList;
-                            }
-                            cb();
-                        } 
-                    });
+                if (site in cameras){
+                    cameras[site] = cameras[site].concat(cameraList);
+                } else {
+                    cameras[site] = cameraList;
+                }
             }
-        }, function(){
-            res.send(cameras);
         });
+        res.send(cameras);
+
     });
 
      app.get('/controller/live/:server/:camid', function(req, res){
