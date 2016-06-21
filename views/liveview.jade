@@ -22,21 +22,21 @@ block content
                     class="drop", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
-                    div(ng-repeat='c in cams | orderBy: "camid" track by $index',
+                    div(ng-repeat='c in cams | orderBy: "id" track by $index',
                         ng-if='$index % 2 === 0',
                         class='row')
                         //- Those crazy things you have to do when using bootstrap
                         div(class='col-xs-6 cam' )
                             img(src='{{ c.image }}',
-                                ng-click='playlivefeed(site, c.serverId, c.camid, c.acq_fps)',
+                                ng-click='playlivefeed(site, c.serverId, c.id, 250)',
                                 class='camera-image')
-                            h5(class='camera-name') Cam_{{ c.camid }}
+                            h5(class='camera-name') {{ c.name }}
                         div(class='col-xs-6 cam',
                             ng-if='cams.length > ($index + 1)',
-                            ng-click='playlivefeed(site, cams[$index + 1].serverId, cams[$index + 1].camid, cams[$index + 1].acq_fps)')
+                            ng-click='playlivefeed(site, cams[$index + 1].serverId, cams[$index + 1].id, 250)')
                             img(src='{{ cams[$index + 1].image }}'
                                 class='camera-image')
-                            h5(class='camera-name') Cam_{{ cams[$index + 1].camid }}
+                            h5(class='camera-name') {{ cams[$index + 1].name }}
 
         div(class='col-lg-6 live-canvas' ng-show="device === 'desktop'")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")

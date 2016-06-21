@@ -33,6 +33,7 @@ function applyApp(app){
                 }
             }
         });
+        console.log(cameras);
         res.send(cameras);
 
     });

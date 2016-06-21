@@ -33,7 +33,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
                 console.log(cam); 
-                live.getLiveImage(cam.serverId, cam.camid, function(image){
+                live.getLiveImage(cam.serverId, cam.id, function(image){
                     cam.image = image;
                 });
             });
@@ -44,7 +44,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         $scope.currentsite = site;
         $scope.selectedcamera = {
             server: serverId,
-            camId: camId,
+            id: camId,
             fps: fps
         };
     }
@@ -67,7 +67,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         var nextCamera = $scope.getNextCamera();
         if (nextCamera !== -1){
             var cam = $scope.cameras[$scope.currentsite][nextCamera];
-            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.camid, cam.acq_fps);
+            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
         }
     }
 
@@ -75,7 +75,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         var previousCamera = $scope.getPreviousCamera();
         if (previousCamera !== -1){
             var cam = $scope.cameras[$scope.currentsite][previousCamera];
-            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.camid, cam.acq_fps);
+            $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
         }
     }
 
@@ -84,7 +84,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         if (displayedCameras.length < 2){
             return -1;
         } else {
-            var position = displayedCameras.map(function(c){ return c.camid; }).indexOf($scope.selectedcamera.camId);
+            var position = displayedCameras.map(function(c){ return c.id; }).indexOf($scope.selectedcamera.id);
             if (position === displayedCameras.length - 1){
                 return 0;
             } else {
@@ -98,7 +98,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         if (displayedCameras.length < 2){
             return -1;
         } else {
-            var position = displayedCameras.map(function(c){ return c.camid; }).indexOf($scope.selectedcamera.camId);
+            var position = displayedCameras.map(function(c){ return c.id; }).indexOf($scope.selectedcamera.id);
             if (position === 0){
                 return displayedCameras.length - 1;
             } else {
@@ -131,7 +131,7 @@ app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($
                 }
 
                 liveInterval = setInterval(function(){
-                    live.getLiveImage(scope.camera.server, scope.camera.camId, function(image){
+                    live.getLiveImage(scope.camera.server, scope.camera.id, function(image){
                         scope.image = image;
                         console.log(image);
                     });
@@ -157,8 +157,8 @@ app.directive('liveswiper', function(){
             scope.$watch('selectedcamera', function(){
                 if (scope.selectedcamera !== undefined){
                     var position = scope.cameras[scope.currentsite].map(function(c){
-                        return c.camid;
-                    }).indexOf(scope.selectedcamera.camId);
+                        return c.id;
+                    }).indexOf(scope.selectedcamera.id);
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"
