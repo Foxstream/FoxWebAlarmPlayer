@@ -1,0 +1,27 @@
+/**
+  * Action buttons at the top of the page
+  */
+
+.actions {
+    width: 100%;
+}
+
+@media screen and (min-width: $tablet-breakpoint){
+    .actions {
+        text-align: right;
+        padding-right: 2%;
+        margin-bottom: 2vh;
+    }
+}
+
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    .actions {
+        height: $action-bar-mobile-height;
+        line-height: $action-bar-mobile-height;
+
+        button {
+            line-height: 1.5em;
+        }
+
+    }
+}

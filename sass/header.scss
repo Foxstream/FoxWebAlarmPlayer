@@ -1,20 +1,17 @@
-header 
-{
+header {
     position: relative;
     height: $header-height;
     line-height: $header-height;
     vertical-align: middle;
 
-    img 
-    {
+    img {
         display: inline-block;
         height: 90%;
         position: relative;
         left: 2%;
     }
 
-    h1 
-    {
+    h1 {
         display: inline;
         position: absolute;
         right: 5%;
@@ -24,15 +21,13 @@ header
         padding: 0;
     }
 
-    .connection-errors
-    {
+    .connection-errors {
         position: absolute;
         top: 50%;
         left: 50%;
         @include transform(translate(-50%, -50%));
 
-        .alert.alert-danger
-        {
+        .alert.alert-danger {
             width: 50vw;
             line-height: 0;
             margin: 1% 0;

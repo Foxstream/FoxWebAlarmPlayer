@@ -17,6 +17,13 @@ function close()
 {	
 }
 
+var test = function(){
+
+	return true;
+}
+
+test
+
 //return an object which can be used to update the database
 function getDbObject(inputObj)
 {

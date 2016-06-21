@@ -7,9 +7,8 @@ app.filter('asdate', function (){
    return function(input){
 	   var a=new Date(input*1000);
        return a.getFullYear()+'/'+ zerofill(a.getMonth())+'/'+ zerofill(a.getDate())+" - "+ zerofill(a.getHours())+":"+ zerofill(a.getMinutes())+":"+ zerofill(a.getSeconds());
-   }
+   };
 });
-
 
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){

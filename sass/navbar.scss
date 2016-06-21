@@ -1,17 +1,13 @@
-nav
-{
+nav {
     width: 100vw;
 
-    ul 
-    {
+    ul {
 
-        li
-        {
+        li {
             display: inline-block;
             text-align: center;
 
-            a:link, a:visited, a:hover, a:active
-            {
+            a:link, a:visited, a:hover, a:active {
                 display: inline-block;
                 width: 100%;
                 height: 100%;
@@ -25,10 +21,8 @@ nav
 
 
 // Tablet
-@media screen and (max-width: ($tablet-breakpoint - 1px))
-{
-    nav
-    {
+@media screen and (max-width: ($tablet-breakpoint - 1px)){
+    nav {
         height: $navbar-tablet-height;
         position: absolute;
         bottom: 0;
@@ -37,19 +31,16 @@ nav
         text-align: center;
         border-top: solid $fox-gray 2px;
 
-        ul 
-        {
+        ul {
             height: $navbar-tablet-height;
             line-height: $navbar-tablet-height;
 
-            li
-            {
+            li {
                 width: 15vw;
                 font-weight: bold;
                 position: relative;
 
-                i.glyphicon
-                {
+                i.glyphicon {
                     font-size: $navbar-tablet-height / 3;
                     position: absolute;
                     top: 20%;
@@ -58,8 +49,7 @@ nav
                 }
 
 
-                .link 
-                {
+                .link {
                     line-height: normal;
                     position: absolute;
                     left: 50%;
@@ -68,46 +58,38 @@ nav
                 }
 
             }
-            li.active a
-            {
+            li.active a {
                 color: $fox-red;
             }
 
         }
 
-        .submenu
-        {
+        .submenu {
             display: none;
         }
 
     }
 
     // Don't show the navigation bar on mobile
-    nav.nav-connection
-    {
+    nav.nav-connection {
         display: none;
     }
 
 }
 
 // Mobile
-@media screen and (max-width: ($mobile-breakpoint - 1px))
-{
-    nav
-    {
+@media screen and (max-width: ($mobile-breakpoint - 1px)){
+    nav {
         height: $navbar-mobile-height;
         // max-height: $navbar-tablet-height;
-        ul 
-        {
+        ul {
             height: $navbar-mobile-height;
             line-height: $navbar-mobile-height;
 
-            li
-            {
+            li {
                 width: 33.3vw;
 
-                i.glyphicon
-                {
+                i.glyphicon {
                     font-size: $navbar-mobile-height / 3;
                 }
 
@@ -123,10 +105,8 @@ nav
 
 
 // Desktop
-@media screen and (min-width: $tablet-breakpoint)
-{
-    nav
-    {
+@media screen and (min-width: $tablet-breakpoint){
+    nav {
         margin-bottom: 5vh;
         height: $navbar-desktop-height;
         margin-top: 1vh;
@@ -137,39 +117,33 @@ nav
         line-height: $navbar-desktop-height;
         padding-right: 3%;
 
-        ul 
-        {
+        ul {
 
-            li 
-            {
+            li {
                 width: 8%;
                 position: relative;
                 border-left: solid rgb(234, 83, 61) 1px;
                 border-right: solid rgb(234, 83, 61) 1px;
 
-                a:link, a:visited, a:hover, a:active
-                {
+                a:link, a:visited, a:hover, a:active {
                     color: white;
                     font-weight: normal;
                 }
 
-                i.glyphicon
-                {
+                i.glyphicon {
                     display:none;
                 }
 
             }
-            li:hover 
-            {
+            li:hover {
                 background-color: $fox-dark-red;
                 cursor: pointer;
             }
-            li.active
-            {
+            li.active {
                 background-color: $fox-dark-red;
             }
-            li.active::after // Arrow under active item
-            {
+            // Arrow under active item
+            li.active::after {
                 content: ' ';
                 position: absolute;
                 top: $navbar-desktop-height;
@@ -181,14 +155,12 @@ nav
                 border-right: 10px solid transparent;
                 border-top: 9px solid $fox-dark-red;
             }
-            li.active:hover::after
-            {
+            li.active:hover::after {
                 border-top: 8px solid $fox-dark-red;
             }
         }
 
-        .submenu
-        {
+        .submenu {
             display: block;
             position: absolute;
             right: 0;
@@ -196,11 +168,9 @@ nav
             background-color: $fox-red;
             min-width: 200px;
 
-            ul 
-            {
+            ul {
                 width: 100%;
-                li 
-                {
+                li {
                     width: 100%;
                     display: block;
                     text-align: left;

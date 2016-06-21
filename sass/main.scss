@@ -1,6 +1,8 @@
-// ******************************************* SASS variables
+/*
+********************************************** SASS variables
+*/
 
-// Colors
+// ------------------------------------------   Colors
 $fox-red:#e44333;
 $fox-dark-red:#cf3c2d;
 $fox-light-red: #ff6151;
@@ -8,135 +10,77 @@ $fox-dark-gray:#566171;
 $fox-gray: #788493;
 $fox-light-gray: #c8d4d9;
 
+// ------------------------------------------ Resopnsive breakpoints
+$tablet-breakpoint: 992px;
+$mobile-breakpoint: 768px;
 
-// Font
+// ------------------------------------------  Fonts
 
-// Block sizes
-$header-height: 12vh;
+// ------------------------------------------  Main elements sizes
+$header-height: 12vh; 
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 10vh;
 $navbar-tablet-height: 6vh;
 $action-bar-mobile-height: 10vh;
-
-// This is used to set the height of important elements
-// such as the alarm table
+// Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
 
 
-// Resopnsive design
-$tablet-breakpoint: 992px;
-$mobile-breakpoint: 768px;
 
-// ******************************************* General rules
+/*
+********************************************** Main rules
+*/
 
-html
-{
-    // height: 100vh;
-    overflow: hidden;
+html {
+    overflow: hidden; // Prevent overscrolling
 }
 
-body 
-{
-    padding: 1vh 0 0 0;
-    margin: 0;
+body {
     height: 100%;
+    padding: 1vh 0 0 0;
+    box-sizing: border-box; // Or padding messes up the height
     overflow: auto;
+    margin: 0;
 }
 
-a:link, a:visited, a:hover, a:active
-{
+a:link, a:visited, a:hover, a:active {
     color: black;
     text-decoration: none;
 }
 
-a:hover 
-{
+a:hover {
     text-decoration: none;
     font-weight: bold;
     color: black;
 }
 
-ul
-{
+ul {
     padding: 0;
     list-style: none;
     vertical-align: middle;
 }
 
-.app-name // App name in header or on login page on mobile devices
-{
+// App name in header or on login page on mobile devices
+.app-name {
     font-size: 1.5em;
     color: $fox-red;
 }
 
-@media screen and (min-width: $tablet-breakpoint)
-{
-    .container-fluid.content
-    {
+// Add margin on desktop devices
+@media screen and (min-width: $tablet-breakpoint){
+    .content {
         margin-top: 10vh;
     }
 }
 
-table
-{
-    width: 100%;
-    text-align: center;
-}
-
-td
-{
-    padding: 0.4em;
-    min-width: 1em;
-}
-
-th 
-{
-    font-weight: normal;
-    padding: 0.4em;
-    text-align: center;
-}
-
 
 // On mobile devices, remove the padding set by bootstrap
-@media screen and (max-width: $mobile-breakpoint - 1px)
-{
-    .col-xs-12
-    {
+@media screen and (max-width: $mobile-breakpoint - 1px){
+    .col-xs-12 {
         padding: 0;
     }
 }
 
-
-// ************************************************** Action bar
-.actions
-{
-    width: 100%;
-}
-
-@media screen and (min-width: $tablet-breakpoint)
-{
-    .actions
-    {
-        text-align: right;
-        padding-right: 2%;
-        margin-bottom: 2vh;
-    }
-}
-
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
-    .actions
-    {
-        height: $action-bar-mobile-height;
-        line-height: $action-bar-mobile-height;
-
-        button
-        {
-            line-height: 1.5em;
-        }
-
-    }
-}
 
 // *********************************************** Imports
 
@@ -147,6 +91,7 @@ th
 @import "dropdown.scss";
 @import "header.scss";
 @import "navbar.scss";
+@import "action-buttons.scss";
 @import "login.scss";
 @import "alarms.scss";
 @import "imageplayer.scss";
@@ -164,20 +109,17 @@ th
 }
 
 // Bootstrap needs the .panel class for accordions, but this class adds a big margin
-.accordion-item
-{
+.accordion-item {
     margin-bottom: 0;
 }
 
-.padding 
-{
+.padding {
     padding: 0 5%;
 }
 
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
-    .main-element
-    {
+    .main-element {
         height: 100vh - $navbar-tablet-height - $action-bar-mobile-height - $header-height - 4vh;
         overflow: scroll;
     }
@@ -185,44 +127,36 @@ th
 
 @media screen and (max-width: $mobile-breakpoint - 1px)
 {
-    .main-element
-    {
+    .main-element {
         height: 100vh - $navbar-mobile-height - $action-bar-mobile-height - 1vh;
     }
 
 }
 
 
-.tabs
-{
+.tabs {
 
     margin-bottom: 15px;
 
-    li 
-    {
+    li {
         display: inline-block;
         padding: 5px 10px;
     }
 
-    li:hover
-    {
+    li:hover {
         cursor: pointer;
     }
 
-    .active
-    {
+    .active {
         border-bottom: solid $fox-red 3px;
         color: $fox-red;
     }
 }
 
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
-    .tabs
-    {
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    .tabs {
         width: 100%;
-        li 
-        {
+        li {
             width: 50%;
             text-align: center;
         }

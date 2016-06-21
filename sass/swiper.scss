@@ -1,5 +1,4 @@
-.swiper
-{
+.swiper {
     border: solid $fox-gray 1px;
     overflow-x: hidden;
     width: 100%;
@@ -7,24 +6,19 @@
     height: 100%;
 }
 
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
-    .swiper
-    {
+@media screen and (max-width: $tablet-breakpoint - 1px) {
+    .swiper {
         height: 100vh - $header-height - $action-bar-mobile-height - 8vh - $navbar-tablet-height;
     }
 }
 
-@media screen and (max-width: $mobile-breakpoint - 1px)
-{
-    .swiper
-    {
+@media screen and (max-width: $mobile-breakpoint - 1px) {
+    .swiper {
         height: 100vh - $action-bar-mobile-height - $navbar-mobile-height - 5vh;
     }
 }
 
-.slides-container
-{
+.slides-container {
     height: 100%;
     position: relative;
 }
@@ -38,33 +32,28 @@
     font-size: 1.3em;
     position: relative;
 
-    .imageplayer, .liveplayer
-    {
+    .imageplayer, .liveplayer {
         height: 70%;
         text-align: center;
 
-        .imagecanvas, img
-        {
+        .imagecanvas, img {
             text-align: center;
             height: 80%;
             width: auto;
         }
 
-        .play_controller
-        {
+        .play_controller {
             height: 20%;
         } 
     }
 
 
 
-    ul
-    {
+    ul {
         position: absolute;
         bottom: 0;
         padding: 5%;
-        li
-        {
+        li {
             text-indent: 0.2em;
             line-height: 1.3em;     
         }

@@ -1,32 +1,46 @@
-.table
-{
+
+/**
+  * Scrollable wrapper div for tables
+  */ 
+.table-container {
+
+    // Scrollable div
     max-height: 60vh;
     overflow-y: scroll;
 
-    thead
-    {
-        border-top: solid $fox-red 2px;
-        border-bottom: solid $fox-red 2px;
-    }
+    table {
+        width: 100%;
+        text-align: center;
 
-    tbody
-    {
+        thead {
+            border-top: solid $fox-red 2px;
+            border-bottom: solid $fox-red 2px;
 
-        .lineheader
-        {
-            display: none;
+            th {
+                font-weight: normal;
+                padding: 0.4em;
+                text-align: center; // Necessary to overwrite bootstrap default
+            }
+
         }
 
-        tr:nth-child(even)
-        {
-            background-color: $fox-light-gray;
+        tbody {
+
+            td {
+                padding: 0.4em;
+                min-width: 1em;
+            }
+
+            tr:nth-child(even){
+                background-color: $fox-light-gray;
+            }
+
+            tr:hover {
+                background-color: $fox-light-gray;
+                cursor: pointer;
+            }
         }
 
-        tr:hover
-        {
-            background-color: $fox-light-gray;
-            cursor: pointer;
-        }
     }
 
 }

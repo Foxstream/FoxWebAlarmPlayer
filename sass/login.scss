@@ -1,23 +1,18 @@
 // Specific style rules for the login page
 
-@media screen and (min-width: $tablet-breakpoint)
-{
-    .foxstream-header
-    {
+@media screen and (min-width: $tablet-breakpoint){
+    .foxstream-header {
         display: none;
     }
 }
 
 
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
-    .foxstream-header
-    {
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    .foxstream-header {
         margin-top: 10vh;
         text-align: center;
 
-        img 
-        {
+        img {
             margin-bottom: 5vh;
         }
 

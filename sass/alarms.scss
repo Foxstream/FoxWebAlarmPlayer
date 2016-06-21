@@ -1,23 +1,19 @@
 // Desktop
-@media screen and (min-width: $tablet-breakpoint)
-{
+@media screen and (min-width: $tablet-breakpoint){
 
-    .alarmtable
-    {
-        tbody
-        {
+    .alarmtable {
+
+        tbody {
             
-            tr.active
-            {
+            tr.active {
 
                 background-color: $fox-gray;
                 color: white;
-                .glyphicon { 
+                .glyphicon {
                     visibility: visible;
                     color: $fox-red;
                 }
-                button
-                {
+                button {
                     background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
                     color: white;
                     border: none;
@@ -27,12 +23,10 @@
         }
 
         // Hide columns that should only be visible on mobile devices
-        .glyphicon
-        {
+        .glyphicon {
             visibility: hidden;
         }
-        .drop, .video
-        {
+        .drop, .video {
             display: none;
         }
 
@@ -40,23 +34,16 @@
 
 }
 
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
+@media screen and (max-width: $tablet-breakpoint - 1px){
 
-    .alarmlist
-    {
+    .alarmlist {
 
-        ul 
-        {
-            
-        }
-        li
-        {
+        li {
             display: inline-block;
             width: 100%;
             border: solid $fox-gray 1px;
             padding: 2vh 5vw;
-            font-size: 1.4em;
+            font-size: 1.2em;
             font-weight: bold;
         }
     }

@@ -1,5 +1,4 @@
-@mixin transform($transform)
-{
+@mixin transform($transform){
     transform: $transform;
     -ms-transform: $transform; /* IE 9 */
     -webkit-transform: $transform; /* Safari and Chrome */
