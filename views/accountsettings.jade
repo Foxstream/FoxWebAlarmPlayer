@@ -9,18 +9,22 @@ block content
 
 		div(class='settings-menu', ng-show="showMenu && device !== 'desktop'")
 			ul
-				li
-					a(href='#', ng-click='showMenu = false')
-						span Paramètres du compte
-				li
-					a(href='/serverview')
-						span Serveurs
-				li
-					a(href='/userview')
-						span Utilisateurs
-				li
-					a(href='/logout')
-						span Déconnexion
+				li(class="panel")
+					h5
+						a(href='#', ng-click='showMenu = false', class="block-header")
+							span Paramètres du compte
+				li(class="panel")
+					h5
+						a(href='/serverview', class="block-header")
+							span Serveurs
+				li(class="panel")
+					h5
+						a(href='/userview', class="block-header")
+							span Utilisateurs
+				li(class="panel")
+					h5
+						a(href='/logout', class="block-header")
+							span Déconnexion
 
 		div(ng-show="device === 'desktop' || !showMenu")
 			//- Mobile buttons 

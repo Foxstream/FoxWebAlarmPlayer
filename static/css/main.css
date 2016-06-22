@@ -442,13 +442,6 @@ nav {
     width: auto; } }
 .settings-menu {
   margin-top: 2vh; }
-  .settings-menu li a {
-    display: inline-block;
-    width: 100%;
-    border: solid #788493 1px;
-    padding: 2vh 5vw;
-    font-size: 1.4em;
-    font-weight: bold; }
 
 .tabs {
   margin-bottom: 15px; }
