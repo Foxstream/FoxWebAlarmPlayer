@@ -78,7 +78,7 @@ block content
                       id='alarm-{{ x.id }}'
                       ng-class="{active: x.id==currentalarm.id}")
                         td(class='check')
-                          input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)')
+                          input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
                         td(class='play')
                           span(class='glyphicon glyphicon-play')
                         td(class='date')

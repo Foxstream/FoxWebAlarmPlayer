@@ -131,7 +131,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             return $scope.getNotHandledAlarms();
         }
     };
-    
+
 
     $scope.getNotHandledAlarms = function(){
         return $scope.alarms.filter(function(a){
@@ -189,7 +189,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if ($scope.isSelectedAll){
             $scope.selected = [];
         } else {
-            $scope.alarms.forEach(function(a){
+            $scope.getNotHandledAlarms().forEach(function(a){
                 if ($scope.selected.indexOf(a.id) < 0){
                     $scope.selected.push(a.id);
                 }
