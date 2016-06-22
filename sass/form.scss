@@ -32,6 +32,11 @@ button {
     padding: 0;
     min-width: 7em;
     line-height: 1.5em;
+    outline: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 

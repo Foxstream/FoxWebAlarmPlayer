@@ -4,33 +4,33 @@
        border:2px outset $fox-gray;
 }
 
+#play_controller {
+    text-align: center;
 
-// NOT SUPPORTED BY IE 9
-// #play_controller .osd
-// {
-//     display: flex;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     align-content: flex-start;
-//     align-items: flex-start;
-
-//     button
-//     {
-//         flex-grow: 1;
-//         flex-basis: 1px;
-//     }
-// }
-
-#play_controller .osd {
-    width: 100%;
-    button
-    {
-        width: 20%;
-        min-width: 20%;
-        border: solid $fox-gray 1px;
-        margin: 2.5%;
+    button {
+        width: auto;
+        min-width: 0;
+        padding: 0 10px;
+        border: none;
+        background: transparent;
+        font-size: 1.5em;
     }
+
+    button#osd {
+        position: absolute;
+        right: 30px;
+    }
+
+    .progress {
+        margin: 0;
+        background: none;
+
+        .progress-bar {
+            background-color: $fox-red;
+        }
+
+    }
+
 }
 
 
