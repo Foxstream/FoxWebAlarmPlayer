@@ -15,11 +15,12 @@ block content
                     ng-show='selectedcamera !== undefined') Retour
         
 
+        //- 
         div(class='col-xs-12 col-lg-6', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")
-            div(ng-repeat='(site, cams) in cameras track by $index' class='panel accordion-item')
+            div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
-                    class="drop", data-parent='#camera-list') {{ site }}
+                    class="block-header", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
                     div(ng-repeat='c in cams | orderBy: "id" track by $index',

@@ -1,9 +1,15 @@
+/**
+  * Page header
+  * Contains the Foxstream logo, app name and connection errors
+  */
+
 header {
     position: relative;
     height: $header-height;
     line-height: $header-height;
     vertical-align: middle;
 
+    // Foxstream logo
     img {
         display: inline-block;
         height: 90%;
@@ -27,7 +33,7 @@ header {
         left: 50%;
         @include transform(translate(-50%, -50%));
 
-        .alert.alert-danger {
+        .error {
             width: 50vw;
             line-height: 0;
             margin: 1% 0;

@@ -1,4 +1,3 @@
-
 /**
   * Scrollable wrapper div for tables
   */ 
@@ -31,19 +30,21 @@
                 min-width: 1em;
             }
 
-            tr:nth-child(even){
-                background-color: $fox-light-gray;
-            }
-
-            tr:hover {
-                background-color: $fox-light-gray;
-                cursor: pointer;
-            }
         }
 
     }
 
 }
 
+/* Line colors 
+   Not applied in .table-container, because these rules would 
+   be too specific to be overwritten elsewhere (i.e. alarmtable) */
+tr:nth-child(even){
+    background-color: $fox-light-gray;
+}
 
+tbody tr:hover {
+    background-color: $fox-light-gray;
+    cursor: pointer;
+}
 

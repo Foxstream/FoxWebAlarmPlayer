@@ -1,5 +1,5 @@
 /*
-********************************************** SASS variables
+**************************************************************** SASS variables
 */
 
 // ------------------------------------------   Colors
@@ -26,9 +26,8 @@ $action-bar-mobile-height: 10vh;
 $main-element-size: 70vh;
 
 
-
 /*
-********************************************** Main rules
+**************************************************************** Main rules
 */
 
 html {
@@ -73,7 +72,6 @@ ul {
     }
 }
 
-
 // On mobile devices, remove the padding set by bootstrap
 @media screen and (max-width: $mobile-breakpoint - 1px){
     .col-xs-12 {
@@ -81,14 +79,37 @@ ul {
     }
 }
 
+/* Main elements on mobile devices : 
+   should be exactily big enough to fit on page */
+@media screen and (max-width: $tablet-breakpoint - 1px)
+{
+    .main-element {
+        height: 100vh 
+            - $navbar-tablet-height 
+            - $action-bar-mobile-height 
+            - $header-height 
+            - 4vh;
+        overflow: scroll;
+    }
+}
 
-// *********************************************** Imports
+@media screen and (max-width: $mobile-breakpoint - 1px)
+{
+    .main-element {
+        height: 100vh
+            - $navbar-mobile-height
+            - $action-bar-mobile-height
+            - 1vh;
+    }
+}
 
+/*
+**************************************************************** Imports
+*/
 @import "mixins.scss";
 @import "swiper.scss";
 @import "form.scss";
 @import "table.scss";
-@import "dropdown.scss";
 @import "header.scss";
 @import "navbar.scss";
 @import "action-buttons.scss";
@@ -98,22 +119,4 @@ ul {
 @import "live.scss";
 @import "settings.scss";
 @import "tabs.scss";
-
-
-
-// Main elements on mobile : should be exactily big enough to fit on page
-@media screen and (max-width: $tablet-breakpoint - 1px)
-{
-    .main-element {
-        height: 100vh - $navbar-tablet-height - $action-bar-mobile-height - $header-height - 4vh;
-        overflow: scroll;
-    }
-}
-
-@media screen and (max-width: $mobile-breakpoint - 1px)
-{
-    .main-element {
-        height: 100vh - $navbar-mobile-height - $action-bar-mobile-height - 1vh;
-    }
-
-}
+@import "block-header.scss";

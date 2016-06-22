@@ -22,7 +22,7 @@ html
         header(class='hidden-xs')
           img(src='/static/img/logo-foxstream.gif')
           div(ng-controller='servercontroller' class="connection-errors")
-              div(ng-repeat='x in servers | filter: {connected: false}' class="alert alert-danger")
+              div(ng-repeat='x in servers | filter: {connected: false}' class="error")
                 span Connexion au serveur {{x.description }} ({{x.address}}) impossible
           h1(class='app-name') FoxWebAlarmPlayer
 

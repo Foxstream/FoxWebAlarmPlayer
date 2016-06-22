@@ -7,7 +7,7 @@ block content
 
   div(class='container-fluid')
 
-      div(ng-controller='usercontroller')  
+      div(ng-controller='usercontroller')
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
@@ -20,7 +20,7 @@ block content
             button(ng-click='currentUser=undefined', class="button-secondary", ng-show="currentUser !== undefined") Annuler
             button(ng-click='addCurrentUser()', class="button-primary", ng-show="currentUser !== undefined") Valider
 
-        div(class="table usertable hidden-xs hidden-sm", ng-show="currentUser === undefined")
+        div(class="table-container hidden-xs hidden-sm", ng-show="currentUser === undefined")
           table
             thead
               tr
@@ -43,11 +43,13 @@ block content
                 td
                     button(ng-click='deleteUser(x.id)', title='Delete user',  class="button-primary") Supprimer
 
+
+
         div(class="userlist main-element hidden-md hidden-lg" id="alarmlist", ng-show="currentUser === undefined")
-            div(ng-repeat='x in users', class='panel accordion-item')
+            div(ng-repeat='x in users', class='panel block-header')
               h5 
                 a(href='#collapse{{$index}}', data-toggle='collapse',
-                class="drop", data-parent='#alarmlist') {{ x.login }}
+                class="block-header", data-parent='#alarmlist') {{ x.login }}
               div(id='collapse{{ $index }}', class='collapse')
                 form
                   .form-group

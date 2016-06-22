@@ -1,8 +1,8 @@
 /*
-********************************************** SASS variables
+**************************************************************** SASS variables
 */
 /*
-********************************************** Main rules
+**************************************************************** Main rules
 */
 html {
   overflow: hidden; }
@@ -38,6 +38,18 @@ ul {
 @media screen and (max-width: 767px) {
   .col-xs-12 {
     padding: 0; } }
+/* Main elements on mobile devices : 
+   should be exactily big enough to fit on page */
+@media screen and (max-width: 991px) {
+  .main-element {
+    height: 68vh;
+    overflow: scroll; } }
+@media screen and (max-width: 767px) {
+  .main-element {
+    height: 79vh; } }
+/*
+**************************************************************** Imports
+*/
 .swiper {
   border: solid #788493 1px;
   overflow-x: hidden;
@@ -157,20 +169,21 @@ button.button-secondary {
     .table-container table tbody td {
       padding: 0.4em;
       min-width: 1em; }
-    .table-container table tbody tr:nth-child(even) {
-      background-color: #c8d4d9; }
-    .table-container table tbody tr:hover {
-      background-color: #c8d4d9;
-      cursor: pointer; }
 
-.drop {
-  display: inline-block;
-  width: 100%;
-  border: solid #788493 1px;
-  padding: 2vh 5vw;
-  font-size: 1.4em;
-  font-weight: bold; }
+/* Line colors 
+   Not applied in .table-container, because these rules would 
+   be too specific to be overwritten elsewhere (i.e. alarmtable) */
+tr:nth-child(even) {
+  background-color: #c8d4d9; }
 
+tbody tr:hover {
+  background-color: #c8d4d9;
+  cursor: pointer; }
+
+/**
+  * Page header
+  * Contains the Foxstream logo, app name and connection errors
+  */
 header {
   position: relative;
   height: 12vh;
@@ -202,7 +215,7 @@ header {
     /* Opera */
     -moz-transform: translate(-50%, -50%);
     /* Firefox */ }
-    header .connection-errors .alert.alert-danger {
+    header .connection-errors .error {
       width: 50vw;
       line-height: 0;
       margin: 1% 0;
@@ -361,28 +374,18 @@ nav {
     .foxstream-header img {
       margin-bottom: 5vh; } }
 @media screen and (min-width: 992px) {
+  .alarmtable tbody .glyphicon {
+    visibility: hidden;
+    color: #e44333; }
   .alarmtable tbody tr.active {
     background-color: #788493;
     color: white; }
     .alarmtable tbody tr.active .glyphicon {
-      visibility: visible;
-      color: #e44333; }
+      visibility: visible; }
     .alarmtable tbody tr.active button {
       background: linear-gradient(0deg, #cf3c2d, #ff6151);
       color: white;
-      border: none; }
-  .alarmtable .glyphicon {
-    visibility: hidden; }
-  .alarmtable .drop, .alarmtable .video {
-    display: none; } }
-@media screen and (max-width: 991px) {
-  .alarmlist li {
-    display: inline-block;
-    width: 100%;
-    border: solid #788493 1px;
-    padding: 2vh 5vw;
-    font-size: 1.2em;
-    font-weight: bold; } }
+      border: none; } }
 .imagecanvas {
   width: 100%;
   height: auto;
@@ -455,12 +458,22 @@ nav {
     .tabs li {
       width: 50%;
       text-align: center; } }
-@media screen and (max-width: 991px) {
-  .main-element {
-    height: 68vh;
-    overflow: scroll; } }
-@media screen and (max-width: 767px) {
-  .main-element {
-    height: 79vh; } }
+/**
+  * alarm date, site name in liveviewer, ...
+  * Apply this class on h* elements for example
+  * No margin is defined here : if needed, the bootstrap class "panel"
+  * should be used on the parent element
+  */
+.block-header {
+  display: inline-block;
+  width: 100%;
+  border: solid #788493 1px;
+  padding: 2vh 5vw;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.panel {
+  margin-bottom: 2px;
+  border: none; }
 
 /*# sourceMappingURL=main.css.map */

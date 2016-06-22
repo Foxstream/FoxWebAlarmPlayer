@@ -1,18 +1,27 @@
-// Desktop
+// Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
 
     .alarmtable {
 
         tbody {
+
+            // Play icon
+            .glyphicon {
+                visibility: hidden;
+                color: $fox-red;
+            }
             
+            // Selected alarm
             tr.active {
 
                 background-color: $fox-gray;
                 color: white;
+
+                // Show the play icon
                 .glyphicon {
                     visibility: visible;
-                    color: $fox-red;
                 }
+
                 button {
                     background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
                     color: white;
@@ -22,30 +31,6 @@
 
         }
 
-        // Hide columns that should only be visible on mobile devices
-        .glyphicon {
-            visibility: hidden;
-        }
-        .drop, .video {
-            display: none;
-        }
-
-    }
-
-}
-
-@media screen and (max-width: $tablet-breakpoint - 1px){
-
-    .alarmlist {
-
-        li {
-            display: inline-block;
-            width: 100%;
-            border: solid $fox-gray 1px;
-            padding: 2vh 5vw;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
     }
 
 }
