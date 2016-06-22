@@ -18,8 +18,8 @@ block content
                     ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
             button(class='button-secondary back',
                 ng-show='currentalarm != undefined',
-                ng-click='currentalarm = undefined') 
-                span(class="glyphicon glyphicon-chevron-left") 
+                ng-click='currentalarm = undefined')
+                span(class="glyphicon glyphicon-chevron-left")
                 span Liste
             button(class='button-primary',
                 ng-show='currentalarm != undefined',
