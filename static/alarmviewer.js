@@ -35,7 +35,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.currentalarm = undefined;
     $scope.selected = [];
     $scope.isSelectedAll = false;
+    $scope.device = device;
     $scope.alarms = [];
+
+    // Tab system
+    $scope.tab = 'notHandled';
 
     alarmdb.getalarms(function(data){
         $scope.alarms = data;
