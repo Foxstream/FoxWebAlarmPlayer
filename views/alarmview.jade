@@ -16,9 +16,11 @@ block content
             button(class='button-primary full-width',
                     ng-click='handleall()',
                     ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
-            button(class='button-secondary',
+            button(class='button-secondary back',
                 ng-show='currentalarm != undefined',
-                ng-click='currentalarm = undefined') Retour
+                ng-click='currentalarm = undefined') 
+                span(class="glyphicon glyphicon-chevron-left") 
+                span Liste
             button(class='button-primary',
                 ng-show='currentalarm != undefined',
                 ng-click='markcurrentashandled($event)') Acquitter
@@ -36,6 +38,10 @@ block content
                         ng-click='handleall()',
                         ng-show='getNotHandledAlarms().length > 0') Tout acquitter
 
+
+
+
+            //- Alarm table (desktop devices)
             div(class='table-container alarmtable hidden-sm hidden-xs')
               table
                   thead
@@ -72,7 +78,7 @@ block content
 
 
 
-            //- Alarm list, for mobile devices
+            //- Alarm list (mobile devices)
             div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
                 li(ng-show='getNotHandledAlarms().length === 0', class="block-header") Aucune alarme
@@ -81,6 +87,9 @@ block content
             swiper(class="hidden-md hidden-lg",
                     ng-show='currentalarm !== undefined')
       
+
+
+        //- Video player
         div(class='col-xs-12 col-md-5 desktop-video-player hidden-xs hidden-sm')
             div(class='h6')
                 span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})

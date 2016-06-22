@@ -12,7 +12,9 @@ block content
         div(class='actions hidden-lg hidden-md')
             button(class='button-secondary',
                     ng-click='selectedcamera = undefined',
-                    ng-show='selectedcamera !== undefined') Retour
+                    ng-show='selectedcamera !== undefined')
+                    span(class="glyphicon glyphicon-chevron-left") 
+                    span Retour
         
 
         div(class='col-xs-12 col-lg-6 main-element', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")

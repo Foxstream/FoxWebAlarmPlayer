@@ -15,7 +15,9 @@ block content
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
-            button(class="button-secondary" ng-click='back()', ng-show="currentUser === undefined") Retour
+            button(class="button-secondary" ng-click='back()', ng-show="currentUser === undefined")
+              span(class="glyphicon glyphicon-chevron-left") 
+              span Paramètres
             button(class="button-primary", ng-click='currentUser=""', ng-show='currentUser === undefined') Ajouter
             button(ng-click='currentUser=undefined', class="button-secondary", ng-show="currentUser !== undefined") Annuler
             button(ng-click='addCurrentUser()', class="button-primary", ng-show="currentUser !== undefined") Valider

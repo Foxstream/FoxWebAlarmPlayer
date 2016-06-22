@@ -16,7 +16,9 @@ block content
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
-            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined && serversForm.$pristine") Retour
+            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined && serversForm.$pristine")
+                span(class="glyphicon glyphicon-chevron-left") 
+                span Paramètres
             button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined && serversForm.$pristine') Ajouter
 
             button(class="button-secondary", ng-click='currentServer=undefined;serverMsg=undefined', ng-show="currentServer !== undefined") Annuler
