@@ -158,7 +158,7 @@ button.button-secondary {
   * Scrollable wrapper div for tables
   */
 .table-container {
-  max-height: 60vh;
+  max-height: 50vh;
   overflow-y: scroll; }
   .table-container table {
     width: 100%;
@@ -170,9 +170,11 @@ button.button-secondary {
         font-weight: normal;
         padding: 0.4em;
         text-align: center; }
-    .table-container table tbody td {
-      padding: 0.4em;
-      min-width: 1em; }
+    .table-container table tbody tr {
+      height: 2.5em; }
+      .table-container table tbody tr td {
+        padding: 0.4em;
+        min-width: 1em; }
 
 /* Line colors 
    Not applied in .table-container, because these rules would 

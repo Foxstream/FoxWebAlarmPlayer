@@ -4,7 +4,7 @@
 .table-container {
 
     // Scrollable div
-    max-height: 60vh;
+    max-height: 50vh;
     overflow-y: scroll;
 
     table {
@@ -25,9 +25,14 @@
 
         tbody {
 
-            td {
-                padding: 0.4em;
-                min-width: 1em;
+            tr {
+                height: 2.5em;
+
+                td {
+                    padding: 0.4em;
+                    min-width: 1em;
+                }
+
             }
 
         }
