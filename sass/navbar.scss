@@ -41,6 +41,7 @@ nav {
                 position: relative;
 
                 i.glyphicon {
+                    display: inline-block;
                     font-size: $navbar-tablet-height / 3;
                     position: absolute;
                     top: 20%;

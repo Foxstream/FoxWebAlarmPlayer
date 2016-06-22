@@ -250,6 +250,7 @@ nav {
         font-weight: bold;
         position: relative; }
         nav ul li i.glyphicon {
+          display: inline-block;
           font-size: 2vh;
           position: absolute;
           top: 20%;
@@ -441,7 +442,12 @@ nav {
     height: 20vh;
     width: auto; } }
 .settings-menu {
-  margin-top: 2vh; }
+  margin-top: 2vh;
+  color: #e44333; }
+  .settings-menu .block-header {
+    background-color: #c8d4d9; }
+  .settings-menu .glyphicon {
+    margin-right: 15px; }
 
 .tabs {
   margin-bottom: 15px; }

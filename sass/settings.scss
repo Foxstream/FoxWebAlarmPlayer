@@ -1,5 +1,14 @@
 // Settings menu displayed
 .settings-menu {
     margin-top: 2vh;
+    color: $fox-red;
+
+    .block-header {
+        background-color: $fox-light-gray;
+    }
+
+    .glyphicon {
+        margin-right: 15px;
+    }
 
 }
