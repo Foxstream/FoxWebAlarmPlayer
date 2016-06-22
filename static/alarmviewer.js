@@ -93,12 +93,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getNextAlarm = function(){
         var nextAlarm;
-        var displayedAlarms;
-        if ($scope.tab === 'notHandled'){
-            displayedAlarms = $scope.getNotHandledAlarms();
-        } else {
-            displayedAlarms = $scope.alarms;
-        }
+        var displayedAlarms = $scope.getDisplayedAlarms();
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -114,12 +109,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getPreviousAlarm = function(){
         var previousAlarm;
-        var displayedAlarms;
-        if ($scope.tab === 'notHandled'){
-            displayedAlarms = $scope.getNotHandledAlarms();
-        } else {
-            displayedAlarms = $scope.alarms;
-        }
+        var displayedAlarms = $scope.getDisplayedAlarms();
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -133,6 +123,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
     };
 
+
+    $scope.getDisplayedAlarms = function(){
+        if ($scope.tab === 'allAlarms'){
+            return $scope.alarms;
+        } else if ($scope.tab === 'notHandled'){
+            return $scope.getNotHandledAlarms();
+        }
+    };
+    
 
     $scope.getNotHandledAlarms = function(){
         return $scope.alarms.filter(function(a){

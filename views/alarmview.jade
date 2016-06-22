@@ -51,49 +51,10 @@ block content
                         ng-show='getNotHandledAlarms().length > 0') Tout acquitter
 
 
-            //- ------------------------------------- Alarm table (desktop devices) - Not handled
-
-            div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'notHandled'")
-              table
-                  thead
-                    tr
-                      th(class='check') 
-                        input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
-                      th(class='play')
-                      th(class='date') Date
-                      th(class='camera') Caméra
-                      th(class='site') Site
-                      th(class='handle')
-                    tbody
-                      tr(ng-show='getNotHandledAlarms().length === 0') 
-                        td
-                        td Aucune alarme
-                        td
-                        td
-                        td
-                        td
-                      tr(ng-repeat='x in alarms | filter: {handled:0} | orderBy: "-timestamp"', 
-                      ng-click='playalarm(x.id)'
-                      id='alarm-{{ x.id }}'
-                      ng-class="{active: x.id==currentalarm.id}")
-                        td(class='check')
-                          input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)')
-                        td(class='play')
-                          span(class='glyphicon glyphicon-play')
-                        td(class='date')
-                           {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-                        td(class='camera') {{ x.cameraname }}
-                        td(class='site') {{ x.sitename }}
-                        td(class='handle')
-                          button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
-
-
-
-
 
             //- --------------------------------------- Alarm table (desktop devices) - all alarms
 
-            div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'allAlarms'")
+            div(class='table-container alarmtable hidden-sm hidden-xs')
               table
                   thead
                     tr
@@ -105,14 +66,14 @@ block content
                       th(class='site') Site
                       th(class='handle')
                     tbody
-                      tr(ng-show='getNotHandledAlarms().length === 0') 
+                      tr(ng-show='getDisplayedAlarms().length === 0') 
                         td
                         td Aucune alarme
                         td
                         td
                         td
                         td
-                      tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
+                      tr(ng-repeat='x in getDisplayedAlarms() | orderBy: "-timestamp"', 
                       ng-click='playalarm(x.id)'
                       id='alarm-{{ x.id }}'
                       ng-class="{active: x.id==currentalarm.id}")
