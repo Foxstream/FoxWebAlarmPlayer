@@ -52,8 +52,8 @@ block content
 
 
             //- ----------------------------------------------- Alarm table (desktop devices)
-            
-            div(class='table-container alarmtable hidden-sm hidden-xs')
+
+            div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'notHandled'")
               table
                   thead
                     tr
@@ -63,7 +63,7 @@ block content
                       th(class='date') Date
                       th(class='camera') Caméra
                       th(class='site') Site
-                      th(class='handle') 
+                      th(class='handle')
                     tbody
                       tr(ng-show='getNotHandledAlarms().length === 0') 
                         td
@@ -86,6 +86,45 @@ block content
                         td(class='site') {{ x.sitename }}
                         td(class='handle')
                           button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+
+
+            div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'allAlarms'")
+              table
+                  thead
+                    tr
+                      th(class='check') 
+                        input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
+                      th(class='play')
+                      th(class='date') Date
+                      th(class='camera') Caméra
+                      th(class='site') Site
+                      th(class='handle')
+                    tbody
+                      tr(ng-show='getNotHandledAlarms().length === 0') 
+                        td
+                        td Aucune alarme
+                        td
+                        td
+                        td
+                        td
+                      tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
+                      ng-click='playalarm(x.id)'
+                      id='alarm-{{ x.id }}'
+                      ng-class="{active: x.id==currentalarm.id}")
+                        td(class='check')
+                          input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)')
+                        td(class='play')
+                          span(class='glyphicon glyphicon-play')
+                        td(class='date')
+                           {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                        td(class='camera') {{ x.cameraname }}
+                        td(class='site') {{ x.sitename }}
+                        td(class='handle')
+                          button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                          span(ng-show="x.handled") Acquittée
+
+
+
 
 
 
