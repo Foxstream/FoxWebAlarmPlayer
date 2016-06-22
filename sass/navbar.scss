@@ -48,16 +48,19 @@ nav {
                     @include transform(translate(-50%));
                 }
 
-
+                // Text (the "a" tag contains the text and the icon)
                 .link {
+                    display: inline-block;
                     line-height: normal;
                     position: absolute;
+                    // Centered link
                     left: 50%;
                     @include transform(translate(-50%));
                     bottom: 10%;
                 }
 
             }
+
             li.active a {
                 color: $fox-red;
             }
@@ -81,7 +84,6 @@ nav {
 @media screen and (max-width: ($mobile-breakpoint - 1px)){
     nav {
         height: $navbar-mobile-height;
-        // max-height: $navbar-tablet-height;
         ul {
             height: $navbar-mobile-height;
             line-height: $navbar-mobile-height;

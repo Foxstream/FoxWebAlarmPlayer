@@ -7,20 +7,20 @@ block content
 
 	div(class='container-fluid content', ng-controller='accountController')
 
-		div(class='menu-mobile', ng-show="showMenu && device !== 'desktop'")
+		div(class='settings-menu', ng-show="showMenu && device !== 'desktop'")
 			ul
 				li
 					a(href='#', ng-click='showMenu = false')
-						span(class='link') Paramètres du compte
+						span Paramètres du compte
 				li
 					a(href='/serverview')
-						span(class='link') Serveurs
+						span Serveurs
 				li
 					a(href='/userview')
-						span(class='link') Utilisateurs
+						span Utilisateurs
 				li
 					a(href='/logout')
-						span(class='link') Déconnexion
+						span Déconnexion
 
 		div(ng-show="device === 'desktop' || !showMenu")
 			//- Mobile buttons 

@@ -8,13 +8,20 @@
 
 @media screen and (max-width: $tablet-breakpoint - 1px) {
     .swiper {
-        height: 100vh - $header-height - $action-bar-mobile-height - 8vh - $navbar-tablet-height;
+        height: 100vh 
+            - $header-height 
+            - $action-bar-mobile-height 
+            - 8vh 
+            - $navbar-tablet-height;
     }
 }
 
 @media screen and (max-width: $mobile-breakpoint - 1px) {
     .swiper {
-        height: 100vh - $action-bar-mobile-height - $navbar-mobile-height - 5vh;
+        height: 100vh 
+            - $action-bar-mobile-height 
+            - $navbar-mobile-height 
+            - 5vh;
     }
 }
 

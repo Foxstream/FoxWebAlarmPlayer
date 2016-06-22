@@ -264,6 +264,7 @@ nav {
           -moz-transform: translate(-50%);
           /* Firefox */ }
         nav ul li .link {
+          display: inline-block;
           line-height: normal;
           position: absolute;
           left: 50%;
@@ -364,15 +365,15 @@ nav {
     line-height: 10vh; }
     .actions button {
       line-height: 1.5em; } }
-@media screen and (min-width: 992px) {
-  .foxstream-header {
-    display: none; } }
-@media screen and (max-width: 991px) {
-  .foxstream-header {
-    margin-top: 10vh;
-    text-align: center; }
-    .foxstream-header img {
-      margin-bottom: 5vh; } }
+/**
+  * Specific style rules for the login page
+  */
+.foxstream-header {
+  margin-top: 10vh;
+  text-align: center; }
+  .foxstream-header img {
+    margin-bottom: 5vh; }
+
 @media screen and (min-width: 992px) {
   .alarmtable tbody .glyphicon {
     visibility: hidden;
@@ -431,9 +432,9 @@ nav {
     display: inline-block;
     height: 20vh;
     width: auto; } }
-.menu-mobile {
+.settings-menu {
   margin-top: 2vh; }
-  .menu-mobile li a {
+  .settings-menu li a {
     display: inline-block;
     width: 100%;
     border: solid #788493 1px;

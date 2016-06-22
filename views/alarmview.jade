@@ -73,7 +73,7 @@ block content
 
 
             //- Alarm list, for mobile devices
-            div(class="alarmlist main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
+            div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
                 li(ng-show='getNotHandledAlarms().length === 0', class="block-header") Aucune alarme
                 li(ng-repeat="x in  alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}

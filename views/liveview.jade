@@ -15,8 +15,7 @@ block content
                     ng-show='selectedcamera !== undefined') Retour
         
 
-        //- 
-        div(class='col-xs-12 col-lg-6', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")
+        div(class='col-xs-12 col-lg-6 main-element', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',

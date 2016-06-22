@@ -16,17 +16,6 @@
         width: 25vh;
     }
 
-    .camera-name {
-      // position: absolute;
-      // bottom: 2%;
-      // left: 50%;
-      // @include transform(translate(-50%));
-      // padding: 1% 4%;
-      // border-radius: 15%;
-      // background-color: rgba($fox-red, 0.5);
-      // color: white;
-    }
-
     .camera-image:hover {
         cursor: pointer;
         font-weight: bold;
@@ -64,19 +53,5 @@
         }
     }
 }
-
-// @media screen and (max-width: $tablet-breakpoint - 1px)
-// {
-//     .liveplayer
-//     {
-//         img
-//         {
-//             position: relative;
-//             left: 50%;
-//             @include transform(translate(-50%));
-//         }
-//     }
-// }
-
 
 
