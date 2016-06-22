@@ -51,7 +51,7 @@ block content
                         ng-show='getNotHandledAlarms().length > 0') Tout acquitter
 
 
-            //- ----------------------------------------------- Alarm table (desktop devices)
+            //- ------------------------------------- Alarm table (desktop devices) - Not handled
 
             div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'notHandled'")
               table
@@ -87,6 +87,11 @@ block content
                         td(class='handle')
                           button(ng-click='markashandled(x.id, $event)', ng-show='x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
 
+
+
+
+
+            //- --------------------------------------- Alarm table (desktop devices) - all alarms
 
             div(class='table-container alarmtable hidden-sm hidden-xs', ng-show="tab === 'allAlarms'")
               table
