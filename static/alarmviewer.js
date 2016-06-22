@@ -1,4 +1,3 @@
-
 app.filter('asdate', function (){
    function zerofill(v)
    {
@@ -46,7 +45,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
         $scope.currentalarm = selectedAlarm;
-    }
+    };
         
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
@@ -65,7 +64,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.markcurrentashandled = function($event){
         $scope.markashandled($scope.currentalarm.id, $event);
-    }
+    };
 
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
@@ -262,7 +261,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             scope.currentIdx = 0;
             scope.showOsd = true;
             scope.playing = true;
-            console.debug(scope.alarm);
 
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
