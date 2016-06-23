@@ -1,6 +1,7 @@
 .tabs {
 
-    margin-bottom: 15px;
+    margin-bottom: $tabs-margin-bottom;
+    height: $tabs-height;
 
     li {
         display: inline-block;

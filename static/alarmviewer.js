@@ -151,7 +151,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.handleall = function(callback){
         // Copy the alarm list to avoid handling new alarms
         var alarms = [];
-        $scope.alarms.forEach(function(a){
+        $scope.getNotHandledAlarms().forEach(function(a){
             alarms.push(a);
         });
         if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
@@ -197,8 +197,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
         $scope.isSelectedAll = !($scope.isSelectedAll);
     };
-
-
 
 
     var alarmUpdate = function(event, data){

@@ -42,11 +42,11 @@ ul {
    should be exactily big enough to fit on page */
 @media screen and (max-width: 991px) {
   .main-element {
-    height: 68vh;
+    height: 62vh;
     overflow: scroll; } }
 @media screen and (max-width: 767px) {
   .main-element {
-    height: 79vh; } }
+    height: 73vh; } }
 /*
 **************************************************************** Imports
 */
@@ -467,7 +467,8 @@ nav {
     margin-right: 15px; }
 
 .tabs {
-  margin-bottom: 15px; }
+  margin-bottom: 1vh;
+  height: 5vh; }
   .tabs li {
     display: inline-block;
     padding: 5px 10px; }

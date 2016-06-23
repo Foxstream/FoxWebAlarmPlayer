@@ -97,8 +97,8 @@ block content
             //- ------------------------------------------------------- Alarm list (mobile devices)
             div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
-                li(ng-show='getNotHandledAlarms().length === 0', class="block-header") Aucune alarme
-                li(ng-repeat="x in  alarms | filter: {handled:0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
+                li(ng-show='getDisplayedAlarms().length === 0', class="block-header") Aucune alarme
+                li(ng-repeat="x in getDisplayedAlarms() | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
 
 
 

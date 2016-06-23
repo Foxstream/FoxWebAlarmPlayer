@@ -17,11 +17,15 @@ $mobile-breakpoint: 768px;
 // ------------------------------------------  Fonts
 
 // ------------------------------------------  Main elements sizes
+// Keeping everything as a variable helps defining other element sizes,
+// see .main-element below
 $header-height: 12vh; 
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 10vh;
 $navbar-tablet-height: 6vh;
 $action-bar-mobile-height: 10vh;
+$tabs-height: 5vh;
+$tabs-margin-bottom: 1vh;
 // Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
 
@@ -88,6 +92,8 @@ ul {
             - $navbar-tablet-height 
             - $action-bar-mobile-height 
             - $header-height 
+            - $tabs-height
+            - $tabs-margin-bottom
             - 4vh;
         overflow: scroll;
     }
@@ -99,6 +105,8 @@ ul {
         height: 100vh
             - $navbar-mobile-height
             - $action-bar-mobile-height
+            - $tabs-height
+            - $tabs-margin-bottom
             - 1vh;
     }
 }
