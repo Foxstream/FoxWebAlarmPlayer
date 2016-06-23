@@ -289,6 +289,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
             scope.nextImage = function (){
                 if(scope.alarm && scope.alarm.nbimages)
+                    // scope.currentIdx = 1;
                     scope.currentIdx = (scope.currentIdx + 1) % scope.alarm.nbimages;
             };
 

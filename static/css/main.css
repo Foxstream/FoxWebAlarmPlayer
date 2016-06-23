@@ -427,7 +427,16 @@ nav {
     margin: 0;
     background: none; }
     #play_controller .progress .progress-bar {
-      background-color: #788493; }
+      background-color: #788493;
+      transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      /* IE 9 */
+      -webkit-transform: translateZ(0);
+      /* Safari and Chrome */
+      -o-transform: translateZ(0);
+      /* Opera */
+      -moz-transform: translateZ(0);
+      /* Firefox */ }
 
 @media screen and (max-width: 991px) {
   .imageplayer {
