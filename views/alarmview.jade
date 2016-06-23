@@ -23,7 +23,7 @@ block content
                 span(class="glyphicon glyphicon-chevron-left")
                 span Liste
             button(class='button-primary',
-                ng-show='currentalarm != undefined',
+                ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                 ng-click='markcurrentashandled($event)') Acquitter
        
 

@@ -238,7 +238,7 @@ app.directive('swiper', function(){
 
             scope.$watchCollection('alarms', function(){  
                  if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
+                    var position = scope.getDisplayedAlarms().map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
@@ -251,7 +251,7 @@ app.directive('swiper', function(){
 
             scope.$watch('currentalarm', function(){
                 if (scope.currentalarm !== undefined){
-                    var position = scope.getNotHandledAlarms().map(function(a){
+                    var position = scope.getDisplayedAlarms().map(function(a){
                         return a.id;
                     }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
@@ -263,7 +263,7 @@ app.directive('swiper', function(){
             });
 
         }
-    }
+    };
 
 });
 
