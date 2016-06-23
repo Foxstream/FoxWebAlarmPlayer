@@ -280,7 +280,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             scope.loading = false;
             scope.currentIdx = 0;
             scope.showOsd = true;
-            scope.playing = true;
+            scope.playing = false;
 
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
@@ -301,6 +301,11 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                     scope.nextImage();
                 }
             }, 500);
+
+            $interval(function () { 
+                if (scope.playing)
+                    console.log('I am playing alarm ', scope.alarm.id);
+            }, 10000);
 		  
             scope.$watch('alarm', function (newVal, oldVal){
                 if (newVal === oldVal) return;
