@@ -306,7 +306,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (newVal === oldVal) return;
                 scope.playing = false;
                 scope.loading = true;
-                if (scope.isVisible){
+                if (scope.isvisible){
                     console.log('Loading images');
                     LoadImages($http, newVal, function () {
                         $timeout(function () {
