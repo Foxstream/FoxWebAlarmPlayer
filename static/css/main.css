@@ -402,6 +402,9 @@ nav {
       background: linear-gradient(0deg, #cf3c2d, #ff6151);
       color: white;
       border: none; } }
+.not-handled {
+  color: #e44333; }
+
 .imagecanvas {
   width: 100%;
   height: auto;

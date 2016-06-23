@@ -98,7 +98,7 @@ block content
             div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
               ul
                 li(ng-show='getDisplayedAlarms().length === 0', class="block-header") Aucune alarme
-                li(ng-repeat="x in getDisplayedAlarms() | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
+                li(ng-repeat="x in getDisplayedAlarms() | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
 
 
 
@@ -114,7 +114,7 @@ block content
             div(class='h6')
                 span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                 span(ng-show='currentalarm==undefined') No alarm selected
-            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', currentalarm='currentalarm')
+            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
                     
 
 

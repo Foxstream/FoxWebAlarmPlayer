@@ -16,7 +16,7 @@
                 return function (data) {
                     alarm.Images[idx].OSD = data;                    
                     dataLoaded();
-                }
+                };
             }(i)).error(dataLoaded);
         }        
     }

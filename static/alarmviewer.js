@@ -272,7 +272,7 @@ app.directive('swiper', function(){
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
 	  restrict: 'E', 
-	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", playing: "@", currentalarm: "="},
+	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", isvisible: "="},
 	  replace: true,
 	  templateUrl: '/imageplayer',
 	  link: function(scope, elem, attrs){
@@ -284,38 +284,60 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
-            }
+            };
 
             scope.nextImage = function (){
                 if(scope.alarm && scope.alarm.nbimages)
                     scope.currentIdx = (scope.currentIdx + 1) % scope.alarm.nbimages;
-            }
+            };
+
             scope.prevImage = function () {
                 if (scope.alarm && scope.alarm.nbimages)
                     scope.currentIdx = (scope.currentIdx - 1 + scope.alarm.nbimages) % scope.alarm.nbimages;
-            }
+            };
 
             $interval(function () { 
-                if (scope.playing && scope.currentalarm && scope.alarm && scope.currentalarm.id === scope.alarm.id){
-                    scope.nextImage(); 
+                if (scope.playing && scope.alarm){
+                    scope.nextImage();
                 }
             }, 500);
 		  
             scope.$watch('alarm', function (newVal, oldVal){
-               if (newVal === oldVal) return;
-               scope.playing = false;
-               scope.loading = true;
-                LoadImages($http, newVal, function () {
-                    $timeout(function () {
-                        scope.loading = false;
-                        scope.playing = true;
-                        scope.currentIdx = 0;
-                        console.debug(scope.playing)
-                    }, 0);
-               });
-		  });
-	  }
-  };
+                if (newVal === oldVal) return;
+                scope.playing = false;
+                scope.loading = true;
+                if (scope.isVisible){
+                    console.log('Loading images');
+                    LoadImages($http, newVal, function () {
+                        $timeout(function () {
+                            scope.loading = false;
+                            scope.playing = true;
+                            scope.currentIdx = 0;
+                        }, 0);
+                    });
+                }
+            });
+
+            scope.$watch('isvisible', function (newVal, oldVal){
+                if (!scope.alarm || newVal === oldVal) return;
+                if (newVal){
+                    scope.playing = false;
+                    scope.loading = true;
+                    LoadImages($http, scope.alarm, function () {
+                        $timeout(function () {
+                            scope.loading = false;
+                            scope.playing = true;
+                            scope.currentIdx = 0;
+                        }, 0);
+                    });
+                } else { // Stop playing
+                    scope.playing = false;
+                }
+            });
+
+        }
+
+    };
 }]);
 
 app.directive('imagewithosd', function(){
