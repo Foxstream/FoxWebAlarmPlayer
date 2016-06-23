@@ -281,6 +281,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             scope.currentIdx = 0;
             scope.showOsd = true;
             scope.playing = false;
+            scope.interval;
 
             scope.toggleOsd = function () {
                 scope.showOsd = !scope.showOsd;
@@ -296,16 +297,16 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                     scope.currentIdx = (scope.currentIdx - 1 + scope.alarm.nbimages) % scope.alarm.nbimages;
             };
 
-            $interval(function () { 
-                if (scope.playing && scope.alarm){
-                    scope.nextImage();
+            scope.$watch('playing', function(newVal, oldVal){
+                if (newVal === oldVal) return;
+                if (newVal){
+                    scope.interval = $interval(function () { 
+                        scope.nextImage();
+                    }, 500);
+                } else {
+                    $interval.cancel(scope.interval);
                 }
-            }, 500);
-
-            $interval(function () { 
-                if (scope.playing)
-                    console.log('I am playing alarm ', scope.alarm.id);
-            }, 10000);
+            });
 		  
             scope.$watch('alarm', function (newVal, oldVal){
                 if (newVal === oldVal) return;
