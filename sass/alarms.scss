@@ -1,6 +1,14 @@
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
 
+
+    .filter {
+        margin-bottom: 15px;
+        * {
+            margin-right: 5%;
+        }
+    }
+
     .alarmtable {
 
         tbody {

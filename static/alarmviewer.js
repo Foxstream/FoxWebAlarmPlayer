@@ -126,7 +126,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getDisplayedAlarms = function(){
         if ($scope.tab === 'allAlarms'){
-            return $scope.alarms;
+            return $scope.alarms.filter(function(a){
+                var yesterday = new Date(Date.now() - 86400000) / 1000;
+                return a.timestamp > yesterday;
+            });
         } else if ($scope.tab === 'notHandled'){
             return $scope.getNotHandledAlarms();
         }
