@@ -396,3 +396,15 @@ app.directive('imagewithosd', function(){
   };
 });
 
+app.directive('dateinput', function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<input type="date" class="form-control">',
+        link: function(scope, elem, attrs){
+            var date = new Date();
+            elem.val(('0000' + date.getFullYear()).slice(-4) + '-' + ('00' + (date.getMonth() + 1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));
+        }
+    };
+});
+
