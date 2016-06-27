@@ -21,7 +21,7 @@ app.factory('alarmdb', ['$http','$rootScope',
     			.error(function(){callback(null);});				
         };
 
-        obj.getNotHandledAlarms = function(callback){
+        obj.getNewAlarms = function(callback){
             $http.get("/controller/alarms/")
                 .success(callback)
                 .error(function(){callback(null);});
@@ -43,37 +43,40 @@ app.controller('tabcontroller', ["$scope", function($scope){
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
     
-    $scope.currentalarm = undefined;
-    $scope.selected = [];
-    $scope.isSelectedAll = false;
+
     $scope.device = device;
 
 
-    alarmdb.getNotHandledAlarms(function(data){
-        $scope.notHandledAlarms = data;
-        console.log('\nNot Handled alarms', $scope.notHandledAlarms);
-    });
-    alarmdb.getAlarms("Foxstream ", function(data){
-        $scope.filteredAlarms = data;
-        console.log('\nFiltered alarms', $scope.filteredAlarms);
+    $scope.currentalarm = undefined;
+    $scope.selected = [];
+    $scope.isSelectedAll = false;
+
+
+    alarmdb.getNewAlarms(function(data){
+        $scope.alarms = data;
     });
 
-    var date = new Date();
-    date.setHours(0,0,0,0);
-    console.log(date);
-    $scope.filters = {
-        date: true,
-        dateValue: date,
-        sites: {
-            "Foxstream": true,
-            "Site": false
-        }
-    };
+    // alarmdb.getAlarms("Foxstream ", function(data){
+    //     $scope.filteredAlarms = data;
+    //     console.log('\nFiltered alarms', $scope.filteredAlarms);
+    // });
+
+    // var date = new Date();
+    // date.setHours(0,0,0,0);
+    // console.log(date);
+    // $scope.filters = {
+    //     date: true,
+    //     dateValue: date,
+    //     sites: {
+    //         "Foxstream": true,
+    //         "Site": false
+    //     }
+    // };
 
 
     $scope.playalarm = function(alarmid){
-        var pos = $scope.getDisplayedAlarms().map(function(e){ return e.id; }).indexOf(alarmid);
-        var selectedAlarm = (pos==-1) ? undefined : $scope.getDisplayedAlarms()[pos];
+        var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
+        var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
         $scope.currentalarm = selectedAlarm;
     };
         
@@ -82,7 +85,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
                 var previousAlarm = $scope.getPreviousAlarm();
                 if (previousAlarm !== -1){
-                    $scope.currentalarm = $scope.getDisplayedAlarms()[previousAlarm];
+                    $scope.currentalarm = $scope.alarms[previousAlarm];
                 } else {
                     $scope.currentalarm = undefined;
                 }
@@ -100,7 +103,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
         if (nextAlarm !== -1){
-            var alarmid = $scope.getDisplayedAlarms()[nextAlarm].id;
+            var alarmid = $scope.alarms[nextAlarm].id;
             $scope.playalarm(alarmid);
         }
     };
@@ -108,13 +111,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.showpreviousalarm = function(){
         var previousAlarm = $scope.getPreviousAlarm();
         if (previousAlarm !== -1){
-            var alarmid = $scope.getDisplayedAlarms()[previousAlarm].id;
+            var alarmid = $scope.alarms[previousAlarm].id;
             $scope.playalarm(alarmid);
         }
     };
 
     $scope.getNextAlarm = function(){
-        var displayedAlarms = $scope.getDisplayedAlarms();
+        var displayedAlarms = $scope.alarms;
         if (displayedAlarms.length < 2){
             return -1;
         } else {

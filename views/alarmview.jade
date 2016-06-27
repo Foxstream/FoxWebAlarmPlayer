@@ -51,7 +51,7 @@ block content
                           td
                           td
                           td
-                        tr(ng-repeat='x in notHandledAlarms | orderBy: "-timestamp"', 
+                        tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
                         ng-click='playalarm(x.id)'
                         id='alarm-{{ ::x.id }}'
                         ng-class="{active: x.id==currentalarm.id}")
@@ -121,7 +121,7 @@ block content
                           td
                           td
                           td
-                        tr(ng-repeat='x in notHandledAlarms | orderBy: "-timestamp"', 
+                        tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
                         ng-click='playalarm(x.id)'
                         id='alarm-{{ ::x.id }}'
                         ng-class="{active: x.id==currentalarm.id}")
