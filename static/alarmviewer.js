@@ -46,7 +46,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.device = device;
 
-
     $scope.currentalarm = undefined;
     $scope.selected = [];
     $scope.isSelectedAll = false;
@@ -81,7 +80,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
         
     $scope.markashandled = function (alarmId, $event){
-        if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
+        if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Voulez-vous vraiment acquitter cette alarme ?")) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
                 var previousAlarm = $scope.getPreviousAlarm();
                 if (previousAlarm !== -1){
@@ -117,7 +116,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getNextAlarm = function(){
-        var displayedAlarms = $scope.alarms;
+        var displayedAlarms = $scope.getDisplayedAlarms();
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -146,7 +145,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
 
     $scope.handleSelected = function(){
-        if (window.confirm("Êtes-vous sûr de vouloir acquitter " + $scope.selected.length +" alarmes ?")){
+        if (window.confirm("Voulez-vous vraiment acquitter ces " + $scope.selected.length +" alarmes ?")){
             $scope.selected.forEach(function(alarmid){
                 alarmdb.markashandled(alarmid);
             });
@@ -156,7 +155,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.handleall = function(callback){
         // Copy the alarm list to avoid handling new alarms
         var alarms = [];
-        $scope.getNotHandledAlarms().forEach(function(a){
+        $scope.alarms.forEach(function(a){
             alarms.push(a);
         });
         if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
@@ -190,11 +189,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
     };
 
-    $scope.selectAll = function(){
+    $scope.selectall = function(){
         if ($scope.isSelectedAll){
             $scope.selected = [];
         } else {
-            $scope.getNotHandledAlarms().forEach(function(a){
+            $scope.alarms.forEach(function(a){
                 if ($scope.selected.indexOf(a.id) < 0){
                     $scope.selected.push(a.id);
                 }
@@ -204,7 +203,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getDisplayedAlarms = function(){
-        return ($scope.tab === 'notHandled') ? $scope.notHandledAlarms : $scope.filteredAlarms;
+        return $scope.alarms;
     };
 
 
@@ -304,7 +303,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                     scope.currentIdx = (scope.currentIdx + 1) % scope.alarm.nbimages;
             };
 
-            scope.prevImage = function () {
+            scope.prevImage = function (){
                 if (scope.alarm && scope.alarm.nbimages)
                     scope.currentIdx = (scope.currentIdx - 1 + scope.alarm.nbimages) % scope.alarm.nbimages;
             };
@@ -314,6 +313,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (newVal){
                     scope.interval = $interval(function () { 
                         scope.nextImage();
+                        console.log('playing');
                     }, 500);
                 } else {
                     $interval.cancel(scope.interval);
@@ -338,19 +338,19 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
             scope.$watch('isvisible', function (newVal, oldVal){
                 if (!scope.alarm || newVal === oldVal) return;
-                if (newVal){
-                    scope.playing = false;
-                    scope.loading = true;
-                    LoadImages($http, scope.alarm, function () {
-                        $timeout(function () {
-                            scope.loading = false;
-                            scope.playing = true;
-                            scope.currentIdx = 0;
-                        }, 0);
-                    });
-                } else { // Stop playing
-                    scope.playing = false;
-                }
+                    if (newVal){
+                        scope.playing = false;
+                        scope.loading = true;
+                        LoadImages($http, scope.alarm, function () {
+                            $timeout(function () {
+                                scope.loading = false;
+                                scope.playing = true;
+                                scope.currentIdx = 0;
+                            }, 0);
+                        });
+                    } else { // Stop playing
+                        scope.playing = false;
+                    }
             });
 
         }

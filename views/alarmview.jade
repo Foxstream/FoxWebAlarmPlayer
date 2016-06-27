@@ -30,14 +30,13 @@ block content
                             ng-click='handleSelected()',
                             ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
                     button(class='button-primary',
-                            ng-click='handleall()',
-                            ng-show='') Tout acquitter
+                            ng-click='handleall()') Tout acquitter
 
                 table
                   thead
                       tr
                         th(class='check') 
-                          input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
+                          input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                         th(class='play')
                         th(class='date') Date
                         th(class='camera') Caméra
@@ -72,7 +71,7 @@ block content
                 div(class='h6')
                     span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                     span(ng-show='currentalarm==undefined') No alarm selected
-                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
+                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
 
 
         //- Tab 2 - filtered alarms
@@ -86,8 +85,7 @@ block content
                             ng-click='handleSelected()',
                             ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
                     button(class='button-primary',
-                            ng-click='handleall()',
-                            ng-show='') Tout acquitter
+                            ng-click='handleall()') Tout acquitter
 
                 div(class="filter")
                   form(class="form-inline")
@@ -107,7 +105,7 @@ block content
                   thead
                       tr
                         th(class='check') 
-                          input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
+                          input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                         th(class='play')
                         th(class='date') Date
                         th(class='camera') Caméra
@@ -142,7 +140,7 @@ block content
                 div(class='h6')
                     span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                     span(ng-show='currentalarm==undefined') No alarm selected
-                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
+                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
 
 
 
