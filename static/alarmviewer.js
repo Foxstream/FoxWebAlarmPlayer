@@ -14,14 +14,14 @@ app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
     			
-    	obj.getAlarms = function(sitename, callback)
+    	obj.getAlarms = function(callback)
     	{
-    		$http.get("/controller/alarms/" + sitename)
+    		$http.get("/controller/alarms/")
     			.success(callback)
-    			.error(function(){callback(null);});				
+    			.error(function(){callback(null);});
         };
 
-        obj.getNewAlarms = function(callback){
+        obj.getNotHandledAlarms = function(callback){
             $http.get("/controller/alarms/nothandled")
                 .success(callback)
                 .error(function(){callback(null);});
@@ -42,7 +42,6 @@ app.controller('tabcontroller', ["$scope", function($scope){
 
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
-    
 
     $scope.device = device;
 
@@ -50,10 +49,23 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
 
-
-    alarmdb.getNewAlarms(function(data){
-        $scope.alarms = data;
+    $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
+        console.log(newVal)
+        $scope.getAlarms();
     });
+
+    $scope.getAlarms = function(){
+        if ($scope.tabName === 'notHandled'){
+            alarmdb.getNotHandledAlarms(function(data){
+                $scope.alarms = data;
+            });
+        } else if ($scope.tabName === 'filteredAlarms'){
+            alarmdb.getAlarms(function(data){
+                $scope.alarms = data;
+            });
+        }
+        $scope.cancelTabWatcher();
+    };
 
     // alarmdb.getAlarms("Foxstream ", function(data){
     //     $scope.filteredAlarms = data;
@@ -313,7 +325,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (newVal){
                     scope.interval = $interval(function () { 
                         scope.nextImage();
-                        console.log('playing');
                     }, 500);
                 } else {
                     $interval.cancel(scope.interval);

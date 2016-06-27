@@ -20,7 +20,7 @@ block content
 
         //- Tab 1 - not handled alarms
 
-        div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", class="hidden-sm hidden-xs")
+        div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", class="hidden-sm hidden-xs", ng-init="tabName='notHandled'")
 
             div(class='col-md-7')
 
@@ -77,7 +77,7 @@ block content
 
         //- Tab 2 - filtered alarms
 
-        div(class='hidden-sm hidden-xs', ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller')
+        div(class='hidden-sm hidden-xs', ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller', ng-init="tabName='filteredAlarms'")
 
             //- Buttons
             div(class='col-md-7')
@@ -101,6 +101,7 @@ block content
                     label
                       input(type="checkbox", ng-model="filters.sites['Site']")
                       | Site
+                    button(class='button-primary') Appliquer
                 
                 div(class='table-container alarmtable')
                     table
