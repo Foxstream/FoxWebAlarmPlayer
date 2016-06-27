@@ -32,9 +32,6 @@ ul {
   font-size: 1.5em;
   color: #e44333; }
 
-@media screen and (min-width: 992px) {
-  .content {
-    margin-top: 10vh; } }
 @media screen and (max-width: 767px) {
   .col-xs-12 {
     padding: 0; } }

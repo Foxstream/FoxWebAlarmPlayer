@@ -22,7 +22,7 @@ app.factory('alarmdb', ['$http','$rootScope',
         };
 
         obj.getNewAlarms = function(callback){
-            $http.get("/controller/alarms/")
+            $http.get("/controller/alarms/nothandled")
                 .success(callback)
                 .error(function(){callback(null);});
         };

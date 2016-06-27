@@ -51,7 +51,7 @@ block content
                             td
                             td
                             td
-                          tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
+                          tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: "-timestamp"', 
                           ng-click='playalarm(x.id)'
                           id='alarm-{{ ::x.id }}'
                           ng-class="{active: x.id==currentalarm.id}")
