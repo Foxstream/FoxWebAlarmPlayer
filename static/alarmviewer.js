@@ -49,8 +49,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
 
+    var today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+    $scope.filters = {
+        site: 'Site',
+        date: today
+    };
+
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
-        console.log(newVal)
+        console.log(newVal);
         $scope.getAlarms();
     });
 
@@ -66,23 +73,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
         $scope.cancelTabWatcher();
     };
-
-    // alarmdb.getAlarms("Foxstream ", function(data){
-    //     $scope.filteredAlarms = data;
-    //     console.log('\nFiltered alarms', $scope.filteredAlarms);
-    // });
-
-    // var date = new Date();
-    // date.setHours(0,0,0,0);
-    // console.log(date);
-    // $scope.filters = {
-    //     date: true,
-    //     dateValue: date,
-    //     sites: {
-    //         "Foxstream": true,
-    //         "Site": false
-    //     }
-    // };
 
 
     $scope.playalarm = function(alarmid){

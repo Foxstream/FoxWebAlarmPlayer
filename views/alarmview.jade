@@ -90,18 +90,13 @@ block content
 
                 div(class="filter")
                   form(class="form-inline")
-                    label
-                      input(type="checkbox", ng-model="filters.date")
-                      | Date
-                    input(type="date", id="dateField", ng-model="filters.dateValue", class="form-control", ng-disabled='!filters.date')
-                    label Sites :
-                    label
-                      input(type="checkbox", ng-model="filters.sites['Foxstream']")
-                      | Foxstream
-                    label
-                      input(type="checkbox", ng-model="filters.sites['Site']")
-                      | Site
-                    button(class='button-primary') Appliquer
+                      input(type="date", id="dateField", ng-model="filters.date", class="form-control")
+                      label Sites :
+                      select(ng-model='filters.site')
+                        option(value='all') Tous les sites
+                        option(value='Site') Site
+                        option(value='Foxstream ') Foxstream
+                      button(class='button-primary') Appliquer
                 
                 div(class='table-container alarmtable')
                     table
