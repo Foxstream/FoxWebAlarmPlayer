@@ -14,11 +14,17 @@ app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
     			
-    	obj.getalarms=function(callback)
+    	obj.getAlarms = function(sitename, callback)
     	{
-    		$http.get("/controller/alarms/")
+    		$http.get("/controller/alarms/" + sitename)
     			.success(callback)
     			.error(function(){callback(null);});				
+        };
+
+        obj.getNotHandledAlarms = function(callback){
+            $http.get("/controller/alarms/")
+                .success(callback)
+                .error(function(){callback(null);});
         };
             
         obj.markashandled = function (alarmid, callback) {
@@ -30,6 +36,10 @@ app.factory('alarmdb', ['$http','$rootScope',
         return obj;
 }]);
 
+app.controller('tabcontroller', ["$scope", function($scope){
+    $scope.tab = 'notHandled';
+}]);
+
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
     
@@ -37,29 +47,42 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
     $scope.device = device;
-    $scope.alarms = [];
 
-    // Tab system
-    $scope.tab = 'notHandled';
 
-    alarmdb.getalarms(function(data){
-        $scope.alarms = data;
+    alarmdb.getNotHandledAlarms(function(data){
+        $scope.notHandledAlarms = data;
+        console.log('\nNot Handled alarms', $scope.notHandledAlarms);
     });
-    
+    alarmdb.getAlarms("Foxstream ", function(data){
+        $scope.filteredAlarms = data;
+        console.log('\nFiltered alarms', $scope.filteredAlarms);
+    });
+
+    var date = new Date();
+    date.setHours(0,0,0,0);
+    console.log(date);
+    $scope.filters = {
+        date: true,
+        dateValue: date,
+        sites: {
+            "Foxstream": true,
+            "Site": false
+        }
+    };
 
 
     $scope.playalarm = function(alarmid){
-        var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(alarmid);
-        var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
+        var pos = $scope.getDisplayedAlarms().map(function(e){ return e.id; }).indexOf(alarmid);
+        var selectedAlarm = (pos==-1) ? undefined : $scope.getDisplayedAlarms()[pos];
         $scope.currentalarm = selectedAlarm;
     };
         
     $scope.markashandled = function (alarmId, $event){
-        if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
-            if ($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId){
+        if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Are you sure you wat to validate the alarm?")) {
+            if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
                 var previousAlarm = $scope.getPreviousAlarm();
                 if (previousAlarm !== -1){
-                    $scope.currentalarm = $scope.alarms[previousAlarm];
+                    $scope.currentalarm = $scope.getDisplayedAlarms()[previousAlarm];
                 } else {
                     $scope.currentalarm = undefined;
                 }
@@ -74,11 +97,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
 
-
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
         if (nextAlarm !== -1){
-            var alarmid = $scope.alarms[nextAlarm].id;
+            var alarmid = $scope.getDisplayedAlarms()[nextAlarm].id;
             $scope.playalarm(alarmid);
         }
     };
@@ -86,60 +108,37 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.showpreviousalarm = function(){
         var previousAlarm = $scope.getPreviousAlarm();
         if (previousAlarm !== -1){
-            var alarmid = $scope.alarms[previousAlarm].id;
+            var alarmid = $scope.getDisplayedAlarms()[previousAlarm].id;
             $scope.playalarm(alarmid);
         }
     };
 
     $scope.getNextAlarm = function(){
-        var nextAlarm;
         var displayedAlarms = $scope.getDisplayedAlarms();
         if (displayedAlarms.length < 2){
             return -1;
         } else {
             var position = displayedAlarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
             if (position === displayedAlarms.length - 1){
-                nextAlarm = 0;
+                return 0;
             } else {
-                nextAlarm = position + 1;
+                return position + 1;
             }
-            return $scope.alarms.map(function(a){ return a.id; }).indexOf(displayedAlarms[nextAlarm].id);
         }
     };
 
     $scope.getPreviousAlarm = function(){
-        var previousAlarm;
         var displayedAlarms = $scope.getDisplayedAlarms();
         if (displayedAlarms.length < 2){
             return -1;
         } else {
             var position = displayedAlarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
             if (position === 0){
-                previousAlarm = displayedAlarms.length - 1;
+                return displayedAlarms.length - 1;
             } else {
-                previousAlarm = position - 1;
+                return position - 1;
             }
-            return $scope.alarms.map(function(a){ return a.id; }).indexOf(displayedAlarms[previousAlarm].id);
         }
-    };
-
-
-    $scope.getDisplayedAlarms = function(){
-        if ($scope.tab === 'allAlarms'){
-            return $scope.alarms.filter(function(a){
-                var yesterday = new Date(Date.now() - 86400000) / 1000;
-                return a.timestamp > yesterday;
-            });
-        } else if ($scope.tab === 'notHandled'){
-            return $scope.getNotHandledAlarms();
-        }
-    };
-
-
-    $scope.getNotHandledAlarms = function(){
-        return $scope.alarms.filter(function(a){
-            return a.handled === 0;
-        });
     };
 
 
@@ -182,7 +181,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             if ($scope.isSelectedAll) $scope.isSelectedAll = false;
         } else {
             $scope.selected.push(id);
-            if ($scope.selected.length === $scope.alarms.length){
+            if ($scope.selected.length === $scope.getDisplayedAlarms().length){
                 $scope.isSelectedAll = true;
             }
         }
@@ -201,21 +200,25 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.isSelectedAll = !($scope.isSelectedAll);
     };
 
+    $scope.getDisplayedAlarms = function(){
+        return ($scope.tab === 'notHandled') ? $scope.notHandledAlarms : $scope.filteredAlarms;
+    };
+
 
     var alarmUpdate = function(event, data){
-		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
+		var pos = $scope.getDisplayedAlarms().map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
-            if ($scope.currentalarm != undefined && $scope.currentalarm.id == data.id && data.handled != 0){
+            if ($scope.currentalarm !== undefined && $scope.currentalarm.id == data.id && data.handled != 0){
                 $window.alert("Current alarm was marked as handled.");
                 $scope.currentalarm = undefined;
             }
-            $scope.alarms[pos] = data;
+            $scope.getDisplayedAlarms()[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
             }
         }
 		else
-			$scope.alarms.push(data);
+			$scope.getDisplayedAlarms().push(data);
 		
 	};
 
@@ -241,9 +244,10 @@ app.directive('swiper', function(){
 
             scope.$watchCollection('alarms', function(){  
                  if (scope.currentalarm !== undefined){
-                    var position = scope.getDisplayedAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
+                    // var position = scope.getDisplayedAlarms().map(function(a){
+                    //     return a.id;
+                    // }).indexOf(scope.currentalarm.id);
+                    var position = 1;
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"
@@ -254,9 +258,10 @@ app.directive('swiper', function(){
 
             scope.$watch('currentalarm', function(){
                 if (scope.currentalarm !== undefined){
-                    var position = scope.getDisplayedAlarms().map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
+                    // var position = scope.getDisplayedAlarms().map(function(a){
+                    //     return a.id;
+                    // }).indexOf(scope.currentalarm.id);
+                    var position = 1;
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"
@@ -395,16 +400,3 @@ app.directive('imagewithosd', function(){
 	  }
   };
 });
-
-app.directive('dateinput', function(){
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<input type="date" class="form-control">',
-        link: function(scope, elem, attrs){
-            var date = new Date();
-            elem.val(('0000' + date.getFullYear()).slice(-4) + '-' + ('00' + (date.getMonth() + 1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2));
-        }
-    };
-});
-

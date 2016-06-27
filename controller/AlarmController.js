@@ -19,8 +19,22 @@ function applyApp(app)
 				
 		});
     });
+
+    app.get('/controller/alarms/:sitename', auth.IsValidUser, function(req, res){
+        console.log(req.params.sitename);
+        self.AlarmPersistence.getAlarms({sitename:req.params.sitename + ' '}, function (err, data) {
+            console.log(data);
+            if (data)
+                res.json(data);
+            else {
+                res.status(402);
+                res.send(err);
+            }
+            res.end();
+        });
+    });
     
-    app.get('/controller/alarms/handled', auth.IsValidUser, function (req, res) {
+    app.get('/controller/alarms/nothandled', auth.IsValidUser, function (req, res) {
         self.AlarmPersistence.getAlarms({handled:0}, function (err, data) {
             if (data)
                 res.json(data);

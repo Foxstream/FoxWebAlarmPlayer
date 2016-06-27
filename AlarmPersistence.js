@@ -17,12 +17,6 @@ function close()
 {	
 }
 
-var test = function(){
-
-	return true;
-}
-
-test
 
 //return an object which can be used to update the database
 function getDbObject(inputObj)
@@ -192,7 +186,6 @@ function getAlarms(conditions, callback)
             str += "AND " + key + "==$" + key
             cond['$' + key] = val;
         });
-
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
 }
 

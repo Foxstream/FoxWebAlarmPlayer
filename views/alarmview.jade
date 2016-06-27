@@ -6,127 +6,180 @@ block title
 block content
   div(class='container-fluid content')
         
-    div(ng-controller='alarmcontroller')
+    
+    div(ng-controller='tabcontroller')
+        //- ------------------------------------------------------------- Desktop version
 
-        //- ------------------------------------------------------------------- Mobile buttons 
+        //-  Tabs
+        div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
+          ul
+            li(ng-click="tab = 'notHandled'",
+              ng-class="{active: tab==='notHandled'}") Nouvelles alarmes
+            li(ng-click="tab = 'filteredAlarms'",
+              ng-class="{active: tab==='filteredAlarms'}") Toutes les alarmes
 
-        div(class='actions hidden-lg hidden-md')
-            button(class='button-secondary full-width',
-                    ng-click='handleSelected()',
-                    ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-            button(class='button-primary full-width',
-                    ng-click='handleall()',
-                    ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
-            button(class='button-secondary back',
-                ng-show='currentalarm != undefined',
-                ng-click='currentalarm = undefined')
-                span(class="glyphicon glyphicon-chevron-left")
-                span Liste
-            button(class='button-primary',
-                ng-show='currentalarm !== undefined && currentalarm.handled === 0',
-                ng-click='markcurrentashandled($event)') Acquitter
-       
+        //- Tab 1 - not handled alarms
 
+        div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", class="hidden-sm hidden-xs")
 
-        div(class='col-xs-12 col-md-7')
+            div(class='table-container alarmtable col-md-7')
 
-            //- ------------------------------------------------------------------------ Tabs
+                //- Buttons
+                div(class='actions')
+                    button(class='button-secondary',
+                            ng-click='handleSelected()',
+                            ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                    button(class='button-primary',
+                            ng-click='handleall()',
+                            ng-show='') Tout acquitter
 
-            div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
-              ul
-                li(ng-click="tab = 'notHandled'",
-                  ng-class="{active: tab==='notHandled'}") Nouvelles alarmes
-                li(ng-click="tab = 'allAlarms'",
-                  ng-class="{active: tab==='allAlarms'}") Toutes les alarmes
-
-
-            //- ------------------------------------------------------------- Desktop buttons
-
-            div(class='actions hidden-xs hidden-sm')
-                button(class='button-secondary',
-                        ng-click='handleSelected()',
-                        ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-                button(class='button-primary',
-                        ng-click='handleall()',
-                        ng-show='getNotHandledAlarms().length > 0') Tout acquitter
-
-
-            //- ----------------------------------------------------------------------- Filters
-            div(class="filter", ng-show="tab === 'allAlarms'")
-              form(class="form-inline")
-                label(for="date") Date
-                dateinput
-                label Sites :
-                label
-                  input(type="checkbox")
-                  | Foxstream
-                label
-                  input(type="checkbox")
-                  | Site
-
-            //- --------------------------------------- Alarm table (desktop devices) - all alarms
-
-            div(class='table-container alarmtable hidden-sm hidden-xs')
-              table
+                table
                   thead
-                    tr
-                      th(class='check') 
-                        input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
-                      th(class='play')
-                      th(class='date') Date
-                      th(class='camera') Caméra
-                      th(class='site') Site
-                      th(class='handle')
-                    tbody
-                      tr(ng-show='getDisplayedAlarms().length === 0') 
-                        td
-                        td Aucune alarme
-                        td
-                        td
-                        td
-                        td
-                      tr(ng-repeat='x in getDisplayedAlarms() | orderBy: "-timestamp"', 
-                      ng-click='playalarm(x.id)'
-                      id='alarm-{{ ::x.id }}'
-                      ng-class="{active: x.id==currentalarm.id}")
-                        td(class='check')
-                          input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
-                        td(class='play')
-                          span(class='glyphicon glyphicon-play')
-                        td(class='date')
-                           {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-                        td(class='camera') {{ ::x.cameraname }}
-                        td(class='site') {{ ::x.sitename }}
-                        td(class='handle')
-                          button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
-                          span(ng-show="x.handled") Acquittée
+                      tr
+                        th(class='check') 
+                          input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
+                        th(class='play')
+                        th(class='date') Date
+                        th(class='camera') Caméra
+                        th(class='site') Site
+                        th(class='handle')
+                      tbody
+                        tr(ng-show='notHandledAlarms.length === 0') 
+                          td
+                          td Aucune alarme
+                          td
+                          td
+                          td
+                          td
+                        tr(ng-repeat='x in notHandledAlarms | orderBy: "-timestamp"', 
+                        ng-click='playalarm(x.id)'
+                        id='alarm-{{ ::x.id }}'
+                        ng-class="{active: x.id==currentalarm.id}")
+                          td(class='check')
+                            input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
+                          td(class='play')
+                            span(class='glyphicon glyphicon-play')
+                          td(class='date')
+                             {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                          td(class='camera') {{ ::x.cameraname }}
+                          td(class='site') {{ ::x.sitename }}
+                          td(class='handle')
+                            button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                            span(ng-show="x.handled") Acquittée
+
+            //- Video player
+            div(class='col-md-5 desktop-video-player')
+                div(class='h6')
+                    span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                    span(ng-show='currentalarm==undefined') No alarm selected
+                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
+
+
+        //- Tab 2 - filtered alarms
+
+        div(class='hidden-sm hidden-xs', ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller')
+
+            //- Buttons
+            div(class='table-container alarmtable col-md-7')
+                div(class='actions')
+                    button(class='button-secondary',
+                            ng-click='handleSelected()',
+                            ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                    button(class='button-primary',
+                            ng-click='handleall()',
+                            ng-show='') Tout acquitter
+
+                div(class="filter")
+                  form(class="form-inline")
+                    label
+                      input(type="checkbox", ng-model="filters.date")
+                      | Date
+                    input(type="date", id="dateField", ng-model="filters.dateValue", class="form-control", ng-disabled='!filters.date')
+                    label Sites :
+                    label
+                      input(type="checkbox", ng-model="filters.sites['Foxstream']")
+                      | Foxstream
+                    label
+                      input(type="checkbox", ng-model="filters.sites['Site']")
+                      | Site
+
+                table
+                  thead
+                      tr
+                        th(class='check') 
+                          input(type='checkbox' ng-click='selectAll()' ng-checked='isSelectedAll')
+                        th(class='play')
+                        th(class='date') Date
+                        th(class='camera') Caméra
+                        th(class='site') Site
+                        th(class='handle')
+                      tbody
+                        tr(ng-show='notHandledAlarms.length === 0') 
+                          td
+                          td Aucune alarme
+                          td
+                          td
+                          td
+                          td
+                        tr(ng-repeat='x in notHandledAlarms | orderBy: "-timestamp"', 
+                        ng-click='playalarm(x.id)'
+                        id='alarm-{{ ::x.id }}'
+                        ng-class="{active: x.id==currentalarm.id}")
+                          td(class='check')
+                            input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
+                          td(class='play')
+                            span(class='glyphicon glyphicon-play')
+                          td(class='date')
+                             {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                          td(class='camera') {{ ::x.cameraname }}
+                          td(class='site') {{ ::x.sitename }}
+                          td(class='handle')
+                            button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                            span(ng-show="x.handled") Acquittée
+
+            //- Video player
+            div(class='col-md-5 desktop-video-player')
+                div(class='h6')
+                    span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                    span(ng-show='currentalarm==undefined') No alarm selected
+                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
 
 
 
 
 
+    //- ------------------------------------------------------------------- Buttons (mobile version)
 
-            //- ------------------------------------------------------- Alarm list (mobile devices)
-            div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
-              ul
-                li(ng-show='getDisplayedAlarms().length === 0', class="block-header") Aucune alarme
-                li(ng-repeat="x in getDisplayedAlarms() | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
+    //- div(class='actions hidden-lg hidden-md')
+    //-     button(class='button-secondary full-width',
+    //-             ng-click='handleSelected()',
+    //-             ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+    //-     button(class='button-primary full-width',
+    //-             ng-click='handleall()',
+    //-             ng-show='currentalarm === undefined') Tout acquitter
+    //-     button(class='button-secondary back',
+    //-         ng-show='currentalarm != undefined',
+    //-         ng-click='currentalarm = undefined')
+    //-         span(class="glyphicon glyphicon-chevron-left")
+    //-         span Liste
+    //-     button(class='button-primary',
+    //-         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
+    //-         ng-click='markcurrentashandled($event)') Acquitter
+        //- ------------------------------------------------------- Alarm list (mobile devices)
+        //- div(class="main-element hidden-lg hidden-md" ng-show="currentalarm === undefined")
+        //-   ul
+        //-     li(ng-repeat="x in getDisplayedAlarms() | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
 
 
 
-            //- ------------------------------------------------------------------------ Swiper
+        //- ------------------------------------------------------------------------ Swiper
 
-            swiper(class="hidden-md hidden-lg",
-                    ng-show='currentalarm !== undefined')
-      
+        swiper(class="hidden-md hidden-lg",
+                ng-show='currentalarm !== undefined')
+  
 
 
-        //- ------------------------------------------------------ Video player (desktop devices)
-        div(class='col-xs-12 col-md-5 desktop-video-player hidden-xs hidden-sm')
-            div(class='h6')
-                span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
-                span(ng-show='currentalarm==undefined') No alarm selected
-            imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible='true')
+
                     
 
 
