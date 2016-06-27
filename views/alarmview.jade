@@ -143,7 +143,7 @@ block content
                 div(class='h6')
                     span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
                     span(ng-show='currentalarm==undefined') No alarm selected
-                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
+                imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'filteredAlarms'")
 
 
 
