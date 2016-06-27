@@ -16,7 +16,7 @@ app.factory('alarmdb', ['$http','$rootScope',
     			
     	obj.getAlarms = function(callback)
     	{
-    		$http.get("/controller/alarms/")
+    		$http.get("/controller/alarms?sitename=Site%20")
     			.success(callback)
     			.error(function(){callback(null);});
         };
@@ -91,6 +91,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.currentalarm = selectedAlarm;
     };
         
+
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Voulez-vous vraiment acquitter cette alarme ?")) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
@@ -105,6 +106,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
         $event.stopPropagation();
     };
+
 
     $scope.markcurrentashandled = function($event){
         $scope.markashandled($scope.currentalarm.id, $event);

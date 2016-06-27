@@ -183,7 +183,7 @@ function getAlarms(conditions, callback)
     var cond = {};
     if (conditions)
         _.forEach(conditions, function (val, key) {
-            str += "AND " + key + "==$" + key
+            str += "AND " + key + "==$" + key;
             cond['$' + key] = val;
         });
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
