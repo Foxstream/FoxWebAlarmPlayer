@@ -13,6 +13,12 @@ app.filter('asdate', function (){
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
+
+        obj.getSiteList = function(callback){
+            $http.get("/controller/alarms/sitelist")
+                .success(callback)
+                .error(function(){callback(null);});
+        };
     			
     	obj.getAlarms = function(conditions, callback){
             var params = '?';
@@ -55,8 +61,12 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     var today = new Date();
     today.setUTCHours(0, 0, 0, 0);
+    alarmdb.getSiteList(function(data){
+        $scope.sites = data;
+        $scope.sites.unshift('Tous'); 
+    });
     $scope.filters = {
-        sitename: 'all',
+        sitename: 'Tous',
         date: today
     };
 

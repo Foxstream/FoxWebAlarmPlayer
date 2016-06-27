@@ -210,6 +210,10 @@ function markAllAsHandled(callback){
 	this.db.run("UPDATE alarm SET handled=1", callback);
 }
 
+function getSiteList(){
+    return this.siteList;
+}
+
 function deleteAlarmsOlderThan(timestamp, cb)
 {
     var self = this;
@@ -258,6 +262,7 @@ AlarmPersistence.prototype.getAlarm = getAlarm;
 AlarmPersistence.prototype.deleteAlarmsOlderThan = deleteAlarmsOlderThan;
 AlarmPersistence.prototype.deleteAlarm = deleteAlarm;
 AlarmPersistence.prototype.markAllAsHandled = markAllAsHandled;
+AlarmPersistence.prototype.getSiteList = getSiteList;
 
 AlarmPersistence.prototype.getStreamAlarmImage = getStreamAlarmImage;
 

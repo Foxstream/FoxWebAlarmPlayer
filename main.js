@@ -60,7 +60,7 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     websrv.listen(8001);
     console.log('\n\nServer listening on port 8001\n\n');
 
-})
+});
 
 
 
