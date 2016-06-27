@@ -183,9 +183,17 @@ function getAlarms(conditions, callback)
     var cond = {};
     if (conditions)
         _.forEach(conditions, function (val, key) {
-            str += "AND " + key + "==$" + key;
-            cond['$' + key] = val;
+        	if (key !== 'date'){
+        		str += "AND " + key + "==$" + key;
+            	cond['$' + key] = val;
+        	} else {
+        		str += "AND (timestamp BETWEEN $datemin AND $datemax) ";
+        		cond['$datemin'] = val;
+        		cond['$datemax'] = parseInt(val) + 60 * 60 * 24;
+        	}
         });
+   	console.log(str)
+   	console.log(cond);
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
 }
 

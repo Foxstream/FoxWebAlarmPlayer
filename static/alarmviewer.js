@@ -14,9 +14,14 @@ app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
     			
-    	obj.getAlarms = function(callback)
+    	obj.getAlarms = function(conditions, callback)
     	{
-    		$http.get("/controller/alarms?sitename=Site%20")
+            var params = '?';
+            params += 'date=' + conditions.date.getTime() / 1000;
+            if (conditions.sitename !== 'all'){
+                params += '&sitename=' + conditions.sitename;
+            }
+    		$http.get("/controller/alarms" + params)
     			.success(callback)
     			.error(function(){callback(null);});
         };
@@ -52,8 +57,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     var today = new Date();
     today.setUTCHours(0, 0, 0, 0);
     $scope.filters = {
-        site: 'Site',
+        sitename: 'all',
         date: today
+    };
+
+    $scope.applyfilters = function(){
+        alarmdb.getAlarms($scope.filters, function(data){
+            $scope.alarms = data;
+        });
     };
 
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
@@ -67,7 +78,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.alarms = data;
             });
         } else if ($scope.tabName === 'filteredAlarms'){
-            alarmdb.getAlarms(function(data){
+            alarmdb.getAlarms($scope.filters, function(data){
                 $scope.alarms = data;
             });
         }

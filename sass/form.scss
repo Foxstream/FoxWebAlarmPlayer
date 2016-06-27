@@ -25,7 +25,7 @@ input:focus {
 
 
 
-button {
+button, input[type=submit] {
     display: inline-block;
     border-style: solid;
     border-width: 0.2em;
