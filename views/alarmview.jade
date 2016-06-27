@@ -22,7 +22,7 @@ block content
 
         div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", class="hidden-sm hidden-xs")
 
-            div(class='table-container alarmtable col-md-7')
+            div(class='col-md-7')
 
                 //- Buttons
                 div(class='actions')
@@ -32,39 +32,40 @@ block content
                     button(class='button-primary',
                             ng-click='handleall()') Tout acquitter
 
-                table
-                  thead
-                      tr
-                        th(class='check') 
-                          input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
-                        th(class='play')
-                        th(class='date') Date
-                        th(class='camera') Caméra
-                        th(class='site') Site
-                        th(class='handle')
-                      tbody
-                        tr(ng-show='notHandledAlarms.length === 0') 
-                          td
-                          td Aucune alarme
-                          td
-                          td
-                          td
-                          td
-                        tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
-                        ng-click='playalarm(x.id)'
-                        id='alarm-{{ ::x.id }}'
-                        ng-class="{active: x.id==currentalarm.id}")
-                          td(class='check')
-                            input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
-                          td(class='play')
-                            span(class='glyphicon glyphicon-play')
-                          td(class='date')
-                             {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-                          td(class='camera') {{ ::x.cameraname }}
-                          td(class='site') {{ ::x.sitename }}
-                          td(class='handle')
-                            button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
-                            span(ng-show="x.handled") Acquittée
+                div(class='table-container alarmtable')
+                  table
+                    thead
+                        tr
+                          th(class='check') 
+                            input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
+                          th(class='play')
+                          th(class='date') Date
+                          th(class='camera') Caméra
+                          th(class='site') Site
+                          th(class='handle')
+                        tbody
+                          tr(ng-show='notHandledAlarms.length === 0') 
+                            td
+                            td Aucune alarme
+                            td
+                            td
+                            td
+                            td
+                          tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
+                          ng-click='playalarm(x.id)'
+                          id='alarm-{{ ::x.id }}'
+                          ng-class="{active: x.id==currentalarm.id}")
+                            td(class='check')
+                              input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
+                            td(class='play')
+                              span(class='glyphicon glyphicon-play')
+                            td(class='date')
+                               {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                            td(class='camera') {{ ::x.cameraname }}
+                            td(class='site') {{ ::x.sitename }}
+                            td(class='handle')
+                              button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                              span(ng-show="x.handled") Acquittée
 
             //- Video player
             div(class='col-md-5 desktop-video-player')
@@ -79,7 +80,7 @@ block content
         div(class='hidden-sm hidden-xs', ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller')
 
             //- Buttons
-            div(class='table-container alarmtable col-md-7')
+            div(class='col-md-7')
                 div(class='actions')
                     button(class='button-secondary',
                             ng-click='handleSelected()',
@@ -100,40 +101,41 @@ block content
                     label
                       input(type="checkbox", ng-model="filters.sites['Site']")
                       | Site
-
-                table
-                  thead
-                      tr
-                        th(class='check') 
-                          input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
-                        th(class='play')
-                        th(class='date') Date
-                        th(class='camera') Caméra
-                        th(class='site') Site
-                        th(class='handle')
-                      tbody
-                        tr(ng-show='notHandledAlarms.length === 0') 
-                          td
-                          td Aucune alarme
-                          td
-                          td
-                          td
-                          td
-                        tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
-                        ng-click='playalarm(x.id)'
-                        id='alarm-{{ ::x.id }}'
-                        ng-class="{active: x.id==currentalarm.id}")
-                          td(class='check')
-                            input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
-                          td(class='play')
-                            span(class='glyphicon glyphicon-play')
-                          td(class='date')
-                             {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
-                          td(class='camera') {{ ::x.cameraname }}
-                          td(class='site') {{ ::x.sitename }}
-                          td(class='handle')
-                            button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
-                            span(ng-show="x.handled") Acquittée
+                
+                div(class='table-container alarmtable')
+                    table
+                      thead
+                          tr
+                            th(class='check') 
+                              input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
+                            th(class='play')
+                            th(class='date') Date
+                            th(class='camera') Caméra
+                            th(class='site') Site
+                            th(class='handle')
+                          tbody
+                            tr(ng-show='notHandledAlarms.length === 0') 
+                              td
+                              td Aucune alarme
+                              td
+                              td
+                              td
+                              td
+                            tr(ng-repeat='x in alarms | orderBy: "-timestamp"', 
+                            ng-click='playalarm(x.id)'
+                            id='alarm-{{ ::x.id }}'
+                            ng-class="{active: x.id==currentalarm.id}")
+                              td(class='check')
+                                input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
+                              td(class='play')
+                                span(class='glyphicon glyphicon-play')
+                              td(class='date')
+                                 {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                              td(class='camera') {{ ::x.cameraname }}
+                              td(class='site') {{ ::x.sitename }}
+                              td(class='handle')
+                                button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                                span(ng-show="x.handled") Acquittée
 
             //- Video player
             div(class='col-md-5 desktop-video-player')
