@@ -232,6 +232,21 @@ function AlarmPersistence(db, imageFolder)
 	if(!this)return new AlarmPersistence(db, imageFolder);
     this.db = db;
     this.ImageFolder = imageFolder;
+
+    this.siteList = [];
+
+    // Retrieving site list
+    this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
+        if (data){
+            data.forEach((row) => {
+                this.siteList.push(row.sitename);
+            });
+            console.log(this.siteList);
+        } else {
+            process.exit(1);
+        }
+    });
+
 }
 
 AlarmPersistence.prototype.open = open;

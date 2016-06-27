@@ -14,8 +14,7 @@ app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
     			
-    	obj.getAlarms = function(conditions, callback)
-    	{
+    	obj.getAlarms = function(conditions, callback){
             var params = '?';
             params += 'date=' + conditions.date.getTime() / 1000;
             if (conditions.sitename !== 'all'){

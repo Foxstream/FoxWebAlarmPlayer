@@ -6,7 +6,7 @@ var auth = require("./Authenticator.js")
 
 function buildWebServer()
 {    
-    var app = express()
+    var app = express();
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession({

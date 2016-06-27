@@ -29,7 +29,7 @@ var userControler = new UserController(userPers);
 var serverManager = new ServersManager(serverPers, almPers);
 var serverControler = new ServerController(serverManager);
 var liveController = new LiveController(serverManager);
-var alarmRemover = new AlarmRemover(almPers, 60*60*24*7); //7 days
+var alarmRemover = new AlarmRemover(almPers, 60*60*24*7); // 7 days
 
 Auth.ApplyToServer(websrv, userPers);
 WebServer.ApplyMainRoutes(websrv);
@@ -39,7 +39,7 @@ serverControler.ApplyServerRoutes(websrv);
 liveController.ApplyLiveRoutes(websrv);
 AccountSettingsController(websrv, userPers);
 
-var sse=new ServerSideEvent(websrv, "/events");
+var sse = new ServerSideEvent(websrv, "/events");
 
 async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function (err) {
     
@@ -48,7 +48,7 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     
     serverManager.on("alarm", function (alarm) { sse.sendMessage('alarm_create', JSON.stringify(alarm)); });
     serverManager.on("alarm_update", function (alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });    
-    
+
     serverManager.start();
     
     alarmRemover.start();
