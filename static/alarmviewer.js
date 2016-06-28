@@ -19,6 +19,12 @@ app.factory('alarmdb', ['$http','$rootScope',
                 .success(callback)
                 .error(function(){callback(null);});
         };
+
+        obj.getCameraList = function(callback){
+            $http.get("/controller/alarms/cameralist")
+                .success(callback)
+                .error(function(){callback(null);});
+        };
     			
     	obj.getAlarms = function(conditions, callback){
             var params = '?';
@@ -62,10 +68,17 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     var today = new Date();
     today.setUTCHours(0, 0, 0, 0);
+
     alarmdb.getSiteList(function(data){
-        $scope.sites = ["Tous"].concat(Object.keys(data));
+        $scope.sites = ["Tous"].concat(data);
         console.log($scope.sites);
     });
+
+    alarmdb.getCameraList(function(data){
+        $scope.cameras = [{cameraname: "Toutes", site:''}].concat(data);
+        console.log($scope.cameras);
+    });
+
     $scope.filters = {
         sitename: 'Tous',
         date: today,
