@@ -125,8 +125,8 @@ function insertAlarm(alarm, callback)
 {	
 	var dbobj = getDbObject(alarm);
 
-    if (this.siteList.indexOf(dbobj.sitename) == -1){
-        console.log("\n\n\nSite doesn't exist yet")
+    if (this.siteList.indexOf(dbobj.sitename) === -1){
+        console.log("\n\n\nSite " + dbobj.sitename + " doesn't exist yet")
         this.siteList.push(dbobj.sitename);
     }
 	

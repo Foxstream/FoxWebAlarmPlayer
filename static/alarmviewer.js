@@ -235,7 +235,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         return $scope.alarms;
     };
 
-
     var alarmUpdate = function(event, data){
 		var pos = $scope.getDisplayedAlarms().map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
@@ -248,10 +247,32 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
             }
         }
-		else
-			$scope.getDisplayedAlarms().push(data);
+		else {
+            if ($scope.matchesFilters(data)){
+                $scope.alarms.push(data);
+            }
+            if ($scope.sites.indexOf(data.sitename) === -1){
+                console.log("\n\n\nSite " + data.sitename + " doesn't exist yet");
+                $scope.sites.push(data.sitename);
+            }
+        }
 		
 	};
+
+    $scope.matchesFilters = function(alarm){
+        var minDate = $scope.filters.date.getTime() / 1000;
+        var maxDate = minDate + 60 * 60 * 24;
+        var matches = true;
+
+        if (alarm.timestamp < minDate && alarm.timestamp >= maxDate){
+            matches = false;
+        }
+        if ($scope.sitename !== 'Tous' && $scope.sitename !== alarm.sitename){
+            matches = false;
+        }
+
+        return matches;
+    };
 
     var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
