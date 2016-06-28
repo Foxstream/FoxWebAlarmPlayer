@@ -63,13 +63,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     var today = new Date();
     today.setUTCHours(0, 0, 0, 0);
     alarmdb.getSiteList(function(data){
-        $scope.sites = data;
-        $scope.sites.unshift('Tous');
+        $scope.sites = ["Tous"].concat(Object.keys(data));
+        console.log($scope.sites);
     });
     $scope.filters = {
         sitename: 'Tous',
         date: today,
-        camera: '-'
+        camera: ''
     };
 
     $scope.$watch('filters', function(newVal, oldVal){

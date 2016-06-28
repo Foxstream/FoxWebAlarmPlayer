@@ -40,6 +40,10 @@ function applyApp(app)
         res.send(self.AlarmPersistence.getSiteList());
     });
 
+    app.get('/controller/alarms/cameralist', auth.IsValidUser, function(req, res){
+        res.send(self.AlarmPersistence.getCameraList());
+    });
+
     app.get('/controller/alarms/nothandled', auth.IsValidUser, function (req, res) {
         self.AlarmPersistence.getAlarms({handled:0}, function (err, data) {
             if (data)

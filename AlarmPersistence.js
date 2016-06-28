@@ -227,6 +227,10 @@ function getSiteList(){
     return this.siteList;
 }
 
+function getCameraList(){
+    return this.cameraList;
+}
+
 function deleteAlarmsOlderThan(timestamp, cb)
 {
     var self = this;
@@ -250,24 +254,30 @@ function AlarmPersistence(db, imageFolder)
     this.db = db;
     this.ImageFolder = imageFolder;
 
-    this.siteList = {};
+    this.siteList = [];
+    this.cameraList = [];
 
-    // Building a list of all sites and cameras recorded in database
+    // Building lists of sites and cameras
     // Useful for filtering
     this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
         if (data){
             // For each site, let's build a list of cameras
             data.forEach( (s) => {
-                this.db.all("SELECT DISTINCT cameraname FROM alarm WHERE sitename=$sitename", {'$sitename': s.sitename}, (err, cameras) => {
-                    if (cameras){
-                        this.siteList[s.sitename] = [];
-                        cameras.forEach((c) => {
-                            this.siteList[s.sitename].push(c.cameraname);
-                            console.log(this.siteList)
-                        });
-                    }
-                });
+                this.siteList.push(s.sitename);
             });
+            console.log(this.siteList);
+        } else {
+            process.exit(1);
+        }
+    });
+
+    this.db.all("SELECT DISTINCT cameraname, sitename FROM alarm", (err, data) => {
+        if (data){
+            // For each site, let's build a list of cameras
+            data.forEach( (s) => {
+                this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
+            });
+            console.log(this.cameraList);
         } else {
             process.exit(1);
         }
@@ -285,6 +295,7 @@ AlarmPersistence.prototype.deleteAlarmsOlderThan = deleteAlarmsOlderThan;
 AlarmPersistence.prototype.deleteAlarm = deleteAlarm;
 AlarmPersistence.prototype.markAllAsHandled = markAllAsHandled;
 AlarmPersistence.prototype.getSiteList = getSiteList;
+AlarmPersistence.prototype.getCameraList = getCameraList;
 
 AlarmPersistence.prototype.getStreamAlarmImage = getStreamAlarmImage;
 
