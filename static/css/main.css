@@ -390,7 +390,11 @@ nav {
 
 @media screen and (min-width: 992px) {
   .filter {
-    margin-bottom: 15px; }
+    border: solid #788493 1px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 1%;
+    background: #c8d4d9; }
     .filter * {
       margin-right: 5%; }
 

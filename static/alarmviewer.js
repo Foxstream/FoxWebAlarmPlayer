@@ -23,9 +23,10 @@ app.factory('alarmdb', ['$http','$rootScope',
     	obj.getAlarms = function(conditions, callback){
             var params = '?';
             params += 'date=' + conditions.date.getTime() / 1000;
-            if (conditions.sitename !== 'all'){
-                params += '&sitename=' + conditions.sitename;
+            if (conditions.sitename !== 'Tous'){
+                params += '&sitename=' + conditions.sitename.replace(' ', '%20');
             }
+            console.log(params);
     		$http.get("/controller/alarms" + params)
     			.success(callback)
     			.error(function(){callback(null);});
@@ -63,12 +64,16 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     today.setUTCHours(0, 0, 0, 0);
     alarmdb.getSiteList(function(data){
         $scope.sites = data;
-        $scope.sites.unshift('Tous'); 
+        $scope.sites.unshift('Tous');
     });
     $scope.filters = {
         sitename: 'Tous',
         date: today
     };
+
+    $scope.$watch('filters', function(newVal, oldVal){
+        console.log(newVal);
+    }, true);
 
     $scope.applyfilters = function(){
         alarmdb.getAlarms($scope.filters, function(data){

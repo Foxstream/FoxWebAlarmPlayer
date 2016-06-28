@@ -8,7 +8,6 @@ function applyApp(app)
 	var self=this;
 	app.get('/controller/alarms', auth.IsValidUser, function(req, res){
         var conditions = req.query;
-        console.log('controller', req.query)
 		self.AlarmPersistence.getAlarms(conditions, function(err, data){
 			if(data){
 				res.json(data);

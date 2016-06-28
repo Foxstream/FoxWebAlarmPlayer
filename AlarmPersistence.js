@@ -124,6 +124,11 @@ function saveImages(alarm, callback)
 function insertAlarm(alarm, callback)
 {	
 	var dbobj = getDbObject(alarm);
+
+    if (this.siteList.indexOf(dbobj.sitename) == -1){
+        console.log("\n\n\nSite doesn't exist yet")
+        this.siteList.push(dbobj.sitename);
+    }
 	
 	this.db.run("INSERT INTO alarm(timestamp, cameraname, hostname, sitename, handled, nbimages) VALUES($timestamp, $cameraname, $hostname, $sitename, $handled, $nbimages)",
 	dbobj, 
@@ -245,7 +250,7 @@ function AlarmPersistence(db, imageFolder)
             data.forEach((row) => {
                 this.siteList.push(row.sitename);
             });
-            console.log(this.siteList);
+            console.log('\n\n\nSite list', this.siteList);
         } else {
             process.exit(1);
         }

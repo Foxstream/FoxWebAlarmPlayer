@@ -39,8 +39,8 @@ function getConfig()
 			{
 				equipment:
 				{
-					id : data.equipment.$.eqid,	
-					name : data.equipment.$.name,	
+					id : data.equipment.$.eqid,
+					name : data.equipment.$.name,
 					site : data.equipment.$.site,
 					addr : data.equipment.$.addr1 +' '+ data.equipment.$.addr2,
 					city : data.equipment.$.city,
@@ -64,7 +64,7 @@ function getConfig()
 			};
 			
 			self.emit('configReceived', self.Configuration);
-			
+			// console.log(self.Configuration);
 		}
 		else
 			console.log("Invalid config received");
