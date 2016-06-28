@@ -95,7 +95,7 @@ block content
                       select(ng-model='filters.sitename', ng-options="s for s in sites", class="form-control")
                       span(ng-show="filters.sitename !== 'Tous'")
                         label Caméras :
-                        select(ng-model='filters.camera', ng-options="", class="form-control")
+                        select(ng-model='filters.camera', ng-options="c.cameraname for c in cameras | filter: {sitename: filters.sitename}", class="form-control")
                       button(type='submit', class='button-primary') Appliquer
                 
                 div(class='table-container alarmtable')
