@@ -125,9 +125,17 @@ function insertAlarm(alarm, callback)
 {	
 	var dbobj = getDbObject(alarm);
 
-    if (this.siteList.indexOf(dbobj.sitename) === -1){
-        console.log("\n\n\nSite " + dbobj.sitename + " doesn't exist yet")
-        this.siteList.push(dbobj.sitename);
+    // Sitename for new alarm is not recorded in the sitelist
+    if (!this.siteList[dbobj.$sitename]){
+        console.log("\n\n\nSite " + dbobj.$sitename + " doesn't exist yet")
+        this.siteList[dbobj.$sitename] = [dbobj.$cameraname];
+        console.log(this.siteList);
+    }
+    // Camera is not registered 
+    else if (this.siteList[dbobj.$sitename].indexOf(dbobj.$cameraname) === -1){
+        console.log("\n\n\nCamera " + dbobj.$cameraname + " doesn't exist yet");
+        this.siteList[dbobj.$sitename].push(dbobj.$cameraname);
+        console.log(this.siteList);
     }
 	
 	this.db.run("INSERT INTO alarm(timestamp, cameraname, hostname, sitename, handled, nbimages) VALUES($timestamp, $cameraname, $hostname, $sitename, $handled, $nbimages)",
@@ -242,15 +250,24 @@ function AlarmPersistence(db, imageFolder)
     this.db = db;
     this.ImageFolder = imageFolder;
 
-    this.siteList = [];
+    this.siteList = {};
 
-    // Retrieving site list
+    // Building a list of all sites and cameras recorded in database
+    // Useful for filtering
     this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
         if (data){
-            data.forEach((row) => {
-                this.siteList.push(row.sitename);
+            // For each site, let's build a list of cameras
+            data.forEach( (s) => {
+                this.db.all("SELECT DISTINCT cameraname FROM alarm WHERE sitename=$sitename", {'$sitename': s.sitename}, (err, cameras) => {
+                    if (cameras){
+                        this.siteList[s.sitename] = [];
+                        cameras.forEach((c) => {
+                            this.siteList[s.sitename].push(c.cameraname);
+                            console.log(this.siteList)
+                        });
+                    }
+                });
             });
-            console.log('\n\n\nSite list', this.siteList);
         } else {
             process.exit(1);
         }

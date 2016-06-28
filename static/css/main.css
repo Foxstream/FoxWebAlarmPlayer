@@ -396,7 +396,7 @@ nav {
     padding: 1%;
     background: #c8d4d9; }
     .filter * {
-      margin-right: 5%; }
+      margin-right: 2%; }
 
   .alarmtable tbody .glyphicon {
     visibility: hidden;

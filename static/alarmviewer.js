@@ -68,7 +68,8 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     });
     $scope.filters = {
         sitename: 'Tous',
-        date: today
+        date: today,
+        camera: '-'
     };
 
     $scope.$watch('filters', function(newVal, oldVal){
