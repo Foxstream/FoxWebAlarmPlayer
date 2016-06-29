@@ -31,12 +31,12 @@ app.factory('alarmdb', ['$http','$rootScope',
             params += 'date=' + conditions.date.getTime() / 1000;
             if (conditions.sitename !== 'Tous'){
                 params += '&sitename=' + conditions.sitename.replace(' ', '%20');
-                if (conditions.cameraname !== 'Toutes'){
+                if (conditions.camera.cameraname !== 'Toutes'){
                     // conditions.camera = { cameraname: **, sitename: ** }
                     params += '&cameraname=' + conditions.camera.cameraname.replace(' ', '%20');
                 }
             }
-            console.log(params);
+            alert(params);
     		$http.get("/controller/alarms" + params)
     			.success(callback)
     			.error(function(){callback(null);});

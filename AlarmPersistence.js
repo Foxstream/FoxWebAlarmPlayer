@@ -199,7 +199,7 @@ function getAlarms(conditions, callback)
     if (conditions)
         _.forEach(conditions, function (val, key) {
         	if (key !== 'date'){
-        		str += "AND " + key + "==$" + key;
+        		str += " AND " + key + "==$" + key;
             	cond['$' + key] = val;
         	} else {
         		str += "AND (timestamp BETWEEN $datemin AND $datemax) ";
