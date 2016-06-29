@@ -78,16 +78,16 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         console.log($scope.sites);
     });
 
+    $scope.cameras = [{cameraname: 'Toutes', sitename: 'all'}];
     alarmdb.getCameraList(function(data){
-        $scope.cameras = [{cameraname: 'Toutes', sitename: 'all'}].concat(data);
+        $scope.cameras = $scope.cameras.concat(data);
         console.log($scope.cameras);
     });
 
     $scope.filters = {
         sitename: 'Tous',
-        camera: {cameraname: 'Toutes', sitename: 'all'},
-        date: today,
-        camera: ''
+        camera: $scope.cameras[0],
+        date: today
     };
 
     $scope.$watch('filters', function(newVal, oldVal){
@@ -252,6 +252,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getDisplayedAlarms = function(){
         return $scope.alarms;
+    };
+
+    // Used in filter select input
+    // Gets the cameras for the currently selected site
+    $scope.camerasForCurrentSite = function(camera){
+        console.log('yo')
+        return camera.sitename === $scope.filters.sitename || camera.sitename === 'all';
     };
 
     var alarmUpdate = function(event, data){
