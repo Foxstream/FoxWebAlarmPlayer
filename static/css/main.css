@@ -56,10 +56,10 @@ ul {
 
 @media screen and (max-width: 991px) {
   .swiper {
-    height: 64vh; } }
+    height: 59vh; } }
 @media screen and (max-width: 767px) {
   .swiper {
-    height: 75vh; } }
+    height: 70vh; } }
 .slides-container {
   height: 100%;
   position: relative; }
@@ -414,6 +414,24 @@ nav {
 .not-handled {
   color: #e44333; }
 
+@media screen and (max-width: 991px) {
+  .filter {
+    position: absolute;
+    border: solid #788493 1px;
+    border-radius: 10px;
+    background: rgba(200, 212, 217, 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 45vh;
+    width: 80vw;
+    padding: 5% 10%;
+    box-shadow: 1px 1px 1px #566171;
+    text-align: center; }
+    .filter h4 {
+      color: #e44333;
+      margin-top: -10px;
+      margin-bottom: 25px; } }
 .imagecanvas {
   width: 100%;
   height: auto;

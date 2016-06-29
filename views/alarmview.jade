@@ -193,6 +193,22 @@ block content
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') Acquitter
 
+                div(class="filter")
+                    h4 Filtres
+                    form(ng-submit='applyfilters()')
+                      .form-group
+                        label(for="datefield") Date
+                        input(type="date", class="form-control", id="datefield", ng-model="filters.date")
+                      .form-group
+                        label(for="site") Sites :
+                        select(ng-model='filters.sitename', class="form-control", ng-options="s for s in sites", name="site", id="site")
+                            option(value="test", label="yo", selected="selected")
+                      .form-group(ng-show="filters.sitename !== 'Tous'")
+                          label(for="camera") Caméras :
+                          select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
+                      button(type='submit', class='button-primary full-width') Appliquer
+
+
                 div(class="main-element" ng-show="tab === 'filteredAlarms' && currentalarm === undefined")
                     ul
                         li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
