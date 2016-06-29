@@ -5,12 +5,17 @@
     .filter {
         border: solid $fox-gray 1px;
         margin-bottom: 15px;
-        text-align: center;
         padding: 1%;
         background: $fox-light-gray;
         * {
             margin-right: 2%;
         }
+
+        input {
+            width: auto;
+        }
+
+
     }
 
     .alarmtable {

@@ -102,8 +102,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         });
     };
 
+
+    /* When this is run for the first time, ng-init hasn't been run, so we don't know 
+    which tab we're working in yet */
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
-        console.log(newVal);
         $scope.getAlarms();
     });
 
@@ -298,6 +300,17 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         return matches;
     };
 
+    $scope.getNotHandledAlarms = function(){
+        if ($scope.alarms){
+            return $scope.alarms.filter(function(a){
+                return a.handled === 0;
+            });
+        } else {
+            return [];
+        }
+
+    };
+
     var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);
 
@@ -320,10 +333,9 @@ app.directive('swiper', function(){
 
             scope.$watchCollection('alarms', function(){  
                  if (scope.currentalarm !== undefined){
-                    // var position = scope.alarms.map(function(a){
-                    //     return a.id;
-                    // }).indexOf(scope.currentalarm.id);
-                    var position = 1;
+                    var position = scope.alarms.map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"
@@ -334,10 +346,9 @@ app.directive('swiper', function(){
 
             scope.$watch('currentalarm', function(){
                 if (scope.currentalarm !== undefined){
-                    // var position = scope.alarms.map(function(a){
-                    //     return a.id;
-                    // }).indexOf(scope.currentalarm.id);
-                    var position = 1;
+                    var position = scope.alarms.map(function(a){
+                        return a.id;
+                    }).indexOf(scope.currentalarm.id);
                     var offset = -position * 100;
                     $(element).find('.slides-container').animate({
                         left: offset+"%"

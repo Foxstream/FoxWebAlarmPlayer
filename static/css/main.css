@@ -392,11 +392,12 @@ nav {
   .filter {
     border: solid #788493 1px;
     margin-bottom: 15px;
-    text-align: center;
     padding: 1%;
     background: #c8d4d9; }
     .filter * {
       margin-right: 2%; }
+    .filter input {
+      width: auto; }
 
   .alarmtable tbody .glyphicon {
     visibility: hidden;
