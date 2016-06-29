@@ -66,12 +66,13 @@
         background: rgba(200, 212, 217, 0.8);
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        @include transform(translate(-50%, -50%));
         min-height: 45vh;
         width: 80vw;
         padding: 5% 10%;
         box-shadow: 1px 1px 1px $fox-dark-gray;
         text-align: center;
+        z-index: 2000;
 
         h4 {
             color: $fox-red;
@@ -79,6 +80,14 @@
             margin-bottom: 25px;
         }
 
+    }
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        z-index: 1000;
     }
 
 }

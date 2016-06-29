@@ -99,6 +99,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.applyfilters = function(){
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
+            $scope.loading = false;
         });
     };
 
