@@ -36,7 +36,7 @@ app.factory('alarmdb', ['$http','$rootScope',
                     params += '&cameraname=' + conditions.camera.cameraname.replace(' ', '%20');
                 }
             }
-            alert(params);
+            console.log('Request : /controller/alarms' + params);
     		$http.get("/controller/alarms" + params)
     			.success(callback)
     			.error(function(){callback(null);});
@@ -71,7 +71,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.isSelectedAll = false;
 
     var today = new Date();
-    today.setUTCHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
 
     alarmdb.getSiteList(function(data){
         $scope.sites = ["Tous"].concat(data);
@@ -164,7 +164,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getNextAlarm = function(){
-        var displayedAlarms = $scope.getDisplayedAlarms();
+        var displayedAlarms = $scope.alarms;
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -178,7 +178,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getPreviousAlarm = function(){
-        var displayedAlarms = $scope.getDisplayedAlarms();
+        var displayedAlarms = $scope.alarms;
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -231,7 +231,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             if ($scope.isSelectedAll) $scope.isSelectedAll = false;
         } else {
             $scope.selected.push(id);
-            if ($scope.selected.length === $scope.getDisplayedAlarms().length){
+            if ($scope.selected.length === $scope.alarms.length){
                 $scope.isSelectedAll = true;
             }
         }
@@ -250,30 +250,25 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.isSelectedAll = !($scope.isSelectedAll);
     };
 
-    $scope.getDisplayedAlarms = function(){
-        return $scope.alarms;
-    };
-
     // Used in filter select input
     // Gets the cameras for the currently selected site
     $scope.camerasForCurrentSite = function(camera){
-        console.log('yo')
         return camera.sitename === $scope.filters.sitename || camera.sitename === 'all';
     };
 
     var alarmUpdate = function(event, data){
-		var pos = $scope.getDisplayedAlarms().map(function(e) { return e.id; }).indexOf(data.id);
+		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == data.id && data.handled != 0){
                 $window.alert("Current alarm was marked as handled.");
                 $scope.currentalarm = undefined;
             }
-            $scope.getDisplayedAlarms()[pos] = data;
+            $scope.alarms[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
             }
         }
-		else {
+		else { // New alarm
             if ($scope.matchesFilters(data)){
                 $scope.alarms.push(data);
             }
@@ -284,13 +279,18 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.matchesFilters = function(alarm){
         var minDate = $scope.filters.date.getTime() / 1000;
         var maxDate = minDate + 60 * 60 * 24;
+        
         var matches = true;
 
-        if (alarm.timestamp < minDate && alarm.timestamp >= maxDate){
+        if (alarm.timestamp < minDate || alarm.timestamp >= maxDate){
             matches = false;
         }
-        if ($scope.sitename !== 'Tous' && $scope.sitename !== alarm.sitename){
-            matches = false;
+        if ($scope.filters.sitename !== 'Tous'){
+            if ($scope.filters.sitename !== alarm.sitename){
+                matches = false;
+            } else if ($scope.filters.camera.cameraname !== 'Tous' && alarm.cameraname !== $scope.filters.camera.cameraname){
+                matches = false;
+            }
         }
 
         return matches;
@@ -318,7 +318,7 @@ app.directive('swiper', function(){
 
             scope.$watchCollection('alarms', function(){  
                  if (scope.currentalarm !== undefined){
-                    // var position = scope.getDisplayedAlarms().map(function(a){
+                    // var position = scope.alarms.map(function(a){
                     //     return a.id;
                     // }).indexOf(scope.currentalarm.id);
                     var position = 1;
@@ -332,7 +332,7 @@ app.directive('swiper', function(){
 
             scope.$watch('currentalarm', function(){
                 if (scope.currentalarm !== undefined){
-                    // var position = scope.getDisplayedAlarms().map(function(a){
+                    // var position = scope.alarms.map(function(a){
                     //     return a.id;
                     // }).indexOf(scope.currentalarm.id);
                     var position = 1;
