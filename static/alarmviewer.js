@@ -31,6 +31,10 @@ app.factory('alarmdb', ['$http','$rootScope',
             params += 'date=' + conditions.date.getTime() / 1000;
             if (conditions.sitename !== 'Tous'){
                 params += '&sitename=' + conditions.sitename.replace(' ', '%20');
+                if (conditions.cameraname !== 'Toutes'){
+                    // conditions.camera = { cameraname: **, sitename: ** }
+                    params += '&cameraname=' + conditions.camera.cameraname.replace(' ', '%20');
+                }
             }
             console.log(params);
     		$http.get("/controller/alarms" + params)
@@ -75,12 +79,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     });
 
     alarmdb.getCameraList(function(data){
-        $scope.cameras = [{cameraname: "Toutes", site:''}].concat(data);
+        $scope.cameras = [{cameraname: 'Toutes', sitename: 'all'}].concat(data);
         console.log($scope.cameras);
     });
 
     $scope.filters = {
         sitename: 'Tous',
+        camera: {cameraname: 'Toutes', sitename: 'all'},
         date: today,
         camera: ''
     };
@@ -264,10 +269,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 		else {
             if ($scope.matchesFilters(data)){
                 $scope.alarms.push(data);
-            }
-            if ($scope.sites.indexOf(data.sitename) === -1){
-                console.log("\n\n\nSite " + data.sitename + " doesn't exist yet");
-                $scope.sites.push(data.sitename);
             }
         }
 		

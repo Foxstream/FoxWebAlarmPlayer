@@ -93,10 +93,10 @@ block content
                       input(type="date", id="datefield", ng-model="filters.date", class="form-control")
                       label Sites :
                       select(ng-model='filters.sitename', ng-options="s for s in sites", class="form-control")
+                          option(value="test", label="yo", selected="selected")
                       span(ng-show="filters.sitename !== 'Tous'")
                         label Caméras :
-                        select(ng-model='filters.camera', ng-options="c.cameraname for c in cameras | filter: {sitename: filters.sitename}", class="form-control")
-                          option(value='all', selected="selected") 
+                        select(ng-model='filters.camera', ng-options="c.cameraname for c in cameras", class="form-control")
                       button(type='submit', class='button-primary') Appliquer
                 
                 div(class='table-container alarmtable')

@@ -133,7 +133,7 @@ function insertAlarm(alarm, callback)
         console.log('Camera list', this.cameraList);
     }
     // Camera is not registered 
-    if (this.cameraList.indexOf({ cameraname: dbobj.$cameraname, sitename: dbobj.$sitename }) === -1){
+    if (this.cameraList.filter(function(c){ return c.cameraname === dbobj.$cameraname }).length < 1){
         console.log("\n\n\nCamera " + dbobj.$cameraname + " doesn't exist yet");
         this.cameraList.push({ cameraname: dbobj.$cameraname, sitename: dbobj.$sitename });
         console.log('Updated camera list',  this.cameraList);
