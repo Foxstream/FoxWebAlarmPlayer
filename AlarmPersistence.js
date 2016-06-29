@@ -126,16 +126,18 @@ function insertAlarm(alarm, callback)
 	var dbobj = getDbObject(alarm);
 
     // Sitename for new alarm is not recorded in the sitelist
-    if (!this.siteList[dbobj.$sitename]){
+    if (this.siteList.indexOf(dbobj.$sitename) === -1){
         console.log("\n\n\nSite " + dbobj.$sitename + " doesn't exist yet")
-        this.siteList[dbobj.$sitename] = [dbobj.$cameraname];
-        console.log(this.siteList);
+        this.siteList.push(dbobj.$sitename);
+        console.log('Updated site list', this.siteList);
+        console.log('Camera list', this.cameraList);
     }
     // Camera is not registered 
-    else if (this.siteList[dbobj.$sitename].indexOf(dbobj.$cameraname) === -1){
+    if (this.cameraList.indexOf({ cameraname: dbobj.$cameraname, sitename: dbobj.$sitename }) === -1){
         console.log("\n\n\nCamera " + dbobj.$cameraname + " doesn't exist yet");
-        this.siteList[dbobj.$sitename].push(dbobj.$cameraname);
-        console.log(this.siteList);
+        this.cameraList.push({ cameraname: dbobj.$cameraname, sitename: dbobj.$sitename });
+        console.log('Updated camera list',  this.cameraList);
+        console.log('Site list', this.siteList);
     }
 	
 	this.db.run("INSERT INTO alarm(timestamp, cameraname, hostname, sitename, handled, nbimages) VALUES($timestamp, $cameraname, $hostname, $sitename, $handled, $nbimages)",
@@ -265,7 +267,7 @@ function AlarmPersistence(db, imageFolder)
             data.forEach( (s) => {
                 this.siteList.push(s.sitename);
             });
-            console.log(this.siteList);
+            console.log('Site list', this.siteList);
         } else {
             process.exit(1);
         }
@@ -277,7 +279,7 @@ function AlarmPersistence(db, imageFolder)
             data.forEach( (s) => {
                 this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
             });
-            console.log(this.cameraList);
+            console.log('Camera list', this.cameraList);
         } else {
             process.exit(1);
         }
