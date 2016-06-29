@@ -91,7 +91,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.$watch('filters', function(newVal, oldVal){
-        console.log(newVal);
+        if (newVal.sitename !== oldVal.sitename){
+            $scope.filters.camera = $scope.cameras[0];
+        }
     }, true);
 
     $scope.applyfilters = function(){
@@ -288,7 +290,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if ($scope.filters.sitename !== 'Tous'){
             if ($scope.filters.sitename !== alarm.sitename){
                 matches = false;
-            } else if ($scope.filters.camera.cameraname !== 'Tous' && alarm.cameraname !== $scope.filters.camera.cameraname){
+            } else if ($scope.filters.camera.cameraname !== 'Toutes' && alarm.cameraname !== $scope.filters.camera.cameraname){
                 matches = false;
             }
         }
