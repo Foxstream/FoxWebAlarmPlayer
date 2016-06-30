@@ -31,9 +31,9 @@ app.factory('alarmdb', ['$http','$rootScope',
             params += 'date=' + conditions.date.getTime() / 1000;
             if (conditions.sitename !== 'Tous'){
                 params += '&sitename=' + conditions.sitename.replace(' ', '%20');
-                if (conditions.camera.cameraname !== 'Toutes'){
+                if (conditions.camera !== 'Toutes'){
                     // conditions.camera = { cameraname: **, sitename: ** }
-                    params += '&cameraname=' + conditions.camera.cameraname.replace(' ', '%20');
+                    params += '&cameraname=' + conditions.camera.replace(' ', '%20');
                 }
             }
             console.log('Request : /controller/alarms' + params);
@@ -89,17 +89,19 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Only modified on form submit
     $scope.filters = {
         sitename: 'Tous',
-        camera: $scope.cameras[0],
+        camera: 'Toutes',
         date: today
     };
+    $scope.currentfilters = angular.copy($scope.filters);
 
     $scope.$watch('filters.sitename', function(newVal, oldVal){
         if (newVal !== oldVal){
-            $scope.filters.camera = $scope.cameras[0];
+            $scope.filters.camera = 'Toutes';
         }
     });
 
     $scope.applyfilters = function(){
+        $scope.currentfilters = angular.copy($scope.filters);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
             $scope.loading = false;
@@ -107,7 +109,8 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.resetfilters = function(){
-        
+        $scope.showfilters = false;
+        $scope.filters = angular.copy($scope.currentfilters);
     };
 
     /* When this is run for the first time, ng-init hasn't been run, so we don't know 

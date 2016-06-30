@@ -204,7 +204,7 @@ block content
                             option(value="test", label="yo", selected="selected")
                       .form-group(ng-show="filters.sitename !== 'Tous'")
                           label(for="camera") Caméras :
-                          select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
+                          select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
                       button(class='button-secondary', ng-click='resetfilters()') Annuler
                       button(type='submit', ng-click='showfilters = false; loading = true', class='button-primary') Appliquer
 
