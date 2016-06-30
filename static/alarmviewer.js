@@ -97,11 +97,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Necessary because angular.copy performs a deep copy, so the reference to a camera object isn't kept
     $scope.filtersformdata.camera = $scope.cameras[0];
 
-    $scope.$watch('filters', function(newVal, oldVal){
-        if (newVal.sitename !== oldVal.sitename){
-            $scope.filters.camera = $scope.cameras[0];
+    $scope.$watch('filtersformdata.sitename', function(newVal, oldVal){
+        if (newVal !== oldVal){
+            $scope.filtersformdata.camera = $scope.cameras[0];
         }
-    }, true);
+    });
 
     $scope.applyfilters = function(){
         $scope.filters = angular.copy($scope.filtersformdata);
