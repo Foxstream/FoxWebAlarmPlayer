@@ -449,8 +449,9 @@ nav {
     z-index: 1000; } }
 @media screen and (max-width: 767px) {
   .filter {
-    min-height: 45vh;
-    width: 80vw; } }
+    padding: 5% 5%;
+    left: 5%;
+    right: 5%; } }
 .imagecanvas {
   width: 100%;
   height: auto;

@@ -95,9 +95,9 @@
 
 // Phones
 @media screen and (max-width: $mobile-breakpoint - 1px){
-
     .filter {
-        min-height: 45vh;
-        width: 80vw;
+        padding: 5% 5%;
+        left: 5%;
+        right: 5%;
     }
 }
