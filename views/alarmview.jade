@@ -122,13 +122,12 @@ block content
 
                     div(class="filter")
                       form(class="form-inline", ng-submit='applyfilters()')
-                          input(type="date", id="datefield", ng-model="filters.date")
+                          input(type="date", id="datefield", ng-model="filtersformdata.date")
                           label Sites :
-                          select(ng-model='filters.sitename', ng-options="s for s in sites")
-                              option(value="test", label="yo", selected="selected")
-                          span(ng-show="filters.sitename !== 'Tous'")
+                          select(ng-model='filtersformdata.sitename', ng-options="s for s in sites")
+                          span(ng-show="filtersformdata.sitename !== 'Tous'")
                             label Caméras :
-                            select(ng-model='filters.camera', ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite")
+                            select(ng-model='filtersformdata.camera', ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite")
                           br
                           button(type='submit', class='button-primary') Appliquer
                     
@@ -198,14 +197,14 @@ block content
                     form(ng-submit='applyfilters()')
                       .form-group
                         label(for="datefield") Date
-                        input(type="date", class="form-control", id="datefield", ng-model="filters.date")
+                        input(type="date", class="form-control", id="datefield", ng-model="filtersformdata.date")
                       .form-group
                         label(for="site") Sites :
-                        select(ng-model='filters.sitename', class="form-control", ng-options="s for s in sites", name="site", id="site")
+                        select(ng-model='filtersformdata.sitename', class="form-control", ng-options="s for s in sites", name="site", id="site")
                             option(value="test", label="yo", selected="selected")
-                      .form-group(ng-show="filters.sitename !== 'Tous'")
+                      .form-group(ng-show="filtersformdata.sitename !== 'Tous'")
                           label(for="camera") Caméras :
-                          select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
+                          select(ng-model='filtersformdata.camera', id="camera", name="camera", ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
                       button(type='submit', ng-click='showfilters = false', class='button-secondary') Annuler
                       button(type='submit', ng-click='showfilters = false; loading = true', class='button-primary') Appliquer
 

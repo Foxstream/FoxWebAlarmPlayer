@@ -84,11 +84,18 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         console.log($scope.cameras);
     });
 
+    // We create a temporary model for filters values : easy rollback and new alarms
+    // are not filtered according to not yet validated filters
+    // Only modified on form submit
     $scope.filters = {
         sitename: 'Tous',
         camera: $scope.cameras[0],
         date: today
     };
+    // Always synced with filters form
+    $scope.filtersformdata = angular.copy($scope.filters);
+    // Necessary because angular.copy performs a deep copy, so the reference to a camera object isn't kept
+    $scope.filtersformdata.camera = $scope.cameras[0];
 
     $scope.$watch('filters', function(newVal, oldVal){
         if (newVal.sitename !== oldVal.sitename){
@@ -97,6 +104,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     }, true);
 
     $scope.applyfilters = function(){
+        $scope.filters = angular.copy($scope.filtersformdata);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
             $scope.loading = false;
@@ -261,7 +269,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Used in filter select input
     // Gets the cameras for the currently selected site
     $scope.camerasForCurrentSite = function(camera){
-        return camera.sitename === $scope.filters.sitename || camera.sitename === 'all';
+        return camera.sitename === $scope.filtersformdata.sitename || camera.sitename === 'all';
     };
 
     var alarmUpdate = function(event, data){
