@@ -574,7 +574,8 @@ nav {
     height: 6vh;
     line-height: 6vh;
     padding: 0 3%;
-    color: #e44333; } }
+    color: #e44333;
+    text-align: left; } }
 @media screen and (max-width: 767px) {
   .notifications {
     height: 10vh;

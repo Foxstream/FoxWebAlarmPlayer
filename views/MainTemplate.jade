@@ -8,6 +8,7 @@ html
     script(src='static/bootstrap.min.js')
     script(src='static/bower_components/angular/angular.min.js')
     script(src='static/bower_components/angular-touch/angular-touch.min.js')
+    script(src="static/bower_components/angular-animate/angular-animate.min.js")
     script(src='static/app.js')
     script(src='static/navbarcontroller.js')
     script(src='static/EventSource4IE.js')
@@ -26,8 +27,11 @@ html
                 span Connexion au serveur {{x.description }} ({{x.address}}) impossible
           h1(class='app-name') FoxWebAlarmPlayer
 
-      nav(role='navigation' 
-          ng-controller='navbarcontroller')
+      nav(role='navigation', ng-controller='navbarcontroller')
+          
+          div(class="notifications hidden-md hidden-lg notif-animation", ng-show="shownotification")
+            p {{ notification }}
+
           ul
 
             if user.type == 1                      
@@ -44,7 +48,7 @@ html
                     ng-mouseover='showsubmenu = true',
                     ng-mouseleave='showsubmenu = false')
                     a(href='/accountsettings')
-                        i(class='glyphicon glyphicon-cog') 
+                        i(class='glyphicon glyphicon-cog')
                         span(class='link') Paramètres
 
                     div(class="submenu" ng-show='showsubmenu')
@@ -62,8 +66,6 @@ html
                           a(href='/logout')
                             span(class='link') Déconnexion
 
-      div(class="notifications hidden-md hidden-lg")
-        p L'alarme a bien été acquittée
 
       div
         block content
