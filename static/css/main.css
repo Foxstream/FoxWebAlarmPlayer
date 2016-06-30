@@ -138,6 +138,17 @@ button.button-secondary {
   color: #566171;
   margin-right: 4%; }
 
+button.button-primary-fill {
+  background: linear-gradient(0deg, #cf3c2d, #ff6151);
+  color: white;
+  border: none; }
+
+button.button-secondary-fill {
+  background: linear-gradient(0deg, #566171, #788493);
+  color: white;
+  border: none;
+  margin-right: 4%; }
+
 @media screen and (min-width: 992px) {
   button {
     min-width: 10vw;

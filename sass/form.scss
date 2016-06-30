@@ -53,6 +53,19 @@ button.button-secondary {
     margin-right: 4%
 }
 
+button.button-primary-fill {
+    background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
+    color: white;
+    border: none;
+}
+
+button.button-secondary-fill {
+    background: linear-gradient(0deg, $fox-dark-gray, $fox-gray);
+    color: white;
+    border: none;
+    margin-right: 4%
+}
+
 
 
 // Desktop devices
