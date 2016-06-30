@@ -1,26 +1,43 @@
 ﻿var app = angular.module('alarmviewer', ['ngTouch', 'ngAnimate']);
 
 // Notification system
-app.run(function($rootScope){
-    $rootScope.notification = "";
-    $rootScope.shownotification = false;
+app.run(function($rootScope, $timeout){
+    $rootScope.notification = {
+        message: "",
+        show: false,
+        timeout: undefined
+    };
+    setInterval(function(){
+        console.log($rootScope.notification)
+    }, 1000);
     $rootScope.sendnotification = function(message, autoHide){
-        $rootScope.notification = message;
-        $rootScope.shownotification = true;
+        $rootScope.notification.message = message;
+        $rootScope.notification.show = true;
         if (autoHide){
-            setTimeout(function(){
-                $rootScope.shownotification = false;
-            }, 3000);
+            if (!$rootScope.notification.timeout){
+                $rootScope.notification.timeout = $timeout(function(){
+                    $rootScope.notification.show = false;
+                    // Only way to really stop the timer
+                    // Without this line, a new notification before the 5000 ms have passed
+                    // would restart the original timer, hence a shorter notification
+                    $rootScope.notification.timeout = undefined; 
+                }, 5000);
+            }
         }
+    };
+    $rootScope.hidenotification = function(){
+        $rootScope.notification.show = false;
+        $timeout.cancel($rootScope.notification.timeout);
+        $rootScope.notification.timeout = undefined;
     };
 });
 
-app.animation('.notif-animation', function () {
+app.animation('.notif-animation', function (){
     return {
         addClass: function (element, className, done) {
             var scope = element.scope();
 
-            if (className == 'ng-hide') {
+            if (className == 'ng-hide'){
                 element.slideUp(done);
             }
             else {

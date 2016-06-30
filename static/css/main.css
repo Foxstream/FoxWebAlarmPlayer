@@ -575,7 +575,21 @@ nav {
     line-height: 6vh;
     padding: 0 3%;
     color: #e44333;
-    text-align: left; } }
+    text-align: left; }
+    .notifications i {
+      font-size: 1.3em;
+      position: absolute;
+      right: 3%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      /* IE 9 */
+      -webkit-transform: translate(-50%, -50%);
+      /* Safari and Chrome */
+      -o-transform: translate(-50%, -50%);
+      /* Opera */
+      -moz-transform: translate(-50%, -50%);
+      /* Firefox */ } }
 @media screen and (max-width: 767px) {
   .notifications {
     height: 10vh;

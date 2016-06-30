@@ -12,6 +12,15 @@
         padding: 0 3%;
         color: $fox-red;
         text-align: left;
+
+        i {
+            font-size: 1.3em;
+            position: absolute;
+            right: 3%;
+            top: 50%;
+            @include transform(translate(-50%, -50%));
+        }
+
     }
 
 }

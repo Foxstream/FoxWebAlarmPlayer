@@ -29,8 +29,9 @@ html
 
       nav(role='navigation', ng-controller='navbarcontroller')
           
-          div(class="notifications hidden-md hidden-lg notif-animation", ng-show="shownotification")
-            p {{ notification }}
+          div(class="notifications hidden-md hidden-lg notif-animation", ng-show="notification.show")
+            p {{ notification.message }}
+            i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
 
           ul
 
