@@ -21,7 +21,7 @@ html
       div(class='container-fluid')
         header(class='hidden-xs')
           img(src='/static/img/logo-foxstream.gif')
-          div(ng-controller='servercontroller' class="connection-errors")
+          div(ng-controller='servercontroller' class="connection-errors hidden-xs hidden-sm")
               div(ng-repeat='x in servers | filter: {connected: false}' class="error")
                 span Connexion au serveur {{x.description }} ({{x.address}}) impossible
           h1(class='app-name') FoxWebAlarmPlayer
@@ -62,7 +62,8 @@ html
                           a(href='/logout')
                             span(class='link') Déconnexion
 
-
+      div(class="notifications hidden-md hidden-lg")
+        p L'alarme a bien été acquittée
 
       div
         block content

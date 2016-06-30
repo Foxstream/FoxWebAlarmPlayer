@@ -60,9 +60,9 @@
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .filter {
-        border: solid #788493 1px;
+        border: solid $fox-dark-gray 1px;
         border-radius: 10px;
-        background: rgba(200, 212, 217, 0.8);
+        background: rgba($fox-light-gray, 0.8);
         padding: 5% 10%;
         box-shadow: 1px 1px 1px $fox-dark-gray;
         z-index: 2000;

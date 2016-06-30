@@ -427,7 +427,7 @@ nav {
 
 @media screen and (max-width: 991px) {
   .filter {
-    border: solid #788493 1px;
+    border: solid #566171 1px;
     border-radius: 10px;
     background: rgba(200, 212, 217, 0.8);
     padding: 5% 10%;
@@ -562,5 +562,22 @@ nav {
 .panel {
   margin-bottom: 2px;
   border: none; }
+
+@media screen and (max-width: 991px) {
+  .notifications {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-top: solid #566171 1px;
+    background: rgba(200, 212, 217, 0.8);
+    z-index: 1000;
+    height: 6vh;
+    line-height: 6vh;
+    padding: 0 3%;
+    color: #e44333; } }
+@media screen and (max-width: 767px) {
+  .notifications {
+    height: 10vh;
+    line-height: 10vh; } }
 
 /*# sourceMappingURL=main.css.map */
