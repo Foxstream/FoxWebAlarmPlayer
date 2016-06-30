@@ -416,27 +416,18 @@ nav {
 
 @media screen and (max-width: 991px) {
   .filter {
-    position: absolute;
     border: solid #788493 1px;
     border-radius: 10px;
     background: rgba(200, 212, 217, 0.8);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    /* IE 9 */
-    -webkit-transform: translate(-50%, -50%);
-    /* Safari and Chrome */
-    -o-transform: translate(-50%, -50%);
-    /* Opera */
-    -moz-transform: translate(-50%, -50%);
-    /* Firefox */
-    min-height: 45vh;
-    width: 80vw;
     padding: 5% 10%;
     box-shadow: 1px 1px 1px #566171;
-    text-align: center;
-    z-index: 2000; }
+    z-index: 2000;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    height: auto; }
+    .filter input {
+      width: 100%; }
     .filter h4 {
       color: #e44333;
       margin-top: -10px;
@@ -456,6 +447,10 @@ nav {
     -moz-transform: translate(-50%, -50%);
     /* Firefox */
     z-index: 1000; } }
+@media screen and (max-width: 767px) {
+  .filter {
+    min-height: 45vh;
+    width: 80vw; } }
 .imagecanvas {
   width: 100%;
   height: auto;

@@ -193,8 +193,8 @@ block content
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') Acquitter
 
-                div(class="filter", ng-show="showfilters")
-                    h4 Filtres
+                div(class="filter", ng-show="showfilters && currentalarm === undefined")
+                    //- h4 Filtres
                     form(ng-submit='applyfilters()')
                       .form-group
                         label(for="datefield") Date
@@ -206,7 +206,8 @@ block content
                       .form-group(ng-show="filters.sitename !== 'Tous'")
                           label(for="camera") Caméras :
                           select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
-                      button(type='submit', ng-click='showfilters = false; loading = true', class='button-primary full-width') Appliquer
+                      button(type='submit', ng-click='showfilters = false', class='button-secondary') Annuler
+                      button(type='submit', ng-click='showfilters = false; loading = true', class='button-primary') Appliquer
 
 
                 div(class="loading", ng-show="loading")

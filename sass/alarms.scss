@@ -60,19 +60,20 @@
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .filter {
-        position: absolute;
         border: solid #788493 1px;
         border-radius: 10px;
         background: rgba(200, 212, 217, 0.8);
-        top: 50%;
-        left: 50%;
-        @include transform(translate(-50%, -50%));
-        min-height: 45vh;
-        width: 80vw;
         padding: 5% 10%;
         box-shadow: 1px 1px 1px $fox-dark-gray;
-        text-align: center;
         z-index: 2000;
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        height: auto;
+
+        input {
+            width: 100%;
+        }
 
         h4 {
             color: $fox-red;
@@ -90,4 +91,13 @@
         z-index: 1000;
     }
 
+}
+
+// Phones
+@media screen and (max-width: $mobile-breakpoint - 1px){
+
+    .filter {
+        min-height: 45vh;
+        width: 80vw;
+    }
 }
