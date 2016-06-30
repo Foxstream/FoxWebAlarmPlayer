@@ -92,25 +92,23 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         camera: $scope.cameras[0],
         date: today
     };
-    // Always synced with filters form
-    $scope.filtersformdata = angular.copy($scope.filters);
-    // Necessary because angular.copy performs a deep copy, so the reference to a camera object isn't kept
-    $scope.filtersformdata.camera = $scope.cameras[0];
 
-    $scope.$watch('filtersformdata.sitename', function(newVal, oldVal){
+    $scope.$watch('filters.sitename', function(newVal, oldVal){
         if (newVal !== oldVal){
-            $scope.filtersformdata.camera = $scope.cameras[0];
+            $scope.filters.camera = $scope.cameras[0];
         }
     });
 
     $scope.applyfilters = function(){
-        $scope.filters = angular.copy($scope.filtersformdata);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
             $scope.loading = false;
         });
     };
 
+    $scope.resetfilters = function(){
+        
+    };
 
     /* When this is run for the first time, ng-init hasn't been run, so we don't know 
     which tab we're working in yet */
@@ -269,7 +267,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Used in filter select input
     // Gets the cameras for the currently selected site
     $scope.camerasForCurrentSite = function(camera){
-        return camera.sitename === $scope.filtersformdata.sitename || camera.sitename === 'all';
+        return camera.sitename === $scope.filters.sitename || camera.sitename === 'all';
     };
 
     var alarmUpdate = function(event, data){
@@ -284,33 +282,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
             }
         }
-		else { // New alarm
-            if ($scope.matchesFilters(data)){
+		else {
+            if ($scope.tabName === 'notHandled'){
                 $scope.alarms.push(data);
             }
         }
 		
 	};
-
-    $scope.matchesFilters = function(alarm){
-        var minDate = $scope.filters.date.getTime() / 1000;
-        var maxDate = minDate + 60 * 60 * 24;
-        
-        var matches = true;
-
-        if (alarm.timestamp < minDate || alarm.timestamp >= maxDate){
-            matches = false;
-        }
-        if ($scope.filters.sitename !== 'Tous'){
-            if ($scope.filters.sitename !== alarm.sitename){
-                matches = false;
-            } else if ($scope.filters.camera.cameraname !== 'Toutes' && alarm.cameraname !== $scope.filters.camera.cameraname){
-                matches = false;
-            }
-        }
-
-        return matches;
-    };
 
     $scope.getNotHandledAlarms = function(){
         if ($scope.alarms){
