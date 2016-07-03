@@ -127,7 +127,7 @@ block content
                           select(ng-model='filters.sitename', ng-options="s for s in sites")
                           span(ng-show="filters.sitename !== 'Tous'")
                             label Caméras :
-                            select(ng-model='filters.camera', ng-options="c.cameraname for c in cameras | filter: camerasForCurrentSite")
+                            select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
                           br
                           button(type='submit', class='button-primary') Appliquer
                     
@@ -135,7 +135,7 @@ block content
                         table
                           thead
                               tr
-                                th(class='check') 
+                                th(class='check')
                                   input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                                 th(class='play')
                                 th(class='date') Date

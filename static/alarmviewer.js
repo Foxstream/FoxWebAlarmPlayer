@@ -42,6 +42,7 @@ app.factory('alarmdb', ['$http','$rootScope',
     			.error(function(){callback(null);});
         };
 
+
         obj.getNotHandledAlarms = function(callback){
             $http.get("/controller/alarms/nothandled")
                 .success(callback)
@@ -75,13 +76,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     alarmdb.getSiteList(function(data){
         $scope.sites = ["Tous"].concat(data);
-        console.log($scope.sites);
+        console.log('Liste des serveurs :', $scope.sites);
     });
 
     $scope.cameras = [{cameraname: 'Toutes', sitename: 'all'}];
     alarmdb.getCameraList(function(data){
         $scope.cameras = $scope.cameras.concat(data);
-        console.log($scope.cameras);
+        console.log('Liste des caméras :', $scope.cameras);
     });
 
     // We create a temporary model for filters values : easy rollback and new alarms
