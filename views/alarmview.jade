@@ -50,7 +50,7 @@ block content
                               th(class='site') Site
                               th(class='handle')
                             tbody
-                              tr(ng-show='alarms.length === 0') 
+                              tr(ng-show='getNotHandledAlarms().length === 0') 
                                 td
                                 td Aucune alarme
                                 td
@@ -104,7 +104,7 @@ block content
 
                 div(class="main-element" ng-show="tab === 'notHandled' && currentalarm === undefined")
                     ul
-                        li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
+                        li(class="block-header", ng-show="getNotHandledAlarms().length === 0") Aucune alarme
                         li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
 
                 swiper(ng-show='currentalarm !== undefined')
