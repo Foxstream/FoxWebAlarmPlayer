@@ -136,6 +136,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.playalarm = function(alarmid){
         // Mobile devices : if the user clicked on alarm while the filter pop-up was visible, make sure that it is hidden when going back to alarm list
         $scope.showfilters = false;
+        $scope.resetfilters();
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
         $scope.currentalarm = selectedAlarm;
