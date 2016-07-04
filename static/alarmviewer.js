@@ -298,7 +298,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         } else {
             return [];
         }
-
     };
 
     var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
