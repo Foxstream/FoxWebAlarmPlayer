@@ -72,7 +72,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
 
-    $scope.loading = true;
+    $scope.loading = true; // Displays loading wheel
 
     var today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -104,6 +104,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     });
 
     $scope.applyfilters = function(){
+        $scope.loading = true;
         $scope.currentfilters = angular.copy($scope.filters);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
@@ -125,10 +126,12 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if ($scope.tabName === 'notHandled'){
             alarmdb.getNotHandledAlarms(function(data){
                 $scope.alarms = data;
+                $scope.loading = false;
             });
         } else if ($scope.tabName === 'filteredAlarms'){
             alarmdb.getAlarms($scope.filters, function(data){
                 $scope.alarms = data;
+                $scope.loading = false;
             });
         }
         $scope.cancelTabWatcher();
