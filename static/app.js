@@ -5,10 +5,24 @@ app.run(function($rootScope, $timeout){
     $rootScope.notification = {
         message: "",
         show: false,
-        timeout: undefined
+        timeout: undefined,
+        priority: 0
     };
-    $rootScope.sendnotification = function(message, autoHide){
+
+    /**
+     * Function called by any controller when it needs to display a notification
+     * @param message The message to be displayed
+     * @param autoHide if set to true, the notification is hidden after 5s
+     * @param priority if a new notification is sent when one is already being displayed, the new one will be shown only if its priority is higher
+     */
+    $rootScope.sendnotification = function(message, autoHide, priority){
+        if ($rootScope.notification.show){
+            if ($rootScope.notification.priority > priority){
+                return;
+            }
+        }
         $rootScope.notification.message = message;
+        $rootScope.notification.priority = priority;
         $rootScope.notification.show = true;
         if (autoHide){
             if (!$rootScope.notification.timeout){

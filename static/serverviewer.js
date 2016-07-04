@@ -113,13 +113,12 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
         var statusUpdate = function (event, data) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(data.id);
-            console.debug('status update')
             if (pos >= 0){
-                console.debug('pos >= 0')
                 $scope.servers[pos].connected = data.connected;
                 if (!data.connected){
-                    console.debug('data.connected === 0')
-                    $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false);
+                    $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false, 1000);
+                } else {
+                    // Think about how to clear notifications
                 }
             }
         };
