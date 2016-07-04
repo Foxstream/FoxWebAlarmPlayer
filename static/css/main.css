@@ -168,8 +168,7 @@ button.button-secondary-fill {
   * Scrollable wrapper div for tables
   */
 .table-container {
-  max-height: 50vh;
-  overflow-y: scroll; }
+  width: 100%; }
   .table-container table {
     width: 100%;
     text-align: center; }
@@ -422,11 +421,13 @@ nav {
     border: solid #788493 1px;
     margin-bottom: 15px;
     padding: 1% 3%;
-    background: #c8d4d9; }
+    background: #c8d4d9;
+    line-height: 200%; }
     .filter * {
       margin-right: 2%; }
     .filter input {
-      width: auto; }
+      width: auto;
+      line-height: normal; }
     .filter button {
       float: right; }
     .filter form:after {
@@ -436,8 +437,24 @@ nav {
       clear: both;
       visibility: hidden; }
 
-  .alarmtable {
-    position: relative; }
+  .alarmtable table {
+    width: 100%; }
+    .alarmtable table td:nth-child(1), .alarmtable table th:nth-child(1) {
+      width: 5%; }
+    .alarmtable table td:nth-child(2), .alarmtable table th:nth-child(2) {
+      width: 5%; }
+    .alarmtable table td:nth-child(3), .alarmtable table th:nth-child(3) {
+      width: 25%; }
+    .alarmtable table td:nth-child(4), .alarmtable table th:nth-child(4) {
+      width: 20%; }
+    .alarmtable table td:nth-child(5), .alarmtable table th:nth-child(5) {
+      width: 25%; }
+    .alarmtable table td:nth-child(6), .alarmtable table th:nth-child(6) {
+      width: 20%; }
+  .alarmtable tbody {
+    max-height: 45vh;
+    overflow: scroll;
+    width: 100%; }
     .alarmtable tbody .glyphicon {
       visibility: hidden;
       color: #e44333; }
