@@ -623,6 +623,8 @@ nav {
 
 @media screen and (max-width: 991px) {
   .notifications {
+    font-size: 1.3em;
+    font-weight: bold;
     position: fixed;
     bottom: 0;
     width: 100vw;
@@ -635,7 +637,6 @@ nav {
     color: #e44333;
     text-align: left; }
     .notifications i {
-      font-size: 1.3em;
       position: absolute;
       right: 3%;
       top: 50%;

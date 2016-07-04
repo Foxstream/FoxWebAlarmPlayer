@@ -1,6 +1,8 @@
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .notifications {
+        font-size: 1.3em;
+        font-weight: bold;
         position: fixed;
         bottom: 0;
         width: 100vw;
@@ -14,7 +16,6 @@
         text-align: left;
 
         i {
-            font-size: 1.3em;
             position: absolute;
             right: 3%;
             top: 50%;

@@ -25,7 +25,7 @@ app.factory('serverdb', ['$http', '$rootScope',
             $http.post("/controller/server", server)
 			.success(callback.bind(null, null))
 			.error(function (err) { console.dir(err);callback("Unable to add the server."); });
-        }            
+        }
         
         return obj;
     }]);
@@ -85,7 +85,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.editServer = function (id) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(id);
             $scope.currentServer = JSON.parse(JSON.stringify($scope.servers[pos]));
-            $scope.serverMsg = undefined;                               
+            $scope.serverMsg = undefined;
         };
         
         $scope.commitCurrentServer = function () {
@@ -94,7 +94,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             if ($scope.currentServer.id)
                 serverdb.updateserver($scope.currentServer, function (err, newserver) {
                     updateMessage.call("Vos modifications ont été enregistrées", err);
-                    if (!err) {                        
+                    if (!err) {
                         var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentServer.id);
                         $scope.servers[pos] = $scope.currentServer;
                         $scope.currentServer = undefined;
@@ -113,9 +113,15 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
         var statusUpdate = function (event, data) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(data.id);
-            
-            if (pos >= 0)
-                $scope.servers[pos].connected = data.connected;            
+            console.debug('status update')
+            if (pos >= 0){
+                console.debug('pos >= 0')
+                $scope.servers[pos].connected = data.connected;
+                if (!data.connected){
+                    console.debug('data.connected === 0')
+                    $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false);
+                }
+            }
         };
         
         var unbind = $rootScope.$on("connection", statusUpdate);

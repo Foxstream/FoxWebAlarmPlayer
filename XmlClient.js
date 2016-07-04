@@ -96,7 +96,7 @@ function send(message, responseCallback)
 	if (!this.connected)
 		return responseCallback("Not connected", null);
 	
-	internal_send.bind(this)(message, responseCallback);	
+	internal_send.bind(this)(message, responseCallback);
 }
 
 function setNodeAsArray(elem)
