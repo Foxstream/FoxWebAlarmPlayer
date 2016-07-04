@@ -395,6 +395,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 		  
             scope.$watch('alarm', function (newVal, oldVal){
                 if (newVal === oldVal) return;
+                if (!newVal) return
                 scope.playing = false;
                 scope.loading = true;
                 if (scope.isvisible){
