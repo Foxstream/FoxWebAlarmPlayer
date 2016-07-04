@@ -51,7 +51,7 @@ app.factory('alarmdb', ['$http','$rootScope',
             
         obj.markashandled = function (alarmid, callback) {
             $http.put("/controller/alarm/"+alarmid+"/markashandled")
-    		  .success(function (data) { callback(null, data); })
+    		  .success(function (data) { callback(null); })
     		  .error(function (data) { callback({response: data}); });
         };
 
@@ -137,6 +137,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         // Mobile devices : if the user clicked on alarm while the filter pop-up was visible, make sure that it is hidden when going back to alarm list
         $scope.showfilters = false;
         $scope.resetfilters();
+
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
         $scope.currentalarm = selectedAlarm;
