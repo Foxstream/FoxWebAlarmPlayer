@@ -20,6 +20,16 @@ nav {
 }
 
 
+.new-alarm-counter {
+    display: inline-block;
+    height: 1.6em;
+    width: 1.6em;
+    position: absolute;
+    line-height: 1.6em;
+    border-radius: 0.8em;
+}
+
+
 // Tablet
 @media screen and (max-width: ($tablet-breakpoint - 1px)){
     nav {
@@ -77,6 +87,13 @@ nav {
     // Don't show the navigation bar on mobile
     nav.nav-connection {
         display: none;
+    }
+
+    .new-alarm-counter {
+        background: $fox-red;
+        color: white;
+        left: 50%;
+        top: 10%;
     }
 
 }
@@ -181,6 +198,13 @@ nav {
                 }
             }
 
+        }
+
+        .new-alarm-counter {
+            background: white;
+            color: $fox-red;
+            right: 10%;
+            top: 10%;
         }
 
     }

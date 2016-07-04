@@ -267,6 +267,17 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         return camera.sitename === $scope.filters.sitename || camera.sitename === 'all';
     };
 
+
+    $scope.getNotHandledAlarms = function(){
+        if ($scope.alarms){
+            return $scope.alarms.filter(function(a){
+                return a.handled === 0;
+            });
+        } else {
+            return [];
+        }
+    };
+
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
@@ -289,16 +300,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
 		
 	};
-
-    $scope.getNotHandledAlarms = function(){
-        if ($scope.alarms){
-            return $scope.alarms.filter(function(a){
-                return a.handled === 0;
-            });
-        } else {
-            return [];
-        }
-    };
 
     var unbind1 = $rootScope.$on("alarm_create", alarmUpdate);
     var unbind2 = $rootScope.$on("alarm_update", alarmUpdate);

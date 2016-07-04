@@ -41,6 +41,7 @@ html
                       class='nav-link') 
                         i(class='glyphicon glyphicon-alert') 
                         span(class='link') Alarmes
+                    span(class="new-alarm-counter", ng-show="newalarmscounter > 0") {{ newalarmscounter }}
                 li(ng-class='{ active: isActive("live") }')
                     a(href="/live") 
                       i(class='glyphicon glyphicon-play') 
