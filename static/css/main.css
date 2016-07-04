@@ -399,6 +399,21 @@ nav {
   .foxstream-header img {
     margin-bottom: 5vh; }
 
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  /* IE 9 */
+  -webkit-transform: translate(-50%, -50%);
+  /* Safari and Chrome */
+  -o-transform: translate(-50%, -50%);
+  /* Opera */
+  -moz-transform: translate(-50%, -50%);
+  /* Firefox */
+  z-index: 1000; }
+
 @media screen and (min-width: 992px) {
   .filter {
     border: solid #788493 1px;
@@ -418,18 +433,20 @@ nav {
       clear: both;
       visibility: hidden; }
 
-  .alarmtable tbody .glyphicon {
-    visibility: hidden;
-    color: #e44333; }
-  .alarmtable tbody tr.active {
-    background-color: #788493;
-    color: white; }
-    .alarmtable tbody tr.active .glyphicon {
-      visibility: visible; }
-    .alarmtable tbody tr.active button {
-      background: linear-gradient(0deg, #cf3c2d, #ff6151);
-      color: white;
-      border: none; } }
+  .alarmtable {
+    position: relative; }
+    .alarmtable tbody .glyphicon {
+      visibility: hidden;
+      color: #e44333; }
+    .alarmtable tbody tr.active {
+      background-color: #788493;
+      color: white; }
+      .alarmtable tbody tr.active .glyphicon {
+        visibility: visible; }
+      .alarmtable tbody tr.active button {
+        background: linear-gradient(0deg, #cf3c2d, #ff6151);
+        color: white;
+        border: none; } }
 .not-handled {
   color: #e44333; }
 
@@ -450,22 +467,7 @@ nav {
     .filter h4 {
       color: #e44333;
       margin-top: -10px;
-      margin-bottom: 25px; }
-
-  .loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    /* IE 9 */
-    -webkit-transform: translate(-50%, -50%);
-    /* Safari and Chrome */
-    -o-transform: translate(-50%, -50%);
-    /* Opera */
-    -moz-transform: translate(-50%, -50%);
-    /* Firefox */
-    z-index: 1000; } }
+      margin-bottom: 25px; } }
 @media screen and (max-width: 767px) {
   .filter {
     padding: 5% 5%;

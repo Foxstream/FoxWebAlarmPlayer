@@ -72,6 +72,8 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.selected = [];
     $scope.isSelectedAll = false;
 
+    $scope.loading = true;
+
     var today = new Date();
     today.setHours(0, 0, 0, 0);
 

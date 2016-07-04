@@ -36,6 +36,10 @@ block content
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
 
                     div(class='table-container alarmtable')
+
+                      div(class="loading", ng-show="loading")
+                        img(src="/static/img/spin.gif")
+
                       table
                         thead
                             tr
@@ -96,6 +100,9 @@ block content
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') Acquitter
 
+                div(class="loading", ng-show="loading")
+                    img(src="/static/img/spin.gif")
+
                 div(class="main-element" ng-show="tab === 'notHandled' && currentalarm === undefined")
                     ul
                         li(class="block-header", ng-show="getNotHandledAlarms().length === 0") Aucune alarme
@@ -132,6 +139,10 @@ block content
                           button(type='submit', class='button-primary') Appliquer
                     
                     div(class='table-container alarmtable')
+
+                        div(class="loading", ng-show="loading")
+                            img(src="/static/img/spin.gif")
+
                         table
                           thead
                               tr
