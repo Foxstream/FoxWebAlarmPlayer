@@ -9,7 +9,7 @@ app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', functio
     $scope.newalarmscounter = 0;
 
     $scope.notifyAlarm = function(event, data){
-        if ($scope.currentpage.indexOf('alarms') < 0){
+        if ($scope.currentpage.indexOf('alarmview') < 0){
             $scope.newalarmscounter++;
         }
     }
