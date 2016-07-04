@@ -27,6 +27,8 @@ block content
 
                 div(class='col-md-7')
 
+                    spinner(ng-show="loading")
+
                     //- Buttons
                     div(class='actions')
                         button(class='button-secondary',
@@ -36,9 +38,6 @@ block content
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
 
                     div(class='table-container alarmtable')
-
-                      div(class="loading", ng-show="loading")
-                        img(src="/static/img/spin.gif")
 
                       table
                         thead
@@ -77,7 +76,7 @@ block content
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
                     div(class='h6')
-                        span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                        span(ng-show='currentalarm!=undefined') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{currentalarm.cameraname}} - ({{currentalarm.sitename}})
                         span(ng-show='currentalarm==undefined') No alarm selected
                     imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
 
@@ -100,8 +99,8 @@ block content
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') Acquitter
 
-                div(class="loading", ng-show="loading")
-                    img(src="/static/img/spin.gif")
+
+                spinner(ng-show="loading")
 
                 div(class="main-element" ng-show="tab === 'notHandled' && currentalarm === undefined")
                     ul
@@ -119,6 +118,8 @@ block content
             div(class='hidden-sm hidden-xs')
 
                 div(class='col-md-7')
+
+                    spinner(ng-show="loading")
 
                     div(class='actions')
                         button(class='button-secondary',
@@ -139,9 +140,6 @@ block content
                           button(type='submit', class='button-primary') Appliquer
                     
                     div(class='table-container alarmtable')
-
-                        div(class="loading", ng-show="loading")
-                            img(src="/static/img/spin.gif")
 
                         table
                           thead
@@ -180,7 +178,7 @@ block content
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
                     div(class='h6')
-                        span(ng-show='currentalarm!=undefined') {{currentalarm.timestamp | asdate}} {{currentalarm.cameraname}} ({{currentalarm.sitename}})
+                        span(ng-show='currentalarm!=undefined') {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{currentalarm.cameraname}} - ({{currentalarm.sitename}})
                         span(ng-show='currentalarm==undefined') No alarm selected
                     imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'filteredAlarms'")
 
@@ -204,6 +202,7 @@ block content
                         ng-click='markcurrentashandled($event)') Acquitter
 
                 div(class="filter", ng-show="showfilters && currentalarm === undefined")
+
                     //- h4 Filtres
                     form(ng-submit='applyfilters()', name='filtermobileform')
                       .form-group
@@ -221,8 +220,10 @@ block content
                       button(type='submit', ng-click='showfilters = false', class='button-primary-fill', ng-show='filtermobileform.$dirty') Appliquer
 
 
-                div(class="loading", ng-show="loading")
-                  img(src="/static/img/spin.gif")
+                
+                //- div(class="loading", ng-show="loading")
+                //-   img(src="/static/img/spin.gif")
+                spinner(ng-show="loading")
 
                 div(class="main-element" ng-show="tab === 'filteredAlarms' && currentalarm === undefined")
                     ul
@@ -233,6 +234,7 @@ block content
 
 
 
+  script(src='static/spin.min.js')
   script(src='static/AlarmData.js')
   script(src='static/alarmviewer.js')
   script(src='static/accordion.js')

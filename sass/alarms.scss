@@ -4,6 +4,11 @@
     left: 50%;
     @include transform(translate(-50%, -50%));
     z-index: 1000;
+
+    img {
+        display: inline-block;
+        width: 80%;
+    }
 }
 
 // Desktop devices

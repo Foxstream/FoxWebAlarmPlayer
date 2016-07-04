@@ -1,15 +1,3 @@
-app.filter('asdate', function (){
-   function zerofill(v)
-   {
-        return (v <= 9)?'0'+v:'' + v;
-   }
-   return function(input){
-	   var a=new Date(input*1000);
-       return a.getFullYear()+'/'+ zerofill(a.getMonth())+'/'+ zerofill(a.getDate())+" - "+ zerofill(a.getHours())+":"+ zerofill(a.getMinutes())+":"+ zerofill(a.getSeconds());
-   };
-});
-
-
 app.factory('alarmdb', ['$http','$rootScope',
     function($http, $rootScope){
     	var obj={};
@@ -488,4 +476,31 @@ app.directive('imagewithosd', function(){
 		  repaintImage();
 	  }
   };
+});
+
+
+app.directive('spinner', function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div class="spinner">',
+        link: function(scope, elem, attrs){
+            var options = {
+                lines: 12,
+                length: 12,
+                corners: 1,
+                radius: 12,
+                rotate: 0,
+                direction: 1,
+                speed: 1,
+                trail: 50,
+                color: 'red',
+                opacity: 0.25,
+                direction: 1,
+                speed: 1
+            };
+            var target = elem[0];
+            var wheel = new Spinner(options).spin(target);
+        }
+    }
 });
