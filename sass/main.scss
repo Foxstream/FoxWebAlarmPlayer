@@ -13,6 +13,7 @@ $fox-light-gray: #c8d4d9;
 // ------------------------------------------ Resopnsive breakpoints
 $tablet-breakpoint: 992px;
 $mobile-breakpoint: 768px;
+$small-phones-breakpoint: 600px;
 
 // ------------------------------------------  Fonts
 
@@ -36,6 +37,22 @@ $main-element-size: 70vh;
 
 html {
     overflow: hidden; // Prevent overscrolling
+}
+
+@media screen and (min-width: $tablet-breakpoint){
+    body {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    body {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: $small-phones-breakpoint - 1px){
+    body {
+        font-size: 12px;
+    }
 }
 
 body {
