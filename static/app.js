@@ -7,9 +7,6 @@ app.run(function($rootScope, $timeout){
         show: false,
         timeout: undefined
     };
-    setInterval(function(){
-        console.log($rootScope.notification);
-    }, 1000);
     $rootScope.sendnotification = function(message, autoHide){
         $rootScope.notification.message = message;
         $rootScope.notification.show = true;
@@ -18,8 +15,7 @@ app.run(function($rootScope, $timeout){
                 $rootScope.notification.timeout = $timeout(function(){
                     $rootScope.notification.show = false;
                     // Only way to really stop the timer
-                    // Without this line, a new notification before the 5000 ms have passed
-                    // would restart the original timer, hence a shorter  notification
+                    // Without this line, a new notification before the 5000 ms have passed would restart the original timer, hence a shorter notification (really weird though)
                     $rootScope.notification.timeout = undefined;
                 }, 5000);
             }
@@ -31,6 +27,7 @@ app.run(function($rootScope, $timeout){
         $rootScope.notification.timeout = undefined;
     };
 });
+
 
 app.animation('.notif-animation', function (){
     return {
