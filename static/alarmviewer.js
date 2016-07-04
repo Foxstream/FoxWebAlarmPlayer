@@ -58,6 +58,7 @@ app.factory('alarmdb', ['$http','$rootScope',
         return obj;
 }]);
 
+
 app.controller('tabcontroller', ["$scope", function($scope){
     $scope.tab = 'notHandled';
 }]);
@@ -85,14 +86,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         console.log('Liste des caméras :', $scope.cameras);
     });
 
-    // We create a temporary model for filters values : easy rollback and new alarms
-    // are not filtered according to not yet validated filters
-    // Only modified on form submit
+
     $scope.filters = {
         sitename: 'Tous',
         camera: 'Toutes',
         date: today
     };
+    // Stores current values, enables an easy form reset
     $scope.currentfilters = angular.copy($scope.filters);
 
     $scope.$watch('filters.sitename', function(newVal, oldVal){
@@ -114,8 +114,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.filters = angular.copy($scope.currentfilters);
     };
 
-    /* When this is run for the first time, ng-init hasn't been run, so we don't know 
-    which tab we're working in yet */
+    /* When this is executed for the first time, ng-init hasn't been run, so we don't know which tab we're working in yet */
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
         $scope.getAlarms();
     });
@@ -135,8 +134,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
 
     $scope.playalarm = function(alarmid){
-        // Mobile devices : if the user clicked on alarm while the filter
-        // pop-up was visible, make sure that it is hidden when going back to alarm list
+        // Mobile devices : if the user clicked on alarm while the filter pop-up was visible, make sure that it is hidden when going back to alarm list
         $scope.showfilters = false;
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];

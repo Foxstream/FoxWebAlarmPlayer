@@ -3,6 +3,7 @@
 
 
     .filter {
+
         border: solid $fox-gray 1px;
         margin-bottom: 15px;
         padding: 1%;
@@ -15,6 +16,18 @@
             width: auto;
         }
 
+        button {
+            float: right;
+        }
+
+        // float: right on button makes the div smaller : this hacky thing fixes it
+        form:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
 
     }
 
@@ -56,7 +69,7 @@
     color: $fox-red;
 }
 
-// Mobile devices
+// Tablets
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .filter {
