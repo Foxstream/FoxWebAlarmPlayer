@@ -632,10 +632,21 @@ nav {
     background: rgba(200, 212, 217, 0.8);
     z-index: 1000;
     height: 6vh;
-    line-height: 6vh;
     padding: 0 3%;
     color: #e44333;
     text-align: left; }
+    .notifications p {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      /* IE 9 */
+      -webkit-transform: translateY(-50%);
+      /* Safari and Chrome */
+      -o-transform: translateY(-50%);
+      /* Opera */
+      -moz-transform: translateY(-50%);
+      /* Firefox */ }
     .notifications i {
       position: absolute;
       right: 3%;
@@ -651,7 +662,6 @@ nav {
       /* Firefox */ } }
 @media screen and (max-width: 767px) {
   .notifications {
-    height: 10vh;
-    line-height: 10vh; } }
+    height: 10vh; } }
 
 /*# sourceMappingURL=main.css.map */

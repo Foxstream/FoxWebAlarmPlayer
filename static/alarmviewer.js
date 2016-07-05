@@ -39,7 +39,7 @@ app.factory('alarmdb', ['$http','$rootScope',
             
         obj.markashandled = function (alarmid, callback) {
             $http.put("/controller/alarm/"+alarmid+"/markashandled")
-    		  .success(function (data) { callback(null); })
+    		  .success(callback)
     		  .error(function (data) { callback({response: data}); });
         };
 
@@ -219,7 +219,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         });
         if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
             alarms.forEach(function(a){
-                alarmdb.markashandled(a.id);
+                alarmdb.markashandled(a.id, function(err){  });
             });
             $scope.currentalarm = undefined;
         }
@@ -286,7 +286,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.currentalarm = undefined;
             }
             if (data.handled != 0){
-                $scope.sendnotification("L'alarme lkja bien été acquittée abcdefgasldfhdshfhadsjfhladshfsl", true, 1);
+                $scope.sendnotification("Alarme acquittée", true, 1);
             }
             $scope.alarms[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){

@@ -1,6 +1,7 @@
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .notifications {
+
         font-size: 1.3em;
         font-weight: bold;
         position: fixed;
@@ -10,10 +11,15 @@
         background: rgba($fox-light-gray, 0.8);
         z-index: 1000;
         height: $navbar-tablet-height;
-        line-height: $navbar-tablet-height;
         padding: 0 3%;
         color: $fox-red;
         text-align: left;
+
+        p {
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
 
         i {
             position: absolute;
@@ -29,7 +35,6 @@
 @media screen and (max-width: $mobile-breakpoint - 1px){
     .notifications {
         height: $navbar-mobile-height;
-        line-height: $navbar-mobile-height;
     }
 }
 

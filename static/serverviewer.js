@@ -112,7 +112,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
 
         var statusUpdate = function (event, data) {
-            debugger;
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(data.id);
             if (pos >= 0){
                 $scope.servers[pos].connected = data.connected;
