@@ -64,7 +64,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     var today = new Date();
     today.setHours(0, 0, 0, 0);
-
+    $scope.debug = '';
     alarmdb.getSiteList(function(data){
         $scope.sites = ["Tous"].concat(data);
         console.log('Liste des serveurs :', $scope.sites);
@@ -72,10 +72,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.cameras = [{cameraname: 'Toutes', sitename: 'all'}];
     alarmdb.getCameraList(function(data){
+        $scope.debug += "Liste des caméras " + new Date().getTime();
         $scope.cameras = $scope.cameras.concat(data);
-        console.log('Liste des caméras :', $scope.cameras);
     });
-
 
     $scope.filters = {
         sitename: 'Tous',
@@ -206,7 +205,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.handleSelected = function(){
         if (window.confirm("Voulez-vous vraiment acquitter ces " + $scope.selected.length +" alarmes ?")){
             $scope.selected.forEach(function(alarmid){
-                alarmdb.markashandled(alarmid);
+                alarmdb.markashandled(alarmid, function(err){});
             });
         }
     };

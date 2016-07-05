@@ -71,7 +71,7 @@ app.animation('.notif-animation', function (){
 var tabletBreakpoint = 992;
 var mobileBreakpoint = 768;
 var viewportWidth = document.documentElement.clientWidth;
-
+alert(viewportWidth);
 var device;
 if (viewportWidth < mobileBreakpoint){
     device = 'mobile';

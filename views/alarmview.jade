@@ -17,6 +17,7 @@ block content
             li(ng-click="tab = 'filteredAlarms'",
               ng-class="{active: tab==='filteredAlarms'}") Toutes les alarmes
 
+
         
         //- Tab 1 - not handled alarms
 
@@ -211,8 +212,7 @@ block content
 
 
                 
-                //- div(class="loading", ng-show="loading")
-                //-   img(src="/static/img/spin.gif")
+
                 spinner(ng-show="loading")
 
                 div(class="main-element" ng-show="tab === 'filteredAlarms' && currentalarm === undefined")
@@ -221,7 +221,6 @@ block content
                         li(ng-repeat="x in alarms | orderBy: '-timestamp'" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
 
                 swiper(ng-show='currentalarm !== undefined')
-
 
 
   script(src='static/spin.min.js')
