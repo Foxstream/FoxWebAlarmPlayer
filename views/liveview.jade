@@ -8,7 +8,7 @@ block content
 
     div(ng-controller='livecontroller')
 
-        //- Mobile buttons 
+        //- Mobile buttons
         div(class='actions hidden-lg hidden-md')
             button(class='button-secondary',
                     ng-click='selectedcamera = undefined',
@@ -17,30 +17,22 @@ block content
                     span Retour
         
 
-        div(class='col-xs-12 col-lg-6 main-element', id='camera-list', ng-show="device === 'desktop' || selectedcamera === undefined")
+        div(class='col-xs-12 col-md-10 col-md-offset-1 main-element', id='camera-list', ng-class="{'col-md-10': selectedcamera === undefined, 'col-md-offset-1': selectedcamera === undefined, 'col-md-6': selectedcamera !== undefined}", ng-show="device === 'desktop' || selectedcamera === undefined")
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
                     class="block-header", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
-                    div(ng-repeat='c in cams | orderBy: "id" track by $index',
-                        ng-if='$index % 2 === 0',
-                        class='row')
-                        //- Those crazy things you have to do when using bootstrap
-                        div(class='col-xs-6 cam' )
-                            img(src='{{ c.image }}',
-                                ng-click='playlivefeed(site, c.serverId, c.id, 250)',
-                                class='camera-image')
-                            h5(class='camera-name') {{ c.name }}
-                        div(class='col-xs-6 cam',
-                            ng-if='cams.length > ($index + 1)',
-                            ng-click='playlivefeed(site, cams[$index + 1].serverId, cams[$index + 1].id, 250)')
-                            img(src='{{ cams[$index + 1].image }}'
-                                class='camera-image')
-                            h5(class='camera-name') {{ cams[$index + 1].name }}
+                        div(class="thumbnails")
+                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="cam")
+                                img(src='{{ c.image }}',
+                                    ng-click='playlivefeed(site, c.serverId, c.id, 250)',
+                                    class='camera-image')
+                                h5(class='camera-name') {{ c.name }}
 
-        div(class='col-lg-6 live-canvas' ng-show="device === 'desktop'")
+        div(class='live-canvas hidden-xs hidden-sm col-lg-6', 
+            ng-class="{'hidden-md': selectedcamera === undefined, 'hidden-lg': selectedcamera === undefined'}")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
 
         liveswiper(class="hidden-md hidden-lg",

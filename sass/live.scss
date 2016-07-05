@@ -6,9 +6,16 @@
     height: $main-element-size;
     overflow: scroll;
 
+    .thumbnails {
+        // display: flex;
+        // justify-content: center;
+        // flex-wrap: wrap;
+    }
+
     .cam {
         text-align: center;
         margin-bottom: 5vh;
+        // flex-grow: 1;
     }
 
     .camera-image {
@@ -48,7 +55,7 @@
     #camera-list {
         .camera-image {
             display: inline-block;
-            height: 20vh;
+            height: 23vh;
             width: auto;
         }
     }

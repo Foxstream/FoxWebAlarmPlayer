@@ -24,7 +24,7 @@ app.factory('live', ['$http','$rootScope',
 
 app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", function($scope, $rootScope, $window, live, device) {
     
-    $scope.selectedcamera;
+    $scope.selectedcamera = undefined;
 
     $scope.device = device;
 
