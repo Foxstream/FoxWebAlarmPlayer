@@ -286,7 +286,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.currentalarm = undefined;
             }
             if (data.handled != 0){
-                $scope.sendnotification("L'alarme a bien été acquittée", true, 1);
+                $scope.sendnotification("L'alarme lkja bien été acquittée abcdefgasldfhdshfhadsjfhladshfsl", true, 1);
             }
             $scope.alarms[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){

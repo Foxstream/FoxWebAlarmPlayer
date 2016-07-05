@@ -116,7 +116,7 @@ function XmlClient(address, port)
 	events.EventEmitter.call(this);
  
 	this.Host = address;
-	this.Port = port;	
+	this.Port = port;
 	
 	this.MessageId = 1;
 	this.Callbacks={};

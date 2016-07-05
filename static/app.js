@@ -13,28 +13,27 @@ app.run(function($rootScope, $timeout){
      * Function called by any controller when it needs to display a notification
      * @param message The message to be displayed
      * @param autoHide if set to true, the notification is hidden after 5s
-     * @param priority if a new notification is sent when one is already being displayed, the new one will be shown only if its priority is higher
+     * @param priority if a new notification is sent when one is already being displayed, the new one will be shown only if its priority is higher or equal
      */
     $rootScope.sendnotification = function(message, autoHide, priority){
-        if ($rootScope.notification.show){
-            if ($rootScope.notification.priority > priority){
+        if ($rootScope.notification.show && $rootScope.notification.priority > priority){
                 return;
-            }
+        }
+        if ($rootScope.notification.timeout){
+            $timeout.cancel($rootScope.notification.timeout);
+            $rootScope.notification.timeout = undefined;
         }
         $rootScope.notification.message = message;
         $rootScope.notification.priority = priority;
         $rootScope.notification.show = true;
         if (autoHide){
-            if (!$rootScope.notification.timeout){
-                $rootScope.notification.timeout = $timeout(function(){
-                    $rootScope.notification.show = false;
-                    // Only way to really stop the timer
-                    // Without this line, a new notification before the 5000 ms have passed would restart the original timer, hence a shorter notification (really weird though)
-                    $rootScope.notification.timeout = undefined;
-                }, 5000);
-            }
+            $rootScope.notification.timeout = $timeout(function(){
+                $rootScope.notification.show = false;
+                $rootScope.notification.timeout = undefined;
+            }, 5000);
         }
     };
+
     $rootScope.hidenotification = function(){
         $rootScope.notification.show = false;
         $timeout.cancel($rootScope.notification.timeout);
