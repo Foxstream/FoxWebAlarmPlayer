@@ -123,6 +123,11 @@ input:focus {
   box-shadow: 0 1px 1px rgba(228, 67, 51, 0.1) inset, 0 0 8px rgba(228, 67, 51, 0.6);
   outline: 0 none; }
 
+button.icon {
+  min-width: 0;
+  width: auto;
+  padding: 0 2%; }
+
 button, input[type=submit] {
   display: inline-block;
   border-style: solid;

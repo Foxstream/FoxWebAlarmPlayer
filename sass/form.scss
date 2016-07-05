@@ -22,7 +22,11 @@ input:focus {
     outline: 0 none;
 }
 
-
+button.icon {
+    min-width: 0;
+    width: auto;
+    padding: 0 2%;
+}
 
 button, input[type=submit] {
     display: inline-block;

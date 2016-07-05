@@ -132,8 +132,8 @@ block content
                           span(ng-show="filters.sitename !== 'Tous'")
                             label Caméras :
                             select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
-                          br
-                          button(type='submit', class='button-primary') Appliquer
+                          button(type='submit', class='button-primary icon')  
+                            span(class="glyphicon glyphicon-search")
                     
                     div(class='table-container alarmtable')
 
