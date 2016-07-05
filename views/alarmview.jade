@@ -46,14 +46,17 @@ block content
                               th(class='check') 
                                 input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                               th(class='play')
-                              th(class='date') Date
-                              th(class='camera') Caméra
-                              th(class='site') Site
+                              th(class='date')
+                                a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") Date
+                              th(class='camera')
+                                a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") Caméra
+                              th(class='site')
+                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") Site
                               th(class='handle')
                             tbody
                               tr(ng-show='getNotHandledAlarms().length === 0') 
                                 td(colspan="6") Aucune alarme
-                              tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: "-timestamp"', 
+                              tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: sortType:sortReverse',
                               ng-click='playalarm(x.id)'
                               id='alarm-{{ ::x.id }}'
                               ng-class="{active: x.id==currentalarm.id}")
@@ -143,14 +146,17 @@ block content
                                 th(class='check')
                                   input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                                 th(class='play')
-                                th(class='date') Date
-                                th(class='camera') Caméra
-                                th(class='site') Site
+                                th(class='date')
+                                  a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") Date
+                                th(class='camera') 
+                                  a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") Caméra
+                                th(class='site')
+                                  a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") Site
                                 th(class='handle')
                               tbody
                                 tr(ng-show='alarms.length === 0') 
                                   td(colspan="6") Aucune alarme
-                                tr(ng-repeat='x in alarms | orderBy: "-timestamp"',
+                                tr(ng-repeat='x in alarms | orderBy: sortType:sortReverse',
                                 ng-click='playalarm(x.id)'
                                 id='alarm-{{ ::x.id }}'
                                 ng-class="{active: x.id==currentalarm.id}")

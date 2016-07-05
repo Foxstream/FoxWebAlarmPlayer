@@ -55,6 +55,9 @@ app.controller('tabcontroller', ["$scope", function($scope){
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
 
     $scope.device = device;
+    
+    $scope.sortType = 'timestamp';
+    $scope.sortReverse = true;
 
     $scope.currentalarm = undefined;
     $scope.selected = [];
