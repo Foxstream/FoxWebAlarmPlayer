@@ -547,14 +547,9 @@ nav {
 #camera-list {
   height: 70vh;
   overflow: scroll; }
-  #camera-list .thumbnails {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; }
   #camera-list .cam {
     text-align: center;
-    margin-bottom: 5vh;
-    flex-grow: 1; }
+    margin-bottom: 5vh; }
   #camera-list .camera-image {
     display: inline-block;
     width: 25vh; }
@@ -576,7 +571,7 @@ nav {
 @media screen and (min-width: 992px) {
   #camera-list .camera-image {
     display: inline-block;
-    height: 23vh;
+    height: 20vh;
     width: auto; } }
 .settings-menu {
   margin-top: 2vh;
