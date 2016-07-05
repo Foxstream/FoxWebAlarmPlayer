@@ -196,6 +196,8 @@ button.button-secondary-fill {
         font-weight: normal;
         padding: 0.4em;
         text-align: center; }
+        .table-container table thead th .glyphicon {
+          padding-right: 5px; }
     .table-container table tbody tr {
       height: 2.5em; }
       .table-container table tbody tr td {
@@ -475,18 +477,6 @@ nav {
 
   .alarmtable table {
     width: 100%; }
-    .alarmtable table td:nth-child(1), .alarmtable table th:nth-child(1) {
-      width: 5%; }
-    .alarmtable table td:nth-child(2), .alarmtable table th:nth-child(2) {
-      width: 5%; }
-    .alarmtable table td:nth-child(3), .alarmtable table th:nth-child(3) {
-      width: 25%; }
-    .alarmtable table td:nth-child(4), .alarmtable table th:nth-child(4) {
-      width: 20%; }
-    .alarmtable table td:nth-child(5), .alarmtable table th:nth-child(5) {
-      width: 25%; }
-    .alarmtable table td:nth-child(6), .alarmtable table th:nth-child(6) {
-      width: 20%; }
   .alarmtable tbody {
     width: 100%; }
     .alarmtable tbody .glyphicon {

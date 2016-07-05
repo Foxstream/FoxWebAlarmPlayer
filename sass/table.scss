@@ -19,6 +19,10 @@
                 font-weight: normal;
                 padding: 0.4em;
                 text-align: center; // Necessary to overwrite bootstrap default
+
+                .glyphicon {
+                    padding-right: 5px;
+                }
             }
 
         }

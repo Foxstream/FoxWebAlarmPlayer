@@ -40,18 +40,27 @@ block content
 
                     div(class='table-container alarmtable')
 
-                      table
+                      table(fixed-header)
                         thead
                             tr
                               th(class='check') 
                                 input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                               th(class='play')
                               th(class='date')
-                                a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") Date
+                                a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
+                                  span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
+                                  span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
+                                  | Date
                               th(class='camera')
-                                a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") Caméra
+                                a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
+                                  span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
+                                  span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
+                                  | Caméra
                               th(class='site')
-                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") Site
+                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
+                                  span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
+                                  span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
+                                  | Site
                               th(class='handle')
                             tbody
                               tr(ng-show='getNotHandledAlarms().length === 0') 
@@ -147,11 +156,20 @@ block content
                                   input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                                 th(class='play')
                                 th(class='date')
-                                  a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") Date
-                                th(class='camera') 
-                                  a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") Caméra
+                                  a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
+                                    span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
+                                    span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
+                                    | Date
+                                th(class='camera')
+                                  a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
+                                    span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
+                                    span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
+                                    | Caméra
                                 th(class='site')
-                                  a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") Site
+                                  a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
+                                    span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
+                                    span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
+                                    | Site
                                 th(class='handle')
                               tbody
                                 tr(ng-show='alarms.length === 0') 
