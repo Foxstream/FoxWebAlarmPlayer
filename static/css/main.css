@@ -617,6 +617,9 @@ nav {
         /* Opera */
         -moz-transform: translate(0, -50%);
         /* Firefox */ }
+      #camera-list .cam .player-controls .glyphicon:hover {
+        cursor: pointer;
+        font-weight: bold; }
       #camera-list .cam .player-controls .glyphicon-play {
         left: 5%; }
       #camera-list .cam .player-controls .glyphicon-fullscreen {

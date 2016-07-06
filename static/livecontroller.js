@@ -22,11 +22,13 @@ app.factory('live', ['$http','$rootScope',
         return obj;
 }]);
 
-app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", function($scope, $rootScope, $window, live, device) {
+app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", "$interval", function($scope, $rootScope, $window, live, device, $interval) {
     
     $scope.selectedcamera = undefined;
 
     $scope.device = device;
+
+    $scope.imtervals = [];
 
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
@@ -41,12 +43,16 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     });
 
     $scope.playlivefeed = function(site, serverId, camId, fps){
-        $scope.currentsite = site;
-        $scope.selectedcamera = {
-            server: serverId,
-            id: camId,
-            fps: fps
-        };
+        $interval(function(){
+            live.getLiveImage(serverId, camId, function(image){
+                var pos = $scope.cameras[site].map(function(c){ return c.id; }).indexOf(camId);
+                $scope.cameras[site][pos].image = image;
+            });
+        }, 1000);
+    }
+
+    $scope.stoplivefeed = function(site, serverId, camId, fps){
+
     }
 
     // LIVE PICTURES

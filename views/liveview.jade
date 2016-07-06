@@ -27,16 +27,12 @@ block content
                         .row
                             div(ng-repeat='c in cams | orderBy: "id" track by $index', class="cam col-xs-6 col-md-3")
                                 img(src='{{ c.image }}',
-                                    ng-click='playlivefeed(site, c.serverId, c.id, 250)',
                                     class='camera-image')
+                                //- Should we use imagewithosd directive ?
                                 div(class="player-controls")
                                     h5(class='camera-name') {{ c.name }}
-                                    span(class="glyphicon glyphicon-play")
+                                    span(class="glyphicon glyphicon-play", ng-click='playlivefeed(site, c.serverId, c.id, 250)')
                                     span(class="glyphicon glyphicon-fullscreen")
-
-        div(class='live-canvas hidden-xs hidden-sm col-lg-6', 
-            ng-class="{'hidden-md': selectedcamera === undefined, 'hidden-lg': selectedcamera === undefined'}")
-            liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
 
         liveswiper(class="hidden-md hidden-lg",
                     ng-show='selectedcamera !== undefined')

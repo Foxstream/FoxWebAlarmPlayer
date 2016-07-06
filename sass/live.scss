@@ -71,6 +71,11 @@
                     @include transform(translate(0, -50%));                    
                 }
 
+                .glyphicon:hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+
                 .glyphicon-play {
                     left: 5%;
                 }

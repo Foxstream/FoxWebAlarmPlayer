@@ -81,4 +81,79 @@ if (viewportWidth < mobileBreakpoint){
     device = 'desktop';
 }
 
+
 app.value('device', device);
+
+
+app.directive('imagewithosd', function(){
+  return {
+	  restrict: 'E', 
+	  scope:{image:"=", osd:"=", imgwidth:"@", imgheight:"@"},
+	  replace: true,
+	  template: '<canvas class="imagecanvas"/>',
+	  link: function(scope, elem, attrs) {
+		  var canvas = elem[0];
+		  
+		  function repaintImage()
+		  {
+			  var ctx=canvas.getContext("2d");
+			  canvas.width = scope.imgwidth;
+			  canvas.height = scope.imgheight;
+			  
+                if (!scope.image){
+                    ctx.fillStyle = "grey";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                else {
+                    ctx.drawImage(scope.image, 0, 0, canvas.width, canvas.height);
+                    if (scope.osd) {
+                        for (var i = 0; i < scope.osd.length; i++) {
+                            var points = scope.osd[i];
+                            
+                            ctx.lineWidth = "2";
+                            ctx.strokeStyle = "red";
+
+                            ctx.beginPath();
+                            ctx.moveTo(points[0].x * canvas.width / scope.image.width, points[0].y * canvas.height / scope.image.height);
+                            for (var j = 0; j < points.length; j++)
+                                ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
+                            ctx.closePath();
+                            ctx.stroke();
+                        }
+                    }
+                }
+		  }
+		  
+          scope.$watch('image', repaintImage);
+          scope.$watch('osd', repaintImage);
+		  repaintImage();
+	  }
+  };
+});
+
+
+app.directive('spinner', function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div class="spinner">',
+        link: function(scope, elem, attrs){
+            var options = {
+                lines: 12,
+                length: 12,
+                corners: 1,
+                radius: 12,
+                rotate: 0,
+                direction: 1,
+                speed: 1,
+                trail: 50,
+                color: 'red',
+                opacity: 0.25,
+                direction: 1,
+                speed: 1
+            };
+            var target = elem[0];
+            var wheel = new Spinner(options).spin(target);
+        }
+    }
+});
