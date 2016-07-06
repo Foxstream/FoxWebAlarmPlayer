@@ -620,7 +620,7 @@ nav {
       #camera-list .cam .player-controls .glyphicon:hover {
         cursor: pointer;
         font-weight: bold; }
-      #camera-list .cam .player-controls .glyphicon-play {
+      #camera-list .cam .player-controls .glyphicon-play, #camera-list .cam .player-controls .glyphicon-stop {
         left: 5%; }
       #camera-list .cam .player-controls .glyphicon-fullscreen {
         right: 5%; } }

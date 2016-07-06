@@ -31,7 +31,7 @@ block content
                                 //- Should we use imagewithosd directive ?
                                 div(class="player-controls")
                                     h5(class='camera-name') {{ c.name }}
-                                    span(class="glyphicon glyphicon-play", ng-click='playlivefeed(site, c.serverId, c.id, 250)')
+                                    span(class="glyphicon", ng-class="{'glyphicon-play': !c.playing, 'glyphicon-stop': c.playing}" ng-click='togglelivefeed(site, c.serverId, c.id, 250)')
                                     span(class="glyphicon glyphicon-fullscreen")
 
         liveswiper(class="hidden-md hidden-lg",

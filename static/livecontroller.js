@@ -42,31 +42,21 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         }
     });
 
-    $scope.playlivefeed = function(site, serverId, camId, fps){
-        $interval(function(){
-            live.getLiveImage(serverId, camId, function(image){
-                var pos = $scope.cameras[site].map(function(c){ return c.id; }).indexOf(camId);
-                $scope.cameras[site][pos].image = image;
-            });
-        }, 1000);
+    $scope.togglelivefeed = function(site, serverId, camId, fps){
+        var pos = $scope.cameras[site].map(function(c){ return c.id; }).indexOf(camId);
+        if (!$scope.cameras[site][pos].playing){
+            $scope.cameras[site][pos].playing = $interval(function(){
+                console.debug('Starts playing')
+                live.getLiveImage(serverId, camId, function(image){
+                    $scope.cameras[site][pos].image = image;
+                });
+            }, 200);
+        } else {
+            console.debug("Stops playing")
+            $interval.cancel($scope.cameras[site][pos].playing);
+            $scope.cameras[site][pos].playing = undefined;
+        }
     }
-
-    $scope.stoplivefeed = function(site, serverId, camId, fps){
-
-    }
-
-    // LIVE PICTURES
-    // setInterval(function(){
-    //     if ($scope.cameras){
-    //         for (var site in $scope.cameras){
-    //             $scope.cameras[site].forEach(function(cam){
-    //                 live.getLiveImage(cam.serverId, cam.camid, function(image){
-    //                     cam.image = image;
-    //                 });
-    //             });
-    //         }
-    //     }
-    // }, 40);
 
 
     $scope.shownextcamera = function(){
