@@ -23,33 +23,48 @@ block content
             button(class="button-primary", ng-click='commitnewserver()', ng-show='newserver!==undefined') Valider
 
         div(class="table-container hidden-xs hidden-sm", ng-show="newserver === undefined")
-            div(class='form-grid')
-                div(class="grid-header")
-                    span Adresse
-                    span Port
-                    span Login
-                    span Description
-                    span 
-                    span(class="colspan-2")
-                form(class="grid-row", ng-repeat='x in servers', name="serverform{{ x.id }}", ng-submit='commitserver(x.id)', ng-controller="servercontroller")
-                    span
-                        input(type="text" ng-model="x.address")
-                    span
-                        input(type="text" ng-model="x.port")
-                    span
-                        input(type="text" ng-model="x.username")
-                    span
-                        input(type="text" ng-model="x.description")
-                    span
-                        span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
-                        span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
-                    span
-                        button(ng-click="deleteserver(x.id)", title="Supprimer le serveur",  class="icon button-primary", ng-show="serverform{{ x.id }}.$pristine")
-                            span(class="glyphicon glyphicon-trash")
-                        button(ng-click="resetserver(x.id)", title="Annuler", class="icon button-secondary", ng-show="serverform{{ x.id }}.$dirty")
-                            span(class="glyphicon glyphicon-remove")
-                        button(type="submit", title="Valider",  class="icon button-primary", ng-show="serverform{{ x.id }}.$dirty") 
-                            span(class="glyphicon glyphicon-ok")
+            table
+                thead
+                    th Adresse
+                    th Port
+                    th Login
+                    th Description
+                    th 
+                    th(class="colspan-2")
+                tbody
+                    tr(ng-repeat='x in servers')
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                            input(type="text" ng-model="x.address")
+
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.port }}
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                            input(type="text" ng-model="x.port")
+
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.username }}
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                            input(type="text" ng-model="x.username")
+
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.description }}
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                            input(type="text" ng-model="x.description")
+
+                        td
+                            span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                            span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id")
+                            button(ng-click="editserver(x.id)", title="Éditer le serveur", class="icon button-secondary-fill")
+                                span(class="glyphicon glyphicon-edit")
+                            button(ng-click="deleteserver(x.id)", title="Supprimer le serveur", class="icon button-primary-fill")
+                                span(class="glyphicon glyphicon-trash")
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                            button(ng-click="resetserver(x.id)", title="Annuler", class="icon button-secondary-fill")
+                                span(class="glyphicon glyphicon-remove")
+                            button(title="Valider", class="icon button-primary-fill", ng-click="commit") 
+                                span(class="glyphicon glyphicon-ok")
+
+
+
 
 
         div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")

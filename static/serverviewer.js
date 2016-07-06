@@ -35,6 +35,7 @@
 app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', 'device', function ($rootScope, $scope, $window, serverdb, alarmevents, device) {
         
         $scope.newserver = undefined;
+        $scope.currentserver = undefined;
         $scope.serverMsg = undefined;
         $scope.servers = [];
         $scope.pristineServerData = [];
@@ -43,9 +44,9 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.back = function(){
             $window.location.href = '/accountsettings';
         }
-         // TODO
+        // TODO (callback)
         serverdb.getservers(function (data){
-            $scope.servers = data; // [server1, server2, ...]
+            $scope.servers = data;
             $scope.pristineServerData = angular.copy($scope.servers);
         });
 
@@ -63,6 +64,11 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             };
 
             $scope.serverMsg = undefined;
+        }
+
+        $scope.editserver = function(serverId){
+            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
+            $scope.currentserver = angular.copy($scope.servers[pos]);
         }
 
         $scope.commitserver = function(serverId){
