@@ -50,12 +50,17 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
                 live.getLiveImage(serverId, camId, function(image){
                     $scope.cameras[site][pos].image = image;
                 });
-            }, 200);
+            }, 500);
         } else {
             console.debug("Stops playing")
             $interval.cancel($scope.cameras[site][pos].playing);
             $scope.cameras[site][pos].playing = undefined;
         }
+    }
+
+
+    $scope.playfullscreen = function(site, serverId, camId, fps, event){
+        debugger;
     }
 
 
@@ -167,5 +172,3 @@ app.directive('liveswiper', function(){
     }
 
 });
-
-
