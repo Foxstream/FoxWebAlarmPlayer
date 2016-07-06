@@ -179,6 +179,28 @@ button.button-secondary-fill {
     width: 100%;
     margin-left: 0;
     margin-right: 0; } }
+/** 
+  * Displaying a table where each line is a separate form is impossible with HTML for now. This class helps building an "editable grid"
+  */
+.form-grid {
+  display: table;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse; }
+  .form-grid .grid-header {
+    display: table-header-group;
+    border-top: solid #e44333 2px;
+    border-bottom: solid #e44333 2px; }
+  .form-grid .grid-row {
+    display: table-row; }
+  .form-grid .grid-header, .form-grid .grid-row {
+    height: 2.5em; }
+    .form-grid .grid-header span, .form-grid .grid-row span {
+      display: table-cell;
+      padding: 0.4em; }
+  .form-grid .grid-row:nth-child(even) {
+    background-color: #c8d4d9; }
+
 /**
   * Scrollable wrapper div for tables
   */
@@ -207,7 +229,7 @@ button.button-secondary-fill {
 /* Line colors 
    Not applied in .table-container, because these rules would 
    be too specific to be overwritten elsewhere (i.e. alarmtable) */
-tr:nth-child(even) {
+tbody tr:nth-child(even) {
   background-color: #c8d4d9; }
 
 tbody tr:hover {

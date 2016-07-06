@@ -1,14 +1,14 @@
 // Maybe try to refactor, these rules are nearly the same as the ones used to style mobile
 // alarm list
 
+.main-element * {
+    // transition: width 1s ease;
+}
+
 #camera-list {
 
     height: $main-element-size;
     overflow: scroll;
-
-    .thumbnails {
-
-    }
 
     .cam {
         text-align: center;
@@ -57,5 +57,3 @@
         }
     }
 }
-
-

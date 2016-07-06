@@ -102,3 +102,38 @@ button.button-secondary-fill {
     }
 
 }
+
+/** 
+  * Displaying a table where each line is a separate form is impossible with HTML for now. This class helps building an "editable grid"
+  */ 
+.form-grid {
+    display: table;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse; // necessary to display the borders
+
+    .grid-header {
+        display: table-header-group;
+        border-top: solid $fox-red 2px;
+        border-bottom: solid $fox-red 2px;
+    }
+
+    .grid-row {
+        display: table-row;
+    }
+
+    .grid-header, .grid-row  {
+        height: 2.5em;
+
+        span {
+            display: table-cell;
+            padding: 0.4em;
+        }
+
+    }
+
+    .grid-row:nth-child(even){
+        background-color: $fox-light-gray;
+    }
+
+}
