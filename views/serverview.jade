@@ -9,20 +9,20 @@ block content
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined && serversForm.$pristine') Nouveau serveur
+            button(class="button-primary", ng-click='newserver=""', ng-show='newserver === undefined') Nouveau serveur
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
-            button(class="button-secondary", ng-click='back()', ng-show="currentServer === undefined && serversForm.$pristine")
+            button(class="button-secondary", ng-click='back()', ng-show="newserver === undefined")
                 span(class="glyphicon glyphicon-chevron-left") 
                 span Paramètres
-            button(class="button-primary", ng-click='currentServer=""', ng-show='currentServer===undefined && serversForm.$pristine') Ajouter
+            button(class="button-primary", ng-click='newserver=""', ng-show='newserver===undefined') Ajouter
 
-            button(class="button-secondary", ng-click='currentServer=undefined;serverMsg=undefined', ng-show="currentServer !== undefined") Annuler
-            button(class="button-primary", ng-click='commitCurrentServer()', ng-show='currentServer!==undefined') Valider
+            button(class="button-secondary", ng-click='newserver=undefined;serverMsg=undefined', ng-show="newserver !== undefined") Annuler
+            button(class="button-primary", ng-click='commitnewserver()', ng-show='newserver!==undefined') Valider
 
-        div(class="table-container hidden-xs hidden-sm", ng-show="currentServer === undefined")
+        div(class="table-container hidden-xs hidden-sm", ng-show="newserver === undefined")
             div(class='form-grid')
                 div(class="grid-header")
                     span Adresse
@@ -44,7 +44,7 @@ block content
                         span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
                         span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
                     span
-                        button(ng-click="deleteServer(x.id)", title="Supprimer le serveur",  class="icon button-primary", ng-show="serverform{{ x.id }}.$pristine")
+                        button(ng-click="deleteserver(x.id)", title="Supprimer le serveur",  class="icon button-primary", ng-show="serverform{{ x.id }}.$pristine")
                             span(class="glyphicon glyphicon-trash")
                         button(ng-click="resetserver(x.id)", title="Annuler", class="icon button-secondary", ng-show="serverform{{ x.id }}.$dirty")
                             span(class="glyphicon glyphicon-remove")
@@ -52,7 +52,7 @@ block content
                             span(class="glyphicon glyphicon-ok")
 
 
-        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="currentServer === undefined")
+        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")
             div(ng-repeat='x in servers', class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
@@ -75,31 +75,31 @@ block content
                             label(for="description") Description
                             input(type="text", class="form-control",
                               id="description", ng-model="x.description")
-                        button(ng-click='deleteServer(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serversForm{{ $index }}.$pristine") Supprimer le serveur
+                        button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serversForm{{ $index }}.$pristine") Supprimer le serveur
                         button(ng-click='', title='Valider', class="button-primary full-width", ng-show="serversForm{{ $index }}.$dirty") Valider
 
 
 
-        div(id='newserver', ng-show='currentServer !== undefined' class="main-element col-xs-12 col-md-6 col-md-offset-3")
+        div(id='newserver', ng-show='newserver !== undefined' class="main-element col-xs-12 col-md-6 col-md-offset-3")
             .h4 Ajouter un serveur
             .form-group
                 label(for='id') Adresse
-                input(type='text', id='login' placeholder='Adresse', ng-model='currentServer.address', class="form-control")
+                input(type='text', id='login' placeholder='Adresse', ng-model='newserver.address', class="form-control")
             .form-group
                 label(for='port') Port
-                input(type='text', id='port' placeholder='Port', ng-model='currentServer.port', class="form-control")
+                input(type='text', id='port' placeholder='Port', ng-model='newserver.port', class="form-control")
             .form-group
                 label(for='user') Login
-                input(type='text', id='user' placeholder='Login', ng-model='currentServer.username', class="form-control")
+                input(type='text', id='user' placeholder='Login', ng-model='newserver.username', class="form-control")
             .form-group
                 label(for='password') Mot de passe
-                input(type='text', id='password' placeholder='Mot de passe', ng-model='currentServer.password', class="form-control")
+                input(type='text', id='password' placeholder='Mot de passe', ng-model='newserver.password', class="form-control")
             .form-group
                 label(for='description') Description
-                input(type='text', id='description' placeholder='Description', ng-model='currentServer.description', class="form-control")
+                input(type='text', id='description' placeholder='Description', ng-model='newserver.description', class="form-control")
 
-            button(ng-click='currentServer=undefined;serverMsg=undefined',  class="button-secondary", ng-show="device === 'desktop'") Annuler
-            button(ng-click='commitCurrentServer()', class="button-primary", ng-show="device === 'desktop'") Valider
+            button(ng-click='newserver=undefined;serverMsg=undefined',  class="button-secondary", ng-show="device === 'desktop'") Annuler
+            button(ng-click='commitnewserver()', class="button-primary", ng-show="device === 'desktop'") Valider
         
         div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg }}
 
