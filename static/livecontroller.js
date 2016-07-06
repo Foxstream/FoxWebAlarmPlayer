@@ -60,7 +60,8 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 
     $scope.playfullscreen = function(site, serverId, camId, fps, event){
-        debugger;
+        var liveplayer = event.target.parentElement.parentElement;
+        liveplayer.webkitRequestFullScreen();
     }
 
 
