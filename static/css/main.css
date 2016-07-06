@@ -296,8 +296,7 @@ nav {
   height: 1.6em;
   width: 1.6em;
   position: absolute;
-  line-height: 1.6em;
-  border-radius: 0.8em; }
+  line-height: 1.6em; }
 
 @media screen and (max-width: 991px) {
   nav {
@@ -357,7 +356,8 @@ nav {
     background: #e44333;
     color: white;
     left: 50%;
-    top: 10%; } }
+    top: 10%;
+    border-radius: 0.8em; } }
 @media screen and (max-width: 767px) {
   nav {
     height: 10vh; }
@@ -422,10 +422,11 @@ nav {
           text-align: left;
           text-indent: 5%; }
     nav .new-alarm-counter {
-      background: white;
-      color: #e44333;
-      right: 10%;
-      top: 10%; } }
+      background: #cf3c2d;
+      color: white;
+      right: 0;
+      top: 0;
+      border-bottom-left-radius: 0.8em; } }
 /**
   * Action buttons at the top of the page
   */

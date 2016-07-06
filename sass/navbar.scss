@@ -26,7 +26,6 @@ nav {
     width: 1.6em;
     position: absolute;
     line-height: 1.6em;
-    border-radius: 0.8em;
 }
 
 
@@ -94,6 +93,7 @@ nav {
         color: white;
         left: 50%;
         top: 10%;
+        border-radius: 0.8em;
     }
 
 }
@@ -201,10 +201,11 @@ nav {
         }
 
         .new-alarm-counter {
-            background: white;
-            color: $fox-red;
-            right: 10%;
-            top: 10%;
+            background: $fox-dark-red;
+            color: white;
+            right: 0;
+            top: 0;
+            border-bottom-left-radius: 0.8em;
         }
 
     }

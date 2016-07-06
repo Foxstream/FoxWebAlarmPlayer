@@ -34,7 +34,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
-                console.log(cam); 
+                console.log(cam);
                 live.getLiveImage(cam.serverId, cam.id, function(image){
                     cam.image = image;
                 });
@@ -60,8 +60,10 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 
     $scope.playfullscreen = function(site, serverId, camId, fps, event){
-        var liveplayer = event.target.parentElement.parentElement;
-        liveplayer.webkitRequestFullScreen();
+        var liveplayer = $(event.target.parentElement.parentElement);
+        liveplayer.animate({
+            width: '60%'
+        });
     }
 
 
