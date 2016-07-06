@@ -568,6 +568,9 @@ nav {
 @media screen and (max-width: 991px) {
   .imageplayer {
     width: 100%; } }
+.main-element div {
+  transition: all 0.2s linear; }
+
 #camera-list {
   height: 70vh;
   overflow: scroll; }

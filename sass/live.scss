@@ -1,8 +1,8 @@
 // Maybe try to refactor, these rules are nearly the same as the ones used to style mobile
 // alarm list
 
-.main-element * {
-    // transition: width 1s ease;
+.main-element div {
+     transition: all 0.2s linear;
 }
 
 #camera-list {
