@@ -200,6 +200,8 @@ button.button-secondary-fill {
       padding: 0.4em; }
   .form-grid .grid-row:nth-child(even) {
     background-color: #c8d4d9; }
+  .form-grid .colspan-2 {
+    width: 10%; }
 
 /**
   * Scrollable wrapper div for tables
