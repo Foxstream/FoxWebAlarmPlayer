@@ -1,5 +1,4 @@
-﻿
-app.factory('serverdb', ['$http', '$rootScope', 
+﻿app.factory('serverdb', ['$http', '$rootScope', 
   function ($http, $rootScope) {
         var obj = {}
         
@@ -30,21 +29,24 @@ app.factory('serverdb', ['$http', '$rootScope',
         return obj;
     }]);
 
+
+
+
 app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', 'device', function ($rootScope, $scope, $window, serverdb, alarmevents, device) {
         
         $scope.currentserver = undefined;
         $scope.serverMsg = undefined;
         $scope.servers = [];
-        $scope.originalServers = [];
+        $scope.pristineServerData = [];
         $scope.device = device;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';
         }
-        
+         // TODO
         serverdb.getservers(function (data){
-            $scope.servers = data;
-            $scope.originalServers = angular.copy($scope.servers);
+            $scope.servers = data; // [server1, server2, ...]
+            $scope.pristineServerData = angular.copy($scope.servers);
         });
 
         var updateMessage = function (err) {
@@ -63,16 +65,12 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             $scope.serverMsg = undefined;
         }
 
-        $scope.reset = function(){
-            $scope.servers = angular.copy($scope.originalServers);
-            $scope.serversForm.$setPristine();
-        }
         
         $scope.deleteServer = function (id) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(id);
             if (pos == -1 || !$window.confirm("Are you sure you want to delete the server " + $scope.servers[pos].login))
                 return;
-            
+            // TODO
             $scope.serverMsg = "Deleting server...";
             serverdb.deleteserver(id, function (err) {
                 updateMessage.call("Le serveur a bien été supprimé", err);
@@ -81,34 +79,49 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             });
 
         };
-        
-        $scope.editServer = function (id) {
-            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(id);
-            $scope.currentServer = JSON.parse(JSON.stringify($scope.servers[pos]));
-            $scope.serverMsg = undefined;
-        };
-        
-        $scope.commitCurrentServer = function () {
-            $scope.serverMsg = "Sending data...";
+    
+         // TODO
+        // $scope.commitserver = function (serverId) {
+        //     $scope.serverMsg = "Sending data...";
             
-            if ($scope.currentServer.id)
-                serverdb.updateserver($scope.currentServer, function (err, newserver) {
-                    updateMessage.call("Vos modifications ont été enregistrées", err);
-                    if (!err) {
-                        var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentServer.id);
-                        $scope.servers[pos] = $scope.currentServer;
-                        $scope.currentServer = undefined;
-                    }
-                })
-            else
-                serverdb.addserver($scope.currentServer, function (err, newserver) {
-                    updateMessage.call("Le serveur a bien été ajouté", err);
-                    if (!err) {
-                        $scope.currentServer = undefined;
-                        $scope.servers.push(newserver);
-                    }
-                })
-        };
+        //     if ($scope.currentServer.id)
+        //         serverdb.updateserver($scope.currentServer, function (err, newserver) {
+        //             updateMessage.call("Vos modifications ont été enregistrées", err);
+        //             if (!err) {
+        //                 var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentServer.id);
+        //                 $scope.servers[pos] = $scope.currentServer;
+        //                 $scope.currentServer = undefined;
+        //             }
+        //         })
+        //     else{
+        //         serverdb.addserver($scope.currentServer, function (err, newserver) {
+        //             updateMessage.call("Le serveur a bien été ajouté", err);
+        //             if (!err) {
+        //                 $scope.currentServer = undefined;
+        //                 $scope.servers.push(newserver);
+        //             }
+        //         })
+        //     }
+        // };
+
+        $scope.commitserver = function(serverId){
+            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
+            serverdb.updateserver($scope.servers[pos], function(err, newserver){
+                if (err){
+                    $scope.resetserver(serverId);
+                    updateMessage.call("Un erreur s'est produite.")
+                } else {
+                    $scope['serverform' + serverId].$setPristine();
+                    updateMessage.call("Vos modifications ont été enregistrées.");
+                    // Set the form to pristine
+                }
+            });
+        }
+
+        $scope.resetserver = function(serverId){
+            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
+            $scope.servers[pos] = angular.copy($scope.pristineServerData[pos]);
+        }
 
 
         var statusUpdate = function (event, data) {

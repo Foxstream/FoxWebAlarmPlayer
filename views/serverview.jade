@@ -31,7 +31,7 @@ block content
                     span Description
                     span 
                     span(class="colspan-2")
-                form(class="grid-row", ng-repeat='x in servers', name="serverform{{ x.id }}")
+                form(class="grid-row", ng-repeat='x in servers', name="serverform{{ x.id }}", ng-submit='commitserver(x.id)', ng-controller="servercontroller")
                     span
                         input(type="text" ng-model="x.address")
                     span
@@ -44,11 +44,11 @@ block content
                         span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
                         span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
                     span
-                        button(ng-click="deleteServer(x.id)", title="Delete server",  class="icon button-primary", ng-show="serverform{{ x.id }}.$pristine")
+                        button(ng-click="deleteServer(x.id)", title="Supprimer le serveur",  class="icon button-primary", ng-show="serverform{{ x.id }}.$pristine")
                             span(class="glyphicon glyphicon-trash")
-                        button(ng-click="", title="Delete server",  class="icon button-secondary", ng-show="serverform{{ x.id }}.$dirty") 
+                        button(ng-click="resetserver(x.id)", title="Annuler", class="icon button-secondary", ng-show="serverform{{ x.id }}.$dirty")
                             span(class="glyphicon glyphicon-remove")
-                        button(ng-click="deleteServer(x.id)", title="Delete server",  class="icon button-primary", ng-show="serverform{{ x.id }}.$dirty") 
+                        button(type="submit", title="Valider",  class="icon button-primary", ng-show="serverform{{ x.id }}.$dirty") 
                             span(class="glyphicon glyphicon-ok")
 
 
