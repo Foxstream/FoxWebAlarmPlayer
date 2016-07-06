@@ -2,6 +2,7 @@
 
 // Notification system
 app.run(function($rootScope, $timeout){
+    
     $rootScope.notification = {
         message: "",
         show: false,

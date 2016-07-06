@@ -114,7 +114,25 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             if (pos >= 0){
                 $scope.servers[pos].connected = data.connected;
                 if (!data.connected){
-                    $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false, 1000);
+
+                    var disconnectedServers = $scope.servers.filter(function(s){ return !s.connected; });
+                    if (disconnectedServers.length > 1){
+
+                        var message = "Impossible de se connecter aux serveurs : ";
+                        disconnectedServers.forEach(function(s, index){
+                            message += s.description + " (" + s.address + ")"
+                            if (index !== disconnectedServers.length - 1){
+                                message += ", ";
+                            }
+                        });
+                        $scope.sendnotification(message, false, 1000);
+
+                    } else {
+
+                        $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false, 1000);
+
+                    }
+
                 } else {
                     $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") établie", true, 1000);
                 }
