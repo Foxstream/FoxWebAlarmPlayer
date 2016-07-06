@@ -1,10 +1,6 @@
 // Maybe try to refactor, these rules are nearly the same as the ones used to style mobile
 // alarm list
 
-.main-element div {
-     transition: all 0.2s linear;
-}
-
 #camera-list {
 
     height: $main-element-size;
@@ -48,12 +44,44 @@
 
 }
 
+// Desktop
 @media screen and (min-width: $tablet-breakpoint){
     #camera-list {
-        .camera-image {
-            display: inline-block;
-            height: 20vh;
-            width: auto;
+
+        .cam {
+
+            position: relative;
+
+            .camera-image {
+                display: inline-block;
+                width: 100%;
+            }
+
+            .player-controls {
+                position: absolute;
+                bottom: 0;
+                background: rgba($fox-gray, 0.5);
+                left: 15px;
+                right: 15px;
+                color: white;
+
+                .glyphicon {
+                    position: absolute;
+                    top: 50%;
+                    @include transform(translate(0, -50%));                    
+                }
+
+                .glyphicon-play {
+                    left: 5%;
+                }
+
+                .glyphicon-fullscreen {
+                    right: 5%;
+                }
+
+            }
+
         }
+
     }
 }

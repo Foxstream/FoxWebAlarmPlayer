@@ -17,7 +17,7 @@ block content
                     span Retour
         
 
-        div(class='col-xs-12 main-element', id='camera-list', ng-class="{'col-md-10': selectedcamera === undefined, 'col-md-offset-1': selectedcamera === undefined, 'col-md-6': selectedcamera !== undefined}", ng-show="device === 'desktop' || selectedcamera === undefined")
+        div(class='col-xs-12 main-element', id='camera-list', ng-show="selectedcamera === undefined")
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
@@ -25,11 +25,14 @@ block content
                 div(id='collapse{{ $index }}',
                     class='collapse')
                         .row
-                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="cam col-xs-6", ng-class="{'col-md-6': selectedcamera !== undefined, 'col-md-3': selectedcamera === undefined}")
+                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="cam col-xs-6 col-md-3")
                                 img(src='{{ c.image }}',
                                     ng-click='playlivefeed(site, c.serverId, c.id, 250)',
                                     class='camera-image')
-                                h5(class='camera-name') {{ c.name }}
+                                div(class="player-controls")
+                                    h5(class='camera-name') {{ c.name }}
+                                    span(class="glyphicon glyphicon-play")
+                                    span(class="glyphicon glyphicon-fullscreen")
 
         div(class='live-canvas hidden-xs hidden-sm col-lg-6', 
             ng-class="{'hidden-md': selectedcamera === undefined, 'hidden-lg': selectedcamera === undefined'}")

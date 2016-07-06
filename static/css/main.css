@@ -568,9 +568,6 @@ nav {
 @media screen and (max-width: 991px) {
   .imageplayer {
     width: 100%; } }
-.main-element div {
-  transition: all 0.2s linear; }
-
 #camera-list {
   height: 70vh;
   overflow: scroll; }
@@ -596,10 +593,34 @@ nav {
       display: inline-block; }
 
 @media screen and (min-width: 992px) {
-  #camera-list .camera-image {
-    display: inline-block;
-    height: 20vh;
-    width: auto; } }
+  #camera-list .cam {
+    position: relative; }
+    #camera-list .cam .camera-image {
+      display: inline-block;
+      width: 100%; }
+    #camera-list .cam .player-controls {
+      position: absolute;
+      bottom: 0;
+      background: rgba(120, 132, 147, 0.5);
+      left: 15px;
+      right: 15px;
+      color: white; }
+      #camera-list .cam .player-controls .glyphicon {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        /* IE 9 */
+        -webkit-transform: translate(0, -50%);
+        /* Safari and Chrome */
+        -o-transform: translate(0, -50%);
+        /* Opera */
+        -moz-transform: translate(0, -50%);
+        /* Firefox */ }
+      #camera-list .cam .player-controls .glyphicon-play {
+        left: 5%; }
+      #camera-list .cam .player-controls .glyphicon-fullscreen {
+        right: 5%; } }
 .settings-menu {
   margin-top: 2vh;
   color: #e44333; }
