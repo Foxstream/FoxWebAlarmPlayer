@@ -5,12 +5,22 @@
   * should be used on the parent element
   */
 .block-header {
+    position: relative;
     display: inline-block;
     width: 100%;
     border: solid $fox-gray 1px;
     padding: 2vh 5vw;
     font-size: 1.2em;
     font-weight: bold;
+
+    .glyphicon { 
+        color: $fox-red;
+        position: absolute;
+        top: 50%;
+        right: 3%;
+        @include transform(translate(0, -50%));
+    }
+
 }
 
 // Bootstrap default margin is so big

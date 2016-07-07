@@ -66,8 +66,6 @@ block content
                             span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id")
-                            //- button(ng-click="editserver(x.id)", title="Éditer le serveur", class="icon button-secondary-fill", ng-show="newserver === undefined")
-                            //-     span(class="glyphicon glyphicon-edit")
                             button(ng-click="deleteserver(x.id); $event.stopPropagation()", title="Supprimer le serveur", class="icon button-primary-fill", ng-show="newserver === undefined")
                                 span(class="glyphicon glyphicon-trash")
 
@@ -102,9 +100,11 @@ block content
             div(ng-repeat='x in servers', class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
-                        class="block-header", data-parent='#serverlist') {{ x.description }}
+                        class="block-header", data-parent='#serverlist', ng-click="editserver(x.id)") {{ x.description }}
+                        span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
+                        span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
                 div(id='collapse{{ $index }}', class='collapse')
-                    form(name="serversForm{{ $index }}")
+                    form(name="serversForm{{ $index }}", ng-show="currentserver !== undefined && currentserver.id === x.id")
                         .form-group
                             label(for="address") Adresse
                             input(type="text", class="form-control",
