@@ -9,7 +9,7 @@ var _ = require("lodash");
 //events: unexpectedData, disconnected
 function connect(successCallback)
 {		
-	var self=this;
+	var self = this;
 	
 	console.log("Conecting with " + this.Host);
 	
@@ -22,7 +22,7 @@ function connect(successCallback)
 		self.connected = true;
 		console.log('Connected with '+self.Host);
 		
-		var first=true;
+		var first = true;
 		self.xml=new XmlStream(self.client.pipe(through(function(data){//prepend at the very begining root element; move as own function
 				if(first)this.queue("<root>");
 				first=false;
@@ -100,7 +100,7 @@ function send(message, responseCallback)
 
 function setNodeAsArray(elem)
 {
-	if (_.indexOf(this.CollectedItems,elem)==-1)
+	if (_.indexOf(this.CollectedItems,elem) === -1)
 	{				
 		if(this.xml)this.xml.collect(elem);
 		

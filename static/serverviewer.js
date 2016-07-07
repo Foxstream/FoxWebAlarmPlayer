@@ -49,7 +49,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         serverdb.getservers(function (data){
             $scope.servers = data;
             $scope.pristineServerData = angular.copy($scope.servers);
-            console.log($scope.servers);
         });
 
         var updateMessage = function (err) {
@@ -64,9 +63,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 password: "",
                 description: ""
             };
-
-            $scope.serverMsg = undefined;
-        }
+        };
 
         $scope.editserver = function(serverId){
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
@@ -113,14 +110,14 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                         $scope.servers.push(newserver);
                     }
                 });
-        }
+        };
 
 
-        var statusUpdate = function (event, data) {
-            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(data.id);
+        var statusUpdate = function (event, server) {
+            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(server.id);
             if (pos >= 0){
-                $scope.servers[pos].connected = data.connected;
-                if (!data.connected){
+                $scope.servers[pos] = angular.copy(server);
+                if (!server.connected){
 
                     var disconnectedServers = $scope.servers.filter(function(s){ return !s.connected; });
                     if (disconnectedServers.length > 1){

@@ -84,8 +84,7 @@ function connectClient()
 	});
 }
 
-function connect()
-{	
+function connect(){
 	var self=this;
 	connectClient.call(this);
 	schedulePeriodicTest.call(this);

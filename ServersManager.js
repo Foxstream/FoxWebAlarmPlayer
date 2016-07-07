@@ -16,20 +16,16 @@ function RequestServerConnect(srv)
 {
     var self = this;
 
-    srv.xmlclient.on("connected", function () {
-        if (!srv.connected) {
-            debugger;
-            srv.connected = true;
-            var hasListeners = self.emit('connectionEstablished', srv.config);
-            if (!hasListeners){
-                console.error("NO HANDLER ANYMORE !!!")
-            }
+    srv.xmlclient.on("connected", function (){
+        if (!srv.config.connected) {
+            srv.config.connected = true;
+            self.emit('connectionEstablished', srv.config);
         }
     });
     
     srv.xmlclient.on("connectionLost", function (reason) {
-        if (srv.connected) {
-            srv.connected = false;
+        if (srv.config.connected) {
+            srv.config.connected = false;
             self.emit('connectionLost', srv.config);
         }
     });
@@ -60,12 +56,12 @@ function RequestServerConnect(srv)
             data.dbobject.images = data.images;
             
             self.alarmPersistence.saveAlarm(data.dbobject, function (err, obj) {                
-                self.emit('alarm_update', obj);                
+                self.emit('alarm_update', obj);
             });
         }
     });
     
-    srv.connected = false;
+    srv.config.connected = false;
     srv.xmlclient.connect();
 
 }
@@ -105,13 +101,12 @@ function UpdateServer(server, cb) {
                 cb(err)
             else {
                 InternalDisconnectServer(self.servers[pos]);
-                debugger;
                 self.servers[pos] = BuildInternalServer(server);
-
+ 
                 RequestServerConnect.bind(self)(self.servers[pos]);
                 cb(null, data);
             }
-        })    
+        });
 }
 
 

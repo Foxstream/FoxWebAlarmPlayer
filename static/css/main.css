@@ -232,6 +232,8 @@ button.button-secondary-fill {
       color: white; }
       .table-container table tbody tr.active input {
         color: black; }
+    .table-container table input {
+      text-align: center; }
 
 /* Line colors 
    Not applied in .table-container, because these rules would 
@@ -440,6 +442,7 @@ nav {
 
 @media screen and (min-width: 992px) {
   .actions {
+    height: 2em;
     text-align: right;
     padding-right: 2%;
     margin-bottom: 2vh; } }
