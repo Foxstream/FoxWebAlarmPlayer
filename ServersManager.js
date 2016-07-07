@@ -15,11 +15,15 @@ var FoxXmlAlarmClient = require('./FoxXmlAlarmClient.js');
 function RequestServerConnect(srv)
 {
     var self = this;
-    
+
     srv.xmlclient.on("connected", function () {
         if (!srv.connected) {
+            debugger;
             srv.connected = true;
-            self.emit('connectionEstablished', srv.config);            
+            var hasListeners = self.emit('connectionEstablished', srv.config);
+            if (!hasListeners){
+                console.error("NO HANDLER ANYMORE !!!")
+            }
         }
     });
     
@@ -32,7 +36,7 @@ function RequestServerConnect(srv)
     
 
     srv.xmlclient.on("alarm", function (alarmData) {
-        if (alarmData.activation == 'on') {
+        if (alarmData.activation == 'on'){
             var cam = _.find(alarmData.server.Configuration.cameras, function (cam) { return cam.id == alarmData.camid; })
             
             alarmObj = {
@@ -45,8 +49,8 @@ function RequestServerConnect(srv)
             
             self.alarmPersistence.saveAlarm(alarmObj, function (err, obj) {                
                 alarmData.dbobject = obj;
-                self.emit('alarm', obj);                                
-            });                        
+                self.emit('alarm', obj);
+            });
         }
     });
     
@@ -73,10 +77,11 @@ function InternalDisconnectServer(server)
 
 function BuildInternalServer(srv)
 {
+
     var xmlclient = new FoxXmlClient(srv.address, srv.port, srv.username, srv.password);
     var alarmclient = new FoxXmlAlarmClient(xmlclient);
 
-    return { config : srv, alarmclient : alarmclient, xmlclient : xmlclient };    
+    return { config : srv, alarmclient : alarmclient, xmlclient : xmlclient };
 }
 
 function AddAndRequestConnect(s)
@@ -100,12 +105,15 @@ function UpdateServer(server, cb) {
                 cb(err)
             else {
                 InternalDisconnectServer(self.servers[pos]);
-                self.servers[pos] = BuildInternalServer(server);                                
-                RequestServerConnect.bind(this)(self.servers[pos]);
+                debugger;
+                self.servers[pos] = BuildInternalServer(server);
+
+                RequestServerConnect.bind(self)(self.servers[pos]);
                 cb(null, data);
             }
         })    
 }
+
 
 function AddServer(server, cb) {
     var self = this;
@@ -179,7 +187,7 @@ function Stop()
 function ServersManager(serverPersistence, alarmPersistence)
 {
     if (!this) return new ServersManager(serverPersistence);
-    
+
     events.EventEmitter.call(this);
 
     this.serverPersistence = serverPersistence;

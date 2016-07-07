@@ -49,6 +49,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         serverdb.getservers(function (data){
             $scope.servers = data;
             $scope.pristineServerData = angular.copy($scope.servers);
+            console.log($scope.servers);
         });
 
         var updateMessage = function (err) {

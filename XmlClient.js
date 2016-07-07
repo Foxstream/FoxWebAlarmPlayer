@@ -31,7 +31,7 @@ function connect(successCallback)
 						
 		_.forEach(self.CollectedItems, self.xml.collect.bind(self.xml));				
 			
-		self.xml.on("endElement: fox",receivingData.bind(self));
+		self.xml.on("endElement: fox", receivingData.bind(self));
 		
 		successCallback();				
 	});	
@@ -66,7 +66,6 @@ function connectionLost()
 	console.log("Disconnected from " + this.Host);	
 	this.emit("disconnected", "disconnected from host");
 	this.client=null;
-		
 }
 
 function internal_send(message, responseCallback)

@@ -90,15 +90,15 @@ function connect()
 	connectClient.call(this);
 	schedulePeriodicTest.call(this);
 	
-	this.Client.on('disconnected', function(err){self.ConnectionEstablished=false; self.emit('connectionLost', err);});
+	this.Client.on('disconnected', function(err){ self.ConnectionEstablished=false; self.emit('connectionLost', err);});
 	this.Client.on('unexpectedData', gotUnexpectedMessage.bind(this));
 }
 
 function gotUnexpectedMessage(data)
 {
 	if(data.$.type=='alarm')
-	{	
-		var self=this;	
+	{
+		var self=this;
 		var alarm={camid:data.$.camid,
 			       server:self,
 				   timestamp:data.$.timestamp,
@@ -121,7 +121,7 @@ function disconnect()
 
 function periodic_test()
 {	
-	if(this.ConnectionEstablished)//send ping
+	if(this.ConnectionEstablished) //send ping
 	{		
 		this.Client.send({"$":{type:"ping"}},function(){});
 	}
@@ -159,7 +159,5 @@ sys.inherits(FoxXmlClient, events.EventEmitter);
 FoxXmlClient.prototype.connect = connect;
 FoxXmlClient.prototype.send = send;
 FoxXmlClient.prototype.disconnect = disconnect;
-
-
 
 module.exports=FoxXmlClient;

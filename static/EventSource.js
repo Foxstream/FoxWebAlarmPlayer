@@ -5,7 +5,7 @@ app.factory('alarmevents', ['$rootScope',
         var eventForwarder = function (e) {
             var jData = null;
             try { jData = JSON.parse(e.data); } catch (err) { }
-            
+
             if (jData)
                 $rootScope.$apply($rootScope.$emit.bind($rootScope, e.type, jData));
         };

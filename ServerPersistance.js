@@ -11,7 +11,7 @@ function close() {
 
 function updateserver(server, cb) {    
     this.db.run("UPDATE server SET address=?, port=?, username=?, password=?, description=? WHERE id=?",
-	     [server.address, server.port, server.username, server.password, server.description, server.id], cb);    
+	     [server.address, server.port, server.username, server.password, server.description, server.id], cb);
 }
 
 function deleteserver(serverId, cb) {

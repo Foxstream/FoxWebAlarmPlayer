@@ -43,11 +43,16 @@ var sse = new ServerSideEvent(websrv, "/events");
 
 async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function (err) {
     
-    serverManager.on("connectionLost", function (srv) { sse.sendMessage('connection', JSON.stringify({ id: srv.id, connected: false })); });    
-    serverManager.on("connectionEstablished", function (srv) { sse.sendMessage('connection', JSON.stringify({ id: srv.id, connected: true })); });
+    serverManager.on("connectionLost", function (srv){ 
+        sse.sendMessage('connection', JSON.stringify({ id: srv.id, connected: false }));
+    });
+
+    serverManager.on("connectionEstablished", function (srv) { 
+        sse.sendMessage('connection', JSON.stringify({ id: srv.id, connected: true }));
+    });
     
     serverManager.on("alarm", function (alarm) { sse.sendMessage('alarm_create', JSON.stringify(alarm)); });
-    serverManager.on("alarm_update", function (alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });    
+    serverManager.on("alarm_update", function (alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
 
     serverManager.start();
     

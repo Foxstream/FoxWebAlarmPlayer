@@ -24,7 +24,7 @@ function ServerSideEvent(app, url)
 	
 	app.get(url, auth.IsValidUser, function(req, res) {
  		
-		//req.socket.setTimeout(Infinity);//already default value
+		// req.socket.setTimeout(Infinity);//already default value
 	 
 		res.writeHead(200, {
 			'Content-Type': 'text/event-stream',
