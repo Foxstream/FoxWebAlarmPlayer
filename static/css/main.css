@@ -238,7 +238,7 @@ button.button-secondary-fill {
 /* Line colors 
    Not applied in .table-container, because these rules would 
    be too specific to be overwritten elsewhere (i.e. alarmtable) */
-tbody tr:nth-child(even) {
+tbody tr:nth-child(odd) {
   background-color: #c8d4d9; }
 
 tbody tr:hover {

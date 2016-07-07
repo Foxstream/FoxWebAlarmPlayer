@@ -40,7 +40,7 @@ block content
                     th 
                     th
                 tbody
-                    tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}")
+                    tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}", ng-click="editserver(x.id)")
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.address")
@@ -66,15 +66,15 @@ block content
                             span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id")
-                            button(ng-click="editserver(x.id)", title="Éditer le serveur", class="icon button-secondary-fill", ng-show="newserver === undefined")
-                                span(class="glyphicon glyphicon-edit")
-                            button(ng-click="deleteserver(x.id)", title="Supprimer le serveur", class="icon button-primary-fill", ng-show="newserver === undefined")
+                            //- button(ng-click="editserver(x.id)", title="Éditer le serveur", class="icon button-secondary-fill", ng-show="newserver === undefined")
+                            //-     span(class="glyphicon glyphicon-edit")
+                            button(ng-click="deleteserver(x.id); $event.stopPropagation()", title="Supprimer le serveur", class="icon button-primary-fill", ng-show="newserver === undefined")
                                 span(class="glyphicon glyphicon-trash")
 
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            button(ng-click="resetserver()", title="Annuler", class="icon button-secondary-fill")
+                            button(ng-click="resetserver(); $event.stopPropagation()", title="Annuler", class="icon button-secondary-fill")
                                 span(class="glyphicon glyphicon-remove")
-                            button(title="Valider", class="icon button-primary-fill", ng-click="commitcurrentserver()") 
+                            button(title="Valider", class="icon button-primary-fill", ng-click="commitcurrentserver(); $event.stopPropagation()") 
                                 span(class="glyphicon glyphicon-ok")
 
                     tr(ng-show="newserver !== undefined", class="active")

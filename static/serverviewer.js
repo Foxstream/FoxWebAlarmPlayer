@@ -86,7 +86,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                     $scope.servers.splice(pos, 1);
                 }
             });
-
         };
 
         $scope.commitcurrentserver = function(){
