@@ -22,7 +22,7 @@ function handleAuthResponse(err, data)
 	}
 	else
 	{
-		console.log('Authentication error while connecting with '+self.Client.Host+':'+self.Client.Port);
+		// console.log('Authentication error while connecting with '+self.Client.Host+':'+self.Client.Port);
 		this.emit('connectionLost', 'authentication error');
 	}
 }

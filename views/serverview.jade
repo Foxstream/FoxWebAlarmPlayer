@@ -35,32 +35,34 @@ block content
                     tr(ng-repeat='x in servers')
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="x.address")
+                            input(type="text" ng-model="currentserver.address")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.port }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="x.port")
+                            input(type="text" ng-model="currentserver.port")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.username }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="x.username")
+                            input(type="text" ng-model="currentserver.username")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.description }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="x.description")
+                            input(type="text" ng-model="currentserver.description")
 
                         td
                             span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
                             span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id")
                             button(ng-click="editserver(x.id)", title="Éditer le serveur", class="icon button-secondary-fill")
                                 span(class="glyphicon glyphicon-edit")
                             button(ng-click="deleteserver(x.id)", title="Supprimer le serveur", class="icon button-primary-fill")
                                 span(class="glyphicon glyphicon-trash")
+
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            button(ng-click="resetserver(x.id)", title="Annuler", class="icon button-secondary-fill")
+                            button(ng-click="resetserver()", title="Annuler", class="icon button-secondary-fill")
                                 span(class="glyphicon glyphicon-remove")
-                            button(title="Valider", class="icon button-primary-fill", ng-click="commit") 
+                            button(title="Valider", class="icon button-primary-fill", ng-click="commitcurrentserver()") 
                                 span(class="glyphicon glyphicon-ok")
 
 
@@ -77,19 +79,19 @@ block content
                         .form-group
                             label(for="address") Adresse
                             input(type="text", class="form-control",
-                              id="address", ng-model="x.address")
+                              id="address", ng-model="currentserver.address")
                         .form-group
                             label(for="port") Port
                             input(type="text", class="form-control",
-                              id="port", ng-model="x.port")
+                              id="port", ng-model="currentserver.port")
                         .form-group
                             label(for="username") Login
                             input(type="text", class="form-control",
-                              id="username", ng-model="x.username")
+                              id="username", ng-model="currentserver.username")
                         .form-group
                             label(for="description") Description
                             input(type="text", class="form-control",
-                              id="description", ng-model="x.description")
+                              id="description", ng-model="currentserver.description")
                         button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serversForm{{ $index }}.$pristine") Supprimer le serveur
                         button(ng-click='', title='Valider', class="button-primary full-width", ng-show="serversForm{{ $index }}.$dirty") Valider
 

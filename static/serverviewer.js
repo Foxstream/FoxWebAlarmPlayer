@@ -44,6 +44,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.back = function(){
             $window.location.href = '/accountsettings';
         }
+        
         // TODO (callback)
         serverdb.getservers(function (data){
             $scope.servers = data;
@@ -71,15 +72,34 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             $scope.currentserver = angular.copy($scope.servers[pos]);
         }
 
-        $scope.commitserver = function(serverId){
+        $scope.resetserver = function(){
+            $scope.currentserver = undefined;
+        }
+
+        $scope.deleteserver = function (serverId) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
-            serverdb.updateserver($scope.servers[pos], function(err, newserver){
+            if (pos === -1 || !$window.confirm("Voulez-vous vraiment supprimer le serveur " + $scope.servers[pos].description + " ?")){
+                return;
+            }
+            $scope.serverMsg = "Suppression du serveur..."; // TODO
+            serverdb.deleteserver(serverId, function (err){
+                if (!err){
+                    updateMessage.call("Le serveur a bien été supprimé", err);
+                    $scope.servers.splice(pos, 1);
+                }
+            });
+
+        };
+
+        $scope.commitcurrentserver = function(){
+            serverdb.updateserver($scope.currentserver, function(err, newserver){
                 if (err){
-                    $scope.resetserver(serverId);
-                    updateMessage.call("Un erreur s'est produite.")
+                    updateMessage.call("Une erreur s'est produite.");
                 } else {
-                    $scope['serverform' + serverId].$setPristine();
                     updateMessage.call("Vos modifications ont été enregistrées.");
+                    var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
+                    $scope.servers[pos] = $scope.currentserver;
+                    $scope.resetserver();
                 }
             });
         }
@@ -93,26 +113,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                     }
                 });
         }
-
-        $scope.resetserver = function(serverId){
-            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
-            $scope.servers[pos] = angular.copy($scope.pristineServerData[pos]);
-        }
-
-        $scope.deleteserver = function (id) {
-            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(id);
-            if (pos == -1 || !$window.confirm("Voulez-vous vraiment supprimer le serveur " + $scope.servers[pos].description))
-                return;
-            // TODO
-            $scope.serverMsg = "Suppression du serveur...";
-            serverdb.deleteserver(id, function (err) {
-                updateMessage.call("Le serveur a bien été supprimé", err);
-                if (!err){
-                    $scope.servers.splice(pos, 1);
-                }
-            });
-
-        };
 
 
         var statusUpdate = function (event, data) {
