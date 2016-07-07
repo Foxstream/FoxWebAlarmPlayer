@@ -141,7 +141,6 @@ function RemoveServer(serverId, cb)
 function extractServerDataToSend(srv)
 {
     var cloned = JSON.parse(JSON.stringify(srv.config));
-    cloned.connected = srv.connected;
     return cloned;
 }
 
