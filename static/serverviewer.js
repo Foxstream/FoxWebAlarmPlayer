@@ -56,6 +56,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         }
         
         $scope.initemptyserver = function () {
+            $scope.resetserver();
             $scope.newserver = {
                 address: "",
                 port: 4000,
