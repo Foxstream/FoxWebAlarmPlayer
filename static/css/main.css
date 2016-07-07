@@ -127,7 +127,7 @@ input:focus {
 button.icon {
   min-width: 0;
   width: auto;
-  padding: 0 2%; }
+  padding: 0 4%; }
 
 button, input[type=submit] {
   display: inline-block;
@@ -227,6 +227,11 @@ button.button-secondary-fill {
       .table-container table tbody tr td {
         padding: 0.4em;
         min-width: 1em; }
+    .table-container table tbody tr.active {
+      background-color: #788493;
+      color: white; }
+      .table-container table tbody tr.active input {
+        color: black; }
 
 /* Line colors 
    Not applied in .table-container, because these rules would 
@@ -507,15 +512,12 @@ nav {
     .alarmtable tbody .glyphicon {
       visibility: hidden;
       color: #e44333; }
-    .alarmtable tbody tr.active {
-      background-color: #788493;
-      color: white; }
-      .alarmtable tbody tr.active .glyphicon {
-        visibility: visible; }
-      .alarmtable tbody tr.active button {
-        background: linear-gradient(0deg, #cf3c2d, #ff6151);
-        color: white;
-        border: none; } }
+    .alarmtable tbody tr.active .glyphicon {
+      visibility: visible; }
+    .alarmtable tbody tr.active button {
+      background: linear-gradient(0deg, #cf3c2d, #ff6151);
+      color: white;
+      border: none; } }
 .not-handled {
   color: #e44333; }
 

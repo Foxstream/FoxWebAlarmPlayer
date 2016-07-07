@@ -40,7 +40,7 @@ block content
                     th 
                     th
                 tbody
-                    tr(ng-repeat='x in servers')
+                    tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}")
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.address")

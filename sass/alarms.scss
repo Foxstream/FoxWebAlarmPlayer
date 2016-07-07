@@ -86,9 +86,6 @@
             // Selected alarm
             tr.active {
 
-                background-color: $fox-gray;
-                color: white;
-
                 // Show the play icon
                 .glyphicon {
                     visibility: visible;

@@ -39,6 +39,15 @@
 
             }
 
+            // Line currently being modified, or alarm being played, ...
+            tr.active {
+                background-color: $fox-gray;
+                color: white;
+                input {
+                    color: black;
+                }
+            }
+
         }
 
     }
