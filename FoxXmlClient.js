@@ -115,7 +115,7 @@ function disconnect()
 {
     clearTimeout(this.CallbackTimer);
     this.CallbackTimer = undefined;
-	this.Client.disconnect();	
+	this.Client.disconnect();
 }
 
 function periodic_test()

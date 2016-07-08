@@ -17,15 +17,22 @@ function RequestServerConnect(srv)
     var self = this;
 
     srv.xmlclient.on("connected", function (){
+        debugger;
         if (!srv.config.connected) {
             srv.config.connected = true;
             self.emit('connectionEstablished', srv.config);
         }
+        if (srv.config.firstConnectionAttempt){
+            srv.config.firstConnectionAttempt = false;
+        }
     });
     
     srv.xmlclient.on("connectionLost", function (reason) {
-        if (srv.config.connected) {
+        debugger;
+        if (srv.config.connected && !srv.config.disconnectOnUpdate) {
             srv.config.connected = false;
+            self.emit('connectionLost', srv.config);
+        } else if (srv.config.firstConnectionAttempt){
             self.emit('connectionLost', srv.config);
         }
     });
@@ -98,11 +105,13 @@ function UpdateServer(server, cb) {
     else 
         this.serverPersistence.updateserver(server, function (err, data) {
             if (err)
-                cb(err)
+                cb(err);
             else {
+                self.servers[pos].config.disconnectOnUpdate = true; // Prevents from sending disconnect notification to client
                 InternalDisconnectServer(self.servers[pos]);
+                server.firstConnectionAttempt = true;
                 self.servers[pos] = BuildInternalServer(server);
- 
+
                 RequestServerConnect.bind(self)(self.servers[pos]);
                 cb(null, data);
             }
@@ -172,7 +181,7 @@ function Start()
 function Stop()
 {
     _.forEach(this.servers, function (srv){
-        InternalDisconnectServer(srv);        
+        InternalDisconnectServer(srv);
     })
 
     this.servers = [];    

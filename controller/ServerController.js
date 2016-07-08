@@ -39,7 +39,7 @@ function applyApp(app) {
                 res.send(err);
             }
             res.end();
-        })
+        });
     });
     
     app.post('/controller/server', auth.IsAdmin, function (req, res) {

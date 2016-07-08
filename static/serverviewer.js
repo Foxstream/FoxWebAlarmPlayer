@@ -94,7 +94,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 if (err){
                     updateMessage.call("Une erreur s'est produite.");
                 } else {
-                    updateMessage.call("Vos modifications ont été enregistrées.");
+                    console.debug('here i am')
                     var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
                     $scope.servers[pos] = $scope.currentserver;
                     $scope.resetserver();
