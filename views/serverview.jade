@@ -40,7 +40,7 @@ block content
                     tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}", ng-click="editserver(x.id)")
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="currentserver.address")
+                            input(type="text" ng-model="currentserver.address", ng-click="$event.stopPropagation()")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.port }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")

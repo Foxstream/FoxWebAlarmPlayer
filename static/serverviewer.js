@@ -67,13 +67,15 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         };
 
         $scope.editserver = function(serverId){
-            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
-            $scope.currentserver = angular.copy($scope.servers[pos]);
-        }
+            if (!$scope.currentserver || $scope.currentserver.id !== serverId){
+                var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
+                $scope.currentserver = angular.copy($scope.servers[pos]);
+            }
+        };
 
         $scope.resetserver = function(){
             $scope.currentserver = undefined;
-        }
+        };
 
         $scope.deleteserver = function (serverId) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
