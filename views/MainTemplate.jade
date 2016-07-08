@@ -23,9 +23,7 @@ html
       div(class='container-fluid')
         header(class='hidden-xs')
           img(src='/static/img/logo-foxstream.gif')
-          div(ng-controller='servercontroller' class="connection-errors hidden-xs hidden-sm")
-              div(ng-repeat='x in servers | filter: {connected: false}' class="error")
-                span Connexion au serveur {{x.description }} ({{x.address}}) impossible
+
           h1(class='app-name') FoxWebAlarmPlayer
 
       nav(role='navigation', ng-controller='navbarcontroller')
@@ -42,17 +40,18 @@ html
                       class='nav-link') 
                         i(class='glyphicon glyphicon-alert') 
                         span(class='link') Alarmes
-                    span(class="new-alarm-counter", ng-show="newalarmscounter > 0") {{ newalarmscounter < 10 ? newalarmscounter : '!' }}
+                    span(class="navbar-notif", ng-show="newalarmscounter > 0") {{ newalarmscounter < 10 ? newalarmscounter : '!' }}
                 li(ng-class='{ active: isActive("live") }')
                     a(href="/live") 
                       i(class='glyphicon glyphicon-play') 
                       span(class='link') Direct
                 li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") }',
                     ng-mouseover='showsubmenu = true',
-                    ng-mouseleave='showsubmenu = false')
+                    ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
                     a(href='/accountsettings')
                         i(class='glyphicon glyphicon-cog')
                         span(class='link') Paramètres
+                        span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
 
                     div(class="submenu" ng-show='showsubmenu')
                       ul
@@ -62,6 +61,7 @@ html
                         li(ng-class='{ active: isActive("serverview") }')
                           a(href='/serverview')
                             span(class='link') Serveurs
+                            span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
                         li(ng-class='{ active: isActive("userview") }')
                           a(href='/userview')
                             span(class='link') Utilisateurs

@@ -298,7 +298,7 @@ nav {
       width: 100%;
       height: 100%; }
 
-.new-alarm-counter {
+.navbar-notif {
   display: inline-block;
   height: 1.6em;
   width: 1.6em;
@@ -359,7 +359,7 @@ nav {
   nav.nav-connection {
     display: none; }
 
-  .new-alarm-counter {
+  .navbar-notif {
     background: #e44333;
     color: white;
     left: 50%;
@@ -428,11 +428,15 @@ nav {
           display: block;
           text-align: left;
           text-indent: 5%; }
-    nav .new-alarm-counter {
+        nav .submenu ul li.active::after {
+          display: none; }
+    nav .navbar-notif {
       background: #cf3c2d;
       color: white;
       right: 0;
       top: 0;
+      border-left: solid #ea533d 1px;
+      border-bottom: solid #ea533d 1px;
       border-bottom-left-radius: 0.8em; } }
 /**
   * Action buttons at the top of the page

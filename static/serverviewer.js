@@ -108,8 +108,15 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 });
         };
 
+        $scope.getDisconnectedServers = function(){
+            return $scope.servers.filter(function(s){
+                return !s.connected;
+            });
+        };
+
 
         var statusUpdate = function (event, server) {
+            console.log('update')
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(server.id);
             if (pos >= 0){
                 $scope.servers[pos] = angular.copy(server);

@@ -20,7 +20,7 @@ nav {
 }
 
 
-.new-alarm-counter {
+.navbar-notif {
     display: inline-block;
     height: 1.6em;
     width: 1.6em;
@@ -88,7 +88,7 @@ nav {
         display: none;
     }
 
-    .new-alarm-counter {
+    .navbar-notif {
         background: $fox-red;
         color: white;
         left: 50%;
@@ -196,15 +196,20 @@ nav {
                     text-align: left;
                     text-indent: 5%;
                 }
+                li.active::after {
+                    display:none;
+                }
             }
 
         }
 
-        .new-alarm-counter {
+        .navbar-notif {
             background: $fox-dark-red;
             color: white;
             right: 0;
             top: 0;
+            border-left: solid rgb(234, 83, 61) 1px;
+            border-bottom: solid rgb(234, 83, 61) 1px;
             border-bottom-left-radius: 0.8em;
         }
 
