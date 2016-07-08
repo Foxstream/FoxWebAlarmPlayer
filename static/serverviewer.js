@@ -58,11 +58,11 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.initemptyserver = function () {
             $scope.resetserver();
             $scope.newserver = {
-                address: "",
+                address: "192.168.31.146",
                 port: 4000,
                 username: "admin",
-                password: "",
-                description: ""
+                password: "admin",
+                description: "Test"
             };
         };
 
@@ -116,6 +116,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
 
         var statusUpdate = function (event, server) {
+            debugger;
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(server.id);
             if (pos >= 0){
                 $scope.servers[pos] = angular.copy(server);

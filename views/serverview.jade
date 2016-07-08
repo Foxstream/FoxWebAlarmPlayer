@@ -44,19 +44,19 @@ block content
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.port }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="currentserver.port")
+                            input(type="text" ng-model="currentserver.port", ng-click="$event.stopPropagation()")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.username }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="currentserver.username")
+                            input(type="text" ng-model="currentserver.username", ng-click="$event.stopPropagation()")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.password }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="currentserver.password")
+                            input(type="text" ng-model="currentserver.password", ng-click="$event.stopPropagation()")
 
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.description }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
-                            input(type="text" ng-model="currentserver.description")
+                            input(type="text" ng-model="currentserver.description", ng-click="$event.stopPropagation()")
 
                         td
                             span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
@@ -126,7 +126,7 @@ block content
                         button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") Annuler
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") Valider
              
-         div(ng-show="newserver !== undefined")
+         div(ng-show="newserver !== undefined", class="hidden-md hidden-lg")
             h5(class="block-header") Nouveau serveur
             form
                 .form-group
@@ -153,8 +153,6 @@ block content
                 button(ng-click='commitnewserver()', title='Valider', class="button-primary") Valider
 
 
-        
-        div(class='alert alert-warning space-before', ng-show='serverMsg!=undefined') {{ serverMsg }}
 
 
   script(src='static/EventSource4IE.js')

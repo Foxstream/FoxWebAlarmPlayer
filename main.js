@@ -44,7 +44,8 @@ var sse = new ServerSideEvent(websrv, "/events");
 async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function (err) {
     
     serverManager.on("connectionLost", function (srv){ 
-        sse.sendMessage('connection', JSON.stringify(srv));
+        console.log('Sending connection message to client for server', srv.address);
+        sse.sendMessage('connection', JSON.stringify(srv)); 
     });
 
     serverManager.on("connectionEstablished", function (srv) { 

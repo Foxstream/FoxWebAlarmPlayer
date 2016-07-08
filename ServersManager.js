@@ -17,7 +17,6 @@ function RequestServerConnect(srv)
     var self = this;
 
     srv.xmlclient.on("connected", function (){
-        debugger;
         if (!srv.config.connected) {
             srv.config.connected = true;
             self.emit('connectionEstablished', srv.config);
@@ -28,7 +27,6 @@ function RequestServerConnect(srv)
     });
     
     srv.xmlclient.on("connectionLost", function (reason) {
-        debugger;
         if (srv.config.connected && !srv.config.disconnectOnUpdate) {
             srv.config.connected = false;
             self.emit('connectionLost', srv.config);
