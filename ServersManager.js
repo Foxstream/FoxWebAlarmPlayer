@@ -34,6 +34,7 @@ function RequestServerConnect(srv)
             self.emit('connectionLost', srv.config);
         } else if (srv.config.firstConnectionAttempt){
             self.emit('connectionLost', srv.config);
+            srv.config.firstConnectionAttempt = false;
         }
     });
     
@@ -123,8 +124,10 @@ function AddServer(server, cb) {
     var self = this;
 
     this.serverPersistence.addserver(server, function (err, s) {
-        if (!err)
+        if (!err){
+            server.firstConnectionAttempt = true; // Will notify clients if server is not reachable
             AddAndRequestConnect.bind(self)(server);
+        }
         
         cb(err, s);
     });
