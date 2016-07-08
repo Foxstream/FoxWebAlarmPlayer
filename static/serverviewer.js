@@ -53,11 +53,11 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.initemptyserver = function () {
             $scope.resetserver();
             $scope.newserver = {
-                address: "192.168.31.146",
+                address: "192.168.",
                 port: 4000,
                 username: "admin",
-                password: "admin",
-                description: "Test"
+                password: "",
+                description: ""
             };
         };
 
