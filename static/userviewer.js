@@ -1,7 +1,6 @@
-﻿
-app.factory('userdb', ['$http',
+﻿app.factory('userdb', ['$http',
   function ($http) {
-        var obj = {}
+        var obj = {};
         
         obj.getusers = function (callback) {
             $http.get("/controller/users")
@@ -13,74 +12,122 @@ app.factory('userdb', ['$http',
             $http.post("/controller/user/"+id+"/resetpassword")
 			.success(callback)
 			.error(function () { callback("Unable to reset password."); });
-        }
+        };
         
         obj.deleteuser = function (id, callback) {
             $http.delete("/controller/user/" + id)
 			.success(callback)
 			.error(function () { callback("Unable to delete user."); });
-        }
+        };
+
+        obj.updateuser = function(user, callback){
+            $http.put("/controller/user", user)
+            .success(callback.bind(null, null))
+            .error(function () { callback("Impossible de mettre à jour l'utilisateur"); });
+        };
         
-        obj.adduser = function (username, callback){
-            $http.post("/controller/user/new", {login: username})
+        obj.adduser = function (user, callback){
+            $http.post("/controller/user/new", user)
 			.success(callback.bind(null, null))
 			.error(function () { callback("Unable to add the user."); });
-        }
+        };
                 
         return obj;
     }]);
 
 
-app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", function ($scope, $window, $location, userdb) {
+app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", "user", function ($scope, $window, $location, userdb, user) {
         
-        $scope.currentUser = undefined;
-        $scope.userMsg = undefined;
+        $scope.newuser = undefined;
+        $scope.currentuser = undefined;
         $scope.users = [];
-                
-        userdb.getusers(function (data) { $scope.users = data; });
-        
-        var updateMessage = function(err)
-        {            
-            $scope.userMsg  = err ? ("An error occured : " + err) : this+"";
-        }
+        $scope.device = device;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';
-        }
+        };
+   
+        userdb.getusers(function (data){ 
+            $scope.users = data; 
+            console.debug($scope.users)
+        });
 
-        $scope.resetPassword = function (id) { 
-            var pos = $scope.users.map(function (e) { return e.id; }).indexOf(id);
-            if (pos==-1 || !$window.confirm("Are you sure you want to reset the password for user " + $scope.users[pos].login))
+        user.getCurrentUser(function(user){
+            $scope.user = user;
+        });
+
+        $scope.initemptyuser = function(){
+            $scope.resetuser();
+            $scope.newuser = {
+                login: "",
+                displayname: "",
+                type: 0
+            };
+        };
+
+        $scope.edituser = function(userId){
+            // Calling this function if a user is already being edited would reset the fields
+            if (!$scope.currentuser || $scope.currentuser.id !== userId){
+                var pos = $scope.users.map(function (e) { return e.id; }).indexOf(userId);
+                $scope.currentuser = angular.copy($scope.users[pos]);
+            }
+        };
+
+        $scope.resetuser = function(){
+            $scope.currentuser = undefined;
+        };
+
+        $scope.deleteuser = function (userId) {
+            var pos = $scope.users.map(function (e) { return e.id; }).indexOf(userId);
+            if (pos === -1 || !$window.confirm("Voulez-vous vraiment supprimer cet utilisateur ? " + $scope.users[pos].description + " ?")){
                 return;
-            
-            $scope.users[pos].shouldChangePassword = 1;
-            $scope.userMsg  = "Resetting password...";
-            userdb.resetpassword(id, updateMessage.bind("Password reset"));
+            }
+            userdb.deleteuser(userId, function (err){
+                if (!err){
+                    $scope.sendnotification("L'utilisateur a été supprimé.", true, 1);
+                    $scope.users.splice(pos, 1);
+                }
+            });
         };
         
-        $scope.deleteUser = function (id) {
-            var pos = $scope.users.map(function (e) { return e.id; }).indexOf(id);
-            if (pos == -1 || !$window.confirm("Are you sure you want to delete the user " + $scope.users[pos].login))
+
+        $scope.resetpassword = function (userId) { 
+            var pos = $scope.users.map(function (e){ return e.id; }).indexOf(userId);
+            if (pos === -1 || !$window.confirm("Voulez-vous vraiment remettre à zéro le mot de passe ?" + $scope.users[pos].login)){
                 return;
-                        
-            $scope.userMsg  = "Deleting user...";
-            userdb.deleteuser(id, function (err) {
-                updateMessage.call("User deleted", err);
-                if (!err)
-                    $scope.users.splice(pos, 1);
+            }
+            
+            $scope.users[pos].shouldChangePassword = 1;
+            userdb.resetpassword(userId, function(){
+                $scope.sendnotification("Le mot de passe à été remis à zéro", true, 1);
             });
-
         };
-
-        $scope.addCurrentUser = function () {
-            $scope.userMsg = "Adding user...";
-            userdb.adduser($scope.currentUser, function (err, newuser) {
-                updateMessage.call("User added", err);
-                if (!err) {
-                    $scope.currentUser = undefined;
-                    $scope.users.push(newuser);
+        
+        $scope.commitcurrentuser = function(){
+            userdb.updateuser($scope.currentuser, function(err, newuser){
+                if (err){
+                    $scope.sendnotification("Une erreur s'est produite.", true, 1);
+                } else {
+                    var pos = $scope.users.map(function (e) { return e.id; }).indexOf($scope.currentuser.id);
+                    $scope.users[pos] = $scope.currentuser;
+                    $scope.resetuser();
                 }
-            })
+            });
         };
 
-    }]);
+        $scope.commitnewuser = function(){
+            userdb.adduser($scope.newuser, function (err, newuser) {
+                    $scope.sendnotification("L'utilisateur a été ajouté.", true, 1);
+                    if (!err) {
+                        $scope.newuser = undefined;
+                        $scope.users.push(newuser);
+                    }
+                });
+        };
+
+}]);
+
+
+
+
+

@@ -33,6 +33,20 @@ function applyApp(app) {
         });
     });
 
+    app.put('/controller/user', auth.IsAdmin, function (req, res) {
+        var user = req.body;
+        self.UserPersistence.updateUser(user, function (err) {
+            if (!err){
+                res.json(user);
+            }
+            else {
+                res.status(404);
+                res.send(err);
+            }
+            res.end();
+        });
+    });
+
     app.post('/controller/user/:userid/resetpassword', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {
             if (data) {
@@ -50,7 +64,8 @@ function applyApp(app) {
     });
     
     app.post('/controller/user/new', auth.IsAdmin, function (req, res) {
-        var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
+        // var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
+        var user = req.body;
         self.UserPersistence.addUser(user, function (err) {
             if (!err)
                 res.json(user);

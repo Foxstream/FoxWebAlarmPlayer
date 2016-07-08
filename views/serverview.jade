@@ -4,7 +4,9 @@ block title
   title Serveurs
 
 block content
+
   div(class='container-fluid') 
+
       div(ng-controller='servercontroller')
 
         //- Desktop buttons 
@@ -17,7 +19,7 @@ block content
             button(class="button-secondary", ng-click='back()')
                 span(class="glyphicon glyphicon-chevron-left") 
                 span Paramètres
-            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver===undefined') Ajouter
+            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined') Ajouter
 
         div(class="table-container hidden-xs hidden-sm")
             table

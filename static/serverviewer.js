@@ -1,6 +1,6 @@
 ﻿app.factory('serverdb', ['$http', '$rootScope', 
   function ($http, $rootScope) {
-        var obj = {}
+        var obj = {};
         
         obj.getservers = function (callback) {
             $http.get("/controller/servers")
@@ -12,19 +12,19 @@
             $http.delete("/controller/server/" + id)
 			.success(callback)
 			.error(function () { callback("Unable to delete server."); });
-        }
+        };
         
         obj.updateserver = function (server, callback) {
             $http.put("/controller/server", server)
 			.success(callback.bind(null, null))
 			.error(function () { callback("Unable to update the server."); });
-        }
+        };
         
         obj.addserver = function (server, callback) {
             $http.post("/controller/server", server)
 			.success(callback.bind(null, null))
 			.error(function (err) { console.dir(err);callback("Unable to add the server."); });
-        }
+        };
         
         return obj;
     }]);
@@ -37,17 +37,15 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.newserver = undefined;
         $scope.currentserver = undefined;
         $scope.servers = [];
-        $scope.pristineServerData = [];
         $scope.device = device;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';
-        }
+        };
         
         // TODO (callback)
         serverdb.getservers(function (data){
             $scope.servers = data;
-            $scope.pristineServerData = angular.copy($scope.servers);
         });
         
         $scope.initemptyserver = function () {
@@ -77,7 +75,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             if (pos === -1 || !$window.confirm("Voulez-vous vraiment supprimer le serveur " + $scope.servers[pos].description + " ?")){
                 return;
             }
-            $scope.serverMsg = "Suppression du serveur..."; // TODO
             serverdb.deleteserver(serverId, function (err){
                 if (!err){
                     $scope.sendnotification("Le serveur a été supprimé.", true, 1);
@@ -96,7 +93,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                     $scope.resetserver();
                 }
             });
-        }
+        };
 
         $scope.commitnewserver = function(){
             serverdb.addserver($scope.newserver, function (err, newserver) {
@@ -116,7 +113,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
 
         var statusUpdate = function (event, server) {
-            console.log('update')
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(server.id);
             if (pos >= 0){
                 $scope.servers[pos] = angular.copy(server);

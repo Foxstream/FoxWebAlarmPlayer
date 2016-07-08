@@ -90,13 +90,16 @@ function resetuser(userId, cb) {
 
 
 function adduser(user, cb) {
+    debugger;
     var self = this;
     async.waterfall([
         function (local_cb) {
-            if (user.password == '')
+            if (!user.password){
                 local_cb(null, '');
-            else
+            }
+            else{
                 passwordHash(user.password).hash(local_cb);
+            }
         },
         function (computed_pass, local_cb) {
             self.db.run("INSERT INTO user(id, login, displayname, password, type) VALUES(?, ?, ?, ?, ?)",
