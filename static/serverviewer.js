@@ -60,6 +60,8 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         };
 
         $scope.editserver = function(serverId){
+            $scope.newserver = undefined;
+            // Calling this function if a server is already being edited would reset the fields
             if (!$scope.currentserver || $scope.currentserver.id !== serverId){
                 var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
                 $scope.currentserver = angular.copy($scope.servers[pos]);

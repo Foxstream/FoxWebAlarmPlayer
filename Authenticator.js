@@ -5,10 +5,12 @@ function isUser(req, res, next)
 {
     var bAuth = req.hasOwnProperty("user");
     
-    if (bAuth)         
-        next();    
-    else
+    if (bAuth){
+        next();
+    }
+    else{
         res.redirect("/login");
+    }
 }
 
 function isValidUser(req, res, next) {
@@ -18,7 +20,7 @@ function isValidUser(req, res, next) {
             res.redirect("/accountsettings");
         else
             next();
-    })    
+    });
 }
 
 function isAdmin(req, res, next) {
@@ -27,7 +29,7 @@ function isAdmin(req, res, next) {
             res.redirect("/");
         else
             next();
-    })
+    });
 }
 
 function applyToServer(app, userPers)

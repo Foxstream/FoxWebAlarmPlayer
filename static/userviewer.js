@@ -66,6 +66,7 @@ app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", "
         };
 
         $scope.edituser = function(userId){
+            $scope.newuser = undefined;
             // Calling this function if a user is already being edited would reset the fields
             if (!$scope.currentuser || $scope.currentuser.id !== userId){
                 var pos = $scope.users.map(function (e) { return e.id; }).indexOf(userId);
