@@ -36,7 +36,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         
         $scope.newserver = undefined;
         $scope.currentserver = undefined;
-        $scope.serverMsg = undefined;
         $scope.servers = [];
         $scope.pristineServerData = [];
         $scope.device = device;
@@ -50,10 +49,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             $scope.servers = data;
             $scope.pristineServerData = angular.copy($scope.servers);
         });
-
-        var updateMessage = function (err) {
-            $scope.serverMsg = err ? ("Une erreur s'est produite : " + err) : this+"";
-        }
         
         $scope.initemptyserver = function () {
             $scope.resetserver();
@@ -85,7 +80,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             $scope.serverMsg = "Suppression du serveur..."; // TODO
             serverdb.deleteserver(serverId, function (err){
                 if (!err){
-                    updateMessage.call("Le serveur a bien été supprimé", err);
+                    $scope.sendnotification("Le serveur a été supprimé.", true, 1);
                     $scope.servers.splice(pos, 1);
                 }
             });
@@ -94,9 +89,8 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.commitcurrentserver = function(){
             serverdb.updateserver($scope.currentserver, function(err, newserver){
                 if (err){
-                    updateMessage.call("Une erreur s'est produite.");
+                    $scope.sendnotification("Une erreur s'est produite.", true, 1);
                 } else {
-                    console.debug('here i am')
                     var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
                     $scope.servers[pos] = $scope.currentserver;
                     $scope.resetserver();
@@ -106,7 +100,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
         $scope.commitnewserver = function(){
             serverdb.addserver($scope.newserver, function (err, newserver) {
-                    updateMessage.call("Le serveur a bien été ajouté", err);
+                    $scope.sendnotification("Le serveur a été ajouté.", true, 1);
                     if (!err) {
                         $scope.newserver = undefined;
                         $scope.servers.push(newserver);
@@ -116,7 +110,6 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
 
         var statusUpdate = function (event, server) {
-            debugger;
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(server.id);
             if (pos >= 0){
                 $scope.servers[pos] = angular.copy(server);
