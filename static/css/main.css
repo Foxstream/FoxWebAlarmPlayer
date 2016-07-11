@@ -579,12 +579,10 @@ nav {
   .imageplayer {
     width: 100%; } }
 #camera-list {
-  height: 70vh;
   overflow: scroll; }
   #camera-list .camera-picker {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; }
+    width: 100%;
+    border: solid black 1px; }
   #camera-list .big-playing-indicator {
     display: none;
     position: absolute;
@@ -602,14 +600,12 @@ nav {
     font-size: 3em;
     color: white; }
   #camera-list .liveplayer {
+    display: inline-block;
     margin: 1% 1% 5vh 1%;
-    flex-grow: 1;
-    flex-shrink: 0;
-    flex-basis: 200px;
     position: relative;
     text-align: center;
-    height: 18vw;
-    line-height: 18vw;
+    height: 240px;
+    line-height: 240px;
     background-color: black; }
     #camera-list .liveplayer .player-controls {
       position: absolute;
@@ -645,6 +641,24 @@ nav {
       cursor: pointer;
       font-weight: bold; }
 
+@media screen and (min-width: 992px) {
+  .liveplayer {
+    width: 23%; } }
+@media screen and (max-width: 991px) {
+  #camera-list {
+    height: 68vh; }
+
+  .liveplayer {
+    width: 48%; } }
+@media screen and (max-width: 767px) {
+  #camera-list {
+    height: 76vh; } }
+@media screen and (max-width: 599px) {
+  #camera-list {
+    height: 76vh; }
+
+  .liveplayer {
+    width: 98%; } }
 .settings-menu {
   margin-top: 2vh;
   color: #e44333; }

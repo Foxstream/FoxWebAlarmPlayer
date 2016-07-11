@@ -109,7 +109,7 @@ app.directive('liveplayer', ["live", "$interval", function(live, $interval){
                         live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
                             scope.camera.image = image;
                         });
-                    }, 500);
+                    }, 200);
                 } else {
                     $interval.cancel(scope.playing);
                     scope.playing = undefined;

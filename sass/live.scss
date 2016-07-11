@@ -3,13 +3,11 @@
 
 #camera-list {
 
-    height: $main-element-size;
     overflow: scroll;
 
     .camera-picker {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        width: 100%;
+        border: solid black 1px;
     }
 
     .big-playing-indicator {
@@ -23,14 +21,12 @@
     }
 
     .liveplayer {
+        display: inline-block;
         margin: 1% 1% 5vh 1%;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: 200px;
         position: relative;
         text-align: center;
-        height: 18vw;
-        line-height: 18vw;
+        height: 240px;
+        line-height: 240px;
         background-color: black;
 
         .player-controls {
@@ -81,4 +77,54 @@
 
     }
 
+
 }
+
+// Desktop
+@media screen and (min-width: $tablet-breakpoint){
+    .liveplayer {
+        width: 23%;
+    }
+}
+
+@media screen and (max-width: $tablet-breakpoint - 1px){
+
+    #camera-list {
+        height: 100vh 
+        - $navbar-tablet-height 
+        - $action-bar-mobile-height 
+        - $header-height 
+        - 4vh;
+    }
+
+    .liveplayer {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: $mobile-breakpoint - 1px){
+
+    #camera-list {
+        height: 100vh 
+        - $navbar-mobile-height 
+        - $action-bar-mobile-height 
+        - 4vh;
+    }
+}
+
+@media screen and (max-width: $small-phones-breakpoint - 1px){
+
+    #camera-list {
+        height: 100vh 
+        - $navbar-mobile-height 
+        - $action-bar-mobile-height 
+        - 4vh;
+    }
+
+
+    .liveplayer {
+        width: 98%;
+    }
+}
+
+
