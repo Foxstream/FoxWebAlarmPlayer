@@ -24,7 +24,7 @@ block content
                     class="block-header", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
-                        .row
+                        div(class="camera-picker")
                             liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', camera="c")
 
         liveswiper(class="hidden-md hidden-lg",

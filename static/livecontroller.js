@@ -100,7 +100,10 @@ app.directive('liveplayer', ["live", "$interval", function(live, $interval){
         link: function(scope, elem, attrs){
             scope.playing = undefined;
             scope.fullscreen = false;
+
             scope.togglelivefeed = function(){
+                elem.find('.big-playing-indicator').show().fadeOut(500);
+
                 if (!scope.playing){
                     scope.playing = $interval(function(){
                         live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){

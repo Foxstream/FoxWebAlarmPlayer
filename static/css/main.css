@@ -581,39 +581,36 @@ nav {
 #camera-list {
   height: 70vh;
   overflow: scroll; }
+  #camera-list .camera-picker {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+  #camera-list .big-playing-indicator {
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%);
+    /* Safari and Chrome */
+    -o-transform: translate(-50%);
+    /* Opera */
+    -moz-transform: translate(-50%);
+    /* Firefox */
+    font-size: 3em;
+    color: white; }
   #camera-list .liveplayer {
-    text-align: center;
-    margin-bottom: 5vh;
-    width: 100%; }
-  #camera-list .camera-image {
-    display: inline-block;
-    width: 25vh; }
-  #camera-list .camera-image:hover {
-    cursor: pointer;
-    font-weight: bold; }
-
-.live-canvas {
-  padding: 2%;
-  text-align: center;
-  box-shadow: 0 0 5px white; }
-  .live-canvas img {
-    height: 50vh; }
-  .live-canvas .liveplayer {
-    width: 100%; }
-    .live-canvas .liveplayer img {
-      display: inline-block; }
-
-@media screen and (min-width: 992px) {
-  #camera-list .liveplayer {
+    margin: 1% 1% 5vh 1%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 200px;
     position: relative;
     text-align: center;
     height: 18vw;
     line-height: 18vw;
-    background-clip: content-box;
     background-color: black; }
-    #camera-list .liveplayer .camera-image {
-      display: inline-block;
-      width: 100%; }
     #camera-list .liveplayer .player-controls {
       position: absolute;
       bottom: 0;
@@ -640,13 +637,14 @@ nav {
         left: 5%; }
       #camera-list .liveplayer .player-controls .glyphicon-fullscreen {
         right: 5%; }
-    #camera-list .liveplayer .live-indicator {
-      position: absolute;
-      width: 100vw;
-      top: 0;
-      right: 2%;
-      font-size: 1em;
-      color: #e44333; } }
+    #camera-list .liveplayer .camera-image {
+      display: inline-block;
+      max-width: 100%;
+      max-height: 100%; }
+    #camera-list .liveplayer .camera-image:hover {
+      cursor: pointer;
+      font-weight: bold; }
+
 .settings-menu {
   margin-top: 2vh;
   color: #e44333; }
