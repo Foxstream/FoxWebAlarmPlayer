@@ -35,41 +35,40 @@ html
             i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
 
           ul
+              li(ng-class='{ active: isActive("alarmview") }')
+                  a(href="/alarmview"
+                    class='nav-link') 
+                      i(class='glyphicon glyphicon-alert') 
+                      span(class='link') Alarmes
+                  span(class="navbar-notif", ng-show="newalarmscounter > 0") {{ newalarmscounter < 10 ? newalarmscounter : '!' }}
+              li(ng-class='{ active: isActive("live") }')
+                  a(href="/live") 
+                    i(class='glyphicon glyphicon-play') 
+                    span(class='link') Direct
+              li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") }',
+                  ng-mouseover='showsubmenu = true',
+                  ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
+                  a(href='/accountsettings')
+                      i(class='glyphicon glyphicon-cog')
+                      span(class='link') Paramètres
+                      span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
 
-            if user.type == 1                      
-                li(ng-class='{ active: isActive("alarmview") }')
-                    a(href="/alarmview"
-                      class='nav-link') 
-                        i(class='glyphicon glyphicon-alert') 
-                        span(class='link') Alarmes
-                    span(class="navbar-notif", ng-show="newalarmscounter > 0") {{ newalarmscounter < 10 ? newalarmscounter : '!' }}
-                li(ng-class='{ active: isActive("live") }')
-                    a(href="/live") 
-                      i(class='glyphicon glyphicon-play') 
-                      span(class='link') Direct
-                li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") }',
-                    ng-mouseover='showsubmenu = true',
-                    ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
-                    a(href='/accountsettings')
-                        i(class='glyphicon glyphicon-cog')
-                        span(class='link') Paramètres
-                        span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
-
-                    div(class="submenu" ng-show='showsubmenu')
-                      ul
-                        li(ng-class='{ active: isActive("accountsettings") }')
-                          a(href='/accountsettings')
-                            span(class='link') Paramètres du compte
-                        li(ng-class='{ active: isActive("serverview") }')
-                          a(href='/serverview')
-                            span(class='link') Serveurs
-                            span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
-                        li(ng-class='{ active: isActive("userview") }')
-                          a(href='/userview')
-                            span(class='link') Utilisateurs
-                        li
-                          a(href='/logout')
-                            span(class='link') Déconnexion
+                  div(class="submenu" ng-show='showsubmenu')
+                    ul
+                      li(ng-class='{ active: isActive("accountsettings") }')
+                        a(href='/accountsettings')
+                          span(class='link') Paramètres du compte
+                      if user.type == 1
+                          li(ng-class='{ active: isActive("serverview") }')
+                            a(href='/serverview')
+                              span(class='link') Serveurs
+                              span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
+                          li(ng-class='{ active: isActive("userview") }')
+                            a(href='/userview')
+                              span(class='link') Utilisateurs
+                      li
+                        a(href='/logout')
+                          span(class='link') Déconnexion
 
 
       div

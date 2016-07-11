@@ -25,7 +25,7 @@ function isValidUser(req, res, next) {
 
 function isAdmin(req, res, next) {
     isValidUser(req, res, function () {
-        if (req.user.type!=1)
+        if (req.user.type !== 1)
             res.redirect("/");
         else
             next();
