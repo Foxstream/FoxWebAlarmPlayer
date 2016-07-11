@@ -604,14 +604,19 @@ nav {
 
 @media screen and (min-width: 992px) {
   #camera-list .cam {
-    position: relative; }
+    position: relative;
+    text-align: center;
+    height: 18vw;
+    line-height: 18vw;
+    background-clip: content-box;
+    background-color: black; }
     #camera-list .cam .camera-image {
       display: inline-block;
       width: 100%; }
     #camera-list .cam .player-controls {
       position: absolute;
       bottom: 0;
-      background: rgba(120, 132, 147, 0.5);
+      background: rgba(120, 132, 147, 0.8);
       left: 15px;
       right: 15px;
       color: white; }

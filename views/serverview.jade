@@ -1,4 +1,4 @@
-﻿extends ./MainTemplate.jade
+extends ./MainTemplate.jade
 
 block title
   title Serveurs
@@ -124,7 +124,7 @@ block content
                             label(for="description") Description
                             input(type="text", class="form-control",
                               id="description", ng-model="currentserver.description")
-                        button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary", ng-show="serverform.$pristine") Supprimer le serveur
+                        button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serverform.$pristine") Supprimer le serveur
                         button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") Annuler
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") Valider
              

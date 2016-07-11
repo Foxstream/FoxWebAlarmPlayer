@@ -9,7 +9,7 @@ block content
 
       div(ng-controller='usercontroller')
 
-        //- Desktop buttons 
+        //- Desktop buttons
         div(class='actions hidden-xs hidden-sm')
             button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') Nouvel utilisateur
 
@@ -34,7 +34,7 @@ block content
                 th Nom affiché
                 th Admin
                 th Reset mot de passe
-                th 
+                th
             tbody
               tr(ng-repeat='x in users', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)", ng-show="x.id !== user.id")
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id") {{ x.login }}
@@ -107,20 +107,17 @@ block content
         div(ng-show='newuser !== undefined', class="hidden-md hidden-lg")
             .h5(class="block-header") Nouvel utilisateur
             form
-              .form-group 
+              .form-group
                   label(for="login") Login
                   input(type='text', id='login', ng-model='newuser.login', class="form-control")
-              .form-group 
+              .form-group
                   label(for="displayname") Nom affiché
                   input(type='text', id='displayname', ng-model='newuser.displayname', class="form-control")
-              .form-group 
+              .form-group
                   label(for="admin") admin
                   input(type='checkbox', id='admin', ng-model='newuser.type', class="form-control", ng-true-value="1", ng-false-value="0")
               button(ng-click="newuser = undefined", title="Annuler", class="button-secondary") Annuler
               button(ng-click='commitnewuser()', title='Valider', class="button-primary") Valider
-
-
-
 
   script(src='static/userFactory.js')
   script(src='static/userviewer.js')
