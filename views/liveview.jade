@@ -25,8 +25,7 @@ block content
                 div(id='collapse{{ $index }}',
                     class='collapse')
                         .row
-                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="col-xs-6 col-md-3")
-                                liveplayer(camera="c")
+                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', camera="c")
 
         liveswiper(class="hidden-md hidden-lg",
                     ng-show='selectedcamera !== undefined')

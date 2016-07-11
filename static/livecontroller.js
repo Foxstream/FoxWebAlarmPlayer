@@ -28,13 +28,10 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
     $scope.device = device;
 
-    $scope.imtervals = [];
-
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
-                console.log(cam);
                 live.getLiveImage(cam.serverId, cam.id, function(image){
                     cam.image = image;
                 });
@@ -102,6 +99,7 @@ app.directive('liveplayer', ["live", "$interval", function(live, $interval){
         scope:{camera: "=", },
         link: function(scope, elem, attrs){
             scope.playing = undefined;
+            scope.fullscreen = false;
             scope.togglelivefeed = function(){
                 if (!scope.playing){
                     scope.playing = $interval(function(){

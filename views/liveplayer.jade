@@ -1,7 +1,9 @@
-div(class="liveplayer")
-    img(src='{{ camera.image }}',
-        class='camera-image')
-    div(class="player-controls")
-        h5(class='camera-name') {{ camera.name }}
-        span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')
-        span(class="glyphicon glyphicon-fullscreen", ng-click="playfullscreen(site, camera.serverId, camera.id, camera.fps, $event)")
+div(class="col-xs-6", ng-class="{'col-md-3': !fullscreen, 'col-md-6 col-md-offset-3': fullscreen}")
+    {{ fullscreen }}
+    div(class="liveplayer")
+        img(src='{{ camera.image }}',
+            class='camera-image')
+        div(class="player-controls")
+            h5(class='camera-name') {{ camera.name }}
+            span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')
+            span(class="glyphicon glyphicon-fullscreen", ng-click="fullscreen = !fullscreen")

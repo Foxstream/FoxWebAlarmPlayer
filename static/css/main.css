@@ -639,7 +639,14 @@ nav {
       #camera-list .liveplayer .player-controls .glyphicon-play, #camera-list .liveplayer .player-controls .glyphicon-stop {
         left: 5%; }
       #camera-list .liveplayer .player-controls .glyphicon-fullscreen {
-        right: 5%; } }
+        right: 5%; }
+    #camera-list .liveplayer .live-indicator {
+      position: absolute;
+      width: 100vw;
+      top: 0;
+      right: 2%;
+      font-size: 1em;
+      color: #e44333; } }
 .settings-menu {
   margin-top: 2vh;
   color: #e44333; }
