@@ -7,7 +7,7 @@ app.factory('live', ['$http','$rootScope',
             $http.get('/controller/live/cameras')
             .success(callback)
             .error(function(){ callback(null); });
-        }
+        };
 
         obj.getLiveImage = function(serverId, camId, callback){
             $http.get('/controller/live/' + serverId + '/' + camId)
@@ -17,7 +17,7 @@ app.factory('live', ['$http','$rootScope',
             .error(function(err){ 
                 callback('/static/img/no_video.png');
             });
-        }
+        };
 
         return obj;
 }]);
@@ -42,29 +42,10 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         }
     });
 
-    $scope.togglelivefeed = function(site, serverId, camId, fps){
-        var pos = $scope.cameras[site].map(function(c){ return c.id; }).indexOf(camId);
-        if (!$scope.cameras[site][pos].playing){
-            $scope.cameras[site][pos].playing = $interval(function(){
-                console.debug('Starts playing')
-                live.getLiveImage(serverId, camId, function(image){
-                    $scope.cameras[site][pos].image = image;
-                });
-            }, 500);
-        } else {
-            console.debug("Stops playing")
-            $interval.cancel($scope.cameras[site][pos].playing);
-            $scope.cameras[site][pos].playing = undefined;
-        }
-    }
-
 
     $scope.playfullscreen = function(site, serverId, camId, fps, event){
         var liveplayer = $(event.target.parentElement.parentElement);
-        liveplayer.animate({
-            width: '60%'
-        });
-    }
+    };
 
 
     $scope.shownextcamera = function(){
@@ -73,7 +54,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
             var cam = $scope.cameras[$scope.currentsite][nextCamera];
             $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
         }
-    }
+    };
 
     $scope.showpreviouscamera = function(){
         var previousCamera = $scope.getPreviousCamera();
@@ -81,7 +62,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
             var cam = $scope.cameras[$scope.currentsite][previousCamera];
             $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
         }
-    }
+    };
 
     $scope.getNextCamera = function(){
         var displayedCameras = $scope.cameras[$scope.currentsite];
@@ -95,7 +76,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
                 return position + 1;
             }
         }
-    }
+    };
 
     $scope.getPreviousCamera = function(){
         var displayedCameras = $scope.cameras[$scope.currentsite];
@@ -109,41 +90,32 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
                 return position - 1;
             }
         }
-    }
+    };
 
 }]);
 
-app.directive('liveplayer', ["$http","$interval", "$timeout", "live", function($http, $interval, $timeout, live) {
-  return {
-      restrict: 'E',
-      scope:{imgwidth:"@", imgheight:"@", playing: "@", camera: "="},
-      replace: true,
-      templateUrl: '/liveplayer',
-      link: function(scope, elem, attrs) {
-            scope.showOsd = true;
-            scope.playing = true;
-            scope.liveInterval;
-            scope.image = 'image';
-
-            scope.toggleOsd = function () {
-                scope.showOsd = !scope.showOsd;
-            }
-            scope.$watch('camera', function (newVal, oldVal){
-                if (newVal === oldVal) return;
-                if (scope.liveInterval){
-                    clearInterval(liveInterval);
+app.directive('liveplayer', ["live", "$interval", function(live, $interval){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: '/liveplayer',
+        scope:{camera: "=", },
+        link: function(scope, elem, attrs){
+            scope.playing = undefined;
+            scope.togglelivefeed = function(){
+                if (!scope.playing){
+                    scope.playing = $interval(function(){
+                        live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
+                            scope.camera.image = image;
+                        });
+                    }, 500);
+                } else {
+                    $interval.cancel(scope.playing);
+                    scope.playing = undefined;
                 }
-
-                liveInterval = setInterval(function(){
-                    live.getLiveImage(scope.camera.server, scope.camera.id, function(image){
-                        scope.image = image;
-                        console.log(image);
-                    });
-                }, 1000);
-
-          }, true);
-      }
-  };
+            };
+        }
+    };
 }]);
 
 

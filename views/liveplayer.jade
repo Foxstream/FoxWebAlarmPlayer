@@ -1,11 +1,7 @@
 div(class="liveplayer")
-    img(src='{{ image }}')
-    div(id='play_controller', ng-show='image!==undefined && !loading')
-        div(class="osd")
-            button(id='play', ng-click="playing=true", ng-disabled="playing", title='Play')
-                span(class='glyphicon glyphicon-play')
-            button(id='stop', ng-click="playing=false", ng-disabled="!playing", title='Stop')
-                span(class='glyphicon glyphicon-stop')
-            
-
-    div(ng-show='loading', class="progress-bar progress-bar-striped active",aria-valuenow="100",aria-valuemin="0", aria-valuemax="100" style="width: 100%") Loading
+    img(src='{{ camera.image }}',
+        class='camera-image')
+    div(class="player-controls")
+        h5(class='camera-name') {{ camera.name }}
+        span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')
+        span(class="glyphicon glyphicon-fullscreen", ng-click="playfullscreen(site, camera.serverId, camera.id, camera.fps, $event)")

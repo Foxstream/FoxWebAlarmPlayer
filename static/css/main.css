@@ -581,9 +581,10 @@ nav {
 #camera-list {
   height: 70vh;
   overflow: scroll; }
-  #camera-list .cam {
+  #camera-list .liveplayer {
     text-align: center;
-    margin-bottom: 5vh; }
+    margin-bottom: 5vh;
+    width: 100%; }
   #camera-list .camera-image {
     display: inline-block;
     width: 25vh; }
@@ -603,24 +604,24 @@ nav {
       display: inline-block; }
 
 @media screen and (min-width: 992px) {
-  #camera-list .cam {
+  #camera-list .liveplayer {
     position: relative;
     text-align: center;
     height: 18vw;
     line-height: 18vw;
     background-clip: content-box;
     background-color: black; }
-    #camera-list .cam .camera-image {
+    #camera-list .liveplayer .camera-image {
       display: inline-block;
       width: 100%; }
-    #camera-list .cam .player-controls {
+    #camera-list .liveplayer .player-controls {
       position: absolute;
       bottom: 0;
       background: rgba(120, 132, 147, 0.8);
-      left: 15px;
-      right: 15px;
+      left: 0;
+      right: 0;
       color: white; }
-      #camera-list .cam .player-controls .glyphicon {
+      #camera-list .liveplayer .player-controls .glyphicon {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
@@ -632,12 +633,12 @@ nav {
         /* Opera */
         -moz-transform: translate(0, -50%);
         /* Firefox */ }
-      #camera-list .cam .player-controls .glyphicon:hover {
+      #camera-list .liveplayer .player-controls .glyphicon:hover {
         cursor: pointer;
         font-weight: bold; }
-      #camera-list .cam .player-controls .glyphicon-play, #camera-list .cam .player-controls .glyphicon-stop {
+      #camera-list .liveplayer .player-controls .glyphicon-play, #camera-list .liveplayer .player-controls .glyphicon-stop {
         left: 5%; }
-      #camera-list .cam .player-controls .glyphicon-fullscreen {
+      #camera-list .liveplayer .player-controls .glyphicon-fullscreen {
         right: 5%; } }
 .settings-menu {
   margin-top: 2vh;

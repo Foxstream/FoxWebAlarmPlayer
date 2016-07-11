@@ -25,13 +25,8 @@ block content
                 div(id='collapse{{ $index }}',
                     class='collapse')
                         .row
-                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="cam col-xs-6 col-md-3")
-                                img(src='{{ c.image }}',
-                                    class='camera-image')
-                                div(class="player-controls")
-                                    h5(class='camera-name') {{ c.name }}
-                                    span(class="glyphicon", ng-class="{'glyphicon-play': !c.playing, 'glyphicon-stop': c.playing}" ng-click='togglelivefeed(site, c.serverId, c.id, c.fps)')
-                                    span(class="glyphicon glyphicon-fullscreen", ng-click="playfullscreen(site, c.serverId, c.id, c.fps, $event)")
+                            div(ng-repeat='c in cams | orderBy: "id" track by $index', class="col-xs-6 col-md-3")
+                                liveplayer(camera="c")
 
         liveswiper(class="hidden-md hidden-lg",
                     ng-show='selectedcamera !== undefined')
