@@ -34,6 +34,7 @@
         width: 50vw;
         @include transform(translate(-50%, -50%));
         border: solid $fox-dark-gray 1px;
+
     }
 }
 
@@ -48,6 +49,13 @@
         z-index: 1000;
         height: $navbar-tablet-height;
 
+
+        p {
+            position: absolute;
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
+        
     }
 
 }

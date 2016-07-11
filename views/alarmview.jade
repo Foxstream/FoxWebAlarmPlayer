@@ -32,10 +32,10 @@ block content
 
                     //- Buttons
                     div(class='actions')
-                        button(class='button-secondary',
+                        button(class='button-secondary-fill',
                                 ng-click='handleSelected()',
                                 ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-                        button(class='button-primary',
+                        button(class='button-primary-fill',
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
 
                     div(class='table-container alarmtable')
@@ -144,7 +144,7 @@ block content
                           span(ng-show="filters.sitename !== 'Tous'")
                             label Caméras :
                             select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
-                          button(type='submit', class='button-primary icon')  
+                          button(type='submit', class='button-primary-fill icon')  
                             span(class="glyphicon glyphicon-search")
                     
                     div(class='table-container alarmtable')

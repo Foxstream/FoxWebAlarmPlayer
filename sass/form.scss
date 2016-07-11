@@ -24,18 +24,18 @@ input:focus {
 
 button.icon {
     min-width: 0;
-    width: auto;
-    padding: 0 4%;
+    width: 2em;
+    padding: 0 1%;
 }
 
-button, input[type=submit] {
+button {
     display: inline-block;
+    height: 1.8em;
     border-style: solid;
     border-width: 0.2em;
     border-radius: 0.5em;
     background-color: white;
     text-align: center;
-    padding: 0;
     min-width: 7em;
     line-height: 1.5em;
     outline: none;
@@ -61,13 +61,15 @@ button.button-primary-fill {
     background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
     color: white;
     border: none;
+    height: 1.8em;
 }
 
 button.button-secondary-fill {
     background: linear-gradient(0deg, $fox-dark-gray, $fox-gray);
     color: white;
     border: none;
-    margin-right: 4%
+    margin-right: 4%;
+    height: 1.8em;
 }
 
 
@@ -99,45 +101,6 @@ button.button-secondary-fill {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-    }
-
-}
-
-/** 
-  * Displaying a table where each line is a separate form is impossible with HTML for now. This class helps building an "editable grid"
-  */ 
-.form-grid {
-    display: table;
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse; // necessary to display the borders
-
-    .grid-header {
-        display: table-header-group;
-        border-top: solid $fox-red 2px;
-        border-bottom: solid $fox-red 2px;
-    }
-
-    .grid-row {
-        display: table-row;
-    }
-
-    .grid-header, .grid-row  {
-        height: 2.5em;
-
-        span {
-            display: table-cell;
-            padding: 0.4em;
-        }
-
-    }
-
-    .grid-row:nth-child(even){
-        background-color: $fox-light-gray;
-    }
-
-    .colspan-2 {
-        width: 10%;
     }
 
 }

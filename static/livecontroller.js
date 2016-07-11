@@ -28,8 +28,6 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
     $scope.device = device;
 
-    $scope.sendnotification("This is what notifications will look like sdlkhfgjk adshg gj kdshaksdjfhjdsk hfjkdshjkfh jskahfj hjsahdl fhasdjlh fksadh fjkhasdf hj sdahf jksadhf j klds ahfj ksdh", false, 200000);
-
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
         for (var site in $scope.cameras){

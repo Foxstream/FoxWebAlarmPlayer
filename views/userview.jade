@@ -11,7 +11,7 @@ block content
 
         //- Desktop buttons
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') Nouvel utilisateur
+            button(class="button-primary-fill", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') Nouvel utilisateur
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
@@ -51,7 +51,7 @@ block content
                     input(type="checkbox" ng-model="currentuser.type", ng-click="$event.stopPropagation()", ng-true-value="1", ng-false-value="0")
 
                 td
-                    button(ng-click='resetpassword(x.id)', ng-show='x.shouldChangePassword==0', title='Reset mot de passe',  class="button-secondary") Reset mot de passe
+                    button(ng-click='resetpassword(x.id)', ng-show='x.shouldChangePassword===0', title='Reset mot de passe', class="button-secondary") Reset mot de passe
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")
                     button(ng-click="deleteuser(x.id); $event.stopPropagation()", title="Supprimer l'utilisateur", class="icon button-primary-fill", ng-show="newuser === undefined")
