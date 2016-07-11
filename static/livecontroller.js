@@ -28,6 +28,8 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
     $scope.device = device;
 
+    $scope.sendnotification("This is what notifications will look like sdlkhfgjk adshg gj kdshaksdjfhjdsk hfjkdshjkfh jskahfj hjsahdl fhasdjlh fksadh fjkhasdf hj sdahf jksadhf j klds ahfj ksdh", false, 200000);
+
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
@@ -121,7 +123,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                     width: '98%',
                     height: '90vw',
                     lineHeight: '90vw',
-                    marginLeft: initialStyles.marginLeft
+                    marginLeft: scope.initialStyles.marginLeft
                 };
             }
 
@@ -143,17 +145,30 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
             scope.togglefullscreen = function(){
                 if (!scope.fullscreen){
                     scope.fullscreen = true;
-                    elem.css({'display': 'block'}).animate(scope.fullscreenStyles, 500, function(){
-                        elem.offsetParent().animate({
-                            scrollTop: elem.position().top
-                        }, 500);
+
+                    // Reset elements
+                    $.each(elem.parent().find('.liveplayer'), function(index, element){ 
+                        animateToInitial($(this));
                     });
+
+                    elem.css({'display': 'block'}).animate(scope.fullscreenStyles, 500, function(){
+                        setTimeout(function(){
+                           elem.offsetParent().animate({
+                                scrollTop: elem.position().top
+                            }, 500);
+                        }, 0);
+                    });
+
                 } else {
                     scope.fullscreen = false;
-                    elem.animate(scope.initialStyles, 500, function(){
-                        elem.css({'display': 'inline-block'})
-                    });
+                    animateToInitial(elem);
                 }
+            };
+
+            var animateToInitial = function(element){
+                element.animate(scope.initialStyles, 500, function(){
+                    element.css({'display': 'inline-block'});
+                });
             };
 
         }

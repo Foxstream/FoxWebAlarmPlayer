@@ -1,32 +1,52 @@
+.notifications {
+    font-weight: bold;
+    background: rgba($fox-light-gray, 0.8);
+    padding: 0 3%;
+    color: $fox-red;
+    text-align: left;
+
+    p {
+        width: 80%;
+        line-height: 1.2em; // Override header line-height used to center app name vertically
+        margin: 0; // Overrides bootstrap default
+    }
+
+    i {
+        position: absolute;
+        right: 3%;
+        top: 50%;
+        @include transform(translate(-50%, -50%));
+    }
+
+    i:hover {
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (min-width: $tablet-breakpoint){
+    .notifications {
+        height: auto;
+        padding: 1%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50vw;
+        @include transform(translate(-50%, -50%));
+        border: solid $fox-dark-gray 1px;
+    }
+}
+
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .notifications {
-
         font-size: 1.3em;
-        font-weight: bold;
         position: fixed;
         bottom: 0;
         width: 100vw;
         border-top: solid $fox-dark-gray 1px;
-        background: rgba($fox-light-gray, 0.8);
         z-index: 1000;
         height: $navbar-tablet-height;
-        padding: 0 3%;
-        color: $fox-red;
-        text-align: left;
-
-        p {
-            position: absolute;
-            top: 50%;
-            @include transform(translateY(-50%));
-        }
-
-        i {
-            position: absolute;
-            right: 3%;
-            top: 50%;
-            @include transform(translate(-50%, -50%));
-        }
 
     }
 

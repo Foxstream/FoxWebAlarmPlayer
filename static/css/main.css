@@ -588,16 +588,16 @@ nav {
   #camera-list .big-playing-indicator {
     display: none;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);
-    -ms-transform: translate(-50%);
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     /* IE 9 */
-    -webkit-transform: translate(-50%);
+    -webkit-transform: translate(-50%, -50%);
     /* Safari and Chrome */
-    -o-transform: translate(-50%);
+    -o-transform: translate(-50%, -50%);
     /* Opera */
-    -moz-transform: translate(-50%);
+    -moz-transform: translate(-50%, -50%);
     /* Firefox */
     font-size: 3em;
     color: white; }
@@ -720,45 +720,59 @@ nav {
   margin-bottom: 2px;
   border: none; }
 
+.notifications {
+  font-weight: bold;
+  background: rgba(200, 212, 217, 0.8);
+  padding: 0 3%;
+  color: #e44333;
+  text-align: left; }
+  .notifications p {
+    width: 80%;
+    line-height: 1.2em;
+    margin: 0; }
+  .notifications i {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari and Chrome */
+    -o-transform: translate(-50%, -50%);
+    /* Opera */
+    -moz-transform: translate(-50%, -50%);
+    /* Firefox */ }
+  .notifications i:hover {
+    cursor: pointer; }
+
+@media screen and (min-width: 992px) {
+  .notifications {
+    height: auto;
+    padding: 1%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50vw;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    /* Safari and Chrome */
+    -o-transform: translate(-50%, -50%);
+    /* Opera */
+    -moz-transform: translate(-50%, -50%);
+    /* Firefox */
+    border: solid #566171 1px; } }
 @media screen and (max-width: 991px) {
   .notifications {
     font-size: 1.3em;
-    font-weight: bold;
     position: fixed;
     bottom: 0;
     width: 100vw;
     border-top: solid #566171 1px;
-    background: rgba(200, 212, 217, 0.8);
     z-index: 1000;
-    height: 6vh;
-    padding: 0 3%;
-    color: #e44333;
-    text-align: left; }
-    .notifications p {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      /* IE 9 */
-      -webkit-transform: translateY(-50%);
-      /* Safari and Chrome */
-      -o-transform: translateY(-50%);
-      /* Opera */
-      -moz-transform: translateY(-50%);
-      /* Firefox */ }
-    .notifications i {
-      position: absolute;
-      right: 3%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      /* IE 9 */
-      -webkit-transform: translate(-50%, -50%);
-      /* Safari and Chrome */
-      -o-transform: translate(-50%, -50%);
-      /* Opera */
-      -moz-transform: translate(-50%, -50%);
-      /* Firefox */ } }
+    height: 6vh; } }
 @media screen and (max-width: 767px) {
   .notifications {
     height: 10vh; } }
