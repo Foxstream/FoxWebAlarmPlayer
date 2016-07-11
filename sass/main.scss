@@ -101,6 +101,16 @@ ul {
     }
 }
 
+@media screen and (min-width: $tablet-breakpoint){
+    .main-element {
+        height: 100vh
+            - $header-height
+            - $navbar-desktop-height
+            - 10vh;
+        overflow: scroll;
+    }
+}
+
 /* Main elements on mobile devices : 
    should be exactily big enough to fit on page */
 @media screen and (max-width: $tablet-breakpoint - 1px)
@@ -113,7 +123,6 @@ ul {
             - $tabs-height
             - $tabs-margin-bottom
             - 4vh;
-        overflow: scroll;
     }
 }
 

@@ -91,7 +91,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 }]);
 
-app.directive('liveplayer', ["live", "$interval", function(live, $interval){
+app.directive('liveplayer', ["live", "$interval", "device", function(live, $interval, device){
     return {
         restrict: 'E',
         replace: true,
@@ -100,6 +100,30 @@ app.directive('liveplayer', ["live", "$interval", function(live, $interval){
         link: function(scope, elem, attrs){
             scope.playing = undefined;
             scope.fullscreen = false;
+
+            scope.initialStyles = {
+                width: elem.css('width'),
+                height: elem.css('height'),
+                lineHeight: elem.css('lineHeight'),
+                marginLeft: elem.css('marginLeft')
+            };
+
+            if (device === 'desktop'){
+                var containerHeight = elem.closest('.main-element').css('height');
+                scope.fullscreenStyles = {
+                    width: '70%',
+                    height: containerHeight,
+                    lineHeight: containerHeight,
+                    marginLeft: '15%'
+                };
+            } else {
+                scope.fullscreenStyles = {
+                    width: '98%',
+                    height: '90vw',
+                    lineHeight: '90vw',
+                    marginLeft: initialStyles.marginLeft
+                };
+            }
 
             scope.togglelivefeed = function(){
                 elem.find('.big-playing-indicator').show().fadeOut(500);
@@ -115,36 +139,23 @@ app.directive('liveplayer', ["live", "$interval", function(live, $interval){
                     scope.playing = undefined;
                 }
             };
+
+            scope.togglefullscreen = function(){
+                if (!scope.fullscreen){
+                    scope.fullscreen = true;
+                    elem.css({'display': 'block'}).animate(scope.fullscreenStyles, 500, function(){
+                        elem.offsetParent().animate({
+                            scrollTop: elem.position().top
+                        }, 500);
+                    });
+                } else {
+                    scope.fullscreen = false;
+                    elem.animate(scope.initialStyles, 500, function(){
+                        elem.css({'display': 'inline-block'})
+                    });
+                }
+            };
+
         }
     };
 }]);
-
-
-app.directive('liveswiper', function(){
-
-    return {
-        templateUrl: '/liveswiper',
-        restrict: 'E',
-        replace: true,
-        link: function(scope, element, attrs){
-
-            var currentPosition = 0;
-            var maxPosition = 0;
-
-            scope.$watch('selectedcamera', function(){
-                if (scope.selectedcamera !== undefined){
-                    var position = scope.cameras[scope.currentsite].map(function(c){
-                        return c.id;
-                    }).indexOf(scope.selectedcamera.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 500);
-                    currentPosition = offset;
-                }
-            });
-
-        }
-    }
-
-});

@@ -45,12 +45,15 @@ ul {
 @media screen and (max-width: 767px) {
   .col-xs-12 {
     padding: 0; } }
+@media screen and (min-width: 992px) {
+  .main-element {
+    height: 72vh;
+    overflow: scroll; } }
 /* Main elements on mobile devices : 
    should be exactily big enough to fit on page */
 @media screen and (max-width: 991px) {
   .main-element {
-    height: 62vh;
-    overflow: scroll; } }
+    height: 62vh; } }
 @media screen and (max-width: 767px) {
   .main-element {
     height: 73vh; } }
@@ -581,8 +584,7 @@ nav {
 #camera-list {
   overflow: scroll; }
   #camera-list .camera-picker {
-    width: 100%;
-    border: solid black 1px; }
+    width: 100%; }
   #camera-list .big-playing-indicator {
     display: none;
     position: absolute;
@@ -601,7 +603,7 @@ nav {
     color: white; }
   #camera-list .liveplayer {
     display: inline-block;
-    margin: 1% 1% 5vh 1%;
+    margin: 0 1% 5vh 1%;
     position: relative;
     text-align: center;
     height: 240px;

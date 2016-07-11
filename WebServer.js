@@ -27,7 +27,7 @@ function buildWebServer()
 function applyRoutes(app) {
         
     app.get('/', function (req, res) {        
-        res.redirect("/alarmview");
+        res.redirect("/live");
     });
 
     app.get('/alarmview', auth.IsValidUser, function (req, res) {
