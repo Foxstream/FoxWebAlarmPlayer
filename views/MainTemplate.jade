@@ -42,7 +42,7 @@ html
                     class='nav-link') 
                       i(class='glyphicon glyphicon-alert') 
                       span(class='link') Alarmes
-                  span(class="navbar-notif", ng-show="state.alarmCounter > 0") {{ state.alarmCounter < 10 ? state.alarmCounter : '!' }}
+                  span(class="navbar-notif", ng-show="alarmcounter > 0") {{ alarmcounter < 10 ? alarmcounter : '!' }}
               li(ng-class='{ active: isActive("live") }')
                   a(href="/live") 
                     i(class='glyphicon glyphicon-play') 
