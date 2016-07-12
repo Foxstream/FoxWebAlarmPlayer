@@ -145,17 +145,21 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                     scope.fullscreen = true;
 
                     // Reset elements
-                    $.each(elem.parent().find('.liveplayer'), function(index, element){ 
-                        animateToInitial($(this));
-                    });
+                    // var fullscreenElement = elem.parent().find('.fullscreen');
+                    // if (fullscreenElement){
+                    //     animateToInitial(fullscreenElement);
+                    //     fullscreenStyles.removeClass('fullscreen');
+                    // }
 
                     elem.animate(scope.fullscreenStyles, 500, function(){
-                        setTimeout(function(){
-                           elem.offsetParent().animate({
-                                scrollTop: elem.position().top
-                            }, 500);
-                        }, 0);
+                        var scrollValue = elem.offsetParent().scrollTop();
+                        scrollValue += elem.position().top;
+                        elem.offsetParent().animate({
+                            scrollTop: scrollValue
+                        }, 500);
                     });
+
+                    elem.addClass('fullscreen');
 
                 } else {
                     scope.fullscreen = false;
@@ -164,9 +168,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
             };
 
             var animateToInitial = function(element){
-                element.animate(scope.initialStyles, 500, function(){
-                    
-                });
+                element.animate(scope.initialStyles, 500);
             };
 
         }
