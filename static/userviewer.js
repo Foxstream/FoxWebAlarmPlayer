@@ -1,42 +1,4 @@
-﻿app.factory('userdb', ['$http',
-  function ($http) {
-        var obj = {};
-        
-        obj.getusers = function (callback) {
-            $http.get("/controller/users")
-			.success(callback)
-			.error(function () { callback(null); });
-        };
-        
-        obj.resetpassword = function (id, callback){
-            $http.post("/controller/user/"+id+"/resetpassword")
-			.success(callback)
-			.error(function () { callback("Unable to reset password."); });
-        };
-        
-        obj.deleteuser = function (id, callback) {
-            $http.delete("/controller/user/" + id)
-			.success(callback)
-			.error(function () { callback("Unable to delete user."); });
-        };
-
-        obj.updateuser = function(user, callback){
-            $http.put("/controller/user", user)
-            .success(callback.bind(null, null))
-            .error(function () { callback("Impossible de mettre à jour l'utilisateur"); });
-        };
-        
-        obj.adduser = function (user, callback){
-            $http.post("/controller/user/new", user)
-			.success(callback.bind(null, null))
-			.error(function () { callback("Unable to add the user."); });
-        };
-                
-        return obj;
-    }]);
-
-
-app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", "user", function ($scope, $window, $location, userdb, user) {
+﻿app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", function ($scope, $window, $location, userdb) {
         
         $scope.newuser = undefined;
         $scope.currentuser = undefined;

@@ -15,12 +15,13 @@ function applyApp(app) {
         });
     });
     
-    app.get('/controller/user/me', auth.IsValidUser, function(req, res){
-        console.log('\nok\n');
+    app.get('/controller/users/me', auth.IsValidUser, function(req, res){
         res.send(req.user);
     });
 
-    app.get('/controller/user/:userid', auth.IsAdmin, function (req, res) {
+    // app.put('/controller/users/me', )
+
+    app.get('/controller/users/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {            
             if (data)
                 res.json(data);
@@ -33,7 +34,7 @@ function applyApp(app) {
         });
     });
 
-    app.put('/controller/user', auth.IsAdmin, function (req, res) {
+    app.put('/controller/users', auth.IsAdmin, function (req, res) {
         var user = req.body;
         self.UserPersistence.updateUser(user, function (err) {
             if (!err){
@@ -47,7 +48,7 @@ function applyApp(app) {
         });
     });
 
-    app.post('/controller/user/:userid/resetpassword', auth.IsAdmin, function (req, res) {
+    app.post('/controller/users/:userid/resetpassword', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {
             if (data) {
                 data.password = undefined //reset du mdp
@@ -63,7 +64,7 @@ function applyApp(app) {
         });
     });
     
-    app.post('/controller/user/new', auth.IsAdmin, function (req, res) {
+    app.post('/controller/users/new', auth.IsAdmin, function (req, res) {
         // var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
         var user = req.body;
         self.UserPersistence.addUser(user, function (err) {
@@ -77,7 +78,7 @@ function applyApp(app) {
         })
     });
     
-    app.delete('/controller/user/:userid', auth.IsAdmin, function (req, res) {
+    app.delete('/controller/users/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.deleteUser(req.params.userid, function (err) {
             res.status(err ? 404 : 200);
             res.end(err);

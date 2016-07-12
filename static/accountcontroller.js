@@ -1,12 +1,16 @@
-app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'user', function($scope, $rootScope, $window, device, user) {
+app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'userdb', function($scope, $rootScope, $window, device, userdb) {
     
     $scope.device = device;
     $scope.showMenu = true;
     $scope.user = {};
     $scope.tab = 'loginForm';
 
-    user.getCurrentUser(function(user){
+    userdb.getcurrentuser(function(user){
         $scope.user = user;
     });
+
+    $scope.changeDisplayName = function(){
+        
+    };
 
 }]);
