@@ -60,12 +60,12 @@ block content
 						input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", ng-model="password.old", required)
 				div(class="form-group row")
 					label(for='password1') Nouveau mot de passe
-					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", ng-model="password.new" required)
+					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", ng-model="password.new", required)
 				div(class="form-group row")
 					label(for='password2') Confirmer le mot de passe
 					input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", ng-model="password.confirm", required)
 
-				button(name='PassUpdate', value='1', type='submit',  class="button-primary-fill") Enregistrer
+				button(name='PassUpdate', value='1', class="button-primary-fill", ng-click="changepassword()") Enregistrer
 
 
 

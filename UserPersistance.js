@@ -79,8 +79,7 @@ function checkuser(username, password, cb) {
         }], cb);
 }
 
-function deleteuser(userId, cb)
-{
+function deleteuser(userId, cb){
     this.db.run("DELETE FROM user WHERE id=?", [userId], cb);
 }
 
@@ -90,7 +89,6 @@ function resetuser(userId, cb) {
 
 
 function adduser(user, cb) {
-    debugger;
     var self = this;
     async.waterfall([
         function (local_cb) {
@@ -141,6 +139,3 @@ UserPersistence.prototype.resetUser = resetuser;
 UserPersistence.prototype.checkUser = checkuser;
 
 module.exports = UserPersistence;
-
-
-

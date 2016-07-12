@@ -50,7 +50,6 @@ function applyApp(app) {
     // Updating oneself (any user)
     app.put('/controller/users/me', auth.IsValidUser, function (req, res) {
         var user = req.body;
-        debugger;
         if (user.id !== req.user.id){
             res.status(500);
             res.send("Not allowed");
@@ -84,6 +83,31 @@ function applyApp(app) {
             }            				
         });
     });
+
+    app.post('/controller/users/me/password', auth.IsValidUser, function (req, res) {
+        var user = req.body.user;
+        if (user.id !== req.user.id){
+            res.status(500);
+            res.send("Not allowed");
+            res.end();
+        } else {
+            // check current password
+            self.UserPersistence.checkUser(user.login, req.body.oldPassword, function(err, user){
+                if (err || !user){
+                    res.status(500);
+                    res.send("Le mot de passe saisi est incorrect");
+                    res.end();
+                } else {
+                    user.password = req.body.newPassword;
+                    self.UserPersistence.updateUser(user, function(err, data){
+                        res.status(err ? 404 : 200);
+                        res.end(err);
+                    });
+                }
+            });
+        }
+    });
+
     
     app.post('/controller/users/new', auth.IsAdmin, function (req, res) {
         // var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
