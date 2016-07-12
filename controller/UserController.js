@@ -19,8 +19,6 @@ function applyApp(app) {
         res.send(req.user);
     });
 
-    // app.put('/controller/users/me', )
-
     app.get('/controller/users/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {            
             if (data)
@@ -34,6 +32,7 @@ function applyApp(app) {
         });
     });
 
+    // Updating any user (admin only)
     app.put('/controller/users', auth.IsAdmin, function (req, res) {
         var user = req.body;
         self.UserPersistence.updateUser(user, function (err) {
@@ -48,14 +47,36 @@ function applyApp(app) {
         });
     });
 
+    // Updating oneself (any user)
+    app.put('/controller/users/me', auth.IsValidUser, function (req, res) {
+        var user = req.body;
+        debugger;
+        if (user.id !== req.user.id){
+            res.status(500);
+            res.send("Not allowed");
+            res.end();
+        } else {
+            self.UserPersistence.updateUser(user, function (err) {
+                if (!err){
+                    res.json(user);
+                }
+                else {
+                    res.status(404);
+                    res.send(err);
+                }
+                res.end();
+            });
+        }
+    });
+
     app.post('/controller/users/:userid/resetpassword', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {
             if (data) {
-                data.password = undefined //reset du mdp
+                data.password = undefined; //reset du mdp
                 self.UserPersistence.updateUser(req.params.Userid, data, function (err) {
                     res.status(err ? 404 : 200);
                     res.end(err);
-                })
+                });
             }
             else {
                 res.status(404);

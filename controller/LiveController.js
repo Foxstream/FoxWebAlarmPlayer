@@ -19,7 +19,6 @@ function applyApp(app){
                 res.status(500);
                 res.end();
             } else {
-                debugger;
                 var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
                     c.serverId = s.config.id;
                     return c;

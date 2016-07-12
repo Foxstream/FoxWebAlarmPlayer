@@ -9,8 +9,14 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
         $scope.user = user;
     });
 
-    $scope.changeDisplayName = function(){
-        
+    $scope.commituser = function(){
+        userdb.updatecurrentuser($scope.user, function(err){
+            if (err){
+                $scope.sendnotification(err, true, 1);
+            } else {
+                $scope.sendnotification("Vos modifications ont été enregistrées", true, 1);
+            }
+        });
     };
 
 }]);
