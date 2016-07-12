@@ -11,6 +11,7 @@ html
     script(src="static/bower_components/angular-animate/angular-animate.min.js")
     script(src="static/bower_components/angu-fixed-header-table/fixed.js")
     script(src='static/app.js')
+    script(src='static/state.js')
     script(src='static/navbarcontroller.js')
     script(src='static/EventSource4IE.js')
     script(src='static/EventSource.js')
@@ -40,7 +41,7 @@ html
                     class='nav-link') 
                       i(class='glyphicon glyphicon-alert') 
                       span(class='link') Alarmes
-                  span(class="navbar-notif", ng-show="newalarmscounter > 0") {{ newalarmscounter < 10 ? newalarmscounter : '!' }}
+                  span(class="navbar-notif", ng-show="state.alarmCounter > 0") {{ state.alarmCounter < 10 ? state.alarmCounter : '!' }}
               li(ng-class='{ active: isActive("live") }')
                   a(href="/live") 
                     i(class='glyphicon glyphicon-play') 

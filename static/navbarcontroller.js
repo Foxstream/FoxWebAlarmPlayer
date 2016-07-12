@@ -1,4 +1,7 @@
-app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', function($scope, $rootScope, $location) {
+app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'stateManager', function($scope, $rootScope, $location, stateManager) {
+
+    // Application state: number of new alarms, potential connection errors
+    $scope.state = stateManager.getState();
 
     $scope.currentpage = $location.absUrl();
     console.debug($scope.currentpage)
@@ -6,15 +9,13 @@ app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', functio
         return $scope.currentpage.indexOf(href) > -1;
     };
 
-    $scope.newalarmscounter = 0;
+    // $scope.notifyAlarm = function(event, data){
+    //     if ($scope.currentpage.indexOf('alarmview') < 0){
+    //         $scope.newalarmscounter++;
+    //     }
+    // }
 
-    $scope.notifyAlarm = function(event, data){
-        if ($scope.currentpage.indexOf('alarmview') < 0){
-            $scope.newalarmscounter++;
-        }
-    }
-
-    var unbind = $rootScope.$on("alarm_create", $scope.notifyAlarm);
-    $scope.$on('$destroy', function () { unbind(); });
+    // var unbind = $rootScope.$on("alarm_create", $scope.notifyAlarm);
+    // $scope.$on('$destroy', function () { unbind(); });
 
 }]);

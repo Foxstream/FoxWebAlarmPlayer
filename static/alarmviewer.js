@@ -52,7 +52,7 @@ app.controller('tabcontroller', ["$scope", function($scope){
 }]);
 
 
-app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', function($scope, $rootScope, $window, alarmdb, alarmevents, device) {
+app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', 'stateManager', function($scope, $rootScope, $window, alarmdb, alarmevents, device, stateManager) {
 
     $scope.device = device;
     
@@ -296,6 +296,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             }
         }
 		else {
+            stateManager.incrementAlarmCounter();
             if ($scope.tabName === 'notHandled'){
                 $scope.alarms.push(data);
             }
