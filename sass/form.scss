@@ -73,13 +73,16 @@ button.button-secondary-fill {
 }
 
 
-
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
 
     button {
         min-width: 10vw;
         padding: 0 5%;
+    }
+
+    button.submit {
+        float: right;
     }
 
 }
