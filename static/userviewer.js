@@ -14,7 +14,7 @@
             console.debug($scope.users)
         });
 
-        user.getCurrentUser(function(user){
+        userdb.getcurrentuser(function(user){
             $scope.user = user;
         });
 

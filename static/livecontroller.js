@@ -149,7 +149,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                         animateToInitial($(this));
                     });
 
-                    elem.css({'display': 'block'}).animate(scope.fullscreenStyles, 500, function(){
+                    elem.animate(scope.fullscreenStyles, 500, function(){
                         setTimeout(function(){
                            elem.offsetParent().animate({
                                 scrollTop: elem.position().top
@@ -165,7 +165,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
 
             var animateToInitial = function(element){
                 element.animate(scope.initialStyles, 500, function(){
-                    element.css({'display': 'inline-block'});
+                    
                 });
             };
 
