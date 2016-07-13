@@ -113,10 +113,10 @@ block content
 
                 spinner(ng-show="loading")
 
-                div(class="main-element" ng-show="tab === 'notHandled' && currentalarm === undefined")
+                div(class="main-element" ng-show="currentalarm === undefined")
                     ul
                         li(class="block-header", ng-show="getNotHandledAlarms().length === 0") Aucune alarme
-                        li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
+                        li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.sitename }}
                         li(ng-click="showmorealarms()", class="block-header", style="color: red; text-align: right", ng-show="getNotHandledAlarms().length - filtered.length > 0") Afficher {{ (getNotHandledAlarms().length - filtered.length > limitStep) ? limitStep : (getNotHandledAlarms().length - filtered.length) }} autre{{ (getNotHandledAlarms().length - filtered.length > 1) ? 's' : '' }} alarme{{ (getNotHandledAlarms().length - filtered.length > 1) ? 's' : '' }}
 
                 swiper(ng-show='currentalarm !== undefined')
@@ -247,13 +247,13 @@ block content
 
                 spinner(ng-show="loading")
 
-                div(class="main-element" ng-show="tab === 'filteredAlarms' && currentalarm === undefined")
+                div(class="main-element" ng-show="currentalarm === undefined")
                     ul
                         li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
-                        li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ x.sitename }}
+                        li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", style="color: {{ x.handled === 0 ? 'red':'black' }}") {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.sitename }}
                         li(ng-click="showmorealarms()", class="block-header", style="color: red", ng-show="alarms.length - filtered.length > 0") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
 
-                swiper(ng-show='currentalarm !== undefined')
+                swiper(ng-if='currentalarm !== undefined')
 
 
   script(src='static/spin.min.js')
