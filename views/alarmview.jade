@@ -38,7 +38,7 @@ block content
                         button(class='button-primary-fill',
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
 
-                    div(class='table-container alarmtable')
+                    div(class='table-container alarmtable', style="position: absolute; background: rgba(255, 255, 255, 0.6);z-index: 1;left: 0; right: 0; padding: 0 15px;")
 
                       table
                         thead
@@ -65,6 +65,8 @@ block content
                     div(class='table-container alarmtable')
                       table
                             tbody
+                              tr
+                                td(colspan="6")
                               tr(ng-show='getNotHandledAlarms().length === 0') 
                                 td(colspan="6") Aucune alarme
                               tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: sortType:sortReverse | limitTo: limit as filtered',
