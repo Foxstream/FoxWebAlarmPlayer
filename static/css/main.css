@@ -229,6 +229,14 @@ tbody tr:hover {
   background-color: #c8d4d9;
   cursor: pointer; }
 
+.fixed-header {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+  left: 0;
+  right: 0;
+  padding: 0 15px; }
+
 /**
   * Page header
   * Contains the Foxstream logo, app name and connection errors

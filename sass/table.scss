@@ -70,3 +70,13 @@ tbody tr:hover {
     cursor: pointer;
 }
 
+// Creates a fixed header for table with transparency
+// Apply on two divs : one containing table > thead and another containing table > tbody
+.fixed-header {
+    position: absolute; 
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    left: 0; 
+    right: 0; 
+    padding: 0 15px;
+}
