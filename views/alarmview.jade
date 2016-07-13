@@ -62,6 +62,8 @@ block content
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                   | Site
                               th(class='handle')
+                    div(class='table-container alarmtable')
+                      table
                             tbody
                               tr(ng-show='getNotHandledAlarms().length === 0') 
                                 td(colspan="6") Aucune alarme
@@ -175,6 +177,8 @@ block content
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                     | Site
                                 th(class='handle')
+                    div(class='table-container alarmtable')
+                        table
                               tbody
                                 tr(ng-show='alarms.length === 0') 
                                   td(colspan="6") Aucune alarme
