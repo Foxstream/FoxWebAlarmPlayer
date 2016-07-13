@@ -292,7 +292,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == data.id && data.handled != 0){
-                $window.alert("Current alarm was marked as handled.");
+                $window.alert("L'alarme sélectionnée a été acquitée.");
                 $scope.currentalarm = undefined;
             }
             if (data.handled != 0){

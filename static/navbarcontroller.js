@@ -1,12 +1,12 @@
-app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarmevents', function($scope, $rootScope, $location, alarmevents) {
+app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarmevents', 'appstate', function($scope, $rootScope, $location, alarmevents, appstate) {
 
     $scope.currentpage = $location.absUrl();
 
-    $scope.alarmcounter = localStorage.getItem('alarmcounter') || 0;
+    $scope.alarmcounter = appstate.getState('alarmcounter')
 
-    if ($scope.currentpage.indexOf('alarmview') > 0){
+    if ($scope.currentpage.indexOf('alarmview') > -1){
         $scope.alarmcounter = 0;
-        localStorage.setItem('alarmcounter', $scope.alarmcounter);
+        appstate.saveState('alarmcounter', 0);
     }
 
 
@@ -15,8 +15,8 @@ app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarme
     };
 
     var unbind2 = $rootScope.$on("alarm_create", function(data){
-        if ($scope.currentpage.indexOf('alarmview') === 0){
-            $scope.alarmcounter = 0;
+        if ($scope.currentpage.indexOf('alarmview') === -1){
+            $scope.alarmcounter += 1;
             localStorage.setItem('alarmcounter', $scope.alarmcounter);
         }
     });
