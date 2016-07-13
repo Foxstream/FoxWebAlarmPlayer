@@ -65,6 +65,12 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.loading = true; // Displays loading wheel
 
+    $scope.limit = 30;
+    $scope.limitStep = 20;
+    $scope.showmorealarms = function(){
+        $scope.limit += $scope.limitStep;
+    };
+
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     $scope.debug = '';
@@ -95,6 +101,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.applyfilters = function(){
         $scope.loading = true;
+        $scope.limit = 30;
         $scope.currentfilters = angular.copy($scope.filters);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
@@ -296,6 +303,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             }
         }
 		else {
+            $scope.limit++;
             if ($scope.tabName === 'notHandled'){
                 $scope.alarms.push(data);
             }
@@ -320,34 +328,34 @@ app.directive('swiper', function(){
         replace: true,
         link: function(scope, element, attrs){
 
-            var currentPosition = 0;
-            var maxPosition = 0;
+            // var currentPosition = 0;
+            // var maxPosition = 0;
 
-            scope.$watchCollection('alarms', function(){  
-                 if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 100);
-                    currentPosition = offset;
-                }
-            });
+            // scope.$watchCollection('alarms', function(){  
+            //      if (scope.currentalarm !== undefined){
+            //         var position = scope.alarms.map(function(a){
+            //             return a.id;
+            //         }).indexOf(scope.currentalarm.id);
+            //         var offset = -position * 100;
+            //         $(element).find('.slides-container').animate({
+            //             left: offset+"%"
+            //         }, 100);
+            //         currentPosition = offset;
+            //     }
+            // });
 
-            scope.$watch('currentalarm', function(){
-                if (scope.currentalarm !== undefined){
-                    var position = scope.alarms.map(function(a){
-                        return a.id;
-                    }).indexOf(scope.currentalarm.id);
-                    var offset = -position * 100;
-                    $(element).find('.slides-container').animate({
-                        left: offset+"%"
-                    }, 500);
-                    currentPosition = offset;
-                }
-            });
+            // scope.$watch('currentalarm', function(){
+            //     if (scope.currentalarm !== undefined){
+            //         var position = scope.alarms.map(function(a){
+            //             return a.id;
+            //         }).indexOf(scope.currentalarm.id);
+            //         var offset = -position * 100;
+            //         $(element).find('.slides-container').animate({
+            //             left: offset+"%"
+            //         }, 500);
+            //         currentPosition = offset;
+            //     }
+            // });
 
         }
     };
