@@ -47,25 +47,26 @@ block content
 						ng-class="{active: tab==='passwordForm'}") Changer de mot de passe
 
 
-			form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3 padding', name="loginForm", ng-show="tab === 'loginForm'")
-				div(class="form-group row")
-					label(for='displayname') Nom affiché
-					input(type='text', id='displayname', name='displayname', placeholder='Nom affiché', ng-model="user.displayname", class="form-control", required)
-				button(name='PropUpdate', value='1', class="button-primary-fill submit", ng-disabled="loginForm.$pristine", ng-click="commituser()") Appliquer
+			div(class="main-element")
+				form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3', name="loginForm", ng-show="tab === 'loginForm'")
+					div(class="form-group")
+						label(for='displayname') Nom affiché
+						input(type='text', id='displayname', name='displayname', placeholder='Nom affiché', ng-model="user.displayname", class="form-control", required)
+					button(name='PropUpdate', value='1', class="button-primary-fill submit", ng-disabled="loginForm.$pristine", ng-click="commituser()") Appliquer
 
-			form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3 padding', name="passwordForm", ng-show="tab === 'passwordForm'")
-				if user.shouldChangePassword==0
-					div(class="form-group row")
-						label(for='oldpassword') Mot de passe courant
-						input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", ng-model="password.old", required)
-				div(class="form-group row")
-					label(for='password1') Nouveau mot de passe
-					input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", ng-model="password.new", required)
-				div(class="form-group row")
-					label(for='password2') Confirmer le mot de passe
-					input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", ng-model="password.confirm", required)
+				form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3', name="passwordForm", ng-show="tab === 'passwordForm'")
+					if user.shouldChangePassword==0
+						div(class="form-group")
+							label(for='oldpassword') Mot de passe courant
+							input(type='password', id='oldpassword', name='oldpassword' placeholder='Mot de passe courant', class="form-control", ng-model="password.old", required)
+					div(class="form-group")
+						label(for='password1') Nouveau mot de passe
+						input(type='password',  id='password1', name='password1' placeholder='Nouveau mot de passe', class="form-control", ng-model="password.new", required)
+					div(class="form-group")
+						label(for='password2') Confirmer le mot de passe
+						input(type='password', id='password2', name='password2' placeholder='Confirmation', class="form-control", ng-model="password.confirm", required)
 
-				button(name='PassUpdate', value='1', class="button-primary-fill submit", ng-click="changepassword()") Enregistrer
+					button(name='PassUpdate', value='1', class="button-primary-fill submit", ng-click="changepassword()") Enregistrer
 
 
 

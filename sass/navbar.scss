@@ -31,14 +31,23 @@ nav {
 
 // Tablet
 @media screen and (max-width: ($tablet-breakpoint - 1px)){
+    
+    nav::before {
+        display: block
+    }
+
     nav {
         height: $navbar-tablet-height;
         position: absolute;
         bottom: 0;
-        background-color: white;
-        z-index: 2; // Prevents scrollable content to cause small display glitches
+        z-index: 1000;
         text-align: center;
         border-top: solid $fox-gray 2px;
+        background: rgba(white, $alpha);
+
+        * {
+            background: rgba(white, 0);
+        }
 
         ul {
             height: $navbar-tablet-height;
@@ -99,7 +108,7 @@ nav {
 }
 
 // Mobile
-@media screen and (max-width: ($mobile-breakpoint - 1px)){
+@media screen and (max-width: ($small-phones-breakpoint - 1px)){
     nav {
         height: $navbar-mobile-height;
         ul {

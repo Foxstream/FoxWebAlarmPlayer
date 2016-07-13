@@ -91,6 +91,13 @@ button.button-secondary-fill {
 // Tablets and phones
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
+    .main-element form {
+        padding: 15px;
+        background-color: white;
+        border: solid $fox-gray 1px;
+        border-radius: 5px;
+    }
+
     // Default : two buttons of the same size on one line
     button {
         width: 48%; 

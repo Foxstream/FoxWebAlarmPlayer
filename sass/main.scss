@@ -1,4 +1,4 @@
-    /*
+/*
 **************************************************************** SASS variables
 */
 
@@ -23,12 +23,13 @@ $small-phones-breakpoint: 600px;
 $header-height: 12vh; 
 $navbar-desktop-height: 6vh;
 $navbar-mobile-height: 10vh;
-$navbar-tablet-height: 6vh;
-$action-bar-mobile-height: 10vh;
+$navbar-tablet-height: 8vh;
+$action-bar-mobile-height: 8vh;
 $tabs-height: 5vh;
-$tabs-margin-bottom: 1vh;
 // Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
+
+$alpha: 0.7; // Transparency
 
 
 /*
@@ -49,7 +50,7 @@ html {
     body {
         font-size: 14px;
         background-color: $fox-light-gray;
-        background: linear-gradient(0deg, #f5f5f5, #f0f0f0);
+        background: $fox-light-gray;
     }
 }
 @media screen and (max-width: $small-phones-breakpoint - 1px){
@@ -111,39 +112,41 @@ ul {
             - $navbar-desktop-height
             - 10vh;
         overflow: scroll;
-
-        * {
-            background-color: white;
-        }
     }
 }
 
-/* Main elements on mobile devices : 
-   should be exactily big enough to fit on page */
+
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
+
+    .main-element::before {
+        display: block;
+        content: ' ';
+        height: $action-bar-mobile-height + $tabs-height + 1vh;
+    }
+
+    .main-element::after {
+        display: block;
+        content: ' ';
+        height: $navbar-tablet-height + 1vh;
+    }
+
     .main-element {
-        height: 100vh 
-            - $navbar-tablet-height 
-            - $action-bar-mobile-height 
-            - $header-height 
-            - $tabs-height
-            - $tabs-margin-bottom
-            - 4vh;
+        height: 100vh;
+
+        li {
+            margin-bottom: 1%;
+        }
     }
 }
 
 @media screen and (max-width: $mobile-breakpoint - 1px)
 {
     .main-element {
-        height: 100vh
-            - $navbar-mobile-height
-            - $action-bar-mobile-height
-            - $tabs-height
-            - $tabs-margin-bottom
-            - 1vh;
+
     }
 }
+
 
 
 /*
