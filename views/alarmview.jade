@@ -24,7 +24,7 @@ block content
         div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", ng-init="tabName='notHandled'")
 
             //- Desktop version
-            div(class="hidden-sm hidden-xs")
+            div(ng-if="device === 'desktop'")
 
                 div(class='col-md-7')
 
@@ -92,7 +92,7 @@ block content
                     imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
 
             //- Mobile version
-            div(class="hidden-md hidden-lg")
+            div(ng-if="device !== 'desktop'")
 
                 div(class='actions')
                     button(class='button-secondary full-width',
@@ -127,7 +127,7 @@ block content
         div(ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller', ng-init="tabName='filteredAlarms'")
 
             //- Desktop version
-            div(class='hidden-sm hidden-xs')
+            div(ng-if="device === 'desktop'")
 
                 div(class='col-md-7')
 
@@ -206,7 +206,7 @@ block content
                     imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'filteredAlarms'")
 
             //- Mobile version
-            div(class="hidden-md hidden-lg")
+            div(ng-if="device !== 'desktop'")
 
                 div(class='actions')
                     button(class='button-secondary',

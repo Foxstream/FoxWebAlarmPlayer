@@ -65,7 +65,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.loading = true; // Displays loading wheel
 
-    $scope.limit = 30;
+    $scope.limit = 20;
     $scope.limitStep = 20;
     $scope.showmorealarms = function(){
         $scope.limit += $scope.limitStep;
@@ -102,6 +102,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.applyfilters = function(){
         $scope.loading = true;
         $scope.limit = 30;
+        $scope.currentalarm = undefined;
         $scope.currentfilters = angular.copy($scope.filters);
         alarmdb.getAlarms($scope.filters, function(data){
             $scope.alarms = data;
