@@ -15,7 +15,7 @@
 @media screen and (max-width: $mobile-breakpoint - 1px) {
     .swiper {
         height: 100vh 
-            - $action-bar-mobile-height 
+            - $action-bar-tablet-height 
             - $navbar-mobile-height 
             - $tabs-height
             - 5vh;

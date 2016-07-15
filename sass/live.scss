@@ -91,7 +91,7 @@
     #camera-list {
         height: 100vh 
         - $navbar-tablet-height 
-        - $action-bar-mobile-height 
+        - $action-bar-tablet-height 
         - $header-height 
         - 4vh;
     }
@@ -106,7 +106,7 @@
     #camera-list {
         height: 100vh 
         - $navbar-mobile-height 
-        - $action-bar-mobile-height 
+        - $action-bar-tablet-height 
         - 4vh;
     }
 }
@@ -116,7 +116,7 @@
     #camera-list {
         height: 100vh 
         - $navbar-mobile-height 
-        - $action-bar-mobile-height 
+        - $action-bar-tablet-height 
         - 4vh;
     }
 

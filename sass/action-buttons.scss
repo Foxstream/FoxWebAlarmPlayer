@@ -16,8 +16,8 @@
 // Tablets and phones
 @media screen and (max-width: $tablet-breakpoint - 1px){
     .actions {
-        height: $action-bar-mobile-height;
-        line-height: $action-bar-mobile-height;
+        height: $action-bar-tablet-height;
+        line-height: $action-bar-tablet-height;
         background: $background;
         position: fixed;
         top: 0;
@@ -31,5 +31,13 @@
             background: rgba(white, 0);
         }
 
+    }
+}
+
+// Smaller phones
+@media screen and (max-width: $small-phones-breakpoint - 1px){
+    .actions {
+        height: $action-bar-mobile-height;
+        line-height: $action-bar-mobile-height;
     }
 }

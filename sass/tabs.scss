@@ -24,7 +24,7 @@
     
     .tabs {
         position: fixed; 
-        top: $action-bar-mobile-height;
+        top: $action-bar-tablet-height;
         left: 0;
         right: 0;
         padding: 0 30px;
@@ -35,6 +35,17 @@
             width: 50%;
             text-align: center;
         }
+    }
+
+}
+
+// Smaller phones
+@media screen and (max-width: $small-phones-breakpoint - 1px){
+    
+    .tabs {
+        top: $action-bar-mobile-height;
+        height: $tabs-mobile-height;
+        line-height: $tabs-mobile-height;
     }
 
 }

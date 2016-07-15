@@ -23,10 +23,12 @@ $small-phones-breakpoint: 600px;
 // see .main-element below
 $header-height: 12vh; 
 $navbar-desktop-height: 6vh;
-$navbar-mobile-height: 10vh;
+$navbar-mobile-height: 12vh;
 $navbar-tablet-height: 8vh;
-$action-bar-mobile-height: 8vh;
+$action-bar-tablet-height: 8vh;
+$action-bar-mobile-height: 10vh;
 $tabs-height: 5vh;
+$tabs-mobile-height: 7vh;
 // Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
 
@@ -122,8 +124,20 @@ ul {
 {
 
     .main-element {
-        padding-top: $action-bar-mobile-height + $tabs-height + 3vh;
+        padding-top: $action-bar-tablet-height + $tabs-height + 3vh;
         padding-bottom: $navbar-tablet-height + 2vh;
+        height: 100vh;
+        overflow: scroll;
+    }
+
+}
+
+@media screen and (max-width: $small-phones-breakpoint - 1px)
+{
+
+    .main-element {
+        padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vh;
+        padding-bottom: $navbar-mobile-height + 2vh;
         height: 100vh;
         overflow: scroll;
     }
