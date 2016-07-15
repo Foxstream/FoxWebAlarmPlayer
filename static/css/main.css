@@ -55,12 +55,10 @@ ul {
     overflow: scroll; } }
 @media screen and (max-width: 991px) {
   .main-element {
-    padding-top: 14vh;
-    padding-bottom: 9vh;
+    padding-top: 16vh;
+    padding-bottom: 10vh;
     height: 100vh;
-    overflow: scroll; }
-    .main-element li {
-      margin-bottom: 1%; } }
+    overflow: scroll; } }
 /*
 **************************************************************** Imports
 */
@@ -470,10 +468,6 @@ nav {
     border-bottom: solid #788493 2px; }
     .actions * {
       background: rgba(255, 255, 255, 0); }
-    .actions button {
-      line-height: 1.5em;
-      border: none;
-      font-weight: bold; }
     .actions .button-primary {
       text-align: right;
       padding-right: 5px; }
@@ -729,14 +723,13 @@ nav {
 .block-header {
   position: relative;
   display: inline-block;
-  width: 100%;
-  border: solid #788493 1px;
-  padding: 2vh 5vw;
-  font-size: 1.2em;
   font-weight: bold;
-  background: white; }
+  width: 100%;
+  border: solid #c8d4d9 1px;
+  padding: 1em 1em;
+  background: white;
+  margin-bottom: 0.4em; }
   .block-header .glyphicon {
-    color: #e44333;
     position: absolute;
     top: 50%;
     right: 3%;
@@ -754,6 +747,9 @@ nav {
   margin-bottom: 2px;
   border: none; }
 
+@media screen and (min-width: 992px) {
+  .block-header {
+    font-size: 1.2em; } }
 .notifications {
   font-weight: bold;
   background: rgba(200, 212, 217, 0.8);

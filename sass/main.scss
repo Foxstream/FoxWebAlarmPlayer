@@ -122,14 +122,10 @@ ul {
 {
 
     .main-element {
-        padding-top: $action-bar-mobile-height + $tabs-height + 1vh;
-        padding-bottom: $navbar-tablet-height + 1vh;
+        padding-top: $action-bar-mobile-height + $tabs-height + 3vh;
+        padding-bottom: $navbar-tablet-height + 2vh;
         height: 100vh;
         overflow: scroll;
-
-        li {
-            margin-bottom: 1%;
-        }
     }
 
 }

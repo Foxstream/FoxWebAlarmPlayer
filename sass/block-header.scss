@@ -7,15 +7,14 @@
 .block-header {
     position: relative;
     display: inline-block;
-    width: 100%;
-    border: solid $fox-gray 1px;
-    padding: 2vh 5vw;
-    font-size: 1.2em;
     font-weight: bold;
+    width: 100%;
+    border: solid $fox-light-gray 1px;
+    padding: 1em 1em;
     background: white;
+    margin-bottom: 0.4em;
 
     .glyphicon { 
-        color: $fox-red;
         position: absolute;
         top: 50%;
         right: 3%;
@@ -28,4 +27,10 @@
 .panel {
     margin-bottom: 2px;
     border: none;
+}
+
+@media screen and (min-width: $tablet-breakpoint){
+    .block-header {
+        font-size: 1.2em;
+    }
 }
