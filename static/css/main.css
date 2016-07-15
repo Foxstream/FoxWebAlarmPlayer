@@ -6,7 +6,8 @@
 */
 html {
   height: 100vh;
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; }
 
 @media screen and (min-width: 992px) {
   body {
@@ -58,14 +59,12 @@ ul {
   .main-element::before {
     display: block;
     content: ' ';
-    height: 14vh;
-    background-color: black; }
+    height: 14vh; }
 
   .main-element::after {
     display: block;
     content: ' ';
-    height: 9vh;
-    background-color: black; }
+    height: 9vh; }
 
   .main-element {
     height: 100vh;
@@ -577,6 +576,7 @@ nav {
     box-shadow: 1px 1px 1px #566171;
     z-index: 2000;
     position: absolute;
+    top: 10vh;
     left: 10%;
     right: 10%;
     height: auto; }

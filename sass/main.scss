@@ -39,6 +39,7 @@ $alpha: 0.8; // Transparency
 html {
     height: 100vh;
     overflow: hidden; // Prevent overscrolling
+    -webkit-overflow-scrolling: touch;
 }
 
 @media screen and (min-width: $tablet-breakpoint){
@@ -125,14 +126,12 @@ ul {
         display: block;
         content: ' ';
         height: $action-bar-mobile-height + $tabs-height + 1vh;
-        background-color: black;
     }
 
     .main-element::after {
         display: block;
         content: ' ';
         height: $navbar-tablet-height + 1vh;
-        background-color: black;
     }
 
     .main-element {
