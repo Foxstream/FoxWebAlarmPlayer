@@ -139,39 +139,41 @@ button.icon {
 button {
   display: inline-block;
   height: 1.8em;
-  border-style: solid;
-  border-width: 0.2em;
+  border: none;
   border-radius: 0.5em;
   background-color: white;
   text-align: center;
   min-width: 7em;
   line-height: 1.5em;
-  outline: none; }
+  outline: none;
+  color: white; }
 
 button:focus {
   outline: none; }
 
 button.button-primary {
-  border-color: #e44333;
-  color: #e44333; }
-
-button.button-secondary {
-  border-color: #566171;
-  color: #566171;
-  margin-right: 4%; }
-
-button.button-primary-fill {
   background: linear-gradient(0deg, #cf3c2d, #ff6151);
-  color: white;
   border: none;
   height: 1.8em; }
 
-button.button-secondary-fill {
+button.button-secondary {
   background: linear-gradient(0deg, #566171, #788493);
-  color: white;
   border: none;
   margin-right: 4%;
   height: 1.8em; }
+
+button.button-primary-nofill {
+  color: #e44333;
+  border-color: #e44333;
+  border-style: solid;
+  border-width: 0.2em; }
+
+button.button-secondary-nofill {
+  color: #566171;
+  margin-right: 4%;
+  border-color: #566171;
+  border-style: solid;
+  border-width: 0.2em; }
 
 @media screen and (min-width: 992px) {
   button {
@@ -467,13 +469,7 @@ nav {
     padding: 0 30px;
     border-bottom: solid #788493 2px; }
     .actions * {
-      background: rgba(255, 255, 255, 0); }
-    .actions .button-primary {
-      text-align: right;
-      padding-right: 5px; }
-    .actions .button-secondary {
-      text-align: left;
-      padding-left: 5px; } }
+      background: rgba(255, 255, 255, 0); } }
 /**
   * Specific style rules for the login page
   */

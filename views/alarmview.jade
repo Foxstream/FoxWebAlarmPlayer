@@ -32,10 +32,10 @@ block content
 
                     //- Buttons
                     div(class='actions')
-                        button(class='button-secondary-fill',
+                        button(class='button-secondary',
                                 ng-click='handleSelected()',
                                 ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
-                        button(class='button-primary-fill',
+                        button(class='button-primary',
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
 
                     div(class='table-container alarmtable fixed-header')
@@ -82,11 +82,11 @@ block content
                                 td(class='camera') {{ ::x.cameraname }}
                                 td(class='site') {{ ::x.sitename }}
                                 td(class='handle')
-                                  button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                                  button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") Acquitter
                                   span(ng-show="x.nbimages === 0") Chargement...
                               tr(ng-if="limit < getNotHandledAlarms().length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary-fill") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
+                                    button(ng-click="showmorealarms()", class="button-primary") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
@@ -99,15 +99,15 @@ block content
             div(ng-if="device !== 'desktop'")
 
                 div(class='actions')
-                    button(class='button-primary-fill',
+                    button(class='button-primary',
                             ng-click='handleall()',
                             ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
-                    button(class='button-secondary-fill back',
+                    button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='currentalarm = undefined')
                         span(class="glyphicon glyphicon-chevron-left")
                         span Liste
-                    button(class='button-primary-fill',
+                    button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') Acquitter
 
@@ -154,7 +154,7 @@ block content
                           span(ng-show="filters.sitename !== 'Tous'")
                             label Caméras :
                             select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
-                          button(type='submit', class='button-primary-fill icon')  
+                          button(type='submit', class='button-primary icon')  
                             span(class="glyphicon glyphicon-search")
                     
                     div(class='table-container alarmtable fixed-header')
@@ -201,11 +201,11 @@ block content
                                   td(class='camera') {{ ::x.cameraname }}
                                   td(class='site') {{ ::x.sitename }}
                                   td(class='handle')
-                                    button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary") Acquitter
+                                    button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") Acquitter
                                     span(ng-show="x.handled") Acquittée
                                 tr(ng-if="limit < alarms.length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary-fill") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
+                                    button(ng-click="showmorealarms()", class="button-primary") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
 
 
                 //- Video player
@@ -248,9 +248,9 @@ block content
                       .form-group(ng-show="filters.sitename !== 'Tous'")
                           label(for="camera") Caméras :
                           select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
-                      button(class='button-secondary-fill', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') Fermer
-                      button(class='button-secondary-fill', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') Annuler
-                      button(type='submit', ng-click='showfilters = false', class='button-primary-fill', ng-show='filtermobileform.$dirty') Appliquer
+                      button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') Fermer
+                      button(class='button-secondary', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') Annuler
+                      button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') Appliquer
 
 
                 
