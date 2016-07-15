@@ -123,9 +123,9 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                     var disconnectedServers = $scope.servers.filter(function(s){ return !s.connected; });
                     if (disconnectedServers.length > 1){
 
-                        var message = "Impossible de se connecter aux serveurs : ";
+                        var message = "Impossible de se connecter aux serveurs suivants : ";
                         disconnectedServers.forEach(function(s, index){
-                            message += s.description + " (" + s.address + ")"
+                            message += s.description + " (" + s.address + ")";
                             if (index !== disconnectedServers.length - 1){
                                 message += ", ";
                             }

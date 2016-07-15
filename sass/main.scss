@@ -29,7 +29,7 @@ $tabs-height: 5vh;
 // Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
 
-$alpha: 0.7; // Transparency
+$alpha: 0.8; // Transparency
 
 
 /*
@@ -49,8 +49,8 @@ html {
 @media screen and (max-width: $tablet-breakpoint - 1px){
     body {
         font-size: 14px;
-        background-color: $fox-light-gray;
-        background: $fox-light-gray;
+        background-color: #f5f5f5;
+        overflow: hidden;
     }
 }
 @media screen and (max-width: $small-phones-breakpoint - 1px){
@@ -61,9 +61,9 @@ html {
 
 body {
     height: 100%;
-    padding: 1vh 0 0 0;
+    padding: 0;
     box-sizing: border-box; // Or padding messes up the height
-    overflow: auto;
+    overflow: hidden;
     margin: 0;
 }
 
@@ -119,32 +119,31 @@ ul {
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
 
+    /* When scrolling, main-element content goes under tabs and 
+    navbar for a fancy transparency effect */
     .main-element::before {
         display: block;
         content: ' ';
         height: $action-bar-mobile-height + $tabs-height + 1vh;
+        background-color: black;
     }
 
     .main-element::after {
         display: block;
         content: ' ';
         height: $navbar-tablet-height + 1vh;
+        background-color: black;
     }
 
     .main-element {
         height: 100vh;
+        overflow: scroll;
 
         li {
             margin-bottom: 1%;
         }
     }
-}
 
-@media screen and (max-width: $mobile-breakpoint - 1px)
-{
-    .main-element {
-
-    }
 }
 
 

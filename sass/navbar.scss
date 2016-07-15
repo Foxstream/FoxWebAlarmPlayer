@@ -33,25 +33,23 @@ nav {
 @media screen and (max-width: ($tablet-breakpoint - 1px)){
     
     nav::before {
-        display: block
+        display: block;
     }
 
     nav {
         height: $navbar-tablet-height;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         z-index: 1000;
         text-align: center;
         border-top: solid $fox-gray 2px;
         background: rgba(white, $alpha);
 
-        * {
-            background: rgba(white, 0);
-        }
-
         ul {
             height: $navbar-tablet-height;
             line-height: $navbar-tablet-height;
+            position: relative;
+            z-index: 1002;
 
             li {
                 width: 15vw;
