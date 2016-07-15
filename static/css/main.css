@@ -175,6 +175,21 @@ button.button-secondary-nofill {
   border-style: solid;
   border-width: 0.2em; }
 
+button.back {
+  position: relative;
+  border-left: transparent; }
+
+button.back::before {
+  position: absolute;
+  content: ' ';
+  top: 0.25em;
+  left: -0.3em;
+  height: 1.27em;
+  width: 1.27em;
+  background: linear-gradient(45deg, #566171, #788493);
+  border-top-left-radius: 0.6em;
+  -webkit-transform: rotate(-45deg); }
+
 @media screen and (min-width: 992px) {
   button {
     min-width: 10vw;

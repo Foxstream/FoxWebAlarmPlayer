@@ -74,6 +74,25 @@ button.button-secondary-nofill {
     border-width: 0.2em;
 }
 
+button.back {
+    position: relative;
+    border-left: transparent 
+}
+
+// Arrow
+button.back::before {
+    position: absolute;
+    content: ' ';
+    top: 0.25em;
+    left: -0.3em;
+    height: 1.27em;
+    width: 1.27em;
+    background: linear-gradient(45deg, $fox-dark-gray, $fox-gray);
+    border-top-left-radius: 0.6em;
+    -webkit-transform : rotate(-45deg);
+
+}
+
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
 
