@@ -52,7 +52,7 @@ block content
 					div(class="form-group")
 						label(for='displayname') Nom affiché
 						input(type='text', id='displayname', name='displayname', placeholder='Nom affiché', ng-model="user.displayname", class="form-control", required)
-					button(name='PropUpdate', value='1', class="button-primary-fill submit", ng-disabled="loginForm.$pristine", ng-click="commituser()") Appliquer
+					button(name='PropUpdate', value='1', class="button-primary-fill submit", ng-show="loginForm.$dirty", ng-click="commituser()") Appliquer
 
 				form(method='POST', class='col-xs-12 col-md-6 col-md-offset-3', name="passwordForm", ng-show="tab === 'passwordForm'")
 					if user.shouldChangePassword==0

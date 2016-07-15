@@ -19,7 +19,8 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
             if (err){
                 $scope.sendnotification(err, true, 1);
             } else {
-                $scope.sendnotification("Vos modifications ont été enregistrées", true, 1);
+                $scope.sendnotification("Vos nom a été changé.", true, 1);
+                $scope.showMenu = true;
             }
         });
     };
@@ -36,6 +37,7 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
                     $scope.sendnotification(err, true, 1);
                 } else {
                     $scope.sendnotification("Votre mot de passe a été changé", true, 1);
+                    $scope.showMenu = true;
                 }
             });
         } else {

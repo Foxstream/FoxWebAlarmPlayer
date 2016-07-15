@@ -8,12 +8,7 @@
 
 @media screen and (max-width: $tablet-breakpoint - 1px) {
     .swiper {
-        height: 100vh 
-            - $header-height 
-            - $action-bar-mobile-height 
-            - 8vh 
-            - $navbar-tablet-height
-            - $tabs-height;
+        height: 100%;
     }
 }
 

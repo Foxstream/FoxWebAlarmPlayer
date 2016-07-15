@@ -92,10 +92,11 @@ button.button-secondary-fill {
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     .main-element form {
-        padding: 15px;
+        padding: 45px 15px;
         background-color: white;
         border: solid $fox-gray 1px;
         border-radius: 5px;
+        height: 100%;
     }
 
     // Default : two buttons of the same size on one line
