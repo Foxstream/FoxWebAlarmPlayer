@@ -22,13 +22,18 @@ $small-phones-breakpoint: 600px;
 // Keeping everything as a variable helps defining other element sizes,
 // see .main-element below
 $header-height: 12vh; 
+
 $navbar-desktop-height: 6vh;
-$navbar-mobile-height: 12vh;
-$navbar-tablet-height: 8vh;
-$action-bar-tablet-height: 8vh;
-$action-bar-mobile-height: 10vh;
-$tabs-height: 5vh;
-$tabs-mobile-height: 7vh;
+$navbar-tablet-height: 8vmax;
+$navbar-mobile-height: 12vmax;
+
+$action-bar-tablet-height: 8vmax;
+$action-bar-mobile-height: 10vmax;
+
+$tabs-desktop-height: 5vh;
+$tabs-tablet-height: 5vmax;
+$tabs-mobile-height: 7vmax;
+
 // Main elements (alarm table, canera accordion, ...)
 $main-element-size: 70vh;
 
@@ -109,6 +114,7 @@ ul {
     }
 }
 
+// Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
     .main-element {
         height: 100vh
@@ -119,25 +125,26 @@ ul {
     }
 }
 
-
+// Tablets
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
 
     .main-element {
-        padding-top: $action-bar-tablet-height + $tabs-height + 3vh;
-        padding-bottom: $navbar-tablet-height + 2vh;
+        padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
+        padding-bottom: $navbar-tablet-height + 2vmax;
         height: 100vh;
         overflow: scroll;
     }
 
 }
 
+// Small phones
 @media screen and (max-width: $small-phones-breakpoint - 1px)
 {
 
     .main-element {
-        padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vh;
-        padding-bottom: $navbar-mobile-height + 2vh;
+        padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
+        padding-bottom: $navbar-mobile-height + 2vmax;
         height: 100vh;
         overflow: scroll;
     }

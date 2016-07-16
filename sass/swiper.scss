@@ -6,19 +6,22 @@
     height: 100%;
 }
 
+// Tablets
 @media screen and (max-width: $tablet-breakpoint - 1px) {
     .swiper {
         height: 100%;
     }
 }
 
+// Smartphones
+// ??DELETE
 @media screen and (max-width: $mobile-breakpoint - 1px) {
     .swiper {
-        height: 100vh 
-            - $action-bar-tablet-height 
-            - $navbar-mobile-height 
-            - $tabs-height
-            - 5vh;
+        // height: 100vh 
+        //     - $action-bar-tablet-height 
+        //     - $navbar-mobile-height 
+        //     - $tabs-height
+        //     - 5vh;
     }
 }
 

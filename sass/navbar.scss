@@ -29,8 +29,9 @@ nav {
 }
 
 
-// Tablet
-@media screen and (max-width: ($tablet-breakpoint - 1px)){
+// Tablet or small smartphones in portrait mode
+@media screen and (max-width: ($tablet-breakpoint - 1px)), 
+    screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
     
     nav::before {
         display: block;
@@ -104,7 +105,7 @@ nav {
 }
 
 // Mobile
-@media screen and (max-width: ($small-phones-breakpoint - 1px)){
+@media screen and (max-width: ($small-phones-breakpoint - 1px)) and (orientation: portrait){
     nav {
         height: $navbar-mobile-height;
         ul {

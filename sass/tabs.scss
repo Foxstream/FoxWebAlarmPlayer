@@ -1,7 +1,7 @@
 .tabs {
 
-    height: $tabs-height;
-    line-height: $tabs-height;
+    height: $tabs-desktop-height;
+    line-height: $tabs-desktop-height;
 
     li {
         display: inline-block;
@@ -16,6 +16,7 @@
         border-bottom: solid $fox-red 3px;
         color: $fox-red;
         background: rgba(white, 0.9);
+        font-weight: bold;
     }
 }
 

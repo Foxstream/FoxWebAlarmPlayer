@@ -89,11 +89,12 @@
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
     #camera-list {
-        height: 100vh 
-        - $navbar-tablet-height 
-        - $action-bar-tablet-height 
-        - $header-height 
-        - 4vh;
+        // ??DELETE
+        // height: 100vh 
+        // - $navbar-tablet-height 
+        // - $action-bar-tablet-height 
+        // - $header-height 
+        // - 4vh;
     }
 
     .liveplayer {
@@ -104,20 +105,22 @@
 @media screen and (max-width: $mobile-breakpoint - 1px){
 
     #camera-list {
-        height: 100vh 
-        - $navbar-mobile-height 
-        - $action-bar-tablet-height 
-        - 4vh;
+        // ??DELETE
+        // height: 100vh 
+        // - $navbar-mobile-height 
+        // - $action-bar-tablet-height 
+        // - 4vh;
     }
 }
 
 @media screen and (max-width: $small-phones-breakpoint - 1px){
 
     #camera-list {
-        height: 100vh 
-        - $navbar-mobile-height 
-        - $action-bar-tablet-height 
-        - 4vh;
+        // ??DELETE
+        // height: 100vh 
+        // - $navbar-mobile-height 
+        // - $action-bar-tablet-height 
+        // - 4vh;
     }
 
 
