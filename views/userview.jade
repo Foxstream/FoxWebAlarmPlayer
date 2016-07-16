@@ -16,8 +16,7 @@ block content
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
-            button(class="button-secondary" ng-click='back()', ng-show="currentUser === undefined")
-              span(class="glyphicon glyphicon-chevron-left") 
+            button(class="button-secondary back" ng-click='back()', ng-show="currentUser === undefined")
               span Paramètres
             button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined') Ajouter
 
