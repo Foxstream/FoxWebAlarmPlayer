@@ -87,49 +87,51 @@ app.value('device', device);
 
 
 app.directive('imagewithosd', function(){
-  return {
-	  restrict: 'E', 
-	  scope:{image:"=", osd:"=", imgwidth:"@", imgheight:"@"},
-	  replace: true,
-	  template: '<canvas class="imagecanvas"/>',
-	  link: function(scope, elem, attrs) {
-		  var canvas = elem[0];
-		  
-		  function repaintImage()
-		  {
-			  var ctx=canvas.getContext("2d");
-			  canvas.width = scope.imgwidth;
-			  canvas.height = scope.imgheight;
-			  
-                if (!scope.image){
-                    ctx.fillStyle = "grey";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                }
-                else {
-                    ctx.drawImage(scope.image, 0, 0, canvas.width, canvas.height);
-                    if (scope.osd) {
-                        for (var i = 0; i < scope.osd.length; i++) {
-                            var points = scope.osd[i];
-                            
-                            ctx.lineWidth = "2";
-                            ctx.strokeStyle = "red";
+    return {
+        restrict: 'E', 
+        scope:{image:"=", osd:"=", imgwidth:"@", imgheight:"@"},
+        replace: true,
+        template: '<canvas class="imagecanvas"/>',
+        link: function(scope, elem, attrs) {
+            var canvas = elem[0];
 
-                            ctx.beginPath();
-                            ctx.moveTo(points[0].x * canvas.width / scope.image.width, points[0].y * canvas.height / scope.image.height);
-                            for (var j = 0; j < points.length; j++)
-                                ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
-                            ctx.closePath();
-                            ctx.stroke();
-                        }
+            scope.$watch('image', function(){
+                console.log(scope.image);
+            });
+		  
+            function repaintImage(){
+
+                var ctx=canvas.getContext("2d");
+                canvas.width = scope.imgwidth;
+                canvas.height = scope.imgheight;
+
+                ctx.drawImage(scope.image, 0, 0, canvas.width, canvas.height);
+
+                if (scope.osd) {
+                    for (var i = 0; i < scope.osd.length; i++) {
+                        var points = scope.osd[i];
+                        
+                        ctx.lineWidth = "2";
+                        ctx.strokeStyle = "red";
+
+                        ctx.beginPath();
+                        ctx.moveTo(points[0].x * canvas.width / scope.image.width, points[0].y * canvas.height / scope.image.height);
+                        for (var j = 0; j < points.length; j++)
+                            ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
+                        ctx.closePath();
+                        ctx.stroke();
                     }
                 }
-		  }
-		  
-          scope.$watch('image', repaintImage);
-          scope.$watch('osd', repaintImage);
-		  repaintImage();
-	  }
-  };
+
+    		}
+    		  
+            scope.$watch('image', repaintImage);
+            scope.$watch('osd', repaintImage);
+            repaintImage();
+
+        }
+
+    };
 });
 
 

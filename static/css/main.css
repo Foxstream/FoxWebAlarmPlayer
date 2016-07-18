@@ -724,7 +724,6 @@ nav {
     .tabs li {
       width: 50%;
       text-align: center;
-      width: 90%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; } }
@@ -844,5 +843,7 @@ nav {
 @media screen and (max-width: 767px) {
   .notifications {
     height: 12vmax; } }
+.imagecanvas {
+  background-color: black; }
 
 /*# sourceMappingURL=main.css.map */
