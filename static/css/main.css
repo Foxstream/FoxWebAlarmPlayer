@@ -61,7 +61,7 @@ ul {
     overflow: scroll; } }
 @media screen and (max-width: 599px) {
   .main-element {
-    padding-top: 20vmax;
+    padding-top: 19vmax;
     padding-bottom: 14vmax;
     height: 100vh;
     overflow: scroll; } }
@@ -720,7 +720,9 @@ nav {
     right: 0;
     padding: 0 30px;
     background: rgba(255, 255, 255, 0.8);
-    z-index: 1000; }
+    z-index: 1000;
+    height: 5vmax;
+    line-height: 5vmax; }
     .tabs li {
       width: 50%;
       text-align: center;
@@ -730,8 +732,8 @@ nav {
 @media screen and (max-width: 599px) {
   .tabs {
     top: 10vmax;
-    height: 7vmax;
-    line-height: 7vmax; } }
+    height: 6vmax;
+    line-height: 6vmax; } }
 /**
   * alarm date, site name in liveviewer, ...
   * Apply this class on h* elements for example

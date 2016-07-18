@@ -31,6 +31,8 @@
         padding: 0 30px;
         background: rgba(white, $alpha);
         z-index: 1000;
+        height: $tabs-tablet-height;
+        line-height: $tabs-tablet-height;
 
         li {
             width: 50%;
