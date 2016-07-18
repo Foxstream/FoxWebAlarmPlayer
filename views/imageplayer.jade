@@ -1,9 +1,8 @@
 div(class="imageplayer")
-    imagewithosd(imgwidth='{{::imgwidth}}', imgheight='{{::imgheight}}', image='alarm.Images[currentIdx].Image', osd='showOsd ? alarm.Images[currentIdx].OSD : undefined')
+    imagewithosd(image='alarm.Images[currentIdx].Image', osd='showOsd ? alarm.Images[currentIdx].OSD : undefined')
     div(class="osd")
-    div(class="alarm-info")
-        h5(ng-show="alarm !== undefined") {{ alarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{alarm.cameraname}} - ({{alarm.sitename}})
-        h5(ng-show="alarm === undefined") Aucune alarme sélectionnée
+    div(class="alarm-info notif-animation", ng-show="alarm !== undefined")
+        h5 {{ alarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{alarm.cameraname}} - ({{alarm.sitename}})
     div(class='player-controls')
         span(class='glyphicon glyphicon-step-backward', ng-click="prevImage()")
         span(class="glyphicon", ng-class='{ "glyphicon-play": !playing, "glyphicon-pause": playing }', ng-click="playing=!playing")

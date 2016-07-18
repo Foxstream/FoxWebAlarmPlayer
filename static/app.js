@@ -95,14 +95,18 @@ app.directive('imagewithosd', function(){
         link: function(scope, elem, attrs){
 
             var canvas = elem[0];
+            canvas.setAttribute('width', 800);
+            canvas.setAttribute('height', 600);
 
             elem.height(0.75 * elem.width());
 
             function repaintImage(){
 
-                if (scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
+                if (scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
 
                     var ctx = canvas.getContext("2d");
+                    ctx.width = 800;
+                    ctx.height = 600;
 
                     var hRatio = ctx.width / scope.image.naturalWidth;
                     var vRatio = ctx.height / scope.image.naturalHeight;
@@ -126,6 +130,7 @@ app.directive('imagewithosd', function(){
                                 ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
                             ctx.closePath();
                             ctx.stroke();
+
                         }
 
                     }
@@ -134,9 +139,16 @@ app.directive('imagewithosd', function(){
 
     		}
     		  
-            scope.$watch('image', repaintImage);
-            scope.$watch('osd', repaintImage);
-            repaintImage();
+            scope.$watch('image', function(newVal, oldVal){
+                if (newVal){
+                    repaintImage();
+                }
+            });
+            scope.$watch('osd', function(newVal, oldVal){
+                if (newVal){
+                    repaintImage();
+                }
+            });
 
         }
 
