@@ -90,9 +90,6 @@ block content
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
-                    div(class='h6')
-                        span(ng-show='currentalarm!=undefined') {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{currentalarm.cameraname}} - ({{currentalarm.sitename}})
-                        span(ng-show='currentalarm==undefined') No alarm selected
                     imageplayer(imgwidth=320, imgheight=240, alarm='currentalarm', isvisible="tab === 'notHandled'")
 
             //- Mobile version

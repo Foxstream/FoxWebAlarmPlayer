@@ -68,6 +68,9 @@ ul {
     padding-bottom: 14vmax;
     height: 100vh;
     overflow: scroll; } }
+canvas {
+  display: block; }
+
 /*
 **************************************************************** Imports
 */
@@ -522,6 +525,76 @@ nav {
     display: inline-block;
     width: 80%; }
 
+.imageplayer {
+  position: relative;
+  height: auto;
+  border: solid red 1px; }
+  .imageplayer .imagecanvas {
+    width: 100%;
+    background-color: black; }
+  .imageplayer .alarm-info, .imageplayer .player-controls {
+    position: absolute;
+    background: rgba(120, 132, 147, 0.8);
+    left: 0;
+    right: 0;
+    color: white; }
+  .imageplayer .alarm-info {
+    top: 0;
+    height: 2.3em;
+    line-height: 2.3em;
+    text-align: center; }
+  .imageplayer .player-controls {
+    bottom: 0;
+    height: 2.3em; }
+    .imageplayer .player-controls .glyphicon {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      /* IE 9 */
+      -webkit-transform: translate(0, -50%);
+      /* Safari and Chrome */
+      -o-transform: translate(0, -50%);
+      /* Opera */
+      -moz-transform: translate(0, -50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon:hover {
+      cursor: pointer;
+      font-weight: bold; }
+    .imageplayer .player-controls .glyphicon-play, .imageplayer .player-controls .glyphicon-stop {
+      left: 50%;
+      transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      /* IE 9 */
+      -webkit-transform: translateX(-50%);
+      /* Safari and Chrome */
+      -o-transform: translateX(-50%);
+      /* Opera */
+      -moz-transform: translateX(-50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon-step-backward {
+      left: 40%;
+      transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      /* IE 9 */
+      -webkit-transform: translateX(-50%);
+      /* Safari and Chrome */
+      -o-transform: translateX(-50%);
+      /* Opera */
+      -moz-transform: translateX(-50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon-step-forward {
+      left: 60%;
+      transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      /* IE 9 */
+      -webkit-transform: translateX(-50%);
+      /* Safari and Chrome */
+      -o-transform: translateX(-50%);
+      /* Opera */
+      -moz-transform: translateX(-50%);
+      /* Firefox */ }
+
 @media screen and (min-width: 992px) {
   .filter {
     border: solid #788493 1px;
@@ -595,33 +668,6 @@ nav {
     padding: 5% 5%;
     left: 5%;
     right: 5%; } }
-.imagecanvas {
-  width: 100%;
-  height: auto;
-  border: 2px outset #788493; }
-
-#play_controller {
-  text-align: center; }
-  #play_controller button {
-    width: auto;
-    min-width: 0;
-    padding: 0 10px;
-    border: none;
-    background: transparent;
-    font-size: 1.5em;
-    color: #566171; }
-  #play_controller button#osd {
-    position: absolute;
-    right: 30px; }
-  #play_controller .progress {
-    margin: 0;
-    background: none; }
-    #play_controller .progress .progress-bar {
-      background-color: #788493; }
-
-@media screen and (max-width: 991px) {
-  .imageplayer {
-    width: 100%; } }
 #camera-list {
   overflow: scroll; }
   #camera-list .camera-picker {
@@ -854,7 +900,5 @@ nav {
 @media screen and (max-width: 767px) {
   .notifications {
     height: 12vmax; } }
-.imagecanvas {
-  background-color: black; }
 
 /*# sourceMappingURL=main.css.map */

@@ -39,7 +39,7 @@
             .glyphicon {
                 position: absolute;
                 top: 50%;
-                @include transform(translate(0, -50%));                    
+                @include transform(translate(0, -50%));
             }
 
             .glyphicon:hover {
@@ -55,24 +55,18 @@
                 right: 5%;
             }
 
-    }
+        }
 
-    .camera-image {
-        display: inline-block;
-        max-width: 100%;
-        max-height: 100%;
-    }
+        .camera-image {
+            display: inline-block;
+            max-width: 100%;
+            max-height: 100%;
+        }
 
-    .camera-image:hover {
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    // TODO
-    .fullscreen {
-        // display: block;
-    }
-
+        .camera-image:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
 
     }
 

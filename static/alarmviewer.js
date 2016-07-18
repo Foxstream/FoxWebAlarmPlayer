@@ -338,7 +338,7 @@ app.directive('swiper', function(){
 
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
-	  restrict: 'E', 
+	  restrict: 'E',
 	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", isvisible: "="},
 	  replace: true,
 	  templateUrl: '/imageplayer',
@@ -378,7 +378,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 		  
             scope.$watch('alarm', function (newVal, oldVal){
                 if (newVal === oldVal) return;
-                if (!newVal) return
+                if (!newVal) return;
                 scope.playing = false;
                 scope.loading = true;
                 if (scope.isvisible){

@@ -11,6 +11,65 @@
     }
 }
 
+.imageplayer {
+
+    position: relative;
+    height: auto;
+
+    .imagecanvas {
+        width: 100%;
+        background-color: black;
+    }
+
+    .alarm-info, .player-controls {
+        position: absolute;
+        background: rgba($fox-gray, 0.8);
+        left: 0;
+        right: 0;
+        color: white;
+    }
+
+    .alarm-info {
+        top: 0;
+        height: 2.3em;
+        line-height: 2.3em;
+        text-align: center;
+    }
+
+    .player-controls {
+        bottom: 0;
+        height: 2.3em;
+
+        .glyphicon {
+            position: absolute;
+            top: 50%;
+            @include transform(translate(0, -50%));
+        }
+
+        .glyphicon:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .glyphicon-play, .glyphicon-stop {
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+
+        .glyphicon-step-backward {
+            left: 40%;
+            @include transform(translateX(-50%));
+        }
+
+        .glyphicon-step-forward {
+            left: 60%;
+            @include transform(translateX(-50%));
+        }
+
+    }
+
+}
+
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
 

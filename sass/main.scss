@@ -155,7 +155,9 @@ ul {
 
 }
 
-
+canvas {
+    display: block; // Default is inline or whatever so it adds a white space below the canvas
+}
 
 /*
 **************************************************************** Imports
@@ -169,10 +171,8 @@ ul {
 @import "action-buttons.scss";
 @import "login.scss";
 @import "alarms.scss";
-@import "imageplayer.scss";
 @import "live.scss";
 @import "settings.scss";
 @import "tabs.scss";
 @import "block-header.scss";
 @import "notifications.scss";
-@import "player.scss";
