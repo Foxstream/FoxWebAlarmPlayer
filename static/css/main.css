@@ -774,7 +774,8 @@ nav {
 
 @media screen and (min-width: 992px) {
   .block-header {
-    font-size: 1.2em; } }
+    font-size: 1.2em;
+    border-color: #788493; } }
 .notifications {
   font-weight: bold;
   background: rgba(200, 212, 217, 0.8);
