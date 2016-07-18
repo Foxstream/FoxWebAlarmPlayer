@@ -527,8 +527,7 @@ nav {
 
 .imageplayer {
   position: relative;
-  height: auto;
-  border: solid red 1px; }
+  height: auto; }
   .imageplayer .imagecanvas {
     width: 100%;
     background-color: black; }
@@ -548,7 +547,45 @@ nav {
     height: 2.3em; }
     .imageplayer .player-controls .glyphicon {
       position: absolute;
-      top: 50%;
+      top: 50%; }
+    .imageplayer .player-controls .glyphicon:hover {
+      cursor: pointer;
+      font-weight: bold; }
+    .imageplayer .player-controls .glyphicon-play, .imageplayer .player-controls .glyphicon-pause, .imageplayer .player-controls .glyphicon-stop {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      /* IE 9 */
+      -webkit-transform: translate(-50%, -50%);
+      /* Safari and Chrome */
+      -o-transform: translate(-50%, -50%);
+      /* Opera */
+      -moz-transform: translate(-50%, -50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon-step-backward {
+      left: 40%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      /* IE 9 */
+      -webkit-transform: translate(-50%, -50%);
+      /* Safari and Chrome */
+      -o-transform: translate(-50%, -50%);
+      /* Opera */
+      -moz-transform: translate(-50%, -50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon-step-forward {
+      left: 60%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      /* IE 9 */
+      -webkit-transform: translate(-50%, -50%);
+      /* Safari and Chrome */
+      -o-transform: translate(-50%, -50%);
+      /* Opera */
+      -moz-transform: translate(-50%, -50%);
+      /* Firefox */ }
+    .imageplayer .player-controls .glyphicon-sunglasses {
+      right: 15px;
       transform: translate(0, -50%);
       -ms-transform: translate(0, -50%);
       /* IE 9 */
@@ -557,42 +594,6 @@ nav {
       -o-transform: translate(0, -50%);
       /* Opera */
       -moz-transform: translate(0, -50%);
-      /* Firefox */ }
-    .imageplayer .player-controls .glyphicon:hover {
-      cursor: pointer;
-      font-weight: bold; }
-    .imageplayer .player-controls .glyphicon-play, .imageplayer .player-controls .glyphicon-stop {
-      left: 50%;
-      transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      /* IE 9 */
-      -webkit-transform: translateX(-50%);
-      /* Safari and Chrome */
-      -o-transform: translateX(-50%);
-      /* Opera */
-      -moz-transform: translateX(-50%);
-      /* Firefox */ }
-    .imageplayer .player-controls .glyphicon-step-backward {
-      left: 40%;
-      transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      /* IE 9 */
-      -webkit-transform: translateX(-50%);
-      /* Safari and Chrome */
-      -o-transform: translateX(-50%);
-      /* Opera */
-      -moz-transform: translateX(-50%);
-      /* Firefox */ }
-    .imageplayer .player-controls .glyphicon-step-forward {
-      left: 60%;
-      transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      /* IE 9 */
-      -webkit-transform: translateX(-50%);
-      /* Safari and Chrome */
-      -o-transform: translateX(-50%);
-      /* Opera */
-      -moz-transform: translateX(-50%);
       /* Firefox */ }
 
 @media screen and (min-width: 992px) {

@@ -43,7 +43,6 @@
         .glyphicon {
             position: absolute;
             top: 50%;
-            @include transform(translate(0, -50%));
         }
 
         .glyphicon:hover {
@@ -51,19 +50,24 @@
             font-weight: bold;
         }
 
-        .glyphicon-play, .glyphicon-stop {
+        .glyphicon-play, .glyphicon-pause, .glyphicon-stop {
             left: 50%;
-            @include transform(translateX(-50%));
+            @include transform(translate(-50%, -50%));
         }
 
         .glyphicon-step-backward {
             left: 40%;
-            @include transform(translateX(-50%));
+            @include transform(translate(-50%, -50%));
         }
 
         .glyphicon-step-forward {
             left: 60%;
-            @include transform(translateX(-50%));
+            @include transform(translate(-50%, -50%));
+        }
+
+        .glyphicon-sunglasses {
+            right: 15px;
+            @include transform(translate(0, -50%));
         }
 
     }
