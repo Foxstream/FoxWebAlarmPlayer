@@ -703,11 +703,7 @@ nav {
   line-height: 5vh; }
   .tabs li {
     display: inline-block;
-    padding: 0 10px;
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
+    padding: 0 10px; }
   .tabs li:hover {
     cursor: pointer; }
   .tabs .active {
@@ -727,7 +723,11 @@ nav {
     z-index: 1000; }
     .tabs li {
       width: 50%;
-      text-align: center; } }
+      text-align: center;
+      width: 90%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; } }
 @media screen and (max-width: 599px) {
   .tabs {
     top: 10vmax;

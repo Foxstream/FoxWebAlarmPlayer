@@ -34,6 +34,7 @@ function getDbObject(inputObj)
 	}
 }
 
+
 //strip the $ from all the properties of the object
 function stripDollars(obj)
 {
@@ -120,6 +121,7 @@ function saveImages(alarm, callback)
 
 	});
 }
+
 
 function insertAlarm(alarm, callback)
 {	

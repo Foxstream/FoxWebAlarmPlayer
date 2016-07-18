@@ -6,10 +6,6 @@
     li {
         display: inline-block;
         padding: 0 10px;
-        width: 90%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
 
     li:hover {
@@ -39,6 +35,10 @@
         li {
             width: 50%;
             text-align: center;
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 

@@ -15,10 +15,7 @@ function applyApp(app){
             servers = self.serverManager.servers;
 
         servers.forEach(function(s){
-            if (!s.xmlclient.Configuration){
-                res.status(500);
-                res.end();
-            } else {
+            if (s.xmlclient.Configuration){
                 var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
                     c.serverId = s.config.id;
                     return c;

@@ -42,7 +42,7 @@
   },
   "scripts": {
     "start": "nodemon main.js",
-    "test": "mocha tests/ --recursive",
+    "test": "mocha test/ --recursive",
     "debug": "node-debug main.js"
   },
   "license": "ISC"
