@@ -94,10 +94,6 @@ app.directive('imagewithosd', function(){
         template: '<canvas class="imagecanvas"/>',
         link: function(scope, elem, attrs) {
             var canvas = elem[0];
-
-            scope.$watch('image', function(){
-                console.log(scope.image);
-            });
 		  
             function repaintImage(){
 
