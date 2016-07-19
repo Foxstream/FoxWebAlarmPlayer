@@ -326,10 +326,7 @@ app.directive('swiper', function(){
     return {
         templateUrl: '/swiper',
         restrict: 'E',
-        replace: true,
-        link: function(scope, element, attrs){
-
-        }
+        replace: true
     };
 
 });
@@ -348,6 +345,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             scope.currentIdx = 0;
             scope.showOsd = true;
             scope.playing = false;
+            scope.showcontrols = true;
             scope.interval;
 
             scope.toggleOsd = function () {

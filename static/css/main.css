@@ -675,7 +675,7 @@ nav {
       right: 0;
       background-color: red; }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 991px) and (orientation: portrait) {
   .alarm-info {
     visibility: hidden; } }
 @media screen and (min-width: 992px) {

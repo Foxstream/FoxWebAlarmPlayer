@@ -85,7 +85,7 @@
 
 }
 
-@media screen and (max-width: $tablet-breakpoint - 1px){
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: portrait){
     .alarm-info {
         visibility: hidden;
     }
