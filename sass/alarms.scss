@@ -70,6 +70,15 @@
             @include transform(translate(0, -50%));
         }
 
+        .progress-bar {
+            position: absolute;
+            top: -15px;
+            height: 15px;
+            left: 0;
+            right: 0;
+            background-color: red;
+        }
+
     }
 
 }

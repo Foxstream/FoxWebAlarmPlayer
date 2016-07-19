@@ -339,7 +339,7 @@ app.directive('swiper', function(){
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {
 	  restrict: 'E',
-	  scope:{alarm:"=", imgwidth:"@", imgheight:"@", isvisible: "="},
+	  scope:{alarm:"=", imgwidth:"@", imgheight:"@"},
 	  replace: true,
 	  templateUrl: '/imageplayer',
 	  link: function(scope, elem, attrs){
@@ -381,33 +381,14 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (!newVal) return;
                 scope.playing = false;
                 scope.loading = true;
-                if (scope.isvisible){
-                    console.log('Loading images');
-                    LoadImages($http, newVal, function () {
-                        $timeout(function () {
-                            scope.loading = false;
-                            scope.playing = true;
-                            scope.currentIdx = 0;
-                        }, 0);
-                    });
-                }
-            });
-
-            scope.$watch('isvisible', function (newVal, oldVal){
-                if (!scope.alarm || newVal === oldVal) return;
-                    if (newVal){
-                        scope.playing = false;
-                        scope.loading = true;
-                        LoadImages($http, scope.alarm, function () {
-                            $timeout(function () {
-                                scope.loading = false;
-                                scope.playing = true;
-                                scope.currentIdx = 0;
-                            }, 0);
-                        });
-                    } else { // Stop playing
-                        scope.playing = false;
-                    }
+                console.log('Loading images');
+                LoadImages($http, newVal, function () {
+                    $timeout(function () {
+                        scope.loading = false;
+                        scope.playing = true;
+                        scope.currentIdx = 0;
+                    }, 0);
+                });
             });
 
         }

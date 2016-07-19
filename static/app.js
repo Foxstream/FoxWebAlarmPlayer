@@ -101,6 +101,7 @@ app.directive('imagewithosd', function(){
             elem.height(0.75 * elem.width());
 
             function repaintImage(){
+                console.debug(scope.osd)
 
                 if (scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
 
@@ -140,14 +141,10 @@ app.directive('imagewithosd', function(){
     		}
     		  
             scope.$watch('image', function(newVal, oldVal){
-                if (newVal){
-                    repaintImage();
-                }
+                repaintImage();
             });
             scope.$watch('osd', function(newVal, oldVal){
-                if (newVal){
-                    repaintImage();
-                }
+                repaintImage();
             });
 
         }
