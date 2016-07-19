@@ -16,7 +16,6 @@
     "mkdirp": "^0.5.1",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
-    "password-hash": "^1.2.2",
     "password-hash-and-salt": "^0.1.2",
     "rimraf": "^2.4.3",
     "sqlite3": "^3.0.8",
@@ -27,18 +26,9 @@
   "devDependencies": {
     "angular-mocks": "^1.5.6",
     "chai": "^3.5.0",
-    "karma": "^0.13.22",
-    "karma-chai-sinon": "^0.1.5",
-    "karma-chrome-launcher": "^1.0.1",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^1.0.1",
-    "karma-mocha-reporter": "^2.0.3",
-    "karma-safari-launcher": "^1.0.0",
-    "karma-sinon-chai": "^1.2.0",
-    "lolex": "^1.5.0",
+    "karma": "^0.13.22", 
     "mocha": "^2.5.3",
-    "sinon": "^1.17.4",
-    "sinon-chai": "^2.8.0"
+    "sinon": "^1.17.4"
   },
   "scripts": {
     "start": "nodemon main.js",
