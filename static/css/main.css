@@ -621,6 +621,7 @@ nav {
     bottom: 0;
     height: 2.3em; }
     .imageplayer .player-controls .glyphicon {
+      padding: 2%;
       position: absolute;
       top: 50%; }
     .imageplayer .player-controls .glyphicon:hover {
