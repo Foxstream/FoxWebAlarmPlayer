@@ -15,10 +15,11 @@
 
     position: relative;
     height: auto;
+    background-color: black;
 
     .imagecanvas {
-        width: 100%;
         background-color: black;
+        margin: auto;
     }
 
     .alarm-info, .player-controls {
@@ -37,6 +38,7 @@
     }
 
     .player-controls {
+
         bottom: 0;
         height: 2.3em;
 
@@ -83,8 +85,18 @@
 
 }
 
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    .alarm-info {
+        visibility: hidden;
+    }
+}
+
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
+
+    .imagecanvas {
+        width: 100%;
+    }
 
     .filter {
 

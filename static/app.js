@@ -98,12 +98,10 @@ app.directive('imagewithosd', function(){
             canvas.setAttribute('width', 800);
             canvas.setAttribute('height', 600);
 
-            elem.style.height(0.75 * elem.width());
 
             function repaintImage(){
-                console.debug(scope.osd)
 
-                if (scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
+                if (scope.image && scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
 
                     var ctx = canvas.getContext("2d");
                     ctx.width = 800;
@@ -131,7 +129,6 @@ app.directive('imagewithosd', function(){
                                 ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
                             ctx.closePath();
                             ctx.stroke();
-
                         }
 
                     }

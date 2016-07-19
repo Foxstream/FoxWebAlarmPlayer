@@ -1,8 +1,8 @@
 div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousalarm()')
     div(class="slides-container")
         div(class="slide")
-            imageplayer(imgwidth=370, imgheight=320, alarm='currentalarm', isvisible="true")
-            ul
+            imageplayer(alarm='currentalarm')
+            ul(class="alarm-details")
                 li
                     {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 

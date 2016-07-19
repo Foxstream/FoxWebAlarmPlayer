@@ -89,7 +89,6 @@ canvas {
   position: relative; }
 
 .slide {
-  padding: 1%;
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -98,15 +97,12 @@ canvas {
   position: relative;
   background: white;
   border-radius: 5px; }
-  .slide .imageplayer, .slide .liveplayer {
-    height: 70%;
-    text-align: center; }
-    .slide .imageplayer .imagecanvas, .slide .imageplayer img, .slide .liveplayer .imagecanvas, .slide .liveplayer img {
+  .slide .imageplayer {
+    text-align: center;
+    height: 70%; }
+    .slide .imageplayer .imagecanvas {
       text-align: center;
-      height: 80%;
-      width: auto; }
-    .slide .imageplayer .play_controller, .slide .liveplayer .play_controller {
-      height: 20%; }
+      height: 100%; }
   .slide ul {
     position: absolute;
     bottom: 0;
@@ -115,6 +111,15 @@ canvas {
       text-indent: 0.2em;
       line-height: 1.3em; }
 
+@media screen and (max-width: 992px) and (orientation: landscape) {
+  .alarm-details {
+    visibility: hidden; }
+
+  .slide .imageplayer {
+    height: 100%;
+    width: auto; }
+    .slide .imageplayer .imagecanvas {
+      height: 100%; } }
 /**
   * Many rules to style form elements
   */
@@ -527,10 +532,11 @@ nav {
 
 .imageplayer {
   position: relative;
-  height: auto; }
+  height: auto;
+  background-color: black; }
   .imageplayer .imagecanvas {
-    width: 100%;
-    background-color: black; }
+    background-color: black;
+    margin: auto; }
   .imageplayer .alarm-info, .imageplayer .player-controls {
     position: absolute;
     background: rgba(120, 132, 147, 0.8);
@@ -595,8 +601,21 @@ nav {
       /* Opera */
       -moz-transform: translate(0, -50%);
       /* Firefox */ }
+    .imageplayer .player-controls .progress-bar {
+      position: absolute;
+      top: -15px;
+      height: 15px;
+      left: 0;
+      right: 0;
+      background-color: red; }
 
+@media screen and (max-width: 991px) {
+  .alarm-info {
+    visibility: hidden; } }
 @media screen and (min-width: 992px) {
+  .imagecanvas {
+    width: 100%; }
+
   .filter {
     border: solid #788493 1px;
     margin-bottom: 15px;
