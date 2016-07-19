@@ -78,7 +78,7 @@ ul {
     padding-bottom: 2vmax; } }
 @media screen and (max-width: 991px) and (orientation: landscape) {
   .page-content {
-    margin-left: 8vmax; } }
+    margin-left: 12vw; } }
 canvas {
   display: block; }
 
@@ -477,12 +477,12 @@ nav {
           bottom: 10%; } }
 @media screen and (max-width: 991px) and (orientation: landscape) {
   nav {
-    width: 8vmax;
+    width: 12vw;
     height: 100vh;
     left: 0;
     border-right: solid #788493 2px; }
     nav ul {
-      width: 8vmax;
+      width: 12vw;
       position: relative;
       top: 50%;
       transform: translateY(-50%);
@@ -538,6 +538,9 @@ nav {
         width: 33.3vw; }
         nav ul li i.glyphicon {
           font-size: 4vmax; } }
+@media screen and (max-width: 599px) and (orientation: landscape) {
+  .link {
+    font-size: 0.9em; } }
 /**
   * Action buttons at the top of the page
   */
@@ -568,7 +571,7 @@ nav {
     line-height: 10vmax; } }
 @media screen and (max-width: 991px) and (orientation: landscape) {
   .actions {
-    left: 8vmax; } }
+    left: 12vw; } }
 /**
   * Specific style rules for the login page
   */
@@ -877,7 +880,7 @@ nav {
     line-height: 6vmax; } }
 @media screen and (max-width: 991px) and (orientation: landscape) {
   .tabs {
-    left: 8vmax; } }
+    left: 12vw; } }
 /**
   * alarm date, site name in liveviewer, ...
   * Apply this class on h* elements for example

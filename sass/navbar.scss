@@ -207,13 +207,13 @@ nav {
     
     nav {
 
-        width: $navbar-tablet-height;
+        width: $navbar-landscape-width;
         height: 100vh;
         left: 0;
         border-right: solid $fox-gray 2px;
 
         ul {
-            width: $navbar-tablet-height;
+            width: $navbar-landscape-width;
             position: relative;
             top: 50%;
             @include transform(translateY(-50%));
@@ -253,7 +253,9 @@ nav {
 
 // Smartphones, portrait mode
 @media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: portrait){
+    
     nav {
+
         height: $navbar-mobile-height;
         ul {
             height: $navbar-mobile-height;
@@ -271,12 +273,15 @@ nav {
         }
 
     }
+
 }
 
 
 // Smartphones, landscape mode
 @media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
-
+    .link {
+        font-size: 0.9em;
+    }
 }
 
 

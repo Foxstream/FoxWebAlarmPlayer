@@ -26,6 +26,7 @@ $header-height: 12vh;
 $navbar-desktop-height: 6vh;
 $navbar-tablet-height: 8vmax;
 $navbar-mobile-height: 12vmax;
+$navbar-landscape-width: 12vw;
 
 $action-bar-tablet-height: 8vmax;
 $action-bar-mobile-height: 10vmax;
@@ -178,7 +179,7 @@ ul {
 
 @media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
     .page-content {
-        margin-left: $navbar-tablet-height;
+        margin-left: $navbar-landscape-width;
     }
 }
 

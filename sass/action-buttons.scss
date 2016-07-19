@@ -44,6 +44,6 @@
 
 @media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
     .actions {
-        left: $navbar-tablet-height;
+        left: $navbar-landscape-width;
     }
 }
