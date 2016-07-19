@@ -98,7 +98,7 @@ app.directive('imagewithosd', function(){
             canvas.setAttribute('width', 800);
             canvas.setAttribute('height', 600);
 
-            elem.height(0.75 * elem.width());
+            elem.style.height(0.75 * elem.width());
 
             function repaintImage(){
                 console.debug(scope.osd)
