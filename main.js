@@ -15,12 +15,20 @@ var Auth = require('./Authenticator.js');
 var sqlite3 = require('sqlite3').verbose();
 var AlarmRemover = require('./AlarmRemover.js');
 var fs = require('fs');
+var config = require('config');
 
 var _ = require("lodash");
 var async = require("async");
 
 var websrv = WebServer.BuildWebServer();
-var db = new sqlite3.Database("data/test.db");
+var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, function(err){
+    if (err){
+        console.error('\nDatabase connection error :');
+        console.error(err);
+        process.exit(1);
+    }
+});
+
 var almPers = new AlarmPersistence(db, "data");
 var userPers = new UserPersistence(db);
 var serverPers = new ServerPersistence(db);
@@ -63,8 +71,12 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     almControler.on("all_alarms_handled", function(alarm){ sse.sendMessage('all_alarms_handled') });
     almControler.on("alarm_deleted", function (alarmId){ sse.sendMessage('alarm_deleted', alarmId) });
 
-    websrv.listen(8001);
-    console.log('\n\nServer listening on port 8001\n\n');
+    var port = config.get('port');
+    websrv.listen(port);
+    console.log('\n\nServer listening on port ' + port + '\n\n');
+
+    // Used for testing
+    module.exports = websrv; 
 
 });
 

@@ -8,6 +8,7 @@
     "angular": "^1.5.6",
     "async": "^1.2.1",
     "body-parser": "^1.13.1",
+    "config": "^1.21.0",
     "events": "^1.0.2",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
@@ -26,12 +27,13 @@
   "devDependencies": {
     "angular-mocks": "^1.5.6",
     "chai": "^3.5.0",
-    "karma": "^0.13.22", 
+    "chai-http": "^3.0.0",
+    "karma": "^0.13.22",
     "mocha": "^2.5.3",
     "sinon": "^1.17.4"
   },
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "NODE_ENV=development nodemon main.js",
     "test": "mocha test/ --recursive",
     "debug": "node-debug main.js"
   },
