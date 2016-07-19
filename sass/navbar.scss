@@ -29,107 +29,6 @@ nav {
 }
 
 
-// Tablet or small smartphones in portrait mode
-@media screen and (max-width: ($tablet-breakpoint - 1px)), 
-    screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
-    
-    nav::before {
-        display: block;
-    }
-
-    nav {
-        height: $navbar-tablet-height;
-        position: fixed;
-        bottom: 0;
-        z-index: 1000;
-        text-align: center;
-        border-top: solid $fox-gray 2px;
-        background: rgba(white, $alpha);
-
-        ul {
-            height: $navbar-tablet-height;
-            line-height: $navbar-tablet-height;
-
-            li {
-                width: 15vw;
-                font-weight: bold;
-                position: relative;
-
-                i.glyphicon {
-                    display: inline-block;
-                    font-size: $navbar-tablet-height / 3;
-                    position: absolute;
-                    top: 20%;
-                    left: 50%;
-                    @include transform(translate(-50%));
-                }
-
-                // Text (the "a" tag contains the text and the icon)
-                .link {
-                    display: inline-block;
-                    line-height: normal;
-                    position: absolute;
-                    // Centered link
-                    left: 50%;
-                    @include transform(translate(-50%));
-                    bottom: 10%;
-                }
-
-            }
-
-            li.active a {
-                color: $fox-red;
-            }
-
-        }
-
-        .submenu {
-            display: none;
-        }
-
-    }
-
-    // Don't show the navigation bar on mobile
-    nav.nav-connection {
-        display: none;
-    }
-
-    .navbar-notif {
-        background: $fox-red;
-        color: white;
-        left: 50%;
-        top: 10%;
-        border-radius: 0.8em;
-    }
-
-}
-
-// Mobile
-@media screen and (max-width: ($small-phones-breakpoint - 1px)) and (orientation: portrait){
-    nav {
-        height: $navbar-mobile-height;
-        ul {
-            height: $navbar-mobile-height;
-            line-height: $navbar-mobile-height;
-
-            li {
-                width: 33.3vw;
-
-                i.glyphicon {
-                    font-size: $navbar-mobile-height / 3;
-                }
-
-            }
-
-        }
-
-    }
-
-}
-
-
-
-
 // Desktop
 @media screen and (min-width: $tablet-breakpoint){
     nav {
@@ -221,4 +120,167 @@ nav {
 
     }
 }
+
+// General rules for mobile devices
+@media screen and (max-width: $tablet-breakpoint - 1px){
+    nav {
+        background: rgba(white, $alpha);
+        text-align: center;
+        position: fixed;
+        z-index: 2000;
+
+        li {
+            font-weight: bold;
+            position: relative;
+        }
+
+        li.active a {
+            color: $fox-red;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        .navbar-notif {
+            background: $fox-red;
+            color: white;
+            left: 50%;
+            top: 10%;
+            border-radius: 0.8em;
+        }
+
+    }
+
+    nav.nav-connection {
+        display: none;
+    }
+
+}
+
+// Tablets, portrait mode
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: portrait){
+
+    nav {
+
+        height: $navbar-tablet-height;
+        bottom: 0;
+        border-top: solid $fox-gray 2px;
+
+        ul {
+            height: $navbar-tablet-height;
+            line-height: $navbar-tablet-height;
+
+            li {
+                width: 15vw;
+
+                i.glyphicon {
+                    display: inline-block;
+                    font-size: $navbar-tablet-height / 3;
+                    position: absolute;
+                    top: 20%;
+                    left: 50%;
+                    @include transform(translate(-50%));
+                }
+
+                // Text (the "a" tag contains the text and the icon)
+                .link {
+                    display: inline-block;
+                    line-height: normal;
+                    position: absolute;
+                    // Centered link
+                    left: 50%;
+                    @include transform(translate(-50%));
+                    bottom: 10%;
+                }
+
+            }
+
+        }
+
+    }
+}
+
+
+// Tablets, landscape mode
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
+    
+    nav {
+
+        width: $navbar-tablet-height;
+        height: 100vh;
+        left: 0;
+        border-right: solid $fox-gray 2px;
+
+        ul {
+            width: $navbar-tablet-height;
+            position: relative;
+            top: 50%;
+            @include transform(translateY(-50%));
+
+            li {
+                width: 100%;
+                height: 15vh;
+                display: block;
+
+                i.glyphicon {     
+                    display: inline-block;
+                    font-size: 5vh;
+                    position: absolute;
+                    top: 20%;
+                    left: 50%;
+                    @include transform(translate(-50%));
+                }
+
+                // Text (the "a" tag contains the text and the icon)
+                .link {
+                    display: inline-block;
+                    line-height: normal;
+                    position: absolute;
+                    // Centered link
+                    left: 50%;
+                    @include transform(translate(-50%));
+                    bottom: 10%;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+// Smartphones, portrait mode
+@media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: portrait){
+    nav {
+        height: $navbar-mobile-height;
+        ul {
+            height: $navbar-mobile-height;
+            line-height: $navbar-mobile-height;
+
+            li {
+                width: 33.3vw;
+
+                i.glyphicon {
+                    font-size: $navbar-mobile-height / 3;
+                }
+
+            }
+
+        }
+
+    }
+}
+
+
+// Smartphones, landscape mode
+@media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
+
+}
+
+
+
+
+
 

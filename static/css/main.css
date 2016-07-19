@@ -58,16 +58,27 @@ ul {
     overflow: scroll; } }
 @media screen and (max-width: 991px) {
   .main-element {
-    padding-top: 16vmax;
-    padding-bottom: 10vmax;
     height: 100vh;
     overflow: scroll; } }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 991px) and (orientation: portrait) {
+  .main-element {
+    padding-top: 15vmax;
+    padding-bottom: 10vmax; } }
+@media screen and (max-width: 991px) and (orientation: landscape) {
+  .main-element {
+    padding-top: 15vmax;
+    padding-bottom: 2vmax; } }
+@media screen and (max-width: 599px) and (orientation: portrait) {
   .main-element {
     padding-top: 19vmax;
-    padding-bottom: 14vmax;
-    height: 100vh;
-    overflow: scroll; } }
+    padding-bottom: 14vmax; } }
+@media screen and (max-width: 599px) and (orientation: landscape) {
+  .main-element {
+    padding-top: 19vmax;
+    padding-bottom: 2vmax; } }
+@media screen and (max-width: 991px) and (orientation: landscape) {
+  .page-content {
+    margin-left: 8vmax; } }
 canvas {
   display: block; }
 
@@ -339,79 +350,6 @@ nav {
   position: absolute;
   line-height: 1.6em; }
 
-@media screen and (max-width: 991px), screen and (max-width: 599px) and (orientation: landscape) {
-  nav::before {
-    display: block; }
-
-  nav {
-    height: 8vmax;
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
-    text-align: center;
-    border-top: solid #788493 2px;
-    background: rgba(255, 255, 255, 0.8); }
-    nav ul {
-      height: 8vmax;
-      line-height: 8vmax; }
-      nav ul li {
-        width: 15vw;
-        font-weight: bold;
-        position: relative; }
-        nav ul li i.glyphicon {
-          display: inline-block;
-          font-size: 2.66667vmax;
-          position: absolute;
-          top: 20%;
-          left: 50%;
-          transform: translate(-50%);
-          -ms-transform: translate(-50%);
-          /* IE 9 */
-          -webkit-transform: translate(-50%);
-          /* Safari and Chrome */
-          -o-transform: translate(-50%);
-          /* Opera */
-          -moz-transform: translate(-50%);
-          /* Firefox */ }
-        nav ul li .link {
-          display: inline-block;
-          line-height: normal;
-          position: absolute;
-          left: 50%;
-          transform: translate(-50%);
-          -ms-transform: translate(-50%);
-          /* IE 9 */
-          -webkit-transform: translate(-50%);
-          /* Safari and Chrome */
-          -o-transform: translate(-50%);
-          /* Opera */
-          -moz-transform: translate(-50%);
-          /* Firefox */
-          bottom: 10%; }
-      nav ul li.active a {
-        color: #e44333; }
-    nav .submenu {
-      display: none; }
-
-  nav.nav-connection {
-    display: none; }
-
-  .navbar-notif {
-    background: #e44333;
-    color: white;
-    left: 50%;
-    top: 10%;
-    border-radius: 0.8em; } }
-@media screen and (max-width: 599px) and (orientation: portrait) {
-  nav {
-    height: 12vmax; }
-    nav ul {
-      height: 12vmax;
-      line-height: 12vmax; }
-      nav ul li {
-        width: 33.3vw; }
-        nav ul li i.glyphicon {
-          font-size: 4vmax; } }
 @media screen and (min-width: 992px) {
   nav {
     margin-bottom: 5vh;
@@ -475,6 +413,131 @@ nav {
       border-left: solid #ea533d 1px;
       border-bottom: solid #ea533d 1px;
       border-bottom-left-radius: 0.8em; } }
+@media screen and (max-width: 991px) {
+  nav {
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    position: fixed;
+    z-index: 2000; }
+    nav li {
+      font-weight: bold;
+      position: relative; }
+    nav li.active a {
+      color: #e44333; }
+    nav .submenu {
+      display: none; }
+    nav .navbar-notif {
+      background: #e44333;
+      color: white;
+      left: 50%;
+      top: 10%;
+      border-radius: 0.8em; }
+
+  nav.nav-connection {
+    display: none; } }
+@media screen and (max-width: 991px) and (orientation: portrait) {
+  nav {
+    height: 8vmax;
+    bottom: 0;
+    border-top: solid #788493 2px; }
+    nav ul {
+      height: 8vmax;
+      line-height: 8vmax; }
+      nav ul li {
+        width: 15vw; }
+        nav ul li i.glyphicon {
+          display: inline-block;
+          font-size: 2.66667vmax;
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */ }
+        nav ul li .link {
+          display: inline-block;
+          line-height: normal;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */
+          bottom: 10%; } }
+@media screen and (max-width: 991px) and (orientation: landscape) {
+  nav {
+    width: 8vmax;
+    height: 100vh;
+    left: 0;
+    border-right: solid #788493 2px; }
+    nav ul {
+      width: 8vmax;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      /* IE 9 */
+      -webkit-transform: translateY(-50%);
+      /* Safari and Chrome */
+      -o-transform: translateY(-50%);
+      /* Opera */
+      -moz-transform: translateY(-50%);
+      /* Firefox */ }
+      nav ul li {
+        width: 100%;
+        height: 15vh;
+        display: block; }
+        nav ul li i.glyphicon {
+          display: inline-block;
+          font-size: 5vh;
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */ }
+        nav ul li .link {
+          display: inline-block;
+          line-height: normal;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          /* IE 9 */
+          -webkit-transform: translate(-50%);
+          /* Safari and Chrome */
+          -o-transform: translate(-50%);
+          /* Opera */
+          -moz-transform: translate(-50%);
+          /* Firefox */
+          bottom: 10%; } }
+@media screen and (max-width: 599px) and (orientation: portrait) {
+  nav {
+    height: 12vmax; }
+    nav ul {
+      height: 12vmax;
+      line-height: 12vmax; }
+      nav ul li {
+        width: 33.3vw; }
+        nav ul li i.glyphicon {
+          font-size: 4vmax; } }
 /**
   * Action buttons at the top of the page
   */
@@ -503,6 +566,9 @@ nav {
   .actions {
     height: 10vmax;
     line-height: 10vmax; } }
+@media screen and (max-width: 991px) and (orientation: landscape) {
+  .actions {
+    left: 8vmax; } }
 /**
   * Specific style rules for the login page
   */
@@ -796,8 +862,8 @@ nav {
     padding: 0 30px;
     background: rgba(255, 255, 255, 0.8);
     z-index: 1000;
-    height: 5vmax;
-    line-height: 5vmax; }
+    height: 4vmax;
+    line-height: 4vmax; }
     .tabs li {
       width: 50%;
       text-align: center;
@@ -809,6 +875,9 @@ nav {
     top: 10vmax;
     height: 6vmax;
     line-height: 6vmax; } }
+@media screen and (max-width: 991px) and (orientation: landscape) {
+  .tabs {
+    left: 8vmax; } }
 /**
   * alarm date, site name in liveviewer, ...
   * Apply this class on h* elements for example

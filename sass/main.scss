@@ -31,7 +31,7 @@ $action-bar-tablet-height: 8vmax;
 $action-bar-mobile-height: 10vmax;
 
 $tabs-desktop-height: 5vh;
-$tabs-tablet-height: 5vmax;
+$tabs-tablet-height: 4vmax;
 $tabs-mobile-height: 6vmax;
 
 // Main elements (alarm table, canera accordion, ...)
@@ -118,6 +118,7 @@ ul {
     }
 }
 
+// ---------------------------------------------- Main-element
 // Desktop devices
 @media screen and (min-width: $tablet-breakpoint){
     .main-element {
@@ -134,25 +135,51 @@ ul {
 {
 
     .main-element {
-        padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
-        padding-bottom: $navbar-tablet-height + 2vmax;
         height: 100vh;
         overflow: scroll;
     }
 
 }
 
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: portrait){
+    .main-element {
+        padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
+        padding-bottom: $navbar-tablet-height + 2vmax;       
+    }
+}
+
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
+    .main-element {
+        padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
+        padding-bottom: 2vmax;       
+    }
+}
+
 // Small phones
-@media screen and (max-width: $small-phones-breakpoint - 1px)
-{
+@media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: portrait){
 
     .main-element {
         padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
         padding-bottom: $navbar-mobile-height + 2vmax;
-        height: 100vh;
-        overflow: scroll;
     }
 
+}
+
+@media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
+
+    .main-element {
+        padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
+        padding-bottom: 2vmax;
+    }
+
+}
+
+
+
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
+    .page-content {
+        margin-left: $navbar-tablet-height;
+    }
 }
 
 canvas {
