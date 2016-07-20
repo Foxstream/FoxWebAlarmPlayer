@@ -39,12 +39,12 @@ function applyApp(app) {
     app.put('/controller/users', auth.IsAdmin, function (req, res) {
         var user = req.body;
         self.UserPersistence.updateUser(user, function (err) {
-            if (!err){
-                res.json(user);
-            }
-            else {
-                res.status(404);
+            if (err){
+                res.status(500);
                 res.send(err);
+            } else {
+                res.status(200);
+                res.json(user);
             }
             res.end();  
         });
@@ -114,7 +114,6 @@ function applyApp(app) {
 
     app.post('/controller/users/me/changeemptypassword', auth.IsUser, function (req, res) {
         var user = req.body.user;
-        debugger;
         if (user.shouldChangePassword !== 1){
             res.status(500);
             res.send("Current password is not empty");

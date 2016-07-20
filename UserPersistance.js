@@ -1,6 +1,6 @@
 ﻿var async = require("async");
 var passwordHash = require('password-hash-and-salt');
-
+ 
 function open(cb) {
     var self = this;
     async.waterfall([
