@@ -43,18 +43,22 @@ function applyApp(app){
 	app.get('/controller/alarm/:alarmid', auth.IsValidUser, function(req, res){		
 		self.AlarmPersistence.getAlarm(req.params.alarmid, function(err, data){
 			
-			if(data)
-				res.json(data);
-			else
-			{
-				res.status(402);
-				res.send(err);
+			if(err){
+                res.status(500);
+                res.send(err);
+            }
+			else {
+                res.status(200);
+                if (data){
+                    res.json(data);
+                }
+                res.end();
 			}
-			res.end();
-				
+
 		});
+
     });
-       
+
 	app.get('/controller/alarm/:alarmid/image/:imgid', auth.IsValidUser, function(req, res){		
 		res.redirect('/controller/alarm/'+req.params.alarmid+'/images/'+req.params.imgid+'/jpg');
 	});
@@ -69,8 +73,8 @@ function applyApp(app){
 	app.get('/controller/alarm/:alarmid/image/:imgid/osd', auth.IsValidUser, function(req, res){				
 		var stream = self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid, true);	
 		stream.on('error',function(){res.end()})
-		res.writeHead(200, {'Content-Type': 'application/json'});			
-		stream.pipe(res);		
+		res.writeHead(200, {'Content-Type': 'application/json'});
+		stream.pipe(res);
     });
 
     app.put('/controller/alarm/:alarmid/markashandled', auth.IsValidUser, function (req, res) {
@@ -93,7 +97,7 @@ function applyApp(app){
             else {
                 res.status(404);
                 res.end(err);
-            }            				
+            }
         });
     });	
 

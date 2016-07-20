@@ -91,6 +91,32 @@ describe('Testing alarm API', function(){
 
     });
 
+    describe('GET :alarmid', function(){
+
+        it('Should return alarm with the right id', function(done){
+            agent.get('/controller/alarm/1')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.id).to.be.equal(1);
+                    done();
+                }
+            );
+        });
+
+        it("Should return empty object when alarm id doesn't exist", function(done){
+            agent.get('/controller/alarm/10')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('object');
+                    expect(res.body).to.deep.equal({});
+                    done();
+                }
+            );
+        });
+
+    });
+
 
 
 });

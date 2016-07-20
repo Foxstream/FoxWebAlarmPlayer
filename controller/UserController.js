@@ -21,14 +21,17 @@ function applyApp(app) {
 
     app.get('/controller/users/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {            
-            if (data)
-                res.json(data);
-            else {
-                res.status(404);
+            if (err){
+                res.status(500);
                 res.send(err);
             }
-            res.end();
-				
+            else {
+                res.status(200);
+                if (data){
+                    res.json(data);
+                }
+                res.end();
+            }
         });
     });
 
