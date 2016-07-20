@@ -19,7 +19,7 @@ var config = require('config');
 
 var _ = require("lodash");
 var async = require("async");
-
+console.log('database', config.get('dbHost'));
 var websrv = WebServer.BuildWebServer();
 var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, function(err){
     if (err){
@@ -75,10 +75,10 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
     websrv.listen(port);
     console.log('\n\nServer listening on port ' + port + '\n\n');
 
-    // Used for testing
-    module.exports = websrv; 
-
 });
+
+// Export for testing
+module.exports = websrv;
 
 
 

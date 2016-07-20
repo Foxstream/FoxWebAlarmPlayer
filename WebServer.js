@@ -4,8 +4,7 @@ var expressSession = require('express-session');
 var auth = require("./Authenticator.js")
 
 
-function buildWebServer()
-{    
+function buildWebServer(){    
     var app = express();
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +25,7 @@ function buildWebServer()
 
 function applyRoutes(app) {
         
-    app.get('/', function (req, res) {        
+    app.get('/', function (req, res) {   
         res.redirect("/alarmview");
     });
 

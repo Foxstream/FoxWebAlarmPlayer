@@ -1,7 +1,6 @@
 ﻿function apply()
 {
     var now = (new Date().getTime()) / 1000;
-    console.log("Deleting old alarms");
     this.alarmPersistence.deleteAlarmsOlderThan(now - this.duration, function () { });
 }
 

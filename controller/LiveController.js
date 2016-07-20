@@ -8,8 +8,6 @@ function applyApp(app){
     var self = this;
 
      app.get('/controller/live/cameras', function(req, res){
-
-        console.log('Building camera list');
        
         var cameras = {},
             servers = self.serverManager.servers;
@@ -20,7 +18,6 @@ function applyApp(app){
                     c.serverId = s.config.id;
                     return c;
                 });
-                console.log(cameraList);
                 var site = s.xmlclient.Configuration.equipment.site;
                 if (site in cameras){
                     cameras[site] = cameras[site].concat(cameraList);
@@ -29,15 +26,11 @@ function applyApp(app){
                 }
             }
         });
-        console.log(cameras);
         res.send(cameras);
 
     });
 
      app.get('/controller/live/:server/:camid', function(req, res){
-        console.log('Received request for live image')
-        console.log('server', req.params.server);
-        console.log('camera', req.params.camid);
         // Get the right server by its id
         var server = undefined;
         self.serverManager.servers.some(function(s){

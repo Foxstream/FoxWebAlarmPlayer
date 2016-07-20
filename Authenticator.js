@@ -7,28 +7,30 @@ function isUser(req, res, next)
     
     if (bAuth){
         next();
-    }
-    else{
+    } else {
         res.redirect("/login");
     }
 }
 
-function isValidUser(req, res, next) {
-    
+function isValidUser(req, res, next){
     isUser(req, res, function (){
-        if (req.user.shouldChangePassword)
+        if (req.user.shouldChangePassword){
             res.redirect("/accountsettings");
-        else
+        }
+        else {
             next();
+        }
     });
 }
 
 function isAdmin(req, res, next) {
     isValidUser(req, res, function () {
-        if (req.user.type !== 1)
+        if (req.user.type !== 1){
             res.redirect("/");
-        else
+        }
+        else {
             next();
+        }
     });
 }
 

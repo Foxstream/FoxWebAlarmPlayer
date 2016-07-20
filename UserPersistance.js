@@ -57,25 +57,27 @@ function checkuser(username, password, cb) {
                 } else {
                     local_cb(null, user);
                 }
-            }); 
+            });
         },
         function (user, local_cb) {
             if (user){
-                passwordHash(password).verifyAgainst(user.password, function (err, verified) {
+                passwordHash(password).verifyAgainst(user.password, function (err, verified){
                     local_cb(err, verified, user)
-                }); 
+                });
             }
-            else
+            else {
                 local_cb(null, false, null);
+            }
         },
-        function (verified, user, local_cb) {   
+        function (verified, user, local_cb) {
             if (verified || (user && user.password == '')) {
                 user.shouldChangePassword = password == '';
                 user.password = undefined;
                 local_cb(null, user);
             }
-            else
+            else {
                 local_cb(null, false);
+            }
         }], cb);
 }
 

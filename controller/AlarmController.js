@@ -7,16 +7,13 @@ function applyApp(app){
 	app.get('/controller/alarms', auth.IsValidUser, function(req, res){
         var conditions = req.query;
 		self.AlarmPersistence.getAlarms(conditions, function(err, data){
-            if(data){
-				res.json(data);
+            if (err){
+                res.status(500);
+                res.send(err);
+            } else {
+                res.status(200);
+                res.json(data);
             }
-			else
-			{
-				res.status(402);
-				res.send(err);
-			}
-			res.end();
-				
 		});
     });
 

@@ -129,17 +129,11 @@ function insertAlarm(alarm, callback)
 
     // Sitename for new alarm is not recorded in the sitelist
     if (this.siteList.indexOf(dbobj.$sitename) === -1){
-        console.log("\n\n\nSite " + dbobj.$sitename + " doesn't exist yet")
         this.siteList.push(dbobj.$sitename);
-        console.log('Updated site list', this.siteList);
-        console.log('Camera list', this.cameraList);
     }
     // Camera is not registered 
     if (this.cameraList.filter(function(c){ return c.cameraname === dbobj.$cameraname }).length < 1){
-        console.log("\n\n\nCamera " + dbobj.$cameraname + " doesn't exist yet");
         this.cameraList.push({ cameraname: dbobj.$cameraname, sitename: dbobj.$sitename });
-        console.log('Updated camera list',  this.cameraList);
-        console.log('Site list', this.siteList);
     }
 	
 	this.db.run("INSERT INTO alarm(timestamp, cameraname, hostname, sitename, handled, nbimages) VALUES($timestamp, $cameraname, $hostname, $sitename, $handled, $nbimages)",
@@ -209,8 +203,7 @@ function getAlarms(conditions, callback)
         		cond['$datemax'] = parseInt(val) + 60 * 60 * 24;
         	}
         });
-   	console.log(str)
-   	console.log(cond);
+
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
 }
 
@@ -269,7 +262,6 @@ function AlarmPersistence(db, imageFolder)
             data.forEach( (s) => {
                 this.siteList.push(s.sitename);
             });
-            console.log('Site list', this.siteList);
         } else {
             process.exit(1);
         }
@@ -281,7 +273,6 @@ function AlarmPersistence(db, imageFolder)
             data.forEach( (s) => {
                 this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
             });
-            console.log('Camera list', this.cameraList);
         } else {
             process.exit(1);
         }
