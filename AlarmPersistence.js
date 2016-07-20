@@ -13,8 +13,9 @@ function open(callback)
 	this.db.run("CREATE TABLE IF NOT EXISTS alarm (id INTEGER PRIMARY KEY, timestamp INTEGER, cameraname TEXT, hostname TEXT, sitename TEXT, handled INTEGER, nbimages INTEGER)", callback);
 }
 
-function close()
-{	
+// TODO : what is it ?
+function close(){
+
 }
 
 
@@ -192,7 +193,7 @@ function getAlarms(conditions, callback)
 {
     var str = " WHERE 1==1 ";
     var cond = {};
-    if (conditions)
+    if (conditions){
         _.forEach(conditions, function (val, key) {
         	if (key !== 'date'){
         		str += " AND " + key + "==$" + key;
@@ -203,6 +204,7 @@ function getAlarms(conditions, callback)
         		cond['$datemax'] = parseInt(val) + 60 * 60 * 24;
         	}
         });
+    }
 
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
 }
