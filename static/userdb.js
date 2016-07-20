@@ -50,6 +50,12 @@ app.factory('userdb', ['$http', '$rootScope', function($http, $rootScope){
             .error(function(){callback(null);});
     };
 
+    obj.changeemptypassword = function(data, callback){
+        $http.post('/controller/users/me/changeemptypassword', data)
+            .success(callback)
+            .error(function(){callback(null);});
+    };
+
     return obj;
 
 }]);

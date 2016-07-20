@@ -15,7 +15,7 @@ function applyApp(app) {
         });
     });
     
-    app.get('/controller/users/me', auth.IsValidUser, function(req, res){
+    app.get('/controller/users/me', auth.IsUser, function(req, res){
         res.send(req.user);
     });
 
@@ -46,7 +46,7 @@ function applyApp(app) {
                 res.status(404);
                 res.send(err);
             }
-            res.end();
+            res.end();  
         });
     });
 
@@ -111,6 +111,27 @@ function applyApp(app) {
         }
     });
 
+
+    app.post('/controller/users/me/changeemptypassword', auth.IsUser, function (req, res) {
+        var user = req.body.user;
+        debugger;
+        if (user.shouldChangePassword !== 1){
+            res.status(500);
+            res.send("Current password is not empty");
+        }
+
+        if (user.id !== req.user.id){
+            res.status(500);
+            res.send("Not allowed");
+            res.end();
+        } else {
+            user.password = req.body.newPassword;
+            self.UserPersistence.updateUser(user, function(err, data){
+                res.status(err ? 404 : 200);
+                res.end(err);
+            });
+        }
+    });
     
     app.post('/controller/users/new', auth.IsAdmin, function (req, res) {
         // var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
@@ -141,6 +162,5 @@ function UserController(UserPersistence) {
 }
 
 UserController.prototype.ApplyUserRoutes = applyApp;
-
 
 module.exports = UserController;

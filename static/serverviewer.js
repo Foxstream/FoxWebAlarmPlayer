@@ -108,9 +108,11 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         };
 
         $scope.getDisconnectedServers = function(){
-            return $scope.servers.filter(function(s){
-                return !s.connected;
-            });
+            if ($scope.servers){
+                return $scope.servers.filter(function(s){
+                    return !s.connected;
+                });
+            } else return {};
         };
 
 

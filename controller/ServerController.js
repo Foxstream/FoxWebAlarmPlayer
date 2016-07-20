@@ -2,10 +2,14 @@
 
 function applyApp(app) {
     var self = this;
-    app.get('/controller/servers', auth.IsValidUser, function (req, res) {
+
+    // !! use auth.IsUser
+    // Even when user should change password, we want to display the connection errors
+    app.get('/controller/servers', auth.IsUser, function (req, res) {
         self.serverManager.getservers(function (err, data) {
-            if (data)
+            if (data){
                 res.json(data);
+            }
             else {
                 res.status(402);
                 res.send(err);

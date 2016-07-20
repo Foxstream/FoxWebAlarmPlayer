@@ -114,5 +114,4 @@ util.inherits(AlarmController, events.EventEmitter);
 
 AlarmController.prototype.ApplyAlarmRoutes=applyApp;
 
-
 module.exports=AlarmController;

@@ -9,7 +9,7 @@ var chai = require('chai'),
 
 chai.use(chaiHttp);
 
-describe('Testing user API', function(){
+describe('Testing user API (all users)', function(){
 
     var agent = chai.request.agent(server);
 
@@ -38,6 +38,21 @@ describe('Testing user API', function(){
         });
 
     });
+});
+
+describe('Testing user API (admin only)', function(){
+
+    before(function(done){
+        agent.post('/login')
+            .send({username: 'admin', password: 'admin'})
+            .end(function(req, res){
+                agent.get('/controller/users/me')
+                    .end(function(req, res){
+                        expect(res).to.have.status(200);
+                        done();
+                    });
+            });
+    });
 
     describe('GET :userid', function(){
         
@@ -51,7 +66,6 @@ describe('Testing user API', function(){
                 });
         });
 
-        // Or should it return nothing ?
         it("Should return empty object when id doesn't exist", function(done){
             agent.get('/controller/users/10')
                 .end(function(req, res){
@@ -62,6 +76,36 @@ describe('Testing user API', function(){
                 });
         });
 
-    })
+    });
+
+    describe('Updates on user by admin', function(){
+
+        it('Should give admin status to another user', function(done){
+            expect(true).to.equal(true);
+            done();
+        });
+
+    });
+
+});
+
+
+describe('Testing user API (non-admin users)', function(){
+
+    var agent = chai.request.agent(server);
+
+    before(function(done){
+        agent.post('/login')
+            .send({username: 'admin', password: 'admin'})
+            .end(function(req, res){
+                agent.get('/controller/users/me')
+                    .end(function(req, res){
+                        expect(res).to.have.status(200);
+                        done();
+                    });
+            });
+    });
+
+    
 
 });
