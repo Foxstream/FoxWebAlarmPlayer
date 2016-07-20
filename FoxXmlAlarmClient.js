@@ -1,6 +1,6 @@
 var events = require('events');
 var _ = require("lodash");
-var sys = require('sys');
+var util = require('util');
 
 //emit alarmimages(data)
 
@@ -59,6 +59,6 @@ function FoxXmlAlarmClient(foxxmlclient)
 	foxxmlclient.on('alarm',scheduleRequestAlarmInfo.bind(this));
 }
 
-sys.inherits(FoxXmlAlarmClient, events.EventEmitter);
+util.inherits(FoxXmlAlarmClient, events.EventEmitter);
 
 module.exports=FoxXmlAlarmClient;

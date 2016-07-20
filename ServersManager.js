@@ -1,7 +1,7 @@
 ﻿var events = require('events');
 var _ = require('lodash');
 var async = require("async");
-var sys = require('sys');
+var util = require('util');
 
 var FoxXmlClient = require('./FoxXmlClient.js');
 var FoxXmlAlarmClient = require('./FoxXmlAlarmClient.js');
@@ -202,7 +202,7 @@ function ServersManager(serverPersistence, alarmPersistence)
     //.xmlclient -> FoxXmlClient
 }
 
-sys.inherits(ServersManager, events.EventEmitter);
+util.inherits(ServersManager, events.EventEmitter);
 
 ServersManager.prototype.addserver = AddServer;
 ServersManager.prototype.removeserver = RemoveServer;

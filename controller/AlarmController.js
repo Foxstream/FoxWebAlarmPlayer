@@ -1,11 +1,11 @@
 var auth = require("../Authenticator.js");
-var sys = require('sys');
+var util = require('util');
 var events = require('events');
 
 function applyApp(app){
 
 	var self=this;
-    
+
 	app.get('/controller/alarms', auth.IsValidUser, function(req, res){
         var conditions = req.query;
 		self.AlarmPersistence.getAlarms(conditions, function(err, data){
@@ -106,7 +106,7 @@ function AlarmController(alarmPersistence)
 	this.AlarmPersistence=alarmPersistence;
 }
 
-sys.inherits(AlarmController, events.EventEmitter);
+util.inherits(AlarmController, events.EventEmitter);
 
 AlarmController.prototype.ApplyAlarmRoutes=applyApp;
 

@@ -1,5 +1,4 @@
 var auth = require("../Authenticator.js"),
-    sys = require('sys'),
     async = require('async'),
     events = require('events'),
     fs = require('fs');

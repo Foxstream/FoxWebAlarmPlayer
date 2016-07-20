@@ -1,4 +1,4 @@
-var sys = require('sys');
+var util = require('util');
 var XmlClient=require('./XmlClient.js');
 var events = require('events');
 var _ = require("lodash");
@@ -152,7 +152,7 @@ function FoxXmlClient(address, port, user, password)
 	
 }
 
-sys.inherits(FoxXmlClient, events.EventEmitter);
+util.inherits(FoxXmlClient, events.EventEmitter);
 
 FoxXmlClient.prototype.connect = connect;
 FoxXmlClient.prototype.send = send;
