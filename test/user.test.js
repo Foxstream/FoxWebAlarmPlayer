@@ -44,6 +44,7 @@ describe('Testing user API', function(){
 
     describe('Available for admins only', function(){
 
+        var me;
         before(function(done){
             agent.post('/login')
                 .send({username: 'admin', password: 'admin'})
@@ -52,6 +53,7 @@ describe('Testing user API', function(){
                         .end(function(req, res){
                             expect(res).to.have.status(200);
                             expect(res.body.type).to.be.equal(1);
+                            me = res.body;
                             done();
                         });
                 });
@@ -90,7 +92,6 @@ describe('Testing user API', function(){
                         done();
                     });
             });
-
         });
 
         describe('PUT updating any user', function(){
@@ -109,6 +110,28 @@ describe('Testing user API', function(){
                                 expect(res.body).to.deep.equal(testUser);
                                 done();
                             });
+                    });
+            });
+
+        });
+
+        describe('PUT updating oneself', function(){
+
+            it('Should be able to change displayname', function(done){
+                me.displayname = 'updatedName';
+                agent.put('/controller/users/me')
+                    .send(me)
+                    .end(function(req, res){
+                        expect(res).to.have.status(200);
+                        expect(res.body).to.deep.equal(me);
+
+                        // Calling users/me would not check the db
+                        agent.get('/controller/users/1')
+                            .end(function(req, res){
+                                expect(res).to.have.status(200);
+                                expect(res.body.displayname).to.be.equal('updatedName');
+                                done();
+                        });
                     });
             });
 
@@ -137,6 +160,8 @@ describe('Testing user API', function(){
 
     describe('Available for non-admin users', function(){
 
+        var me;
+
         before(function(done){
             agent.post('/login')
                 .send({username: 'test', password: 'test'})
@@ -145,14 +170,62 @@ describe('Testing user API', function(){
                         .end(function(req, res){
                             expect(res).to.have.status(200);
                             expect(res.body.type).to.be.equal(0);
+                            me = res.body;
                             done();
                         });
                 });
         });
 
-        it ('Should be ok', function(){
-            expect(true).to.be.equal(true);
-        })
+        describe('Non-admin users available routes', function(){
+
+            it ('Should redirect to / when trying to reach admin-reserved routes', function(done){
+                var testCount = 0;
+                var localCb = function(){
+                    testCount++;
+                    if (testCount === 6){
+                        done();
+                    }
+                }
+                agent.get('/controller/users')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+                agent.get('/controller/users/1')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+                agent.put('/controller/users')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+                agent.post('/controller/users/1/resetpassword')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+                agent.post('/controller/users/new')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+                agent.delete('/controller/users/1')
+                    .end(function(req, res){
+                        expect(res.redirects).to.be.an('array');
+                        expect(res.redirects[0].length).to.be.above(0);
+                        localCb();
+                    });
+            });
+
+        });
+
 
     });
 
