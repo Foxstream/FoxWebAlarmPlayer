@@ -1,3 +1,4 @@
+// Switch to test environment (uses database test.db)
 process.env.NODE_ENV = 'test';
 
 var server = require('../main.js');
@@ -24,13 +25,20 @@ describe('Testing alarm API', function(){
             });
     });
 
-    it('Should return all alarms', function(done){
-        agent.get('/controller/alarms')
-            .end(function(req, res){
-                expect(res).to.have.status(200);
-                done();
-            }
-        );
-    });
+    describe('GET requests', function(){
+
+        it('Should return not handled alarms', function(done){
+            agent.get('/controller/alarms/nothandled')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('array');
+                    expect(res.body.length).to.be.equal(0);
+                    done();
+                }
+            );
+        });
+        
+    })
+
 
 });

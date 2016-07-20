@@ -22,7 +22,6 @@ function handleAuthResponse(err, data)
 	}
 	else
 	{
-		// console.log('Authentication error while connecting with '+self.Client.Host+':'+self.Client.Port);
 		this.emit('connectionLost', 'authentication error');
 	}
 }
@@ -64,10 +63,10 @@ function getConfig()
 			};
 			
 			self.emit('configReceived', self.Configuration);
-			// console.log(self.Configuration);
 		}
-		else
-			console.log("Invalid config received");
+		else {
+			log.error("Invalid config received");
+		}
 	});		
 }
 
@@ -105,7 +104,7 @@ function gotUnexpectedMessage(data)
 				   activation:data.$.mode
 				   };
 				   				   		
-		console.log('Alarm received from '+this.Client.Host+':'+this.Client.Port);
+		log.info('Alarm received from '+this.Client.Host+':'+this.Client.Port);
 		
 		this.emit('alarm',alarm);
 	}

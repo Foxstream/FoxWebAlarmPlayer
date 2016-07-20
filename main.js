@@ -15,16 +15,21 @@ var Auth = require('./Authenticator.js');
 var sqlite3 = require('sqlite3').verbose();
 var AlarmRemover = require('./AlarmRemover.js');
 var fs = require('fs');
+
 var config = require('config');
+
+var log = require('./logger');
 
 var _ = require("lodash");
 var async = require("async");
-console.log('database', config.get('dbHost'));
+
+log.info('Builiding web server')
 var websrv = WebServer.BuildWebServer();
+
+log.debug('Used database : ' + config.get('dbHost'));
 var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, function(err){
     if (err){
-        console.error('\nDatabase connection error :');
-        console.error(err);
+        log.error('Database connection error : ' + err);
         process.exit(1);
     }
 });
@@ -39,6 +44,7 @@ var serverControler = new ServerController(serverManager);
 var liveController = new LiveController(serverManager);
 var alarmRemover = new AlarmRemover(almPers, 60*60*24*7); // 7 days
 
+log.info('Applying routes.');
 Auth.ApplyToServer(websrv, userPers);
 WebServer.ApplyMainRoutes(websrv);
 almControler.ApplyAlarmRoutes(websrv);
@@ -52,11 +58,12 @@ var sse = new ServerSideEvent(websrv, "/events");
 async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function (err) {
     
     serverManager.on("connectionLost", function (srv){ 
-        console.log('Sending connection message to client for server', srv.address);
+        log.info('Sending connection message to client for server', srv.address);
         sse.sendMessage('connection', JSON.stringify(srv)); 
     });
 
     serverManager.on("connectionEstablished", function (srv) { 
+        log.info('Sending connection message to client for server', srv.address);
         sse.sendMessage('connection', JSON.stringify(srv));
     });
     
@@ -73,7 +80,7 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
 
     var port = config.get('port');
     websrv.listen(port);
-    console.log('\n\nServer listening on port ' + port + '\n\n');
+    log.info('Server listening on port ' + port + '\n');
 
 });
 

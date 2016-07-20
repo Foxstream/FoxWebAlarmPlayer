@@ -29,7 +29,6 @@ function applyApp(app) {
 
     app.put('/controller/server', auth.IsAdmin, function (req, res) {
         var server = req.body;
-        // console.log(self.serverManager.emit("connectionEstablished", {id: 1}));
         self.serverManager.updateserver(server, function (err) {
             if (!err){
                 res.json(server);

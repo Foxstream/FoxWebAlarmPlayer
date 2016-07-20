@@ -5,13 +5,14 @@ var through=require("through");
 var events = require('events');
 var util = require("util");
 var _ = require("lodash");
+var log = require('./logger');
 
 //events: unexpectedData, disconnected
 function connect(successCallback)
 {		
 	var self = this;
 	
-	console.log("Conecting with " + this.Host);
+	log.info("Conecting with " + this.Host);
 	
 	if(this.client)
 		return;
@@ -20,7 +21,7 @@ function connect(successCallback)
     	function() { 
 		
 		self.connected = true;
-		console.log('Connected with '+self.Host);
+		log.info('Connected with '+self.Host);
 		
 		var first = true;
 		self.xml=new XmlStream(self.client.pipe(through(function(data){//prepend at the very begining root element; move as own function
@@ -43,7 +44,7 @@ function connect(successCallback)
 
 function receivingData(data)
 {	
-	console.log("Got data from "+this.Host+" of type "+data.$.type);
+	log.info("Got data from "+this.Host+" of type "+data.$.type);
 	
 	if(data.$.id && this.Callbacks[parseInt(data.$.id)])
 	{
@@ -54,16 +55,18 @@ function receivingData(data)
 			
 		delete this.Callbacks[parseInt(data.$.id)];
 	}
-	else if(data.$.query=="none")	
+	else if(data.$.query=="none"){
 		this.emit("unexpectedData", data);
-	else
-		console.log("Error : message not requested "+JSON.stringify(data));
+	}
+	else {
+		log.error("Error : message not requested "+JSON.stringify(data));
+	}
 }
 
 function connectionLost()
 {		
 	this.connected = false;
-	console.log("Disconnected from " + this.Host);	
+	log.warn("Disconnected from " + this.Host);	
 	this.emit("disconnected", "disconnected from host");
 	this.client=null;
 }
@@ -76,7 +79,7 @@ function internal_send(message, responseCallback)
 	var builder = new xml2js.Builder({rootName:"fox", headless : true});
 	var xml = builder.buildObject(message);
 	
-	console.log("Sending message "+message.$.type+" to "+this.Host );
+	log.info("Sending message "+message.$.type+" to "+this.Host );
 	
 	this.client.write(xml);
 }

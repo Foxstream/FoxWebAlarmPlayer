@@ -12,13 +12,16 @@ function scheduleRequestAlarmInfo(alarmInfo)
 	{
 		var cam=_.find(this.foxxmlclient.Configuration.cameras, function(cam){return cam.id==alarmInfo.camid;})
 		
-		if(cam)
+		if(cam){
 			setTimeout(getAlarm.bind(this,alarmInfo), 1000+(cam.buffer.after*cam.buffer.interval));	
-		else
-			console.log("Alarm received for undefined camera");
+		}
+		else {
+			log.warn("Alarm received for undefined camera");
+		}
 	}
-	else
-		console.log("Unable to get alarm without getting the configuration first");
+	else {
+		log.warn("Unable to get alarm without getting the configuration first");
+	}
 }
 
 function getAlarm(alarmInfo)
@@ -27,7 +30,7 @@ function getAlarm(alarmInfo)
 	this.foxxmlclient.send({"$":{type:"getalarm", timestamp:alarmInfo.timestamp, camid:alarmInfo.camid, subtype:alarmInfo.type, mode:"bulk"}}, function(err, data)
 	{
 		if(err)
-			console.log('Unable to get alarm for alarm, reason '+err);
+			log.error('Unable to get alam : ' + err);
 		else
 		{			
 			alarmInfo.images=_.map(data.image, function(img){
@@ -39,7 +42,7 @@ function getAlarm(alarmInfo)
 			});
 			
 			self.emit('alarmimages', alarmInfo);
-			console.log("Got alarm images "+alarmInfo.images.length);
+			log.info("Got alarm images " + alarmInfo.images.length);
 		}
 	});
 }

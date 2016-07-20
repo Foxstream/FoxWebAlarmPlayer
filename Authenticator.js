@@ -54,7 +54,7 @@ function applyToServer(app, userPers)
         successRedirect: '/',
         failureRedirect: '/login'
     }));
-
+    
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');

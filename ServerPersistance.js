@@ -19,7 +19,6 @@ function deleteserver(serverId, cb) {
 }
 
 function addserver(server, cb) {
-    console.log('\n\n\n\n\n\n\n', server)
     this.db.run("INSERT INTO server(id, address, port, username, password, description) VALUES(?, ?, ?, ?, ?, ?)",
 	       [server.id, server.address, server.port, server.username, server.password, server.description],
 	       function (err) {
