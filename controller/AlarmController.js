@@ -3,7 +3,9 @@ var sys = require('sys');
 var events = require('events');
 
 function applyApp(app){
+
 	var self=this;
+    
 	app.get('/controller/alarms', auth.IsValidUser, function(req, res){
         var conditions = req.query;
 		self.AlarmPersistence.getAlarms(conditions, function(err, data){
@@ -16,20 +18,6 @@ function applyApp(app){
             }
 		});
     });
-
-    // app.get('/controller/alarms/:sitename', auth.IsValidUser, function(req, res){
-    //     console.log(req.params.sitename);
-    //     self.AlarmPersistence.getAlarms({sitename:req.params.sitename + ' '}, function (err, data) {
-    //         console.log(data);
-    //         if (data)
-    //             res.json(data);
-    //         else {
-    //             res.status(402);
-    //             res.send(err);
-    //         }
-    //         res.end();
-    //     });
-    // });
     
     app.get('/controller/alarms/sitelist', auth.IsValidUser, function(req, res){
         res.send(self.AlarmPersistence.getSiteList());

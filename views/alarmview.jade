@@ -78,7 +78,7 @@ block content
                                 td(class='play')
                                   span(class='glyphicon glyphicon-play')
                                 td(class='date')
-                                   {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                                  | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                                 td(class='camera') {{ ::x.cameraname }}
                                 td(class='site') {{ ::x.sitename }}
                                 td(class='handle')
@@ -193,7 +193,7 @@ block content
                                   td(class='play')
                                     span(class='glyphicon glyphicon-play')
                                   td(class='date')
-                                     {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                                     | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                                   td(class='camera') {{ ::x.cameraname }}
                                   td(class='site') {{ ::x.sitename }}
                                   td(class='handle')

@@ -27,18 +27,29 @@ describe('Testing alarm API', function(){
 
     describe('GET requests', function(){
 
+        it('Should return all alarms', function(done){
+            agent.get('/controller/alarms')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('array');
+                    expect(res.body.length).to.be.equal(2);
+                    done();
+                });
+        });
+
         it('Should return not handled alarms', function(done){
             agent.get('/controller/alarms/nothandled')
                 .end(function(req, res){
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('array');
-                    expect(res.body.length).to.be.equal(0);
+                    expect(res.body.length).to.be.equal(1);
                     done();
                 }
             );
         });
-        
-    })
+
+    });
+
 
 
 });
