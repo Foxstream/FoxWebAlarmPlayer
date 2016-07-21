@@ -31,20 +31,23 @@ function updateuser(user, cb)
         async.waterfall([
             function (local_cb)
             {
-                if (user.password == '')
+                if (user.password == ''){
                     local_cb(null, '');
-                else
+                }
+                else {
                     passwordHash(user.password).hash(local_cb);
+                }
             },
             function (computed_pass, local_cb) {
                 self.db.run("UPDATE user SET displayname=?, password=?, type=? WHERE id=?",
 	                [user.displayname, computed_pass, user.type, user.id], local_cb);
             }
-        ], cb)        
+        ], cb)
     }
-    else
+    else {
         this.db.run("UPDATE user SET displayname=?, type=? WHERE id=?",
 	          [user.displayname, user.type, user.id], cb);
+    }
 }
 
 function checkuser(username, password, cb) {

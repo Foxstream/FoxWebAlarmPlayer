@@ -2,73 +2,72 @@
 
 function applyApp(app) {
     var self = this;
-    app.get('/controller/users', auth.IsAdmin, function (req, res) {
+
+    app.get('/users', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUsers(function (err, data) {
-            if (data)
-                res.json(data);
+            if (err){
+                res.status(500);
+                res.send(err);            
+            }
             else {
-                res.status(402);
-                res.send(err);
+                res.json(data);
             }
             res.end();
-				
         });
     });
     
-    app.get('/controller/users/me', auth.IsUser, function(req, res){
+    app.get('/users/me', auth.IsUser, function(req, res){
+        res.status(200);
         res.send(req.user);
     });
 
-    app.get('/controller/users/:userid', auth.IsAdmin, function (req, res) {
+    app.get('/users/:userid', auth.IsAdmin, function (req, res) {
         self.UserPersistence.getUser(req.params.userid, function (err, data) {            
             if (err){
                 res.status(500);
                 res.send(err);
             }
             else {
-                res.status(200);
                 if (data){
+                    res.status(200);
                     res.json(data);
-                }
-                res.end();
-            }
-        });
-    });
-
-    // Updating any user (admin only)
-    app.put('/controller/users', auth.IsAdmin, function (req, res) {
-        var user = req.body;
-        self.UserPersistence.updateUser(user, function (err) {
-            if (err){
-                res.status(500);
-                res.send(err);
-            } else {
-                res.status(200);
-                res.json(user);
-            }
-            res.end();  
-        });
-    });
-
-    // Updating oneself (any user)
-    app.put('/controller/users/me', auth.IsValidUser, function (req, res) {
-        var user = req.body;
-        if (user.id !== req.user.id){
-            res.status(500);
-            res.send("Not allowed");
-            res.end();
-        } else {
-            self.UserPersistence.updateUser(user, function (err) {
-                if (!err){
-                    res.json(user);
-                }
-                else {
+                } else {
                     res.status(404);
-                    res.send(err);
                 }
                 res.end();
-            });
-        }
+            }
+        });
+    });
+
+    app.put('/users/:userid', auth.IsAdmin, function(req, res){
+        var user = req.body;
+
+        // Check that userid corresponds to a user or send 404
+        self.UserPersistence.getUser(req.params.userid, function(err, data){
+            if (data){
+                if (user.displayname && (user.type === 0 || user.type === 1)){
+                    self.UserPersistence.updateUser(user, function (err, data) {
+                        if (err){
+                            res.status(500);
+                            res.send(err);
+                        } else {
+                            res.status(200);
+                        }
+                        res.end();  
+                    });
+                } else {
+                    res.status(400);
+                    res.send("Bad request : parameters type and displayname are required");
+                }
+            } else {
+                res.status(404);
+                res.send('User not found');
+            }
+        });
+    });
+
+    app.put('/users/me', auth.IsValidUser, function(req, res){
+
     });
 
     app.post('/controller/users/:userid/resetpassword', auth.IsAdmin, function (req, res) {
