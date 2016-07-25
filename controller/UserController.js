@@ -32,125 +32,155 @@ function applyApp(app) {
                     res.status(200);
                     res.json(data);
                 } else {
-                    res.status(404);
+                    res.status(204);
                 }
                 res.end();
             }
         });
     });
 
+    app.put('/users/me/displayname', auth.IsValidUser, function(req, res){
+        if (req.body.displayname){
+            var user = req.user;
+            user.displayname = req.body.displayname;
+            self.UserPersistence.updateUser(user, function(err){
+                if (err){
+                    res.status(500);
+                    res.send(err);
+                } else {
+                    res.status(200);
+                    res.end();
+                }
+            });
+        } else {
+            res.status(400);
+            res.send('Bad request : displayname missing or empty');
+        }
+    });
+
     app.put('/users/:userid', auth.IsAdmin, function(req, res){
         var user = req.body;
 
-        // Check that userid corresponds to a user or send 404
-        self.UserPersistence.getUser(req.params.userid, function(err, data){
-            if (data){
-                if (user.displayname && (user.type === 0 || user.type === 1)){
-                    self.UserPersistence.updateUser(user, function (err, data) {
+        if (user.id != req.params.userid){
+            res.status(400);
+            res.end();
+        } else {
+
+            // Check that userid matches a user or send 404
+            self.UserPersistence.getUser(req.params.userid, function(err, data){
+                if (data){
+                    if (user.displayname && (user.type === 0 || user.type === 1)){
+                        self.UserPersistence.updateUser(user, function (err, data) {
+                            if (err){
+                                res.status(500);
+                                res.send(err);
+                            } else {
+                                res.status(200);
+                            }
+                            res.end();  
+                        });
+                    } else {
+                        res.status(400);
+                        res.send("Bad request : parameters type and displayname are required");
+                    }
+                } else {
+                    res.status(404);
+                    res.send('User not found');
+                }
+            });
+
+        }
+
+    });
+
+    app.put('/users/me/password', auth.IsValidUser, function(req, res){
+        if (req.body.oldPassword && req.body.newPassword){
+            var user = req.user;
+            // Check old password
+            self.UserPersistence.checkUser(user.login, req.body.oldPassword, function(err, user){
+                if (err || !user){
+                    res.status(401);
+                    res.send("Le mot de passe saisi est incorrect");
+                } else {
+                    user.password = req.body.newPassword;
+                    self.UserPersistence.updateUser(user, function(err, data){
                         if (err){
                             res.status(500);
                             res.send(err);
                         } else {
                             res.status(200);
+                            res.end();
                         }
-                        res.end();  
-                    });
-                } else {
-                    res.status(400);
-                    res.send("Bad request : parameters type and displayname are required");
-                }
-            } else {
-                res.status(404);
-                res.send('User not found');
-            }
-        });
-    });
-
-    app.put('/users/me', auth.IsValidUser, function(req, res){
-
-    });
-
-    app.post('/controller/users/:userid/resetpassword', auth.IsAdmin, function (req, res) {
-        self.UserPersistence.getUser(req.params.userid, function (err, data) {
-            if (data) {
-                data.password = undefined; //reset du mdp
-                self.UserPersistence.updateUser(req.params.Userid, data, function (err) {
-                    res.status(err ? 404 : 200);
-                    res.end(err);
-                });
-            }
-            else {
-                res.status(404);
-                res.end(err);
-            }            				
-        });
-    });
-
-    app.post('/controller/users/me/password', auth.IsValidUser, function (req, res) {
-        var user = req.body.user;
-        if (user.id !== req.user.id){
-            res.status(500);
-            res.send("Not allowed");
-            res.end();
-        } else {
-            // check current password
-            self.UserPersistence.checkUser(user.login, req.body.oldPassword, function(err, user){
-                if (err || !user){
-                    res.status(500);
-                    res.send("Le mot de passe saisi est incorrect");
-                    res.end();
-                } else {
-                    user.password = req.body.newPassword;
-                    self.UserPersistence.updateUser(user, function(err, data){
-                        res.status(err ? 404 : 200);
-                        res.end(err);
                     });
                 }
             });
-        }
-    });
-
-
-    app.post('/controller/users/me/changeemptypassword', auth.IsUser, function (req, res) {
-        var user = req.body.user;
-        if (user.shouldChangePassword !== 1){
-            res.status(500);
-            res.send("Current password is not empty");
-        }
-
-        if (user.id !== req.user.id){
-            res.status(500);
-            res.send("Not allowed");
-            res.end();
         } else {
-            user.password = req.body.newPassword;
-            self.UserPersistence.updateUser(user, function(err, data){
-                res.status(err ? 404 : 200);
-                res.end(err);
-            });
+            res.status(400);
+            res.send("Bad request");
         }
     });
     
-    app.post('/controller/users/new', auth.IsAdmin, function (req, res) {
-        // var user = { login: req.body.login, displayname: req.body.login, password: "", type: 0 };
+    app.post('/users', auth.IsAdmin, function (req, res) {
         var user = req.body;
-        self.UserPersistence.addUser(user, function (err) {
-            if (!err)
-                res.json(user);
-            else {
-                res.status(404);
+        if (user.login && user.displayname && (user.type === 0 || user.type === 1)){
+            self.UserPersistence.addUser(user, function (err){
+                if (err){
+                    res.status(500);
+                    res.send(err);
+                } else {
+                    res.status(200);
+                    res.send();
+                }
+            });  
+        } else {
+            res.status(400);
+            res.send("Bad request : user information missing");
+        }
+    });
+
+    app.post('/users/:userid/resetPassword', auth.IsAdmin, function(req, res){
+        self.UserPersistence.getUser(req.params.userid, function(err, user){
+            if (err){
+                res.status(500);
                 res.send(err);
+            } else if (!user){
+                res.status(404);
+                res.send("User " + req.params.userid + "doesn't exist");
+            } else {
+                self.UserPersistence.resetUser(req.params.userid, function(err){
+                    if (err){
+                        res.status(500);
+                        res.send(err);
+                    } else {
+                        res.status(200);
+                        res.end();
+                    }
+                });
             }
-            res.end();
         })
     });
     
-    app.delete('/controller/users/:userid', auth.IsAdmin, function (req, res) {
-        self.UserPersistence.deleteUser(req.params.userid, function (err) {
-            res.status(err ? 404 : 200);
-            res.end(err);
+    app.delete('/users/:userid', auth.IsAdmin, function (req, res) {
+        self.UserPersistence.getUser(req.params.userid, function(err, user){
+            if (err){
+                res.status(500);
+                res.send(err);
+            } else if (!user){
+                res.status(404);
+                res.send("User " + req.params.userid + "doesn't exist");
+            } else {
+                self.UserPersistence.deleteUser(req.params.userid, function (err) {
+                    if(err){
+                        res.status(500);
+                        res.send(err);
+                    } else {
+                        res.status(200);
+                        res.end();
+                    }
+                });
+            }
         });
-    });   
+    });
 }
 
 function UserController(UserPersistence) {

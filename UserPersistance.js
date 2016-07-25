@@ -24,10 +24,9 @@ function close(){
 }
 
 //if password is present, is updated, otherwise is not changed
-function updateuser(user, cb)
-{
+function updateuser(user, cb){
     var self = this;
-    if (user.password || user.password=='') {
+    if (user.password || user.password==''){
         async.waterfall([
             function (local_cb)
             {
@@ -95,24 +94,8 @@ function resetuser(userId, cb) {
 
 function adduser(user, cb) {
     var self = this;
-    async.waterfall([
-        function (local_cb) {
-            if (!user.password){
-                local_cb(null, '');
-            }
-            else{
-                passwordHash(user.password).hash(local_cb);
-            }
-        },
-        function (computed_pass, local_cb) {
-            self.db.run("INSERT INTO user(id, login, displayname, password, type) VALUES(?, ?, ?, ?, ?)",
-	                                [user.id, user.login, user.displayname, computed_pass, user.type],
-                function (err) {
-                if (!err)
-                    user.id = this.lastID;
-                local_cb(err);
-            });
-        }], cb);
+    self.db.run("INSERT INTO user(login, displayname, type) VALUES(?, ?, ?)",
+	                                [user.login, user.displayname, user.type], cb);
 }
 
 function getuser(id, cb){
