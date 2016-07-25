@@ -14,7 +14,7 @@ function isUser(req, res, next)
 
 function isValidUser(req, res, next){
     isUser(req, res, function (){
-        if (req.user.shouldChangePassword){
+        if (req.user.shouldChangePassword && !req.body.oldPassword && !req.body.newPassword){
             res.redirect("/accountsettings");
         }
         else {

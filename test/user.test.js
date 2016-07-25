@@ -292,7 +292,7 @@ describe("User API (other users)", function(){
 
     });
 
-    describe('/users/me/password', function(){
+    describe('PUT /users/me/password', function(){
 
         it ("Should update password", function(done){
             agent.put('/users/me/password')
@@ -300,7 +300,7 @@ describe("User API (other users)", function(){
                 .end(function(req, res){
                     expect(res).to.have.status(200);
                     agent.post('/logout')
-                        .end(function(req, res){
+                        .end(function(req, res){ 
                             agent.post('/login')
                                 .send({username: 'test', password: 'newpasswd'})
                                 .end(function(req, res){
@@ -356,6 +356,7 @@ describe("Password reset", function(){
         agent.post('/login')
             .send({username: 'admin', password: 'admin'})
             .end(function(req, res){
+
                 expect(res).to.have.status(200);
                 done();
             });
@@ -367,13 +368,13 @@ describe("Password reset", function(){
                 expect(res).to.have.status(200);
                 agent.post('/logout')
                     .end(function(req, res){
+                        expect(res).to.have.status(200);
                         agent.post('/login')
-                            .send({username: 'test', password: ''})
+                            .send({username: 'test', password: ' '})
                             .end(function(req, res){
                                 expect(res).to.have.status(200);
                                 agent.get('/users/me')
                                     .end(function(req, res){
-                                        console.log(res.body)
                                         expect(res.body.shouldChangePassword).to.be.equal(1);
                                         agent.put('/users/me/password')
                                             .send({oldPassword: '', newPassword: 'test'})
@@ -387,13 +388,13 @@ describe("Password reset", function(){
             }); 
     });
 
-     // it ("Should send 404 if userid doesn't exist", function(done){
-     //    agent.post('/users/0/resetPassword')
-     //        .end(function(req, res){
-     //            expect(res).to.have.status(404);
-     //            done();
-     //        });
-     // });
+     it ("Should send 404 if userid doesn't exist", function(done){
+        agent.post('/users/0/resetPassword')
+            .end(function(req, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+     });
 
 });
 

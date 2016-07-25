@@ -39,6 +39,52 @@ function applyApp(app) {
         });
     });
 
+    app.put('/users/me/displayname', auth.IsValidUser, function(req, res){
+        if (req.body.displayname){
+            var user = req.user;
+            user.displayname = req.body.displayname;
+            self.UserPersistence.updateUser(user, function(err){
+                if (err){
+                    res.status(500);
+                    res.send(err);
+                } else {
+                    res.status(200);
+                    res.end();
+                }
+            });
+        } else {
+            res.status(400);
+            res.send('Bad request : displayname missing or empty');
+        }
+    });
+
+    app.put('/users/me/password', auth.IsValidUser, function(req, res){
+        var user = req.user;
+        if (req.body.oldPassword !== undefined && req.body.newPassword !== undefined){
+            self.UserPersistence.checkUser(user.login, req.body.oldPassword, function(err, user){
+                if (err || !user){
+                    res.status(401);
+                    res.send("Le mot de passe saisi est incorrect");
+                } else {
+                    user.password = req.body.newPassword;
+                    self.UserPersistence.updateUser(user, function(err, data){
+                        if (err){
+                            console.log(err)
+                            res.status(500);
+                            res.send(err);
+                        } else {
+                            res.status(200);
+                            res.end();
+                        }
+                    });
+                }
+            });
+        } else {
+            res.status(400);
+            res.send("Bad request : missing parameter");
+        }
+    });
+
     app.put('/users/:userid', auth.IsAdmin, function(req, res){
         var user = req.body;
 
@@ -64,25 +110,6 @@ function applyApp(app) {
                 res.send('User not found');
             }
         });
-    });
-
-    app.put('/users/me/displayname', auth.IsValidUser, function(req, res){
-        if (req.body.displayname){
-            var user = req.user;
-            user.displayname = req.body.displayname;
-            self.UserPersistence.updateUser(user, function(err){
-                if (err){
-                    res.status(500);
-                    res.send(err);
-                } else {
-                    res.status(200);
-                    res.end();
-                }
-            });
-        } else {
-            res.status(400);
-            res.send('Bad request : displayname missing or empty');
-        }
     });
 
     app.put('/users/:userid', auth.IsAdmin, function(req, res){
@@ -116,33 +143,6 @@ function applyApp(app) {
                 }
             });
 
-        }
-    });
-
-    app.put('/users/me/password', auth.IsValidUser, function(req, res){
-        if (req.body.oldPassword && req.body.newPassword){
-            var user = req.user;
-            // Check old password
-            self.UserPersistence.checkUser(user.login, req.body.oldPassword, function(err, user){
-                if (err || !user){
-                    res.status(401);
-                    res.send("Le mot de passe saisi est incorrect");
-                } else {
-                    user.password = req.body.newPassword;
-                    self.UserPersistence.updateUser(user, function(err, data){
-                        if (err){
-                            res.status(500);
-                            res.send(err);
-                        } else {
-                            res.status(200);
-                            res.end();
-                        }
-                    });
-                }
-            });
-        } else {
-            res.status(400);
-            res.send("Bad request");
         }
     });
     

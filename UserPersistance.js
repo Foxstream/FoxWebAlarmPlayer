@@ -37,9 +37,9 @@ function updateuser(user, cb){
                     passwordHash(user.password).hash(local_cb);
                 }
             },
-            function (computed_pass, local_cb) {
+            function (computedPass, local_cb){
                 self.db.run("UPDATE user SET displayname=?, password=?, type=? WHERE id=?",
-	                [user.displayname, computed_pass, user.type, user.id], local_cb);
+	                [user.displayname, computedPass, user.type, user.id], local_cb);
             }
         ], cb)
     }
@@ -63,9 +63,13 @@ function checkuser(username, password, cb) {
         },
         function (user, local_cb) {
             if (user){
-                passwordHash(password).verifyAgainst(user.password, function (err, verified){
-                    local_cb(err, verified, user)
-                });
+                if (user.password){
+                    passwordHash(password).verifyAgainst(user.password, function (err, verified){
+                        local_cb(err, verified, user)
+                    });
+                } else { // User should change password, don't bother checking passwd
+                    local_cb(null, true, user);
+                }
             }
             else {
                 local_cb(null, false, null);
