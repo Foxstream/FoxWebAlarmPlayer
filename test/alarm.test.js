@@ -17,7 +17,7 @@ describe('Testing alarm API', function(){
         agent.post('/login')
             .send({username: 'admin', password: 'admin'})
             .end(function(req, res){
-                agent.get('/controller/users/me')
+                agent.get('/users/me')
                     .end(function(req, res){
                         expect(res).to.have.status(200);
                         done();
