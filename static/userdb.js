@@ -2,57 +2,45 @@ app.factory('userdb', ['$http', '$rootScope', function($http, $rootScope){
     
     var obj = {};
         
-    obj.getusers = function (success, error) {
+    obj.getUsers = function (success, error) {
         $http.get('/users')
             .then(success, error);
     };
 
-    obj.resetpassword = function (id, callback){
-        $http.post("/controller/users/"+id+"/resetpassword")
-        .success(callback)
-        .error(function () { callback("Unable to reset password."); });
+    obj.getCurrentUser = function(success, error){
+        $http.get('/users/me')
+            .then(success, error);
     };
 
-    obj.deleteuser = function (id, callback) {
-        $http.delete("/controller/users/" + id)
-        .success(callback)
-        .error(function () { callback("Unable to delete user."); });
+    obj.updateUser = function(user, success, callback){
+        $http.put('/users/' + user.id, user)
+            .then(success, callback);
     };
 
-    obj.updateuser = function(user, callback){
-        $http.put("/controller/users", user)
-        .success(callback.bind(null, null))
-        .error(function () { callback("Impossible de mettre à jour l'utilisateur"); });
+    obj.updateDisplayName = function(newName, success, error){
+        $http.put('/users/me/displayname', {displayname: newName})
+            .then(success, error);
     };
 
-    obj.updatecurrentuser = function(user, callback){
-        $http.put("/controller/users/me", user)
-        .success(callback.bind(null, null))
-        .error(function () { callback("Impossible de mettre à jour l'utilisateur"); });
+    obj.changePassword = function(old, new, success, error){
+        $http.put('/users/me/password', {
+            oldPassword: old,
+            newPassword: new
+        }).then(success, error);
     };
 
-    obj.adduser = function (user, callback){
-        $http.post("/controller/users/new", user)
-        .success(callback.bind(null, null))
-        .error(function () { callback("Unable to add the user."); });
+    obj.createUser = function(user, success, error){
+        $http.put('/users/me/password', user).then(success, error);
     };
 
-    obj.getcurrentuser = function(callback){
-        $http.get('/controller/users/me')
-            .success(callback)
-            .error(function(){callback(null);});
+    obj.requestPasswordReset = function(userId, success, callback){
+        $http.post('/users/' + userId + '/passwordReset')
+            .then(success, callback);
     };
 
-    obj.changepassword = function(data, callback){
-        $http.post('/controller/users/me/password', data)
-            .success(callback)
-            .error(function(){callback(null);});
-    };
-
-    obj.changeemptypassword = function(data, callback){
-        $http.post('/controller/users/me/changeemptypassword', data)
-            .success(callback)
-            .error(function(){callback(null);});
+    obj.deleteUser = function(userId, success, callback){
+        $http.delete('/users/' + userId)
+            .then(success, callback);
     };
 
     return obj;

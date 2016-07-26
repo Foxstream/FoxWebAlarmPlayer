@@ -10,8 +10,13 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
     };
     $scope.tab = 'loginForm';
 
-    userdb.getcurrentuser(function(user){
-        $scope.user = user;
+    userdb.getcurrentuser(function success(response){
+        $scope.user = response.data;
+    }, function error(response){
+        $scope.logHttpError(response);
+        $scope.sendnotification("Impossible d'obtenir vos informations", 
+                false, 
+                1);
     });
 
     $scope.commituser = function(){

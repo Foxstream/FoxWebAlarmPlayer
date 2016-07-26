@@ -11,7 +11,6 @@
    
         userdb.getusers(function success(response){ 
             $scope.users = response.data;
-            console.debug('User list', $scope.users);
         }, function error(response){
             $scope.logHttpError(response);
             $scope.sendnotification("Impossible d'obtenir la liste des utilisateurs", 

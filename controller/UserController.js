@@ -10,8 +10,8 @@ function applyApp(app) {
                 res.send("Database error : ", err);            
             }
             else {
-                res.status(401);
-                res.send("Access denied");
+                res.status(200);
+                res.json(data);
             }
             res.end();
         });
