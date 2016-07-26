@@ -7,10 +7,11 @@ function applyApp(app) {
         self.UserPersistence.getUsers(function (err, data) {
             if (err){
                 res.status(500);
-                res.send(err);            
+                res.send("Database error : ", err);            
             }
             else {
-                res.json(data);
+                res.status(401);
+                res.send("Access denied");
             }
             res.end();
         });

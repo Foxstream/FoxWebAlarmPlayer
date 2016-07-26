@@ -9,9 +9,14 @@
             $window.location.href = '/accountsettings';
         };
    
-        userdb.getusers(function (data){ 
-            $scope.users = data; 
-            console.debug($scope.users)
+        userdb.getusers(function success(response){ 
+            $scope.users = response.data;
+            console.debug('User list', $scope.users);
+        }, function error(response){
+            $scope.logHttpError(response);
+            $scope.sendnotification("Impossible d'obtenir la liste des utilisateurs", 
+                    false, 
+                    1);
         });
 
         userdb.getcurrentuser(function(user){

@@ -40,6 +40,19 @@ app.run(function($rootScope, $timeout){
         $timeout.cancel($rootScope.notification.timeout);
         $rootScope.notification.timeout = undefined;
     };
+
+    /**
+      * Helper function to log http error messages
+    **/
+    $rootScope.logHttpError = function(httpResponse){
+        var errorMsg = "Error : " + 
+            httpResponse.config.method + " " + httpResponse.config.url
+        + "\nCode " + httpResponse.status 
+        + " - " + httpResponse.statusText
+        + " : " 
+        + httpResponse.data;
+        console.error(errorMsg);
+    }
 });
 
 

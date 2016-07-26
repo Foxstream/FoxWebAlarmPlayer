@@ -2,10 +2,9 @@ app.factory('userdb', ['$http', '$rootScope', function($http, $rootScope){
     
     var obj = {};
         
-    obj.getusers = function (callback) {
-        $http.get("/controller/users")
-        .success(callback)
-        .error(function () { callback(null); });
+    obj.getusers = function (success, error) {
+        $http.get('/users')
+            .then(success, error);
     };
 
     obj.resetpassword = function (id, callback){
