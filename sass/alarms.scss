@@ -41,6 +41,7 @@
 
         bottom: 0;
         height: 2.3em;
+        line-height: 2.3em;
 
         .glyphicon {
             padding: 2%;
@@ -71,6 +72,18 @@
         .glyphicon-sunglasses {
             right: 15px;
             @include transform(translate(0, -50%));
+        }
+
+        .osd-icon {
+            display: inline-block;
+            height: 88%;
+            margin-top: 2px;
+            float: right;
+            margin-right: 10px;
+        }
+
+        .osd-icon:hover {
+            cursor: pointer;
         }
 
         .progress-bar {
