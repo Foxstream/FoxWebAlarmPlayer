@@ -155,8 +155,9 @@ function applyApp(app) {
                     res.status(500);
                     res.send(err);
                 } else {
+                    user.id = this.lastID;
                     res.status(200);
-                    res.send();
+                    res.send(user);
                 }
             });  
         } else {

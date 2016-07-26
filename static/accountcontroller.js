@@ -10,66 +10,41 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
     };
     $scope.tab = 'loginForm';
 
-    userdb.getcurrentuser(function success(response){
-        $scope.user = response.data;
-    }, function error(response){
-        $scope.logHttpError(response);
-        $scope.sendnotification("Impossible d'obtenir vos informations", 
-                false, 
-                1);
+    userdb.getCurrentUser(function success(response){
+            $scope.user = response.data;
+        }, function error(response){
+            $scope.logHttpError(response);
+            $scope.sendnotification("Impossible d'obtenir vos informations.", 
+                    false,
+                    1);
     });
 
     $scope.commituser = function(){
-        userdb.updatecurrentuser($scope.user, function(err){
-            if (err){
-                $scope.sendnotification(err, true, 1);
-            } else {
-                $scope.sendnotification("Vos nom a été changé.", true, 1);
-                $scope.showMenu = true;
-            }
+        userdb.updateDisplayName($scope.user.displayname, function success(resopnse){
+            $scope.sendnotification("Votre nom a été changé", true, 1);
+        }, function error(response){
+            $scope.sendnotification("Une erreur s'est produite lors de l'enregistrement de vos informations", 
+                false, 1);
+            $scope.logHttpError(response);
         });
     };
 
-    // Called if shouldChangePassword == 1, i.e. user doesn't specify his old password
-    $scope.changeemptypassword = function(){
-        if ($scope.password.new === $scope.password.confirm){
-            var data = {
-                user: $scope.user,
-                newPassword: $scope.password.new
-            };
-            userdb.changeemptypassword(data, function(err){
-                if (err){
-                    console.debug(err);
-                    $scope.sendnotification(err, true, 1);
-                } else {
-                    $scope.sendnotification("Votre mot de passe a été changé", true, 1);
-                    $scope.showMenu = true;
-                }
-            });
-        } else {
-            $scope.sendnotification("Les champs ne correspondent pas", true, 1);
-        }      
-    };
 
-
-    // Called if user decides to change his passwords, i.e. old password needs to be specified
     $scope.changepassword = function(){
         if ($scope.password.new === $scope.password.confirm){
-            var data = {
-                user: $scope.user,
-                oldPassword: $scope.password.old,
-                newPassword: $scope.password.new
-            };
-            userdb.changepassword(data, function(err){
-                if (err){
-                    $scope.sendnotification(err, true, 1);
+            userdb.changePassword($scope.password.old, $scope.password.new, function success(response){
+                $scope.sendnotification("Votre mot de passe a été changé", true, 1);
+            }, function error(response){
+                if (response.status === 401){
+                    $scope.sendnotification("Le mot de passe saisi est incorrect", false, 1);
                 } else {
-                    $scope.sendnotification("Votre mot de passe a été changé", true, 1);
-                    $scope.showMenu = true;
+                    $scope.sendnotification("Une erreur s'est produite lors de l'enregistrement de votre nouveau mot de passe.",
+                            false, 1);
                 }
+                $scope.logHttpError(response);
             });
         } else {
-            $scope.sendnotification("Les champs ne correspondent pas", true, 1);
+            $scope.sendnotification("Les champs nouveau mot de passe et confirmation doivent correspondre", false, 1);
         }
     };
 

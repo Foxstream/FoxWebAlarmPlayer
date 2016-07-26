@@ -55,7 +55,7 @@ function applyToServer(app, userPers)
         failureRedirect: '/login'
     }));
     
-    app.post('/logout', function (req, res) {
+    app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
     });

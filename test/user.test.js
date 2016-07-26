@@ -226,7 +226,7 @@ describe("User API (admin)", function(){
     });
 
     after(function(done){
-        agent.post('/logout')
+        agent.get('/logout')
             .end(function(req, res){
                 done();
             });
@@ -299,7 +299,7 @@ describe("User API (other users)", function(){
                 .send({oldPassword: 'test', newPassword: 'newpasswd'})
                 .end(function(req, res){
                     expect(res).to.have.status(200);
-                    agent.post('/logout')
+                    agent.get('/logout')
                         .end(function(req, res){ 
                             agent.post('/login')
                                 .send({username: 'test', password: 'newpasswd'})
@@ -366,7 +366,7 @@ describe("Password reset", function(){
         agent.post('/users/2/resetPassword')
             .end(function(req, res){
                 expect(res).to.have.status(200);
-                agent.post('/logout')
+                agent.get('/logout')
                     .end(function(req, res){
                         expect(res).to.have.status(200);
                         agent.post('/login')

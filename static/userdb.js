@@ -22,19 +22,19 @@ app.factory('userdb', ['$http', '$rootScope', function($http, $rootScope){
             .then(success, error);
     };
 
-    obj.changePassword = function(old, new, success, error){
+    obj.changePassword = function(oldpasswd, newpasswd, success, error){
         $http.put('/users/me/password', {
-            oldPassword: old,
-            newPassword: new
+            oldPassword: oldpasswd,
+            newPassword: newpasswd
         }).then(success, error);
     };
 
     obj.createUser = function(user, success, error){
-        $http.put('/users/me/password', user).then(success, error);
+        $http.post('/users', user).then(success, error);
     };
 
     obj.requestPasswordReset = function(userId, success, callback){
-        $http.post('/users/' + userId + '/passwordReset')
+        $http.post('/users/' + userId + '/resetPassword')
             .then(success, callback);
     };
 

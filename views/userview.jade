@@ -50,7 +50,7 @@ block content
                     input(type="checkbox" ng-model="currentuser.type", ng-click="$event.stopPropagation()", ng-true-value="1", ng-false-value="0")
 
                 td
-                    button(ng-click='resetpassword(x.id)', ng-show='x.shouldChangePassword===0', title='Reset mot de passe', class="button-secondary") Reset mot de passe
+                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-disabled="x.shouldChangePassword===1") Reset mot de passe
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")
                     button(ng-click="deleteuser(x.id); $event.stopPropagation()", title="Supprimer l'utilisateur", class="icon button-primary", ng-show="newuser === undefined")
@@ -97,7 +97,7 @@ block content
                   .form-group
                         label(for="admin") Admin
                         input(type="checkbox", id="admin", class="form-control", ng-model="currentuser.type", ng-true-value="1", ng-false-value="0")
-                  button(ng-click='resetpassword(x.id)', class="button-secondary", ng-show="userform.$pristine") Reset mot de passe
+                  button(ng-click='resetpassword(x.id)', class="button-secondary", ng-show="userform.$pristine", ng-disabled="x.shouldChangePassword===1") Reset mot de passe
                   button(ng-click='deleteuser(x.id)', title="Supprimer l'utilisateur", class="button-primary", ng-show="userform.$pristine") Supprimer l'utilisateur
                   button(ng-click="edituser(x.id); userform.$setPristine()", title="Annuler", class="button-secondary", ng-show="userform.$dirty") Annuler
                   button(ng-click='commitcurrentuser()', title='Valider', class="button-primary", ng-show="userform.$dirty") Valider
