@@ -1,2 +1,0 @@
-D:\dev\AlarmPlayer\bin\Microsoft.NodejsTools.WebRole.dll
-D:\dev\AlarmPlayer\obj\Debug\AlarmPlayer.njsprojResolveAssemblyReference.cache
