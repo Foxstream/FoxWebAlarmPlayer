@@ -1,4 +1,4 @@
-﻿var app = angular.module('alarmviewer', ['ngTouch', 'ngAnimate', 'anguFixedHeaderTable']);
+﻿var app = angular.module('alarmviewer', ['ngTouch', 'ngAnimate']);
 
 // Notification system
 app.run(function($rootScope, $timeout){

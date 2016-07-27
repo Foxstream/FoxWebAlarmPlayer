@@ -15,7 +15,7 @@ app.factory('live', ['$http','$rootScope',
                 callback('data:image/jpeg;base64,' + image);
             })
             .error(function(err){ 
-                callback('/static/img/no_video.png');
+                callback('/img/no_video.png');
             });
         };
 
