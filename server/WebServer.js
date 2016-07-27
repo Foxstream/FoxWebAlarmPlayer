@@ -15,9 +15,9 @@ function buildWebServer(){
         cookie: { httpOnly: true }
     }));
     
-    app.use('/static', express.static(__dirname + '/static'));
+    app.use('/', express.static(__dirname + '/../client'));
     
-    app.set('views', __dirname + '/views')
+    app.set('views', __dirname + '/../client/views')
     app.set('view engine', 'jade')
     
     return app;
