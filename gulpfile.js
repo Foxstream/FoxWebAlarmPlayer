@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     ngAnnotate = require('gulp-ng-annotate'),
     del = require('del'),
     bowerFiles = require('bower-files')({ json: './client/bower.json' }),
-    gulpFilter = require('gulp-filter');
+    gulpFilter = require('gulp-filter'),
+    tar = require('gulp-tar'),
+    gzip = require('gulp-gzip');
 
 gulp.task('default', ['sass'], function(){
 
@@ -57,16 +59,14 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src('./client/views/*')
         .pipe(gulp.dest('./release/client/views'));
 
+    // Vendor
+    gulp.src('./client/vendor/**/*')
+        .pipe(gulp.dest('./release/client/vendor'));
+
     // Angular app and front-end dependencies
     gulp.src(['./client/app.min.js', './client/bower.json', './client/.bowerrc'])
         .pipe(gulp.dest('./release/client'));
 
-});
-
-gulp.task('publish-bower', function(){
-    gulp.src(bowerFiles.ext('js').files)
-        .pipe(concat('lib.min.js'))
-        .pipe(gulp.dest('./lib'));
 });
 
 gulp.task('watch', function(){
@@ -76,6 +76,13 @@ gulp.task('watch', function(){
         });
 });
 
+gulp.task('tar', function(){
+    gulp.src('./release/**/*')
+        .pipe(tar('release.tar'))
+        .pipe(gzip())
+        .pipe(gulp.dest('.'));
+})
+
 gulp.task('clean', function(){
-    return del(['./release']);
+    return del(['./release', './release.tar.gz']);
 });

@@ -1,3 +1,5 @@
 npm-debug.log
 data/
 tests/data/images/
+release/
+release.tar.gz
