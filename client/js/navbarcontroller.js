@@ -1,4 +1,4 @@
-app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarmevents', 'appstate', function($scope, $rootScope, $location, alarmevents, appstate) {
+app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarmevents', 'appstate', '$translate', function($scope, $rootScope, $location, alarmevents, appstate, $translate) {
 
     $scope.currentpage = $location.absUrl();
 

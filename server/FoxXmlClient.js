@@ -2,6 +2,7 @@ var util = require('util');
 var XmlClient=require('./XmlClient.js');
 var events = require('events');
 var _ = require("lodash");
+var log = require("./logger");
 
 //events sent: connected, connectionLost, configReceived, alarm, alarmImages, 
 

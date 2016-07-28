@@ -6,6 +6,8 @@ html
     script(src='/vendor/jquery/jquery.min.js')
     script(src='/vendor/bootstrap/js/bootstrap.min.js')
     script(src='/vendor/angular/angular.min.js')
+    script(src='/vendor/angular-translate/angular-translate.min.js')
+    script(src='/vendor/translate-loader/translate-loader.min.js')
     script(src='/vendor/angular-touch/angular-touch.min.js')
     script(src="/vendor/angular-animate/angular-animate.min.js")
     script(src='/app.min.js')
@@ -22,6 +24,10 @@ html
               p {{ notification.message }}
               i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
           h1(class='app-name') FoxWebAlarmPlayer
+
+      div(class="language")
+        button(ng-click="changeLanguage('fr')", class="button-secondary") Français
+        button(ng-click="changeLanguage('en')", class="button-secondary") English
 
       nav(role='navigation', ng-controller='navbarcontroller')
 

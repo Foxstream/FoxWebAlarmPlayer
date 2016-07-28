@@ -52,7 +52,7 @@ app.controller('tabcontroller', ["$scope", function($scope){
 }]);
 
 
-app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window) {
+app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', '$translate', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window, $translate) {
 
     $scope.device = device;
     // alert($window.innerHeight);

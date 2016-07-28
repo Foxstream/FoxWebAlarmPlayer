@@ -1,8 +1,20 @@
-﻿var app = angular.module('alarmviewer', ['ngTouch', 'ngAnimate']);
+﻿var app = angular.module('alarmviewer', ['ngTouch', 'ngAnimate', 'pascalprecht.translate']);
+
+app.config(function($translateProvider){
+    $translateProvider.useStaticFilesLoader({
+        prefix: '/locale/locale-',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('fr');
+});
 
 // Notification system
-app.run(function($rootScope, $timeout){
+app.run(function($rootScope, $timeout, $translate){
     
+    $rootScope.changeLanguage = function(langKey){
+        $translate.use(langKey);
+    };
+
     $rootScope.notification = {
         message: "",
         show: false,
@@ -110,7 +122,6 @@ app.directive('imagewithosd', function(){
             var canvas = elem[0];
             canvas.setAttribute('width', 800);
             canvas.setAttribute('height', 600);
-
 
             function repaintImage(){
 

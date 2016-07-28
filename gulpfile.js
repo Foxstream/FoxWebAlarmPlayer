@@ -67,10 +67,18 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src(['./client/app.min.js', './client/bower.json', './client/.bowerrc'])
         .pipe(gulp.dest('./release/client'));
 
+    // Locale
+    gulp.src(['./client/locale/*'])
+        .pipe(gulp.dest('./release/client/locale'));
+
 });
 
 gulp.task('watch', function(){
-    gulp.watch("./sass/*.scss", ['sass'])
+    gulp.watch("./client/sass/*.scss", ['sass'])
+        .on('change', function(event){
+            console.log('File ' + event.path + ' has been modified');
+        });
+    gulp.watch("./client/js/*.js", ['js'])
         .on('change', function(event){
             console.log('File ' + event.path + ' has been modified');
         });

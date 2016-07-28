@@ -1,0 +1,15 @@
+{
+    "ALARMS": "Alarmes",
+    "LIVE": "Direct",
+    "SETTINGS": "Paramètres",
+    "ACCOUNTSETTINGS": "Paramètres du compte",
+    "SERVEURS": "Serveurs",
+    "USERS": "Utilisateurs",
+    "LOGOUT": "Déconnexion",
+    "NEW_ALARMS": "Nouvelles alarmes",
+    "ALL_ALARMS": "Toutes les alarmes",
+    "DATE": "Date",
+    "CAMERA": "Caméra",
+    "SITE": "Site",
+    "NO_ALARM": "Aucune alarme"
+}

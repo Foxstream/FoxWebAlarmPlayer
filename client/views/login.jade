@@ -4,16 +4,21 @@ html
     meta(name="viewport",content="width=device-width, initial-scale=1")
     meta(name="mobile-web-app-capable", content="yes")
     script(src='/vendor/jquery/jquery.min.js')     
-    script(src='/vendor/bootstrap/js/bootstrap.min.js')     
+    script(src='/vendor/bootstrap/js/bootstrap.min.js')  
+    script(src='/vendor/angular/angular.min.js')
+    script(src='/vendor/angular-translate/angular-translate.min.js')
+    script(src='/vendor/angular-touch/angular-touch.min.js')
+    script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src='/app.min.js')
     link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css", media="screen")
     link(rel="stylesheet", href="/css/main.css", media="screen")
     title Login
 
-  body    
+  body(ng-app="alarmviewer")
 
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
-          img(src='/static/img/logo-foxstream.gif')
+          img(src='/img/logo-foxstream.gif')
           h1(class='app-name') FoxWebAlarmPlayer
 
     nav(role='navigation' class='nav-connection')
@@ -29,7 +34,7 @@ html
             span(class='app-name') FoxWebAlarmPlayer
 
 
-        div(class="form col-xs-12 col-md-6 col-md-offset-3 login")
+        div(class="form col-xs-12 col-md-6 col-md-offset-3 login", ng-controller="alarmcontroller")
             form(action='/login', method='POST')
                 .form-group
                     label(for='username') Login :
