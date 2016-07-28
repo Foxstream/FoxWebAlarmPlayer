@@ -1,9 +1,9 @@
 {
   "name": "AlarmPlayer",
-  "version": "0.0.1",
-  "description": "NodejsWebApp1",
-  "main": "server.js",
-  "author": "Ionel",
+  "version": "0.1.0",
+  "description": "FoxWebAlarmPlayer",
+  "main": "main.js",
+  "author": "Foxstream",
   "dependencies": {
     "angular": "^1.5.6",
     "async": "^1.2.1",
@@ -27,10 +27,13 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.5.6",
+    "bower-files": "^3.13.3",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-filter": "^4.0.0",
     "gulp-ng-annotate": "^2.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
