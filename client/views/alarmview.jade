@@ -13,9 +13,9 @@ block content
         div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
           ul
             li(ng-click="tab = 'notHandled'",
-              ng-class="{active: tab==='notHandled'}") {{ 'NEW_ALARMS' | translate }}
+              ng-class="{active: tab==='notHandled'}") {{ "NEW_ALARMS" | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms'}") {{ 'ALL_ALARMS' | translate }}
+              ng-class="{active: tab==='filteredAlarms'}") {{ "ALL_ALARMS" | translate }}
 
 
         
@@ -50,17 +50,17 @@ block content
                                 a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
-                                  | {{ 'DATE' | translate }}
+                                  | {{ "DATE" | translate }}
                               th(class='camera')
                                 a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
-                                  | {{ 'CAMERA' | translate }}
+                                  | {{ "CAMERA" | translate }}
                               th(class='site')
                                 a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
-                                  | {{ 'SITE' | translate }}
+                                  | {{ "SITE" | translate }}
                               th(class='handle')
                     div(class='table-container alarmtable ')
                       table
@@ -68,7 +68,7 @@ block content
                               tr
                                 td(colspan="6")
                               tr(ng-show='getNotHandledAlarms().length === 0') 
-                                td(colspan="6") {{ 'NO_ALARM' | translate }}
+                                td(colspan="6") {{ "NO_ALARM" | translate }}
                               tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: sortType:sortReverse | limitTo: limit as filtered',
                               ng-click='playalarm(x.id)'
                               id='alarm-{{ ::x.id }}'

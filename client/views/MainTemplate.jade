@@ -25,10 +25,6 @@ html
               i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
           h1(class='app-name') FoxWebAlarmPlayer
 
-      div(class="language")
-        button(ng-click="changeLanguage('fr')", class="button-secondary") Français
-        button(ng-click="changeLanguage('en')", class="button-secondary") English
-
       nav(role='navigation', ng-controller='navbarcontroller')
 
           div(class="notifications hidden-md hidden-lg notif-animation", ng-show="notification.show")
