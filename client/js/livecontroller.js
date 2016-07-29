@@ -22,7 +22,7 @@ app.factory('live', ['$http','$rootScope',
         return obj;
 }]);
 
-app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", "$interval", function($scope, $rootScope, $window, live, device, $interval) {
+app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "device", "$interval", "$translate", function($scope, $rootScope, $window, live, device, $interval, $translate) {
     
     $scope.selectedcamera = undefined;
 

@@ -1,7 +1,7 @@
 ﻿extends ./MainTemplate.jade
 
 block title
-  title Utilisateurs
+  title {{ 'USERS' | translate }}
 
 block content
 
@@ -11,14 +11,14 @@ block content
 
         //- Desktop buttons
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') Nouvel utilisateur
+            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') {{ 'NEW_USER' | translate }}
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
             button(class="button-secondary back" ng-click='back()', ng-show="currentUser === undefined")
-              span Paramètres
-            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined') Ajouter
+              span {{ 'SETTINGS' | translate }}
+            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined') {{ 'ADD' | translate }}
 
         div(class="table-container hidden-xs hidden-sm")
           table
@@ -29,10 +29,10 @@ block content
             col(style="width: 16%")
             thead
               tr
-                th Login
-                th Nom affiché
-                th Admin
-                th Reset mot de passe
+                th {{ 'USERNAME' | translate }}
+                th {{ 'DISPLAYNAME' | translate }}
+                th {{ 'ADMIN' | translate }}
+                th {{ 'RESET_PASSWORD' | translate }}
                 th
             tbody
               tr(ng-repeat='x in users', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)", ng-show="x.id !== user.id")
@@ -50,7 +50,7 @@ block content
                     input(type="checkbox" ng-model="currentuser.type", ng-click="$event.stopPropagation()", ng-true-value="1", ng-false-value="0")
 
                 td
-                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-disabled="x.shouldChangePassword===1") Reset mot de passe
+                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-disabled="x.shouldChangePassword===1") {{ 'RESET_PASSWORD' | translate }}
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")
                     button(ng-click="deleteuser(x.id); $event.stopPropagation()", title="Supprimer l'utilisateur", class="icon button-primary", ng-show="newuser === undefined")
@@ -87,36 +87,36 @@ block content
               div(id='collapse{{ $index }}', class='collapse')
                 form(name="userform", ng-show="currentuser !== undefined && currentuser.id === x.id")
                   .form-group
-                    label(for="login") Login
+                    label(for="login") {{ 'USERNAME' | translate }}
                     input(type="text", class="form-control",
                       id="login", ng-model="currentuser.login")
                   .form-group
-                    label(for="displayname") Nom affiché
+                    label(for="displayname") {{ 'DISPLAYNAME' | translate }}
                     input(type="text", class="form-control",
                       id="displayname", ng-model=" currentuser.displayname")
                   .form-group
-                        label(for="admin") Admin
+                        label(for="admin") {{ 'ADMIN' | translate }}
                         input(type="checkbox", id="admin", class="form-control", ng-model="currentuser.type", ng-true-value="1", ng-false-value="0")
-                  button(ng-click='resetpassword(x.id)', class="button-secondary", ng-show="userform.$pristine", ng-disabled="x.shouldChangePassword===1") Reset mot de passe
-                  button(ng-click='deleteuser(x.id)', title="Supprimer l'utilisateur", class="button-primary", ng-show="userform.$pristine") Supprimer l'utilisateur
-                  button(ng-click="edituser(x.id); userform.$setPristine()", title="Annuler", class="button-secondary", ng-show="userform.$dirty") Annuler
-                  button(ng-click='commitcurrentuser()', title='Valider', class="button-primary", ng-show="userform.$dirty") Valider
+                  button(ng-click='resetpassword(x.id)', class="button-secondary", ng-show="userform.$pristine", ng-disabled="x.shouldChangePassword===1") {{ 'RESET_PASSWORD' | translate }}
+                  button(ng-click='deleteuser(x.id)', title="Supprimer l'utilisateur", class="button-primary", ng-show="userform.$pristine") {{ 'DELETE_USER' | translate }}
+                  button(ng-click="edituser(x.id); userform.$setPristine()", title="Annuler", class="button-secondary", ng-show="userform.$dirty") {{ 'CANCEL' | translate }}
+                  button(ng-click='commitcurrentuser()', title='Valider', class="button-primary", ng-show="userform.$dirty") {{ 'SAVE' | translate }}
                 
 
         div(ng-show='newuser !== undefined', class="hidden-md hidden-lg")
-            .h5(class="block-header") Nouvel utilisateur
+            .h5(class="block-header") {{ 'NEW_USER' | translate }}
             form
               .form-group
-                  label(for="login") Login
+                  label(for="login") {{ 'USERNAME' | translate }}
                   input(type='text', id='login', ng-model='newuser.login', class="form-control")
               .form-group
-                  label(for="displayname") Nom affiché
+                  label(for="displayname") {{ 'DISPLAYNAME' | translate }}
                   input(type='text', id='displayname', ng-model='newuser.displayname', class="form-control")
               .form-group
-                  label(for="admin") admin
+                  label(for="admin") {{ 'ADMIN' | translate }}
                   input(type='checkbox', id='admin', ng-model='newuser.type', class="form-control", ng-true-value="1", ng-false-value="0")
-              button(ng-click="newuser = undefined", title="Annuler", class="button-secondary") Annuler
-              button(ng-click='commitnewuser()', title='Valider', class="button-primary") Valider
+              button(ng-click="newuser = undefined", title="Annuler", class="button-secondary") {{ 'CANCEL' | translate }}
+              button(ng-click='commitnewuser()', title='Valider', class="button-primary") {{ 'SAVE' | translate }}
 
   script(src='static/userdb.js')
   script(src='static/userviewer.js')

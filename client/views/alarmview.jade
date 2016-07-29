@@ -1,7 +1,7 @@
 extends ./MainTemplate.jade
 
 block title
-  title Alarmes
+  title FoxWebAlarmPlayer
 
 block content
   div(class='container-fluid content')
@@ -13,9 +13,9 @@ block content
         div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
           ul
             li(ng-click="tab = 'notHandled'",
-              ng-class="{active: tab==='notHandled'}") {{ "NEW_ALARMS" | translate }}
+              ng-class="{active: tab==='notHandled'}") {{ 'NEW_ALARMS' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms'}") {{ "ALL_ALARMS" | translate }}
+              ng-class="{active: tab==='filteredAlarms'}") {{ 'ALL_ALARMS' | translate }}
 
 
         
@@ -34,9 +34,9 @@ block content
                     div(class='actions')
                         button(class='button-secondary',
                                 ng-click='handleSelected()',
-                                ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                                ng-show='selected.length > 0') {{ 'HANDLE' | translate }} {{ selected.length }} {{ 'ALARM' | translate }}{{ (selected.length > 1)?'s':'' }}
                         button(class='button-primary',
-                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
+                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
 
                     div(class='table-container alarmtable fixed-header')
 
@@ -82,11 +82,12 @@ block content
                                 td(class='camera') {{ ::x.cameraname }}
                                 td(class='site') {{ ::x.sitename }}
                                 td(class='handle')
-                                  button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") Acquitter
-                                  span(ng-show="x.nbimages === 0") Chargement...
+                                  button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") {{ 'HANDLE' | translate }}
+                                  span(ng-show="x.nbimages === 0") {{ 'LOADING' | translate }}...
                               tr(ng-if="limit < getNotHandledAlarms().length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
+                                    button(ng-click="showmorealarms()", class="button-primary")
+                                    {{ 'SHOW_MORE' }}
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
@@ -98,14 +99,15 @@ block content
                 div(class='actions')
                     button(class='button-primary',
                             ng-click='handleall()',
-                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
+                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') {{ 'HANDLE_ALL' | translate }}
+
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='currentalarm = undefined')
                         span Liste
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
-                        ng-click='markcurrentashandled($event)') Acquitter
+                        ng-click='markcurrentashandled($event)') {{ 'HANDLE' | translate }}
 
 
                 spinner(ng-show="loading")
@@ -117,7 +119,7 @@ block content
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                           span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header",ng-show="getNotHandledAlarms().length - filtered.length > 0") 
-                          | Afficher {{ (getNotHandledAlarms().length - filtered.length > limitStep) ? limitStep : (getNotHandledAlarms().length - filtered.length) }} alarme{{ (getNotHandledAlarms().length - filtered.length > 1) ? 's' : '' }} supplémentaire{{ (getNotHandledAlarms().length - filtered.length > 1) ? 's' : '' }} 
+                          {{ 'SHOW_MORE' | translate }}
                           span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
@@ -138,17 +140,17 @@ block content
                     div(class='actions')
                         button(class='button-secondary',
                                 ng-click='handleSelected()',
-                                ng-show='selected.length > 0') Acquitter {{ selected.length }} alarme{{ (selected.length > 1)?'s':'' }}
+                                ng-show='selected.length > 0') {{ 'HANDLE' | translate }} {{ selected.length }} {{ 'ALARM' | translate }}{{ (selected.length > 1)?'s':'' }}
                         button(class='button-primary',
-                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") Tout acquitter
+                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
 
                     div(class="filter")
                       form(class="form-inline", ng-submit='applyfilters()')
                           input(type="date", id="datefield", ng-model="filters.date")
-                          label Sites :
+                          label {{ 'SITES' | translate }} :
                           select(ng-model='filters.sitename', ng-options="s for s in sites")
                           span(ng-show="filters.sitename !== 'Tous'")
-                            label Caméras :
+                            label {{ 'CAMERAS' | translate }} :
                             select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
                           button(type='submit', class='button-primary icon')  
                             span(class="glyphicon glyphicon-search")
@@ -165,17 +167,17 @@ block content
                                   a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
-                                    | Date
+                                    | {{ 'DATE' | translate }}
                                 th(class='camera')
                                   a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
-                                    | Caméra
+                                    | {{ 'CAMERA' | translate }}
                                 th(class='site')
                                   a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
-                                    | Site
+                                    | {{ 'SITE' | translate }}
                                 th(class='handle')
                     div(class='table-container alarmtable')
                         table
@@ -183,7 +185,7 @@ block content
                                 tr
                                   td(colspan="6")
                                 tr(ng-show='alarms.length === 0') 
-                                  td(colspan="6") Aucune alarme
+                                  td(colspan="6") {{ 'NO_ALARM' | translate }}
                                 tr(ng-repeat='x in alarms | orderBy: sortType:sortReverse | limitTo: limit as filtered',
                                 ng-click='playalarm(x.id)'
                                 id='alarm-{{ ::x.id }}'
@@ -197,11 +199,11 @@ block content
                                   td(class='camera') {{ ::x.cameraname }}
                                   td(class='site') {{ ::x.sitename }}
                                   td(class='handle')
-                                    button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") Acquitter
-                                    span(ng-show="x.handled") Acquittée
+                                    button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") {{ 'HANDLE' | translate }}
+                                    span(ng-show="x.handled") {{ 'HANDLED' | translate }}
                                 tr(ng-if="limit < alarms.length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary") Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} autre{{ (alarms.length - filtered.length > 1) ? 's' : '' }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
+                                    button(ng-click="showmorealarms()", class="button-primary"){{ 'SHOW_MORE' | translate }}
 
 
                 //- Video player
@@ -214,35 +216,35 @@ block content
                 div(class='actions')
                     button(class='button-secondary',
                             ng-click='showfilters = true',
-                            ng-show='currentalarm === undefined') Filtrer
+                            ng-show='currentalarm === undefined') {{ 'FILTER' | translate }}
                     button(class='button-primary',
                             ng-click='handleall()',
-                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') Tout acquitter
+                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') {{ 'HANDLE_ALL' | translate }}
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='currentalarm = undefined')
                         span Liste
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
-                        ng-click='markcurrentashandled($event)') Acquitter
+                        ng-click='markcurrentashandled($event)') {{ 'HANDLE' | translate }}
 
                 div(class="filter", ng-show="showfilters && currentalarm === undefined")
 
                     //- h4 Filtres
                     form(ng-submit='applyfilters()', name='filtermobileform')
                       .form-group
-                        label(for="datefield") Date
+                        label(for="datefield") {{ 'DATE' | translate }}
                         input(type="date", class="form-control", id="datefield", ng-model="filters.date")
                       .form-group
-                        label(for="site") Sites :
+                        label(for="site") {{ 'SITES' | translate }} :
                         select(ng-model='filters.sitename', class="form-control", ng-options="s for s in sites", name="site", id="site")
                             option(value="test", label="yo", selected="selected")
                       .form-group(ng-show="filters.sitename !== 'Tous'")
-                          label(for="camera") Caméras :
+                          label(for="camera") {{ 'CAMERAS' | translate }} :
                           select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
-                      button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') Fermer
-                      button(class='button-secondary', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') Annuler
-                      button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') Appliquer
+                      button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') {{ 'CLOSE' | translate }}
+                      button(class='button-secondary', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') {{ 'CANCEL' | translate }}
+                      button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') {{ 'APPLY' | translate }}
 
 
 
@@ -251,12 +253,12 @@ block content
 
                 div(class="main-element" ng-show="currentalarm === undefined")
                     ul
-                        li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
+                        li(class="block-header", ng-show="alarms.length === 0") {{ 'NO_ALARM' | translate }}
                         li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                           span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header", ng-show="alarms.length - filtered.length > 0") 
-                          | Afficher {{ (alarms.length - filtered.length > limitStep) ? limitStep : (alarms.length - filtered.length) }} alarme{{ (alarms.length - filtered.length > 1) ? 's' : '' }} supplémentaire{{ (alarms.length - filtered.length > 1) ? 's' : '' }}
+                          {{ 'SHOW_MORE' | translate }}
                           span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')

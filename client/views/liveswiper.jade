@@ -3,10 +3,10 @@ div(class="swiper" ng-swipe-left='shownextcamera()' ng-swipe-right='showprevious
         div(ng-repeat="x in cameras[currentsite]" class="slide" id="#slide{{ x.id }}")
             liveplayer(imgwidth=300, imgHeight=400, camera="selectedcamera")
             ul
-                li Direct
+                li {{ 'LIVE' | translate }}
                 li 
-                    b Caméra : 
+                    b {{ 'CAMERA' | translate }} : 
                     {{ x.name }}
                 li  
-                    b Site : 
+                    b {{ 'SITE' | translate }} : 
                     {{ currentsite }}

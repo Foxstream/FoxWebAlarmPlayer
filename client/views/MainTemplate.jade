@@ -36,36 +36,35 @@ html
                   a(href="/alarmview"
                     class='nav-link') 
                       i(class='glyphicon glyphicon-alert') 
-                      span(class='link') Alarmes
+                      span(class='link') {{ 'ALARMS' | translate }}
                   span(class="navbar-notif", ng-show="alarmcounter > 0") {{ alarmcounter < 10 ? alarmcounter : '!' }}
               li(ng-class='{ active: isActive("live") }')
                   a(href="/live") 
                     i(class='glyphicon glyphicon-play') 
-                    span(class='link') Direct
+                    span(class='link') {{ 'LIVE' | translate }}
               li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") }',
                   ng-mouseover='showsubmenu = true',
                   ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
                   a(href='/accountsettings')
                       i(class='glyphicon glyphicon-cog')
-                      span(class='link') Paramètres
+                      span(class='link') {{ 'SETTINGS' | translate }}
                       span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
 
                   div(class="submenu" ng-show='showsubmenu')
                     ul
                       li(ng-class='{ active: isActive("accountsettings") }')
                         a(href='/accountsettings')
-                          span(class='link') Paramètres du compte
+                          span(class='link') {{ 'ACCOUNTSETTINGS' | translate }}
                       if user.type == 1
                           li(ng-class='{ active: isActive("serverview") }')
                             a(href='/serverview')
-                              span(class='link') Serveurs
+                              span(class='link') {{ 'SERVERS' | translate }}
                               span(class="navbar-notif", ng-show="getDisconnectedServers().length > 0") !
                           li(ng-class='{ active: isActive("userview") }')
                             a(href='/userview')
-                              span(class='link') Utilisateurs
-                      li
+                              span(class='link') {{ 'USERS' | translate }}
                         a(href='/logout')
-                          span(class='link') Déconnexion
+                          span(class='link') {{ 'LOGOUT' | translate }}
 
 
       div(class="page-content")

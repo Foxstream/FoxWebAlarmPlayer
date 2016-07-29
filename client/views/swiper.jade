@@ -6,8 +6,8 @@ div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousa
                 li
                     {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 
-                    b Caméra : 
+                    b {{ 'CAMERA' | translate }} : 
                     {{ currentalarm.cameraname }}
                 li  
-                    b Site : 
+                    b {{ 'SITE' | translate }} : 
                     {{ currentalarm.sitename }}

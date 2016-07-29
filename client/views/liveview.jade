@@ -1,7 +1,7 @@
 extends ./MainTemplate.jade
 
 block title
-  title Vidéo en direct
+  title {{ 'LIVE' | translate }}
 
 block content
   div(class='container-fluid content')
@@ -14,7 +14,7 @@ block content
                     ng-click='selectedcamera = undefined',
                     ng-show='selectedcamera !== undefined')
                     span(class="glyphicon glyphicon-chevron-left") 
-                    span Retour
+                    span {{ 'BACK' | translate }}
         
 
         div(class='col-xs-12 main-element', id='camera-list', ng-show="selectedcamera === undefined")

@@ -5,7 +5,7 @@ let jsonfile = require('jsonfile');
 let translationKeys = [];
 
 let extractKeysFromContent = (content) => {
-    var regexp = new RegExp("{{.+translate }}", 'g');
+    var regexp = new RegExp("{{ [A-Z_'\| ]+translate }}", 'g');
     do {
         match = regexp.exec(content);
         if (match){

@@ -5,12 +5,12 @@ app.config(function($translateProvider){
         prefix: '/locale/locale-',
         suffix: '.json'
     });
-    $translateProvider.preferredLanguage('fr');
+    $translateProvider.preferredLanguage('en');
 });
 
 // Notification system
 app.run(function($rootScope, $timeout, $translate){
-    
+
     $rootScope.changeLanguage = function(langKey){
         $translate.use(langKey);
     };

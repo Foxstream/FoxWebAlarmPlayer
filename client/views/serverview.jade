@@ -1,7 +1,7 @@
 extends ./MainTemplate.jade
 
 block title
-  title Serveurs
+  title {{ 'SERVERS' | translate }}
 
 block content
 
@@ -11,14 +11,14 @@ block content
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined && currentserver === undefined') Nouveau serveur
+            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined && currentserver === undefined') {{ 'NEW_SERVER' | translate }}
 
          //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
             button(class="button-secondary back", ng-click='back()')
-                span Paramètres
-            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined') Ajouter
+                span {{ 'SETTINGS' | translate }}
+            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined') {{ 'ADD' | translate }}
 
         div(class="table-container hidden-xs hidden-sm")
             table
@@ -30,11 +30,11 @@ block content
                 col(style="width: 5%")
                 col(style="width: 10%")
                 thead
-                    th Adresse
-                    th Port
-                    th Login
-                    th Mot de passe
-                    th Description
+                    th {{ 'ADDRESS' | translate }}
+                    th {{ 'PORT' | translate }}
+                    th {{ 'USERNAME' | translate }}
+                    th {{ 'PASSWORD' | translate }}
+                    th {{ 'DESCRIPTION' | translate }}
                     th 
                     th
                 tbody
@@ -104,54 +104,54 @@ block content
                 div(id='collapse{{ $index }}', class='collapse')
                     form(name="serverform", ng-show="currentserver !== undefined && currentserver.id === x.id")
                         .form-group
-                            label(for="address") Adresse
+                            label(for="address") {{ 'ADDRESS' | translate }}
                             input(type="text", class="form-control",
                               id="address", ng-model="currentserver.address")
                         .form-group
-                            label(for="port") Port
+                            label(for="port") {{ 'PORT' | translate }}
                             input(type="text", class="form-control",
                               id="port", ng-model="currentserver.port")
                         .form-group
-                            label(for="username") Login
+                            label(for="username") {{ 'USERNAME' | translate }}
                             input(type="text", class="form-control",
                               id="username", ng-model="currentserver.username")
                         .form-group
-                            label(for="username") Mot de passe
+                            label(for="username") {{ 'PASSWORD' | translate }}
                             input(type="text", class="form-control",
                               id="password", ng-model="currentserver.password")
                         .form-group
-                            label(for="description") Description
+                            label(for="description") {{ 'DESCRIPTION' | translate }}
                             input(type="text", class="form-control",
                               id="description", ng-model="currentserver.description")
-                        button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serverform.$pristine") Supprimer le serveur
-                        button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") Annuler
-                        button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") Valider
+                        button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serverform.$pristine") {{ 'DELETE_SERVER' | translate }}
+                        button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
+                        button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") {{ 'SAVE' | translate }}
              
          div(ng-show="newserver !== undefined", class="hidden-md hidden-lg")
-            h5(class="block-header") Nouveau serveur
+            h5(class="block-header") {{ 'NEW_SERVER' | translate }}
             form
                 .form-group
-                    label(for="address") Adresse
+                    label(for="address") {{ 'ADDRESS' | translate }}
                     input(type="text", class="form-control",
                       id="address", ng-model="newserver.address")
                 .form-group
-                    label(for="port") Port
+                    label(for="port") {{ 'PORT' | translate }}
                     input(type="text", class="form-control",
                       id="port", ng-model="newserver.port")
                 .form-group
-                    label(for="username") Login
+                    label(for="username") {{ 'USERNAME' | translate }}
                     input(type="text", class="form-control",
                       id="username", ng-model="newserver.username")
                 .form-group
-                    label(for="username") Mot de passe
+                    label(for="username") {{ 'PASSWORD' | translate }}
                     input(type="text", class="form-control",
                       id="password", ng-model="newserver.password")
                 .form-group
-                    label(for="description") Description
+                    label(for="description") {{ 'DESCRIPTION' | translate }}
                     input(type="text", class="form-control",
                       id="description", ng-model="newserver.description")
-                button(ng-click="newserver = undefined", title="Annuler", class="button-secondary") Annuler
-                button(ng-click='commitnewserver()', title='Valider', class="button-primary") Valider
+                button(ng-click="newserver = undefined", title="Annuler", class="button-secondary") {{ 'CANCEL' | translate }}
+                button(ng-click='commitnewserver()', title='Valider', class="button-primary") {{ 'SAVE' | translate }}
 
 
   script(src='static/EventSource4IE.js')
