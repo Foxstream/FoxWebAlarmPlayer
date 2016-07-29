@@ -48,6 +48,31 @@ let updateJsonFiles = (keys) => {
     });
 };
 
+let cleanJsonFiles = (keys) => {
+    // Get JSON objects
+    fs.readdir('./locale', (err, filenames) => {
+        if (err){
+            console.log(err);
+            return;
+        }
+        filenames.forEach((localeFile) => {
+            jsonfile.readFile('./locale/' + localeFile, function(err, obj){
+                // Check if the detected keys are in the file
+                for (let key in obj){
+                    if (translationKeys.indexOf(key) === -1){
+                        delete obj[key];
+                    }
+                }
+                jsonfile.writeFile('./locale/' + localeFile, obj, {spaces: 2}, (err) => {
+                    if (err){
+                        console.error(err);
+                    }
+                })
+            });
+        });
+    }); 
+};
+
 
 fs.readdir('./views', (err, filenames) => {
     if (err){
@@ -64,7 +89,13 @@ fs.readdir('./views', (err, filenames) => {
             callback();
         });
     }, () => {
-        updateJsonFiles(translationKeys);
+        if (process.argv[2] && process.argv[2] === 'clean'){
+            console.log('Cleaning locale files...');
+            cleanJsonFiles(translationKeys);
+        } else {
+            console.log('Updating locale files...');
+            updateJsonFiles(translationKeys);
+        }
     });
 });
 
