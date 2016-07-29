@@ -86,8 +86,7 @@ block content
                                   span(ng-show="x.nbimages === 0") {{ 'LOADING' | translate }}...
                               tr(ng-if="limit < getNotHandledAlarms().length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary")
-                                    {{ 'SHOW_MORE' }}
+                                    button(ng-click="showmorealarms()", class="button-primary") {{ 'SHOW_MORE' | translate}}
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')

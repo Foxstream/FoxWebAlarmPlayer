@@ -5,7 +5,7 @@ app.config(function($translateProvider){
         prefix: '/locale/locale-',
         suffix: '.json'
     });
-    $translateProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('fr');
 });
 
 // Notification system
@@ -14,6 +14,10 @@ app.run(function($rootScope, $timeout, $translate){
     $rootScope.changeLanguage = function(langKey){
         $translate.use(langKey);
     };
+
+    $rootScope.getCurrentLanguage = function(){
+        return $translate.use();
+    }
 
     $rootScope.notification = {
         message: "",

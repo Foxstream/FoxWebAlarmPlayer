@@ -26,7 +26,6 @@ html
           h1(class='app-name') FoxWebAlarmPlayer
 
       nav(role='navigation', ng-controller='navbarcontroller')
-
           div(class="notifications hidden-md hidden-lg notif-animation", ng-show="notification.show")
             p {{ notification.message }}
             i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
@@ -63,8 +62,21 @@ html
                           li(ng-class='{ active: isActive("userview") }')
                             a(href='/userview')
                               span(class='link') {{ 'USERS' | translate }}
-                        a(href='/logout')
-                          span(class='link') {{ 'LOGOUT' | translate }}
+                          li
+                            a(href='/logout')
+                              span(class='link') {{ 'LOGOUT' | translate }}
+
+              li(ng-mouseover='showLanguagePicker = true',
+                  ng-mouseleave='showLanguagePicker = false',
+                  class="hidden-xs hidden-sm")
+                  a(href="#")
+                      span(class='link') {{ getCurrentLanguage() | uppercase }}
+
+                  div(class="submenu language" ng-show='showLanguagePicker')
+                    ul
+                      li(ng-repeat="l in languages", ng-if="l !== getCurrentLanguage()")
+                        a(href='#', ng-click="changeLanguage(l)")
+                          span(class='link') {{ l | uppercase }}
 
 
       div(class="page-content")
