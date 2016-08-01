@@ -3,3 +3,5 @@ data/
 tests/data/images/
 release/
 release.tar.gz
+*.log
+*.log.old

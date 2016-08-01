@@ -5,7 +5,7 @@ var through=require("through");
 var events = require('events');
 var util = require("util");
 var _ = require("lodash");
-var log = require('./logger');
+var log = require('./logger')('./alarmplayer.log', 0);
 
 //events: unexpectedData, disconnected
 function connect(successCallback)
