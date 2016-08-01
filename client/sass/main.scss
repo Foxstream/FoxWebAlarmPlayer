@@ -188,6 +188,19 @@ canvas {
 }
 
 
+.logviewer {
+    width: 70%;
+    margin: auto;
+    height: 100vh
+        - $header-height
+        - $navbar-desktop-height
+        - 10vh;
+    overflow: scroll;
+    border: solid black 1px;
+    padding: 1%;
+    white-space: pre;
+}
+
 
 /*
 **************************************************************** Imports

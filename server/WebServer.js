@@ -1,7 +1,9 @@
-var express = require('express')
-var bodyParser = require('body-parser')
+var express = require('express');
+var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-var auth = require("./Authenticator.js")
+var auth = require('./Authenticator.js');
+var fs = require('fs');
+var config = require('config');
 
 
 function buildWebServer(){    
@@ -72,6 +74,10 @@ function applyRoutes(app) {
                 res.send(data);
             }
         })
+    });
+
+    app.get('/logview', auth.IsAdmin, function(req, res){
+        res.render('logview', { user: req.user });
     });
 
 

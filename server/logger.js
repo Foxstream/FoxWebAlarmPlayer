@@ -69,7 +69,7 @@ var logger = {
         }
     },
 
-    warning: function(msg){
+    warn: function(msg){
         if (logLevel <= 3){     
             var logMessage = printDate()
                 + " warning : "

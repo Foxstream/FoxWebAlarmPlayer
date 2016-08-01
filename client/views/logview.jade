@@ -1,0 +1,9 @@
+extends ./MainTemplate.jade
+
+block title
+  title FoxWebAlarmPlayer
+
+block content
+
+  div(class='container-fluid', ng-app="alarmviewer", ng-controller="logcontroller")
+    logviewer(log='log')
