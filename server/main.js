@@ -18,7 +18,7 @@ var fs = require('fs');
 
 var config = require('config');
 
-var log = require('./logger')('./alarmplayer.log', 0);
+var log = require('./logger');
 
 var _ = require("lodash");
 var async = require("async");

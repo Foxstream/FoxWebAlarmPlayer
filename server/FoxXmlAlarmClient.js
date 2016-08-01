@@ -1,7 +1,7 @@
 var events = require('events');
 var _ = require("lodash");
 var util = require('util');
-var log = require('./logger')('./alarmplayer.log', 0)
+var log = require('./logger');
 
 //emit alarmimages(data)
 
