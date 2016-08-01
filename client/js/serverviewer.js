@@ -38,6 +38,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.currentserver = undefined;
         $scope.servers = [];
         $scope.device = device;
+        $scope.selected = undefined;
 
         $scope.back = function(){
             $window.location.href = '/accountsettings';

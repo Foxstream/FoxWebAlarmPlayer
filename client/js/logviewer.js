@@ -5,18 +5,31 @@ app.factory('logdb', ['$http', function($http){
     obj.getLog = function(success, error){
         $http.get('/log')
             .then(success, error);
-    }
+    };
+
+    obj.getOldLog = function(success, error){
+        $http.get('/log/old')
+            .then(success, error);
+    };
 
     return obj;
 
 }]);
 
-app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', function($scope, $rootScope, logdb){
+app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', '$translate', function($scope, $rootScope, logdb, $translate){
 
     $scope.log = '';
 
     logdb.getLog(function success(response){
         $scope.log = response.data;
+    }, function error(response){
+        $scope.sendnotification("Impossible de récupérer les fichiers log.", false, 1);
+        $scope.logHttpError(response);
+    });
+
+    $scope.oldLog = false;
+    logdb.getOldLog(function success(response){
+        $scope.oldLog = response.data;
     }, function error(response){
         $scope.sendnotification("Impossible de récupérer les fichiers log.", false, 1);
         $scope.logHttpError(response);
@@ -28,19 +41,20 @@ app.directive('logviewer', function(){
     return {
         restrict: 'E',
         replace: true,
-        scope: {log: '='},
-        template: '<div class="logviewer">{{ log }}</div>',
+        scope: {log: '=', oldlog: '='},
+        templateUrl: '/logviewer',
         link: function(scope, elem, attrs){
-            console.log(elem.scrollTop());
+            scope.showOldLog = false;
             scope.$watch('log', function(){
-                // This syntax works for some reason
+                // This seems to be the right way to do it because... reasons
                 elem.scrollTop(elem[0].scrollHeight);
+            });
+            scope.$watch('oldLog', function(){
+                console.log(scope.oldLog);
             });
         }
     }
 });
-
-
 
 
 

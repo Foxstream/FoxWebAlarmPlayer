@@ -96,7 +96,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         restrict: 'E',
         replace: true,
         templateUrl: '/liveplayer',
-        scope:{camera: "=", },
+        scope:{camera: "="},
         link: function(scope, elem, attrs){
             scope.playing = undefined;
             scope.fullscreen = false;
@@ -143,7 +143,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
             scope.togglefullscreen = function(){
                 if (!scope.fullscreen){
                     scope.fullscreen = true;
-
+                    scope.camera.selected = true;
                     // Reset elements
                     // var fullscreenElement = elem.parent().find('.fullscreen');
                     // if (fullscreenElement){

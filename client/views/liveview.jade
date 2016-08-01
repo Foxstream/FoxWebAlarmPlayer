@@ -15,7 +15,6 @@ block content
                     ng-show='selectedcamera !== undefined')
                     span(class="glyphicon glyphicon-chevron-left") 
                     span {{ 'BACK' | translate }}
-        
 
         div(class='col-xs-12 main-element', id='camera-list', ng-show="selectedcamera === undefined")
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
@@ -29,7 +28,6 @@ block content
 
         liveswiper(class="hidden-md hidden-lg",
                     ng-show='selectedcamera !== undefined')
-
 
     script(src='static/async.min.js')
     script(src='static/livecontroller.js')

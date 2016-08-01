@@ -47,5 +47,6 @@
   "USERNAME": "Username",
   "ALARM": "alarm",
   "HANDLE_ALL": "Handle all alarms",
-  "LOG": "Log file"
+  "LOG": "Log file",
+  "SHOW_OLD_LOG": "Show older logs"
 }

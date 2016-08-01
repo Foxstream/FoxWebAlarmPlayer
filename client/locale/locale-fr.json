@@ -47,5 +47,6 @@
   "DELETE_USER": "Supprimer l'utilisateur",
   "NEW_ALARMS": "Nouvelles alarmes",
   "ALL_ALARMS": "Toutes les alarmes",
-  "LOG": "Fichier log"
+  "LOG": "Fichier log",
+  "SHOW_OLD_LOG": "Afficher les logs précédents"
 }

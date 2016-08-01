@@ -76,8 +76,24 @@ function applyRoutes(app) {
         })
     });
 
+    app.get('/log/old', auth.IsAdmin, function(req, res){
+        fs.readFile(config.get('logFile')+'.old', 'utf-8', function(err, data){
+            if (err){
+                res.status(500);
+                res.send(err);
+            } else {
+                res.status(200);
+                res.send(data);
+            }
+        })
+    });
+
     app.get('/logview', auth.IsAdmin, function(req, res){
         res.render('logview', { user: req.user });
+    });
+
+    app.get('/logviewer', auth.IsAdmin, function(req, res){
+        res.render('logviewer');
     });
 
 
