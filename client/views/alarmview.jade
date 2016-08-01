@@ -118,7 +118,7 @@ block content
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                           span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header",ng-show="getNotHandledAlarms().length - filtered.length > 0") 
-                          {{ 'SHOW_MORE' | translate }}
+                          | {{ 'SHOW_MORE' | translate }}
                           span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
@@ -202,7 +202,7 @@ block content
                                     span(ng-show="x.handled") {{ 'HANDLED' | translate }}
                                 tr(ng-if="limit < alarms.length")
                                   td(colspan="6") 
-                                    button(ng-click="showmorealarms()", class="button-primary"){{ 'SHOW_MORE' | translate }}
+                                    button(ng-click="showmorealarms()", class="button-primary") {{ 'SHOW_MORE' | translate }}
 
 
                 //- Video player
@@ -257,7 +257,7 @@ block content
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                           span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header", ng-show="alarms.length - filtered.length > 0") 
-                          {{ 'SHOW_MORE' | translate }}
+                          | {{ 'SHOW_MORE' | translate }}
                           span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
