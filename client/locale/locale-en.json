@@ -46,5 +46,6 @@
   "DELETE_USER": "Delete user",
   "USERNAME": "Username",
   "ALARM": "alarm",
-  "HANDLE_ALL": "Handle all alarms"
+  "HANDLE_ALL": "Handle all alarms",
+  "LOG": "Log file"
 }

@@ -62,9 +62,12 @@ html
                           li(ng-class='{ active: isActive("userview") }')
                             a(href='/userview')
                               span(class='link') {{ 'USERS' | translate }}
-                          li
-                            a(href='/logout')
-                              span(class='link') {{ 'LOGOUT' | translate }}
+                          li(ng-class='{ active: isActive("logview") }')
+                            a(href='/logview')
+                              span(class='link') {{ 'LOG' | translate }}
+                      li
+                        a(href='/logout')
+                          span(class='link') {{ 'LOGOUT' | translate }}
 
               li(ng-mouseover='showLanguagePicker = true',
                   ng-mouseleave='showLanguagePicker = false',

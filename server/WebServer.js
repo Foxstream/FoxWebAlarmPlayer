@@ -61,6 +61,20 @@ function applyRoutes(app) {
         res.render('liveswiper');
     });
 
+
+    app.get('/log', auth.IsAdmin, function(req, res){
+        fs.readFile(config.get('logFile'), 'utf-8', function(err, data){
+            if (err){
+                res.status(500);
+                res.send(err);
+            } else {
+                res.status(200);
+                res.send(data);
+            }
+        })
+    });
+
+
 }
 
 module.exports.BuildWebServer = buildWebServer;
