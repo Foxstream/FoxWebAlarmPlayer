@@ -25,7 +25,6 @@
         margin: 0 1% 5vh 1%;
         position: relative;
         text-align: center;
-        line-height: 240px;
         background-color: black;
 
         .player-controls {
@@ -77,13 +76,12 @@
 .fullscreen-player {
     text-align: center;
     .liveplayer {
-        height: 30vw;
-        width: 40vw;
+        height: 40vw;
+        width: 53.3vw;
     }
 }
 .camera-picker {
     .liveplayer {
-        height: 240px;
     }
 }
 @media screen and (min-width: $tablet-breakpoint){

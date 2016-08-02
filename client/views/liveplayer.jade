@@ -1,8 +1,6 @@
 div(class="liveplayer")
     span(class="glyphicon big-playing-indicator", ng-class="{'glyphicon-stop': !playing, 'glyphicon-play': playing}")
     liveimage(image="camera.image")
-    //- img(src='{{ camera.image }}',
-        class='camera-image', ng-click="togglelivefeed()")
     div(class="player-controls")
         h5(class='camera-name') {{ camera.name }}
         span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')

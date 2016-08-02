@@ -107,6 +107,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         // to stop playing completely, so that when fullscreen is closed, playing resumes
         scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&'},
         link: function(scope, elem, attrs){
+
             scope.playing = undefined;
             scope.fullscreen = false;
 
@@ -164,12 +165,11 @@ app.directive('liveimage', function(){
                         var shiftX = (ctx.width - image.naturalWidth * ratio) / 2;
                         var shiftY = (ctx.height - image.naturalHeight * ratio) / 2;
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        console.log(image.naturalHeight, image.naturalWidth)
                         ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight,
                                                     shiftX, shiftY, image.naturalWidth * ratio, image.naturalHeight * ratio);
 
                     }
-                    
+
                 }
 
             }
