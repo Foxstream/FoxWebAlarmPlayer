@@ -10,13 +10,8 @@ block content
 
         //- Mobile buttons
         div(class='actions hidden-lg hidden-md')
-            button(class='button-secondary',
-                    ng-click='selectedcamera = undefined',
-                    ng-show='selectedcamera !== undefined')
-                    span(class="glyphicon glyphicon-chevron-left") 
-                    span {{ 'BACK' | translate }}
 
-        div(class='col-xs-12 main-element', id='camera-list', ng-show="selectedcamera === undefined")
+        div(class='col-xs-12 main-element', id='camera-list')
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
@@ -24,10 +19,7 @@ block content
                 div(id='collapse{{ $index }}',
                     class='collapse')
                         div(class="camera-picker")
-                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', camera="c")
-
-        liveswiper(class="hidden-md hidden-lg",
-                    ng-show='selectedcamera !== undefined')
+                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', camera="c", pause="selectedcamera !== undefined")
 
     script(src='static/async.min.js')
     script(src='static/livecontroller.js')

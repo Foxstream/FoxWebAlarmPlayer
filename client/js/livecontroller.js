@@ -28,6 +28,8 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
     $scope.device = device;
 
+    $scope.selectedcamera = undefined;
+
     live.getCameras(function(cameras){
         $scope.cameras = cameras;
         for (var site in $scope.cameras){
@@ -96,7 +98,9 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         restrict: 'E',
         replace: true,
         templateUrl: '/liveplayer',
-        scope:{camera: "="},
+        // "pause" is set to true when a camera is selected for fullscreen : we don't want 
+        // to stop playing completely, so that when fullscreen is closed, playing resumes
+        scope:{camera: "=", pause: "="},
         link: function(scope, elem, attrs){
             scope.playing = undefined;
             scope.fullscreen = false;
@@ -130,9 +134,11 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
 
                 if (!scope.playing){
                     scope.playing = $interval(function(){
-                        live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
-                            scope.camera.image = image;
-                        });
+                        if (!scope.pause){
+                            live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
+                                scope.camera.image = image;
+                            });
+                        }
                     }, 200);
                 } else {
                     $interval.cancel(scope.playing);
