@@ -7,6 +7,7 @@
 
     .camera-picker {
         width: 100%;
+        text-align: center;
     }
 
     .big-playing-indicator {
@@ -24,7 +25,6 @@
         margin: 0 1% 5vh 1%;
         position: relative;
         text-align: center;
-        height: 240px;
         line-height: 240px;
         background-color: black;
 
@@ -74,53 +74,52 @@
 }
 
 // Desktop
-@media screen and (min-width: $tablet-breakpoint){
+.fullscreen-player {
+    text-align: center;
     .liveplayer {
-        width: 23%;
+        height: 30vw;
+        width: 40vw;
     }
+}
+.camera-picker {
+    .liveplayer {
+        height: 240px;
+    }
+}
+@media screen and (min-width: $tablet-breakpoint){
+
+    .camera-picker {
+
+        .liveplayer {
+            width: 23%;
+        }
+
+    }
+
 }
 
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
-    #camera-list {
-        // ??DELETE
-        // height: 100vh 
-        // - $navbar-tablet-height 
-        // - $action-bar-tablet-height 
-        // - $header-height 
-        // - 4vh;
+    .camerapicker {
+
+        .liveplayer {
+            width: 48%;
+        }
+
     }
 
-    .liveplayer {
-        width: 48%;
-    }
-}
-
-@media screen and (max-width: $mobile-breakpoint - 1px){
-
-    #camera-list {
-        // ??DELETE
-        // height: 100vh 
-        // - $navbar-mobile-height 
-        // - $action-bar-tablet-height 
-        // - 4vh;
-    }
 }
 
 @media screen and (max-width: $small-phones-breakpoint - 1px){
 
-    #camera-list {
-        // ??DELETE
-        // height: 100vh 
-        // - $navbar-mobile-height 
-        // - $action-bar-tablet-height 
-        // - 4vh;
+    .camerapicker {
+
+        .liveplayer {
+            width: 98%;
+        }
+
     }
 
-
-    .liveplayer {
-        width: 98%;
-    }
 }
 
 
