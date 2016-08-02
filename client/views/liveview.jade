@@ -19,7 +19,4 @@ block content
                 div(id='collapse{{ $index }}',
                     class='collapse')
                         div(class="camera-picker")
-                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', camera="c", pause="selectedcamera !== undefined")
-
-    script(src='static/async.min.js')
-    script(src='static/livecontroller.js')
+                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', site="site",, camera="c", pause="selectedcamera !== undefined", playfullscreen="playfullscreen(site, serverId, camId, fps)")

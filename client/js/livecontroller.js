@@ -42,8 +42,15 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     });
 
 
-    $scope.playfullscreen = function(site, serverId, camId, fps, event){
-        var liveplayer = $(event.target.parentElement.parentElement);
+    $scope.playfullscreen = function(site, serverId, camId, fps){
+        console.log('Playfullscreen')
+        $scope.selectedcamera = {
+            site: site,
+            serverId: serverId,
+            camId: camId,
+            fps: fps
+        };
+        console.log($scope.selectedcamera);
     };
 
 
@@ -100,82 +107,17 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         templateUrl: '/liveplayer',
         // "pause" is set to true when a camera is selected for fullscreen : we don't want 
         // to stop playing completely, so that when fullscreen is closed, playing resumes
-        scope:{camera: "=", pause: "="},
+        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&'},
         link: function(scope, elem, attrs){
             scope.playing = undefined;
             scope.fullscreen = false;
 
-            scope.initialStyles = {
-                width: elem.css('width'),
-                height: elem.css('height'),
-                lineHeight: elem.css('lineHeight'),
-                marginLeft: elem.css('marginLeft')
-            };
-
-            if (device === 'desktop'){
-                var containerHeight = elem.closest('.main-element').css('height');
-                scope.fullscreenStyles = {
-                    width: '70%',
-                    height: containerHeight,
-                    lineHeight: containerHeight,
-                    marginLeft: '15%'
-                };
-            } else {
-                scope.fullscreenStyles = {
-                    width: '98%',
-                    height: '90vw',
-                    lineHeight: '90vw',
-                    marginLeft: scope.initialStyles.marginLeft
-                };
-            }
-
-            scope.togglelivefeed = function(){
-                elem.find('.big-playing-indicator').show().fadeOut(500);
-
-                if (!scope.playing){
-                    scope.playing = $interval(function(){
-                        if (!scope.pause){
-                            live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
-                                scope.camera.image = image;
-                            });
-                        }
-                    }, 200);
-                } else {
-                    $interval.cancel(scope.playing);
-                    scope.playing = undefined;
-                }
-            };
-
-            scope.togglefullscreen = function(){
-                if (!scope.fullscreen){
-                    scope.fullscreen = true;
-                    scope.camera.selected = true;
-                    // Reset elements
-                    // var fullscreenElement = elem.parent().find('.fullscreen');
-                    // if (fullscreenElement){
-                    //     animateToInitial(fullscreenElement);
-                    //     fullscreenStyles.removeClass('fullscreen');
-                    // }
-
-                    elem.animate(scope.fullscreenStyles, 500, function(){
-                        var scrollValue = elem.offsetParent().scrollTop();
-                        scrollValue += elem.position().top;
-                        elem.offsetParent().animate({
-                            scrollTop: scrollValue
-                        }, 500);
-                    });
-
-                    elem.addClass('fullscreen');
-
-                } else {
-                    scope.fullscreen = false;
-                    animateToInitial(elem);
-                }
-            };
-
-            var animateToInitial = function(element){
-                element.animate(scope.initialStyles, 500);
-            };
+                // scope.fullscreenStyles = {
+                //     width: '70%',
+                //     height: containerHeight,
+                //     lineHeight: containerHeight,
+                //     marginLeft: '15%'
+                // };
 
         }
     };
