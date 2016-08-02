@@ -331,7 +331,67 @@ app.directive('swiper', function(){
 
 });
 
+app.directive('imagewithosd', function(){
+    return {
+        restrict: 'E',
+        scope:{image:"=", osd:"="},
+        replace: true,
+        template: '<canvas class="imagecanvas"/>',
+        link: function(scope, elem, attrs){
 
+            var canvas = elem[0];
+            canvas.setAttribute('width', 800);
+            canvas.setAttribute('height', 600);
+
+            function repaintImage(){
+
+                if (scope.image && scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
+
+                    var ctx = canvas.getContext("2d");
+                    ctx.width = 800;
+                    ctx.height = 600;
+
+                    var hRatio = ctx.width / scope.image.naturalWidth;
+                    var vRatio = ctx.height / scope.image.naturalHeight;
+                    var ratio = Math.min(hRatio, vRatio);
+                    var shiftX = (ctx.width - scope.image.naturalWidth * ratio) / 2;
+                    var shiftY = (ctx.height - scope.image.naturalHeight * ratio) / 2;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(scope.image, 0, 0, scope.image.naturalWidth, scope.image.naturalHeight,
+                                                shiftX, shiftY, scope.image.naturalWidth * ratio, scope.image.naturalHeight * ratio);
+
+                    if (scope.osd){
+                        for (var i = 0; i < scope.osd.length; i++) {
+                            var points = scope.osd[i];
+                            
+                            ctx.lineWidth = "2";
+                            ctx.strokeStyle = "red";
+
+                            ctx.beginPath();
+                            ctx.moveTo(points[0].x * canvas.width / scope.image.width, points[0].y * canvas.height / scope.image.height);
+                            for (var j = 0; j < points.length; j++)
+                                ctx.lineTo(points[j].x * canvas.width / scope.image.width, points[j].y * canvas.height / scope.image.height);
+                            ctx.closePath();
+                            ctx.stroke();
+                        }
+
+                    }
+
+                }
+
+            }
+              
+            scope.$watch('image', function(newVal, oldVal){
+                repaintImage();
+            });
+            scope.$watch('osd', function(newVal, oldVal){
+                repaintImage();
+            });
+
+        }
+
+    };
+});
 
 app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $interval, $timeout) {
   return {

@@ -110,13 +110,75 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
             scope.playing = undefined;
             scope.fullscreen = false;
 
-                // scope.fullscreenStyles = {
-                //     width: '70%',
-                //     height: containerHeight,
-                //     lineHeight: containerHeight,
-                //     marginLeft: '15%'
-                // };
+            scope.togglelivefeed = function(){
+                elem.find('.big-playing-indicator').show().fadeOut(500);
+
+                if (!scope.playing){
+                    scope.playing = $interval(function(){
+                        if (!scope.pause){
+                            live.getLiveImage(scope.camera.serverId, scope.camera.id, function(image){
+                                scope.camera.image = image;
+                            });
+                        }
+                    }, 200);
+                } else {
+                    $interval.cancel(scope.playing);
+                    scope.playing = undefined;
+                }
+            };
 
         }
     };
 }]);
+
+app.directive('liveimage', function(){
+    return {
+        restrict: 'E',
+        scope:{image:"="},
+        replace: true,
+        template: '<canvas class="imagecanvas"/>',
+        link: function(scope, elem, attrs){
+
+            var canvas = elem[0];
+            canvas.setAttribute('width', 800);
+            canvas.setAttribute('height', 600);
+
+            function repaintImage(){
+                var image = new Image();
+                image.src = scope.image;
+
+                image.onload = function(){
+
+                    if (image 
+                        && image.naturalWidth 
+                        && image.naturalWidth > 0 
+                        && image.naturalHeight > 0){
+
+                        var ctx = canvas.getContext("2d");
+                        ctx.width = 800;
+                        ctx.height = 600;
+
+                        var hRatio = ctx.width / image.naturalWidth;
+                        var vRatio = ctx.height / image.naturalHeight;
+                        var ratio = Math.min(hRatio, vRatio);
+                        var shiftX = (ctx.width - image.naturalWidth * ratio) / 2;
+                        var shiftY = (ctx.height - image.naturalHeight * ratio) / 2;
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        console.log(image.naturalHeight, image.naturalWidth)
+                        ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight,
+                                                    shiftX, shiftY, image.naturalWidth * ratio, image.naturalHeight * ratio);
+
+                    }
+                    
+                }
+
+            }
+              
+            scope.$watch('image', function(newVal, oldVal){
+                repaintImage();
+            });
+
+        }
+
+    };
+});
