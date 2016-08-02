@@ -5,4 +5,4 @@ div(class="liveplayer")
     div(class="player-controls")
         h5(class='camera-name') {{ camera.name }}
         span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')
-        span(class="glyphicon glyphicon-fullscreen", ng-click="playfullscreen({site: site, serverId: 1, camId: 1, fps: 10})")
+        span(class="glyphicon glyphicon-fullscreen", ng-click="playfullscreen({site: site, serverId: camera.serverId, camId: camera.id, fps: 10})")
