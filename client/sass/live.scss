@@ -29,6 +29,7 @@
 
         .player-controls {
             position: absolute;
+            z-index: 1000;
             background: rgba($fox-gray, 0.8);
             left: 0;
             right: 0;
@@ -105,12 +106,10 @@
     }
 
     .liveplayer {
-        height: 75vh;
-        width: 100vh;
-        top: 50%;
-        left: 50%;
         @include transform(translate(-50%, -50%));
         box-shadow: 1px 1px 3px $fox-dark-gray;
+        top: 50%;
+        left: 50%;
     }
 
     .close-button {
@@ -148,11 +147,18 @@
 
     }
 
+    .fullscreen-player {
+        .liveplayer {
+            height: 75vh;
+            width: 100vh;
+        }
+    }
+
 }
 
 @media screen and (max-width: $tablet-breakpoint - 1px){
 
-    .camerapicker {
+    .camera-picker {
 
         .liveplayer {
             width: 48%;
@@ -162,9 +168,27 @@
 
 }
 
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: portrait){
+    .fullscreen-player {
+        .liveplayer {
+            height: 67.5vw;
+            width: 90vw;
+        }
+    }
+}
+
+@media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
+    .fullscreen-player {
+        .liveplayer {
+            height: 90vh;
+            width: 120vh;
+        }
+    }
+}
+
 @media screen and (max-width: $small-phones-breakpoint - 1px){
 
-    .camerapicker {
+    .camera-picker {
 
         .liveplayer {
             width: 98%;

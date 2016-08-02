@@ -18,10 +18,10 @@ block content
                     class="block-header", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
-                        div(class="fullscreen-player", ng-if="selectedcamera !== undefined && selectedcamera.site == site", class="fullscreen-animation")
+                        div(class="fullscreen-player", ng-if="selectedcamera !== undefined && selectedcamera.site == site", class="fullscreen-animation", ng-swipe-left="showpreviouscamera()", ng-swipe-right="shownextcamera()")
                             liveplayer(site="site", camera="selectedcamera.camera", pause="false", playfullscreen="playfullscreen(site, serverId, camId, fps)", fullscreen="true")
-                            span(class="glyphicon glyphicon-menu-left", ng-click="showpreviouscamera()")
-                            span(class="glyphicon glyphicon-menu-right", ng-click="shownextcamera()")
+                            span(class="glyphicon glyphicon-menu-left hidden-xs hidden-sm", ng-click="showpreviouscamera()")
+                            span(class="glyphicon glyphicon-menu-right hidden-xs hidden-sm", ng-click="shownextcamera()")
                         div(class="camera-picker")
                             liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', site="site", camera="c", pause="selectedcamera !== undefined", playfullscreen="playfullscreen(site, camera)", fullscreen="false")
 
