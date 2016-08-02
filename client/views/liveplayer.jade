@@ -1,8 +1,10 @@
 div(class="liveplayer")
     span(class="glyphicon big-playing-indicator", ng-class="{'glyphicon-stop': !playing, 'glyphicon-play': playing}")
-    liveimage(image="camera.image")
-    div(class="player-controls")
+    liveimage(image="camera.image", ng-click="showcontrols = !showcontrols")
+    div(class="player-controls notif-animation", ng-show="showcontrols")
         h5(class='camera-name') {{ camera.name }}
         span(class="glyphicon", ng-class="{'glyphicon-play': !playing, 'glyphicon-stop': playing}" ng-click='togglelivefeed()')
         span(class="glyphicon glyphicon-resize-full", ng-click="playfullscreen({site: site, camera: camera})", ng-show="fullscreen == false")
         span(class="glyphicon glyphicon-resize-small", ng-click="playfullscreen({site: undefined, camera: undefined})", ng-show="fullscreen == true")
+    div(class="close-button", ng-if="fullscreen", ng-click="playfullscreen({site: undefined, camera: undefined})")
+        span(class="glyphicon glyphicon-remove")

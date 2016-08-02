@@ -10,16 +10,6 @@
         text-align: center;
     }
 
-    .big-playing-indicator {
-        display: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        @include transform(translate(-50%, -50%));
-        font-size: 3em;
-        color: white;
-    }
-
     .liveplayer {
         display: inline-block;
         margin: 0 1% 5vh 1%;
@@ -27,13 +17,25 @@
         text-align: center;
         background-color: black;
 
+        .big-playing-indicator {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+            font-size: 3em;
+            color: white;
+        }
+
         .player-controls {
             position: absolute;
-            bottom: 0;
             background: rgba($fox-gray, 0.8);
             left: 0;
             right: 0;
             color: white;
+            height: 2.3em;
+            line-height: 2.3em;
+            bottom: 0;
 
             .glyphicon {
                 position: absolute;
@@ -72,18 +74,70 @@
 
 }
 
-// Desktop
+// Fullscreen
 .fullscreen-player {
-    text-align: center;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba($fox-light-gray, 0.7);
+
+    .glyphicon-menu-left, .glyphicon-menu-right {
+        display: block;
+        position: absolute;
+        color: $fox-red;
+        font-size: 72px;
+        top: 50%;
+    }
+
+    .glyphicon-menu-left:hover, .glyphicon-menu-right:hover, .glyphicon-remove:hover {
+        cursor: pointer;
+    }
+
+    .glyphicon-menu-left {
+        left: 50px;
+    }
+
+    .glyphicon-menu-right {
+        right: 50px;
+    }
+
     .liveplayer {
-        height: 30vw;
-        width: 40vw;
+        height: 75vh;
+        width: 100vh;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        box-shadow: 1px 1px 3px $fox-dark-gray;
+    }
+
+    .close-button {
+        display: block;
+        color: black;
+        line-height: 30px;
+        height: 30px;
+        width: 30px;
+        border: solid $fox-dark-gray 1px;
+        border-radius: 15px;
+        background-color: $fox-light-gray;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+    }
+
+    .close-button:hover {
+        cursor: pointer;
     }
 }
+
 .camera-picker {
     .liveplayer {
     }
 }
+
+// Desktop
 @media screen and (min-width: $tablet-breakpoint){
 
     .camera-picker {
