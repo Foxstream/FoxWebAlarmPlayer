@@ -43,12 +43,17 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 
     $scope.playfullscreen = function(site, camera){
-        console.log('Playfullscreen')
-        $scope.selectedcamera = {
-            site: site,
-            camera: camera
-        };
-        console.log($scope.selectedcamera);
+        if (site){
+            console.log('Playfullscreen')
+            $scope.selectedcamera = {
+                site: site,
+                camera: camera
+            };
+            console.log($scope.selectedcamera);
+        } else {
+            $scope.selectedcamera = undefined;
+            console.log($scope.selectedcamera)
+        }
     };
 
 
@@ -105,12 +110,10 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         templateUrl: '/liveplayer',
         // "pause" is set to true when a camera is selected for fullscreen : we don't want 
         // to stop playing completely, so that when fullscreen is closed, playing resumes
-        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&'},
+        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&', fullscreen: '='},
         link: function(scope, elem, attrs){
 
             scope.playing = undefined;
-            scope.fullscreen = false;
-
             scope.togglelivefeed = function(){
                 elem.find('.big-playing-indicator').show().fadeOut(500);
 
@@ -127,6 +130,10 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                     scope.playing = undefined;
                 }
             };
+
+            if (scope.fullscreen && !scope.playing){
+                scope.togglelivefeed();
+            }
 
         }
     };
