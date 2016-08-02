@@ -56,51 +56,6 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         }
     };
 
-
-    // $scope.shownextcamera = function(){
-    //     var nextCamera = $scope.getNextCamera();
-    //     if (nextCamera !== -1){
-    //         var cam = $scope.cameras[$scope.currentsite][nextCamera];
-    //         $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
-    //     }
-    // };
-
-    // $scope.showpreviouscamera = function(){
-    //     var previousCamera = $scope.getPreviousCamera();
-    //     if (previousCamera !== -1){
-    //         var cam = $scope.cameras[$scope.currentsite][previousCamera];
-    //         $scope.playlivefeed($scope.currentsite, cam.serverId, cam.id, 250);
-    //     }
-    // };
-
-    // $scope.getNextCamera = function(){
-    //     var displayedCameras = $scope.cameras[$scope.currentsite];
-    //     if (displayedCameras.length < 2){
-    //         return -1;
-    //     } else {
-    //         var position = displayedCameras.map(function(c){ return c.id; }).indexOf($scope.selectedcamera.id);
-    //         if (position === displayedCameras.length - 1){
-    //             return 0;
-    //         } else {
-    //             return position + 1;
-    //         }
-    //     }
-    // };
-
-    // $scope.getPreviousCamera = function(){
-    //     var displayedCameras = $scope.cameras[$scope.currentsite];
-    //     if (displayedCameras.length < 2){
-    //         return -1;
-    //     } else {
-    //         var position = displayedCameras.map(function(c){ return c.id; }).indexOf($scope.selectedcamera.id);
-    //         if (position === 0){
-    //             return displayedCameras.length - 1;
-    //         } else {
-    //             return position - 1;
-    //         }
-    //     }
-    // };
-
 }]);
 
 app.directive('liveplayer', ["live", "$interval", "device", function(live, $interval, device){
@@ -187,5 +142,22 @@ app.directive('liveimage', function(){
 
         }
 
+    };
+});
+
+app.animation('.fullscreen-animation', function (){
+    return {
+        enter: function (element, done) {
+            element.css('opacity', 0);
+            element.animate({
+                opacity: 1
+            }, 500, done);
+        },
+
+        leave: function (element, done) {
+            element.animate({
+                opacity: 0,
+            }, 500, done);
+        },
     };
 });

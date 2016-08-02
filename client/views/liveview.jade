@@ -18,7 +18,7 @@ block content
                     class="block-header", data-parent='#camera-list') {{ site }}
                 div(id='collapse{{ $index }}',
                     class='collapse')
-                        div(class="fullscreen-player", ng-if="selectedcamera !== undefined")
+                        div(class="fullscreen-player", ng-if="selectedcamera !== undefined", class="fullscreen-animation")
                             liveplayer(site="site", camera="selectedcamera.camera", pause="false", playfullscreen="playfullscreen(site, serverId, camId, fps)", fullscreen="true")
                         div(class="camera-picker")
-                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', site="site", camera="c", pause="selectedcamera !== undefined", playfullscreen="playfullscreen(site, camera)", fullscreen="false" ng-if="selectedcamera === undefined || selectedcamera.site != site || selectedcamera.camera.id != c.id || selectedcamera.camera.serverId != c.serverId")
+                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', site="site", camera="c", pause="selectedcamera !== undefined", playfullscreen="playfullscreen(site, camera)", fullscreen="false" ng-if="selectedcamera === undefined || selectedcamera.site != site || selectedcamera.camera.id != c.id || selectedcamera.camera.serverId != c.serverId", class="fullscreen-animation")
