@@ -117,8 +117,9 @@ function saveImages(alarm, callback)
 				
 			}, callback);
 		}
-		else
+		else {
 			callback(err);
+        }
 
 	});
 }
