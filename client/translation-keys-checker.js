@@ -3,6 +3,7 @@ let async = require('async');
 let jsonfile = require('jsonfile');
 
 let translationKeys = [];
+let missing = [];
 
 let extractKeysFromJadeFile = (content) => {
     var regexp = new RegExp("{{ [A-Z_'\| ]+translate }}", 'g');
@@ -32,78 +33,89 @@ let extractKeysFromController = (content) => {
     } while(match)
 };
 
-let updateJsonFiles = (keys) => {
+let updateJsonFiles = (keys, cb) => {
     // Get JSON objects
     fs.readdir('./locale', (err, filenames) => {
         if (err){
             console.log(err);
             return;
         }
-        filenames.forEach((localeFile) => {
+        async.each(filenames, (localeFile, localCb) => {
             jsonfile.readFile('./locale/' + localeFile, function(err, obj){
                 if (err){
                     console.error(err);
                     return;
                 }
-                // Check if the detected keys are in the file
-                let missing = false;
+
+                // Check if the keys are in the file
                 translationKeys.forEach((key) => {
-                    if (!obj[key]){
-                        missing = true;
+                    if (!obj.hasOwnProperty(key)){
                         obj[key] = "";
+                        if (missing.indexOf(localeFile) === -1){
+                            missing.push(localeFile);
+                        }
                     }
                 });
-                if (missing){
-                    console.log('WARNING : Missing keys in ./locale/' + localeFile);
-                }
+
+                // Update file
                 jsonfile.writeFile('./locale/' + localeFile, obj, {spaces: 2}, (err) => {
                     if (err){
                         console.error(err);
                     }
+                    localCb();
                 })
             });
-        });
+        }, cb);
     });
 };
 
-
-fs.readdir('./views', (err, filenames) => {
-    if (err){
-        console.error(err);
-        return;
-    } 
-    async.each(filenames, (filename, callback) => {
-        fs.readFile('./views/' + filename, 'utf-8', (err, content) => {
+async.series([
+    function(done){
+        fs.readdir('./views', (err, filenames) => {
             if (err){
                 console.error(err);
                 return;
-            }
-            extractKeysFromJadeFile(content);
-            callback();
+            } 
+            async.each(filenames, (filename, callback) => {
+                fs.readFile('./views/' + filename, 'utf-8', (err, content) => {
+                    if (err){
+                        console.error(err);
+                        return;
+                    }
+                    extractKeysFromJadeFile(content);
+                    callback();
+                });
+            }, () => {
+                updateJsonFiles(translationKeys, done);
+            });
         });
-    }, () => {
-            updateJsonFiles(translationKeys);
-    });
-});
-
-fs.readdir('./js', (err, filenames) => {
-    if (err){
-        console.error(err);
-        return;
-    } 
-    async.each(filenames, (filename, callback) => {
-        fs.readFile('./js/' + filename, 'utf-8', (err, content) => {
+    }, function(done){
+        fs.readdir('./js', (err, filenames) => {
             if (err){
                 console.error(err);
                 return;
-            }
-            extractKeysFromController(content);
-            callback();
+            } 
+            async.each(filenames, (filename, callback) => {
+                fs.readFile('./js/' + filename, 'utf-8', (err, content) => {
+                    if (err){
+                        console.error(err);
+                        return;
+                    }
+                    extractKeysFromController(content);
+                    callback();
+                });
+            }, () => {
+                updateJsonFiles(translationKeys, done);
+            });
         });
-    }, () => {
-            updateJsonFiles(translationKeys);
-    });
-});
+    }], function(){
+        if (missing.length > 0){
+            missing.forEach((f) => {
+                console.log('WARNING: missing keys in file ' + f);
+            });   
+        }
+    }
+);
 
 
 

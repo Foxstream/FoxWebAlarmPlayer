@@ -69,7 +69,7 @@
   "NOTIF_ERROR_GETTING_USER_LIST": "Impossible d'obtenir la liste des utilisateurs.",
   "NOTIF_USER_DELETED": "L'utilisateur a été supprimé.",
   "NOTIF_ERROR_DELETING_USER": "Une erreur s'est produite lors de la suppression de l'utilisateur.",
-  "NOTIF_PASSWORD_RESET": "Le mot de passe a été",
+  "NOTIF_PASSWORD_RESET": "Le mot de passe a été réinitialisé.",
   "NOTIF_ERROR_RESETING_PASSWORD": "Une erreur s'est produite lors la réinitialisation du mot de passe.",
   "NOTIF_USER_UPDATED": "Les informations ont été enregistrées.",
   "NOTIF_ERROR_UPDATING_USER": "Une erreur s'est produite lors de l'enregistrement des informations.",

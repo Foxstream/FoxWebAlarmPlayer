@@ -25,7 +25,7 @@ html
           div(class="notifications hidden-xs hidden-sm notif-animation", ng-show="notification.show")
               p 
                 span(ng-if="!notification.params") {{ notification.message | translate }}
-                span(ng-if="notification.params") Params : {{ notification.message | translate:notification.params }}
+                span(ng-if="notification.params") {{ notification.message | translate:notification.params }}
                 i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
           h1(class='app-name') FoxWebAlarmPlayer
 
