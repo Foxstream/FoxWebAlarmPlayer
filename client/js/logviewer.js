@@ -19,6 +19,7 @@ app.factory('logdb', ['$http', function($http){
 app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', '$translate', function($scope, $rootScope, logdb, $translate){
 
     $scope.log = '';
+    $scope.oldlog = false;
 
     logdb.getLog(function success(response){
         $scope.log = response.data;
@@ -27,9 +28,10 @@ app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', '$translate', 
         $scope.logHttpError(response);
     });
 
-    $scope.oldLog = false;
     logdb.getOldLog(function success(response){
-        $scope.oldLog = response.data;
+        if (response.status === 200){
+            $scope.oldlog = response.data;
+        }
     }, function error(response){
         $scope.sendnotification("Impossible de récupérer les fichiers log.", false, 1);
         $scope.logHttpError(response);
@@ -48,9 +50,6 @@ app.directive('logviewer', function(){
             scope.$watch('log', function(){
                 // This seems to be the right way to do it because... reasons
                 elem.scrollTop(elem[0].scrollHeight);
-            });
-            scope.$watch('oldLog', function(){
-                console.log(scope.oldLog);
             });
         }
     }

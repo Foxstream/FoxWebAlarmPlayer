@@ -27,6 +27,7 @@ log.info('Builiding web server')
 var websrv = WebServer.BuildWebServer();
 
 log.debug('Used database : ' + config.get('dbHost'));
+
 var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, function(err){
     if (err){
         log.error('Database connection error : ' + err);

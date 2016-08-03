@@ -82,8 +82,13 @@ function applyRoutes(app) {
                 res.status(500);
                 res.send(err);
             } else {
-                res.status(200);
-                res.send(data);
+                if (data){
+                    res.status(200);
+                    res.send(data);
+                } else {
+                    res.status(204);
+                    res.end();
+                }
             }
         })
     });

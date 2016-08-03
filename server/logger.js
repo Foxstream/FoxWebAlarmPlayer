@@ -8,6 +8,7 @@
 var fs = require('fs');
 var util = require('util');
 var config = require('config');
+var chalk = require('chalk');
 
 
 var file = config.get('logFile');
@@ -51,40 +52,47 @@ var logger = {
 
     info: function(msg){
         if (logLevel <= 1){
-            var logMessage = printDate()
-                + " info : "
+            var logMessage = 
+                  chalk.gray(printDate())
+                + chalk.green(" info : ")
                 + msg;
             console.info(logMessage);
+            logMessage = printDate() + " info : " + msg;
             writeFile(logMessage);
         }
     },
 
     debug: function(msg){
         if (logLevel <= 2){     
-            var logMessage = printDate()
-                + " debug : "
+            var logMessage = 
+                  chalk.gray(printDate())
+                + chalk.cyan(" debug : ")
                 + msg;
             console.log(logMessage);
+            logMessage = printDate() + " debug : " + msg;
             writeFile(logMessage);
         }
     },
 
     warn: function(msg){
         if (logLevel <= 3){     
-            var logMessage = printDate()
-                + " warning : "
+            var logMessage = 
+                  chalk.gray(printDate())
+                + chalk.yellow(" warning : ")
                 + msg;
             console.warn(logMessage);
+            logMessage = printDate() + " warning : " + msg;
             writeFile(logMessage);
         }
     },
 
     error: function(msg){
         if (logLevel <= 4){     
-            var logMessage = printDate()
-                + " error : "
-                + msg;
-            console.error(logMessage);
+            var logMessage = 
+                  chalk.gray(printDate())
+                + chalk.red(" error : " + msg);
+            console.warn(logMessage);
+            logMessage = printDate() + " error : " + msg;
             writeFile(logMessage);
         }
     }
