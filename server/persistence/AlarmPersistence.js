@@ -107,7 +107,7 @@ function saveImages(alarm, callback)
     var folder = buildFolderName(this, alarm.id);
     var self = this;
 
-	mkdirp(folder, function(err) { 
+	mkdirp(folder, function(err) {
 		if(!err)
 		{
 			async.each(alarm.images, function(file, mycallback) {
@@ -164,7 +164,7 @@ function updateAlarm(alarm, callback)
 }
 
 function saveAlarm(alarm, callback)
-{			
+{		
 	var nbimages=alarm.images?1:0;
 	var self=this;
 	

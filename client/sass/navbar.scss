@@ -3,6 +3,11 @@ nav {
 
     ul {
 
+        .lang-picker {
+            float: left;
+            margin-left: 10px;
+        }
+
         li {
             display: inline-block;
             text-align: center;

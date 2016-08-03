@@ -48,5 +48,6 @@
   "NEW_ALARMS": "Nouvelles alarmes",
   "ALL_ALARMS": "Toutes les alarmes",
   "LOG": "Fichier log",
-  "SHOW_OLD_LOG": "Afficher les logs précédents"
+  "SHOW_OLD_LOG": "Afficher les logs précédents",
+  "LANGUAGE": "Langue"
 }

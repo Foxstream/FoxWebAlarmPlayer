@@ -34,7 +34,7 @@ var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, func
     }
 });
 
-var almPers = new AlarmPersistence(db, "data");
+var almPers = new AlarmPersistence(db, "server/data");
 var userPers = new UserPersistence(db);
 var serverPers = new ServerPersistence(db);
 var almControler = new AlarmController(almPers);

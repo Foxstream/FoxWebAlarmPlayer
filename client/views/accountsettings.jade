@@ -11,6 +11,11 @@ block content
 				ul
 					li(class="panel")
 						h5
+							a(href='#', class="block-header")
+								span {{ 'LANGUAGE' | translate }}
+								select(ng-change="onLanguageChange()", ng-model="currentLanguage", ng-options="l for l in languages", style="float: right;")
+					li(class="panel")
+						h5
 							a(href='#', ng-click='showMenu = false', class="block-header")
 								span(class="glyphicon glyphicon-cog")
 								span {{ 'ACCOUNTSETTINGS' | translate }}

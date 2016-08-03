@@ -1,4 +1,4 @@
-app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'userdb', function($scope, $rootScope, $window, device, userdb) {
+app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'userdb', '$translate', function($scope, $rootScope, $window, device, userdb, $translate) {
     
     $scope.device = device;
     $scope.showMenu = true;
@@ -9,6 +9,14 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
         confirm: ''
     };
     $scope.tab = 'loginForm';
+
+    setTimeout(function(){
+        $scope.currentLanguage = $scope.getCurrentLanguage();
+    }, 0);
+
+    $scope.onLanguageChange = function(){
+        $scope.changeLanguage($scope.currentLanguage);
+    };
 
     userdb.getCurrentUser(function success(response){
             $scope.user = response.data;

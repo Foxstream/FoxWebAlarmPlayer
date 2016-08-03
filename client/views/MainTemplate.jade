@@ -28,9 +28,6 @@ html
           h1(class='app-name') FoxWebAlarmPlayer
 
       nav(role='navigation', ng-controller='navbarcontroller')
-          div(class="notifications hidden-md hidden-lg notif-animation", ng-show="notification.show")
-            p {{ notification.message }}
-            i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
 
           ul
               li(ng-class='{ active: isActive("alarmview") }')
@@ -73,7 +70,7 @@ html
 
               li(ng-mouseover='showLanguagePicker = true',
                   ng-mouseleave='showLanguagePicker = false',
-                  class="hidden-xs hidden-sm")
+                  class="hidden-xs hidden-sm lang-picker")
                   a(href="#")
                       span(class='link') {{ getCurrentLanguage() | uppercase }}
 

@@ -11,8 +11,18 @@ app.config(function($translateProvider){
 // Notification system
 app.run(function($rootScope, $timeout, $translate){
 
+    // localStorage.setItem('language', 'fr');
+
+    $rootScope.languages = ['fr', 'en'];
+
+    var language = localStorage.getItem('language');
+    if (language){
+        $translate.use(language);
+    }
+
     $rootScope.changeLanguage = function(langKey){
         $translate.use(langKey);
+        localStorage.setItem('language', langKey)
     };
 
     $rootScope.getCurrentLanguage = function(){

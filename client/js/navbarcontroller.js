@@ -1,6 +1,5 @@
 app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarmevents', 'appstate', '$translate', function($scope, $rootScope, $location, alarmevents, appstate, $translate) {
 
-    $scope.languages = ['fr', 'en'];
     $scope.showLanguagePicker = false;
     setTimeout(function(){
         $scope.currentLanguage = $scope.getCurrentLanguage();
