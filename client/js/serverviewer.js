@@ -80,7 +80,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             }
             serverdb.deleteserver(serverId, function (err){
                 if (!err){
-                    $scope.sendnotification("Le serveur a été supprimé.", true, 1);
+                    $scope.sendnotification("NOTIF_SERVER_DELETED", true, 1);
                     $scope.servers.splice(pos, 1);
                 }
             });
@@ -89,7 +89,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
         $scope.commitcurrentserver = function(){
             serverdb.updateserver($scope.currentserver, function(err, newserver){
                 if (err){
-                    $scope.sendnotification("Une erreur s'est produite.", true, 1);
+                    $scope.sendnotification("NOTIF_ERROR_DURING_SERVER_UPDATE", true, 1);
                 } else {
                     var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
                     $scope.servers[pos] = $scope.currentserver;
@@ -100,7 +100,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
         $scope.commitnewserver = function(){
             serverdb.addserver($scope.newserver, function (err, newserver) {
-                    $scope.sendnotification("Le serveur a été ajouté.", true, 1);
+                    $scope.sendnotification("NOTIF_SERVER_ADDED", true, 1);
                     if (!err) {
                         $scope.newserver = undefined;
                         $scope.servers.push(newserver);
@@ -124,25 +124,21 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 if (!server.connected){
 
                     var disconnectedServers = $scope.servers.filter(function(s){ return !s.connected; });
-                    if (disconnectedServers.length > 1){
 
-                        var message = "Impossible de se connecter aux serveurs suivants : ";
-                        disconnectedServers.forEach(function(s, index){
-                            message += s.description + " (" + s.address + ")";
-                            if (index !== disconnectedServers.length - 1){
-                                message += ", ";
-                            }
-                        });
-                        $scope.sendnotification(message, false, 1000);
-
-                    } else {
-
-                        $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") impossible", false, 1000);
-
-                    }
+                    var serverList = '';
+                    disconnectedServers.forEach(function(s, index){
+                        serverList += '"' + s.description + '" (' + s.address + ')';
+                        if (index !== disconnectedServers.length - 1){
+                            serverList += ", ";
+                        }
+                    });
+                    var params = {serverlist: serverList };
+                    $scope.sendnotification("NOTIF_CONNECTION_LOST", false, 1000, params);
 
                 } else {
-                    $scope.sendnotification("Connexion au serveur " + $scope.servers[pos].description + " (" + $scope.servers[pos].address + ") établie", true, 1000);
+                    var server = '"' + $scope.servers[pos].description + '" (' + $scope.servers[pos].address + ')';
+                    $scope.sendnotification("NOTIF_CONNECTION_ESTABLISHED", false, 1000, { server: server });
+
                 }
             }
         };

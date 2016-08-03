@@ -41,10 +41,11 @@ app.run(function($rootScope, $timeout, $translate){
      * @param message The message to be displayed
      * @param autoHide if set to true, the notification is hidden after 5s
      * @param priority if a new notification is sent when one is already being displayed, the new one will be shown only if its priority is higher or equal
+     * @param params Used for dynamic translations
      */
-    $rootScope.sendnotification = function(message, autoHide, priority){
+    $rootScope.sendnotification = function(message, autoHide, priority, params){
         if ($rootScope.notification.show && $rootScope.notification.priority > priority){
-                return;
+            return;
         }
         if ($rootScope.notification.timeout){
             $timeout.cancel($rootScope.notification.timeout);
@@ -53,6 +54,7 @@ app.run(function($rootScope, $timeout, $translate){
         $rootScope.notification.message = message;
         $rootScope.notification.priority = priority;
         $rootScope.notification.show = true;
+        $rootScope.notification.params = params;
         if (autoHide){
             $rootScope.notification.timeout = $timeout(function(){
                 $rootScope.notification.show = false;

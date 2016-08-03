@@ -13,7 +13,7 @@
             $scope.users = response.data;
         }, function error(response){
             $scope.logHttpError(response);
-            $scope.sendnotification("Impossible d'obtenir la liste des utilisateurs", 
+            $scope.sendnotification("NOTIF_ERROR_GETTING_USER_LIST", 
                     false, 
                     1);
         });
@@ -53,9 +53,9 @@
             }
             userdb.deleteUser(userId, function success(response){
                 $scope.users.splice(pos, 1);
-                $scope.sendnotification("L'utilisateur a été supprimé.", true, 1);
+                $scope.sendnotification("NOTIF_USER_DELETED", true, 1);
             }, function error(response){
-                $scope.sendnotification("Une erreur s'est produite lors de la suppression de l'utilisateur.", false, 1);
+                $scope.sendnotification("NOTIF_ERROR_DELETING_USER", false, 1);
                 $scope.logHttpError(response);
             });
         };
@@ -68,9 +68,9 @@
             }
             userdb.requestPasswordReset(userId, function success(response){
                 $scope.users[pos].shouldChangePassword = 1;
-                $scope.sendnotification("Le mot de passe à été réinitialisé.", true, 1);
+                $scope.sendnotification("NOTIF_PASSWORD_RESET", true, 1);
             }, function error(response){
-                $scope.sendnotification("Une erreur s'est produite lors de la réinitialisation du mot de passe.", false, 1);
+                $scope.sendnotification("NOTIF_ERROR_RESETING_PASSWORD", false, 1);
                 $scope.logHttpError(response);
             });
         };
@@ -82,9 +82,9 @@
                 var pos = $scope.users.map(function (e) { return e.id; }).indexOf($scope.currentuser.id);
                 $scope.users[pos] = $scope.currentuser;
                 $scope.resetuser();
-                $scope.sendnotification("Les modifications ont été enregistrées", true, 1);
+                $scope.sendnotification("NOTIF_USER_UPDATED", true, 1);
             }, function error(){
-                $scope.sendnotification("Une erreur s'est produite lors de l'enregistrement des modifications." , false, 1);
+                $scope.sendnotification("NOTIF_ERROR_UPDATING_USER" , false, 1);
                 $scope.logHttpError(response);
             });
         };
@@ -95,9 +95,9 @@
             userdb.createUser($scope.newuser, function success(response){
                 $scope.newuser = undefined;
                 $scope.users.push(response.data);
-                $scope.sendnotification("L'utilisateur a bien été ajouté", true, 1);
+                $scope.sendnotification("NOTIF_USER_ADDED", true, 1);
             }, function error(response){
-                $scope.sendnotification("Une erreur s'est produite lors de l'ajout de l'utilisateur" , false, 1);
+                $scope.sendnotification("NOTIF_ERROR_ADDING_USER" , false, 1);
                 $scope.logHttpError(response);
             });
         };

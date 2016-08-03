@@ -44,15 +44,14 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
                 $scope.sendnotification("NOTIF_PASSWORD_CHANGED", true, 1);
             }, function error(response){
                 if (response.status === 401){
-                    $scope.sendnotification("Le mot de passe saisi est incorrect", false, 1);
+                    $scope.sendnotification("NOTIF_INCORRECT_PASSWORD", false, 1);
                 } else {
-                    $scope.sendnotification("Une erreur s'est produite lors de l'enregistrement de votre nouveau mot de passe.",
-                            false, 1);
+                    $scope.sendnotification("NOTIF_ERROR_UPDATING_PASSWORD", false, 1);
                 }
                 $scope.logHttpError(response);
             });
         } else {
-            $scope.sendnotification("Les champs nouveau mot de passe et confirmation doivent correspondre", false, 1);
+            $scope.sendnotification("NOTIF_ERROR_PASSWORD_FIELDS_DONT_MATCH", false, 1);
         }
     };
 

@@ -24,7 +24,7 @@ app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', '$translate', 
     logdb.getLog(function success(response){
         $scope.log = response.data;
     }, function error(response){
-        $scope.sendnotification("Impossible de récupérer les fichiers log.", false, 1);
+        $scope.sendnotification("NOTIF_ERROR_GETTING_LOG", false, 1);
         $scope.logHttpError(response);
     });
 
@@ -33,7 +33,7 @@ app.controller('logcontroller', ['$scope', '$rootScope', 'logdb', '$translate', 
             $scope.oldlog = response.data;
         }
     }, function error(response){
-        $scope.sendnotification("Impossible de récupérer les fichiers log.", false, 1);
+        $scope.sendnotification("NOTIF_ERROR_GETTING_OLD_LOG", false, 1);
         $scope.logHttpError(response);
     });
 

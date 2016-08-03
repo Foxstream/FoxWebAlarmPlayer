@@ -23,8 +23,10 @@ html
         header(class='hidden-xs hidden-sm')
           img(src='/img/logo-foxstream.gif')
           div(class="notifications hidden-xs hidden-sm notif-animation", ng-show="notification.show")
-              p {{ notification.message | translate }}
-              i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
+              p 
+                span(ng-if="!notification.params") {{ notification.message | translate }}
+                span(ng-if="notification.params") Params : {{ notification.message | translate:notification.params }}
+                i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
           h1(class='app-name') FoxWebAlarmPlayer
 
       nav(role='navigation', ng-controller='navbarcontroller')
