@@ -49,5 +49,7 @@
   "ALL_ALARMS": "Toutes les alarmes",
   "LOG": "Fichier log",
   "SHOW_OLD_LOG": "Afficher les logs précédents",
-  "LANGUAGE": "Langue"
+  "LANGUAGE": "Langue",
+  "ALL": "Tous",
+  "ALL_": "Toutes"
 }

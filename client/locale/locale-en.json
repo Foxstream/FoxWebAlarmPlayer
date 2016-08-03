@@ -49,5 +49,7 @@
   "HANDLE_ALL": "Handle all alarms",
   "LOG": "Log file",
   "SHOW_OLD_LOG": "Show older logs",
-  "LANGUAGE": "Language"
+  "LANGUAGE": "Language",
+  "ALL": "All",
+  "ALL_": "All"
 }

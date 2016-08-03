@@ -50,7 +50,7 @@ function applyToServer(app, userPers)
     });
     
     app.post('/login', passport.authenticate('local', {
-        successRedirect: '/logview',
+        successRedirect: '/',
         failureRedirect: '/login'
     }));
     

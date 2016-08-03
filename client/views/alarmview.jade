@@ -147,10 +147,14 @@ block content
                       form(class="form-inline", ng-submit='applyfilters()')
                           input(type="date", id="datefield", ng-model="filters.date")
                           label {{ 'SITES' | translate }} :
-                          select(ng-model='filters.sitename', ng-options="s for s in sites")
-                          span(ng-show="filters.sitename !== 'Tous'")
+                          select(ng-model='filters.sitename')
+                              option(value="all") {{ 'ALL' | translate }}
+                              option(ng-repeat="s in sites", value="{{ s }}") {{ s }}
+                          span(ng-show="filters.sitename !== 'all'")
                             label {{ 'CAMERAS' | translate }} :
-                            select(ng-model='filters.camera',ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite")
+                            select(ng-model='filters.camera')
+                              option(value="all") {{ 'ALL_' | translate }}
+                              option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
                           button(type='submit', class='button-primary icon')  
                             span(class="glyphicon glyphicon-search")
                     
