@@ -155,7 +155,7 @@ block content
                             select(ng-model='filters.camera')
                               option(value="all") {{ 'ALL_' | translate }}
                               option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
-                          button(type='submit', class='button-primary icon')  
+                          button(type='submit', class='button-primary icon')
                             span(class="glyphicon glyphicon-search")
                     
                     div(class='table-container alarmtable fixed-header')

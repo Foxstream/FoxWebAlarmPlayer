@@ -297,9 +297,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $window.alert("L'alarme sélectionnée a été acquitée.");
                 $scope.currentalarm = undefined;
             }
-            if (data.handled != 0){
-                $scope.sendnotification("Alarme acquittée", true, 1);
-            }
+            // if (data.handled != 0){
+            //     $scope.sendnotification("Alarme acquittée", true, 1);
+            // }
             $scope.alarms[pos] = data;
             if ($scope.selected.indexOf(data.id) >= 0){
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
