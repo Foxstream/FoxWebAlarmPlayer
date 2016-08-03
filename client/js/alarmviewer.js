@@ -55,6 +55,8 @@ app.controller('tabcontroller', ["$scope", function($scope){
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window) {
 
+    $scope.sendnotification("HANDLE_ERROR", 1, false);
+
     $scope.device = device;
     // alert($window.innerHeight);
     $scope.sortType = 'timestamp';
