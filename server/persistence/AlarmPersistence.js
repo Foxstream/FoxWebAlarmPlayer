@@ -2,8 +2,9 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var _ = require("lodash");
 var fs = require('fs');
-var async = require("async")
-var rimraf = require("rimraf")
+var async = require("async");
+var rimraf = require("rimraf");
+var log = require("../logger.js");
 
 var imgDirname='images';
 var imgDefaultFilename='img';
@@ -11,6 +12,27 @@ var imgDefaultFilename='img';
 function open(callback)
 {	
 	this.db.run("CREATE TABLE IF NOT EXISTS alarm (id INTEGER PRIMARY KEY, timestamp INTEGER, cameraname TEXT, hostname TEXT, sitename TEXT, handled INTEGER, nbimages INTEGER)", callback);
+    this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
+        if (data){
+            // For each site, let's build a list of cameras
+            data.forEach( (s) => {
+                this.siteList.push(s.sitename);
+            });
+        } else {
+            process.exit(1);
+        }
+    });
+
+    this.db.all("SELECT DISTINCT cameraname, sitename FROM alarm", (err, data) => {
+        if (data){
+            // For each site, let's build a list of cameras
+            data.forEach( (s) => {
+                this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
+            });
+        } else {
+            process.exit(1);
+        }
+    });
 }
 
 // TODO : what is it ?
@@ -253,33 +275,9 @@ function AlarmPersistence(db, imageFolder)
     this.db = db;
     this.ImageFolder = imageFolder;
 
+    // Sent to clients for filtering functionnalities
     this.siteList = [];
     this.cameraList = [];
-
-    // Building lists of sites and cameras
-    // Useful for filtering
-    this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
-        if (data){
-            // For each site, let's build a list of cameras
-            data.forEach( (s) => {
-                this.siteList.push(s.sitename);
-            });
-        } else {
-            process.exit(1);
-        }
-    });
-
-    this.db.all("SELECT DISTINCT cameraname, sitename FROM alarm", (err, data) => {
-        if (data){
-            // For each site, let's build a list of cameras
-            data.forEach( (s) => {
-                this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
-            });
-        } else {
-            process.exit(1);
-        }
-    });
-
 }
 
 AlarmPersistence.prototype.open = open;

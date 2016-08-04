@@ -28,12 +28,7 @@ var websrv = WebServer.BuildWebServer();
 
 log.debug('Used database : ' + config.get('dbHost'));
 
-var db = new sqlite3.Database(config.get('dbHost'), sqlite3.OPEN_READWRITE, function(err){
-    if (err){
-        log.error('Database connection error : ' + err);
-        process.exit(1);
-    }
-});
+var db = new sqlite3.Database(config.get('dbHost'));
 
 var almPers = new AlarmPersistence(db, "server/data");
 var userPers = new UserPersistence(db);
@@ -87,6 +82,3 @@ async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), server
 
 // Export for testing
 module.exports = websrv;
-
-
-
