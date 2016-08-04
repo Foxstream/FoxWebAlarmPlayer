@@ -31,6 +31,12 @@ html
 
       nav(role='navigation', ng-controller='navbarcontroller')
 
+          div(class="notifications hidden-md hidden-lg notif-animation", ng-show="notification.show")
+            p
+              span(ng-if="!notification.params") {{ notification.message | translate }}
+              span(ng-if="notification.params") {{ notification.message | translate:notification.params }}
+            i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
+
           ul
               li(ng-class='{ active: isActive("alarmview") }')
                   a(href="/alarmview"

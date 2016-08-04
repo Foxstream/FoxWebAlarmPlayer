@@ -53,10 +53,6 @@ app.controller('tabcontroller', ["$scope", function($scope){
 
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', '$translate', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window, $translate) {
 
-    // setTimeout(function(){
-    //     $window.alert($translate.inasdstant("TEST", {username: "nicolas"}));
-    // }, 1000);
-
     $scope.device = device;
     // alert($window.innerHeight);
     $scope.sortType = 'timestamp';
@@ -109,8 +105,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         });
     };
 
+    // $scope.$watch('showfilters', function(newVal, oldVal){
+    //     console.log('changed', $scope.showfilters);
+    // })
+
     $scope.resetfilters = function(){
-        $scope.showfilters = false;
         $scope.filters = angular.copy($scope.currentfilters);
     };
 
@@ -137,7 +136,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.playalarm = function(alarmid){
         // Mobile devices : if the user clicked on alarm while the filter pop-up was visible, make sure that it is hidden when going back to alarm list
-        $scope.showfilters = false;
+        // $scope.showfilters = false;
         $scope.resetfilters();
 
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);

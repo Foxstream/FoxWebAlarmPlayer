@@ -218,7 +218,7 @@ block content
 
                 div(class='actions')
                     button(class='button-secondary',
-                            ng-click='showfilters = true',
+                            ng-click='showfilters = true;',
                             ng-show='currentalarm === undefined') {{ 'FILTER' | translate }}
                     button(class='button-primary',
                             ng-click='handleall()',
@@ -231,7 +231,7 @@ block content
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') {{ 'HANDLE' | translate }}
 
-                div(class="filter", ng-show="showfilters && currentalarm === undefined")
+                div(class="filter", ng-show="showfilters")
 
                     //- h4 Filtres
                     form(ng-submit='applyfilters()', name='filtermobileform')
@@ -248,8 +248,8 @@ block content
                           select(ng-model='filters.camera', id="camera", name="camera", class="form-control")
                             option(value="all") {{ 'ALL_' | translate }}
                             option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
-                      button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') {{ 'CLOSE' | translate }}
-                      button(class='button-secondary', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') {{ 'CANCEL' | translate }}
+                      button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine', type="button") {{ 'CLOSE' | translate }}
+                      button(class='button-secondary', ng-click='resetfilters();showfilters = false;', ng-show='filtermobileform.$dirty') {{ 'CANCEL' | translate }}
                       button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') {{ 'APPLY' | translate }}
 
 

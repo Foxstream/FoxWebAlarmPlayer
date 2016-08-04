@@ -137,7 +137,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
                 } else {
                     var server = '"' + $scope.servers[pos].description + '" (' + $scope.servers[pos].address + ')';
-                    $scope.sendnotification("NOTIF_CONNECTION_ESTABLISHED", false, 1000, { server: server });
+                    $scope.sendnotification("NOTIF_CONNECTION_ESTABLISHED", true, 1000, { server: server });
 
                 }
             }
