@@ -43,6 +43,14 @@
         height: 2.3em;
         line-height: 2.3em;
 
+        .player-progress-bar {
+            position: relative;
+            top: 0;
+            left: 0;
+            background-color: white;
+            height: 8%;
+        }
+
         .glyphicon {
             padding: 2%;
             position: absolute;
