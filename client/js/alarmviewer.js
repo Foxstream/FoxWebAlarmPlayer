@@ -167,10 +167,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
 
     $scope.shownextalarm = function(){
+        debugger;
         var nextAlarm = $scope.getNextAlarm();
+        console.log(nextAlarm);
         if (nextAlarm !== -1){
             var alarmid = $scope.alarms[nextAlarm].id;
             $scope.playalarm(alarmid);
+        } else {
+            $scope.currentalarm = undefined;
         }
     };
 
@@ -179,11 +183,15 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if (previousAlarm !== -1){
             var alarmid = $scope.alarms[previousAlarm].id;
             $scope.playalarm(alarmid);
+        } else {
+            $scope.currentalarm = undefined;
         }
     };
 
     $scope.getNextAlarm = function(){
-        var displayedAlarms = $scope.alarms;
+        var displayedAlarms = $scope.alarms.filter(function(a){
+            return a.handled === 0;
+        });
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -197,7 +205,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getPreviousAlarm = function(){
-        var displayedAlarms = $scope.alarms;
+        var displayedAlarms = $scope.alarms.filter(function(a){
+            return a.handled === 0;
+        });
         if (displayedAlarms.length < 2){
             return -1;
         } else {
@@ -339,11 +349,11 @@ app.directive('imagewithosd', function(){
 
             function repaintImage(){
 
-                if (scope.image && scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
+                var ctx = canvas.getContext("2d");
+                ctx.width = 800;
+                ctx.height = 600;
 
-                    var ctx = canvas.getContext("2d");
-                    ctx.width = 800;
-                    ctx.height = 600;
+                if (scope.image && scope.image.naturalWidth && scope.image.naturalWidth > 0 && scope.image.naturalHeight > 0){
 
                     var hRatio = ctx.width / scope.image.naturalWidth;
                     var vRatio = ctx.height / scope.image.naturalHeight;
@@ -371,6 +381,8 @@ app.directive('imagewithosd', function(){
 
                     }
 
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
                 }
 
             }
@@ -429,6 +441,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             });
 		  
             scope.$watch('alarm', function (newVal, oldVal){
+                console.log(newVal)
                 if (newVal === oldVal) return;
                 if (!newVal) return;
                 scope.playing = false;
