@@ -68,7 +68,7 @@ function connectionLost()
 	this.connected = false;
 	log.warn("Disconnected from " + this.Host);	
 	this.emit("disconnected", "disconnected from host");
-	this.client=null;
+	this.client = null;
 }
 
 function internal_send(message, responseCallback)

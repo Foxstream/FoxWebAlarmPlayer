@@ -48,7 +48,7 @@ html
                   a(href="/live") 
                     i(class='glyphicon glyphicon-play') 
                     span(class='link') {{ 'LIVE' | translate }}
-              li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") }',
+              li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") || isActive("logview") }',
                   ng-mouseover='showsubmenu = true',
                   ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
                   a(href='/accountsettings')

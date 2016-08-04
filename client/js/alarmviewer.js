@@ -167,7 +167,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
 
     $scope.shownextalarm = function(){
-        debugger;
         var nextAlarm = $scope.getNextAlarm();
         console.log(nextAlarm);
         if (nextAlarm !== -1){

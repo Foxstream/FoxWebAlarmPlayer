@@ -74,6 +74,7 @@ function RequestServerConnect(srv)
 
 function InternalDisconnectServer(server)
 {
+    server.xmlclient.removeAllListeners();
     server.xmlclient.disconnect();
 }
 
