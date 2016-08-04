@@ -23,7 +23,7 @@ var log = require('./logger');
 var _ = require("lodash");
 var async = require("async");
 
-log.info('Builiding web server')
+log.info('Building web server')
 var websrv = WebServer.BuildWebServer();
 
 log.debug('Used database : ' + config.get('dbHost'));

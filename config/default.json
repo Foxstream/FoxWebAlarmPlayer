@@ -1,7 +1,9 @@
 {
+    
     "port": 8001,
     "dbHost": "server/data/dev.db",
 
     "logFile": "server/alarmplayer.log",
     "logFileSizeMegaBytes": 1
+
 }

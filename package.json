@@ -50,7 +50,8 @@
     "supertest": "^1.2.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon server/main.js",
+    "start": "NODE_ENV=production node server/main.js",
+    "start-dev": "NODE_ENV=development nodemon server/main.js",
     "test": "mocha test/ --recursive --reporter spec",
     "debug": "node-debug main.js"
   },
