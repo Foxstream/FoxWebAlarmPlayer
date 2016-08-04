@@ -102,7 +102,7 @@ block content
 
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
-                        ng-click='currentalarm = undefined')
+                        ng-click='$parent.currentalarm = undefined')
                         span Liste
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
@@ -225,7 +225,7 @@ block content
                             ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') {{ 'HANDLE_ALL' | translate }}
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
-                        ng-click='currentalarm = undefined')
+                        ng-click='$parent.currentalarm = undefined')
                         span Liste
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
@@ -249,7 +249,7 @@ block content
                             option(value="all") {{ 'ALL_' | translate }}
                             option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
                       button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine', type="button") {{ 'CLOSE' | translate }}
-                      button(class='button-secondary', ng-click='resetfilters();showfilters = false;', ng-show='filtermobileform.$dirty') {{ 'CANCEL' | translate }}
+                      button(class='button-secondary', ng-click='resetfilters();showfilters = false;', ng-show='filtermobileform.$dirty', type='button') {{ 'CANCEL' | translate }}
                       button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') {{ 'APPLY' | translate }}
 
 

@@ -131,7 +131,7 @@ ul {
     }
 }
 
-// Tablets
+// Mobile devices
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
 
@@ -142,6 +142,7 @@ ul {
 
 }
 
+// Tablet, portrait mode
 @media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: portrait){
     .main-element {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
@@ -149,6 +150,7 @@ ul {
     }
 }
 
+// Tablet, landscape mode
 @media screen and (max-width: $tablet-breakpoint - 1px) and (orientation: landscape){
     .main-element {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
@@ -156,7 +158,7 @@ ul {
     }
 }
 
-// Small phones
+// Small phones, portrait mode
 @media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: portrait){
 
     .main-element {
@@ -166,6 +168,7 @@ ul {
 
 }
 
+// Small phones, landscape mode
 @media screen and (max-width: $small-phones-breakpoint - 1px) and (orientation: landscape){
 
     .main-element {
