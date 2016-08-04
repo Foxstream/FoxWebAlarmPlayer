@@ -47,7 +47,8 @@ button:focus {
 
 
 button.button-primary {
-    background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
+    // background: linear-gradient(0deg, $fox-dark-red, $fox-light-red);
+    background: $fox-red;
     border: none;
     height: 1.8em;
 }
