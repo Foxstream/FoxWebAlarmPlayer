@@ -38,7 +38,7 @@ block content
                         button(class='button-primary',
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
 
-                    div(class='table-container alarmtable fixed-header')
+                    div(class='table-container alarmtable')
 
                       table
                         thead
@@ -62,11 +62,8 @@ block content
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                   | {{ "SITE" | translate }}
                               th(class='handle')
-                    div(class='table-container alarmtable ')
-                      table
+
                             tbody
-                              tr
-                                td(colspan="6")
                               tr(ng-show='getNotHandledAlarms().length === 0') 
                                 td(colspan="6") {{ "NO_ALARM" | translate }}
                               tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: sortType:sortReverse | limitTo: limit as filtered',
@@ -157,7 +154,7 @@ block content
                           button(type='submit', class='button-primary icon')
                             span(class="glyphicon glyphicon-search")
                     
-                    div(class='table-container alarmtable fixed-header')
+                    div(class='table-container alarmtable')
 
                         table
                           thead
@@ -181,11 +178,8 @@ block content
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                     | {{ 'SITE' | translate }}
                                 th(class='handle')
-                    div(class='table-container alarmtable')
-                        table
+
                               tbody
-                                tr
-                                  td(colspan="6")
                                 tr(ng-show='alarms.length === 0') 
                                   td(colspan="6") {{ 'NO_ALARM' | translate }}
                                 tr(ng-repeat='x in alarms | orderBy: sortType:sortReverse | limitTo: limit as filtered',
@@ -268,5 +262,3 @@ block content
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
                   swiper
-
- 
