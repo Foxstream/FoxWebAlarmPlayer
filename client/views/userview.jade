@@ -35,7 +35,7 @@ block content
                 th {{ 'RESET_PASSWORD' | translate }}
                 th
             tbody
-              tr(ng-show="user.length < 2")
+              tr(ng-show="users.length < 2")
                   td(colspan="5") {{ 'NO_USER' | translate }}
               tr(ng-repeat='x in users', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)", ng-show="x.id !== user.id")
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id") {{ x.login }}

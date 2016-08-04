@@ -76,10 +76,11 @@
 
         .osd-icon {
             display: inline-block;
-            height: 88%;
-            margin-top: 2px;
-            float: right;
-            margin-right: 10px;
+            height: 70%;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            @include transform(translateY(-50%));
         }
 
         .osd-icon:hover {

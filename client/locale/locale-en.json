@@ -84,5 +84,5 @@
   "CONFIRM_RESET_PASSWORD": "Are you sure you want to reset {{ username }}'s password?",
   "NO_CAMERAS": "No available cameras",
   "NO_SERVER": "No servers",
-  "NO_USER": "No users"
+  "NO_USER": "No other users"
 }
