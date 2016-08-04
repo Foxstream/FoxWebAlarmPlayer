@@ -240,11 +240,14 @@ block content
                         input(type="date", class="form-control", id="datefield", ng-model="filters.date")
                       .form-group
                         label(for="site") {{ 'SITES' | translate }} :
-                        select(ng-model='filters.sitename', class="form-control", ng-options="s for s in sites", name="site", id="site")
-                            option(value="test", label="yo", selected="selected")
-                      .form-group(ng-show="filters.sitename !== 'Tous'")
+                        select(ng-model='filters.sitename', name="site", id="site", class="form-control")
+                                option(value="all") {{ 'ALL' | translate }}
+                                option(ng-repeat="s in sites", value="{{ s }}") {{ s }}
+                      .form-group(ng-show="filters.sitename !== 'all'")
                           label(for="camera") {{ 'CAMERAS' | translate }} :
-                          select(ng-model='filters.camera', id="camera", name="camera", ng-options="c.cameraname as c.cameraname for c in cameras | filter: camerasForCurrentSite", class="form-control")  
+                          select(ng-model='filters.camera', id="camera", name="camera", class="form-control")
+                            option(value="all") {{ 'ALL_' | translate }}
+                            option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
                       button(class='button-secondary', ng-click='showfilters = false', ng-show='filtermobileform.$pristine') {{ 'CLOSE' | translate }}
                       button(class='button-secondary', ng-click='resetfilters()', ng-show='filtermobileform.$dirty') {{ 'CANCEL' | translate }}
                       button(type='submit', ng-click='showfilters = false', class='button-primary', ng-show='filtermobileform.$dirty') {{ 'APPLY' | translate }}
