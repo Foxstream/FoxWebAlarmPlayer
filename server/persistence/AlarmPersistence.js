@@ -206,7 +206,6 @@ function getAlarms(conditions, callback)
         	}
         });
     }
-
 	this.db.all("SELECT id, timestamp, cameraname, hostname, sitename, handled, nbimages FROM alarm" + str, cond, callback);
 }
 

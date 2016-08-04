@@ -32,7 +32,7 @@
 
 
 
-app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', 'device', function ($rootScope, $scope, $window, serverdb, alarmevents, device) {
+app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb", 'alarmevents', 'device', '$translate', function ($rootScope, $scope, $window, serverdb, alarmevents, device, $translate) {
         
         $scope.newserver = undefined;
         $scope.currentserver = undefined;
@@ -75,7 +75,7 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
 
         $scope.deleteserver = function (serverId) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
-            if (pos === -1 || !$window.confirm("Voulez-vous vraiment supprimer le serveur " + $scope.servers[pos].description + " ?")){
+            if (pos === -1 || !$window.confirm($translate.instant("CONRIM_DELETE_SERVER"))){
                 return;
             }
             serverdb.deleteserver(serverId, function (err){

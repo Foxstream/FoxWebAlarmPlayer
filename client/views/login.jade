@@ -15,14 +15,14 @@ html
     link(rel="stylesheet", href="/css/main.css", media="screen")
     title {{ 'LOGIN' | translate }}
 
-  body(ng-app="alarmviewer", ng-controller="alarmcontroller")
+  body(ng-app="alarmviewer", ng-controller="navbarcontroller")
 
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
           img(src='/img/logo-foxstream.gif')
           h1(class='app-name') FoxWebAlarmPlayer
 
-    nav(role='navigation' class='nav-connection', ng-controller="navbarcontroller")
+    nav(role='navigation' class='nav-connection')
         ul
             li(ng-mouseover='showLanguagePicker = true',
                 ng-mouseleave='showLanguagePicker = false',

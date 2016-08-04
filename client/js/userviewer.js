@@ -1,4 +1,4 @@
-﻿app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", function ($scope, $window, $location, userdb) {
+﻿app.controller('usercontroller', ["$scope",  "$window", "$location", "userdb", "$translate", function ($scope, $window, $location, userdb, $translate) {
         
         $scope.newuser = undefined;
         $scope.currentuser = undefined;
@@ -48,7 +48,7 @@
 
         $scope.deleteuser = function (userId) {
             var pos = $scope.users.map(function (e) { return e.id; }).indexOf(userId);
-            if (pos === -1 || !$window.confirm("Voulez-vous vraiment supprimer l'utilisateur " + $scope.users[pos].login + " ?")){
+            if (pos === -1 || !$window.confirm($translate.instant("CONFIRM_DELETE_USER", {username: $scope.users[pos].login}))){
                 return;
             }
             userdb.deleteUser(userId, function success(response){
@@ -63,7 +63,7 @@
 
         $scope.resetpassword = function (userId) { 
             var pos = $scope.users.map(function (e){ return e.id; }).indexOf(userId);
-            if (pos === -1 || !$window.confirm("Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur " + $scope.users[pos].login + " ?")){
+            if (pos === -1 || !$window.confirm($translate.instant("CONFIRM_RESET_PASSWORD", { username: $scope.users[pos].login}))){
                 return;
             }
             userdb.requestPasswordReset(userId, function success(response){

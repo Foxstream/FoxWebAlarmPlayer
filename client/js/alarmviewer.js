@@ -15,7 +15,6 @@ app.factory('alarmdb', ['$http','$rootScope',
         };
     			
     	obj.getAlarms = function(conditions, callback){
-            console.log(conditions)
             var params = '?';
             params += 'date=' + conditions.date.getTime() / 1000;
             if (conditions.sitename !== 'all'){
@@ -25,7 +24,6 @@ app.factory('alarmdb', ['$http','$rootScope',
                     params += '&cameraname=' + conditions.camera.replace(' ', '%20');
                 }
             }
-            console.log('Request : /controller/alarms' + params);
     		$http.get("/controller/alarms" + params)
     			.success(callback)
     			.error(function(){callback(null);});
@@ -53,7 +51,11 @@ app.controller('tabcontroller', ["$scope", function($scope){
 }]);
 
 
-app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window) {
+app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', '$translate', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window, $translate) {
+
+    // setTimeout(function(){
+    //     $window.alert($translate.inasdstant("TEST", {username: "nicolas"}));
+    // }, 1000);
 
     $scope.device = device;
     // alert($window.innerHeight);
@@ -145,7 +147,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         
 
     $scope.markashandled = function (alarmId, $event){
-        if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Voulez-vous vraiment acquitter cette alarme ?")) {
+        if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm($translate.instant("CONFIRM_HANDLE_ALARM"))) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
                 var previousAlarm = $scope.getPreviousAlarm();
                 if (previousAlarm !== -1){
@@ -211,7 +213,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
 
     $scope.handleSelected = function(){
-        if (window.confirm("Voulez-vous vraiment acquitter ces " + $scope.selected.length +" alarmes ?")){
+        if (window.confirm($translate.instant("CONFIRM_HANDLE_SELECTED"))){
             $scope.selected.forEach(function(alarmid){
                 alarmdb.markashandled(alarmid, function(err){});
             });
@@ -224,17 +226,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.alarms.forEach(function(a){
             alarms.push(a);
         });
-        if (window.confirm('Êtes vous sûr de vouloir acquitter toutes les alarmes ?')){
+        if ($window.confirm($translate.instant("CONFIRM_HANDLE_ALL"))){
             alarms.forEach(function(a){
                 alarmdb.markashandled(a.id, function(err){  });
             });
             $scope.currentalarm = undefined;
-        }
-    };
-
-    $scope.delete = function (alarmId){
-        if (($scope.currentalarm != undefined && $scope.currentalarm.id == alarmId) || $window.confirm("Êtes-vous sûr de vouloir acquiter cette alarme ??")) {
-            alarmdb.delete(alarmId, function(err){ });
         }
     };
 
@@ -294,7 +290,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == data.id && data.handled != 0){
-                $window.alert("L'alarme sélectionnée a été acquitée.");
+                $window.alert($translate.instant("CONFIRM_HANDLED"));
                 $scope.currentalarm = undefined;
             }
             $scope.alarms[pos] = data;
@@ -438,7 +434,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (!newVal) return;
                 scope.playing = false;
                 scope.loading = true;
-                console.log('Loading images');
                 LoadImages($http, newVal, function () {
                     $timeout(function () {
                         scope.loading = false;

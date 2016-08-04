@@ -74,5 +74,12 @@
   "NOTIF_USER_UPDATED": "Les informations ont été enregistrées.",
   "NOTIF_ERROR_UPDATING_USER": "Une erreur s'est produite lors de l'enregistrement des informations.",
   "NOTIF_USER_ADDED": "L'utilisateur a été ajouté.",
-  "NOTIF_ERROR_ADDING_USER": "Une erreur s'est produite lors de l'ajout de l'utilisateur."
+  "NOTIF_ERROR_ADDING_USER": "Une erreur s'est produite lors de l'ajout de l'utilisateur.",
+  "CONFIRM_HANDLE_ALARM": "Voulez-vous vraiment acquitter cette alarme ?",
+  "CONFIRM_HANDLE_ALL": "Voulez-vous vraiment acquitter toutes les alarmes ?",
+  "CONFIRM_HANDLED": "L'alarme sélectionnée a été acquittée.",
+  "CONFIRM_HANDLE_SELECTED": "Voulez-vous vraiment acquitter toutes les alarmes sélectionnées ?",
+  "CONRIM_DELETE_SERVER": "Voulez-vous vraiment supprimer le serveur ?",
+  "CONFIRM_DELETE_USER": "Voulez-vous vraiment supprimer l'utilisateur {{ username }} ?",
+  "CONFIRM_RESET_PASSWORD": "Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur {{ username }} ?"
 }

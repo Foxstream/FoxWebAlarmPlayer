@@ -2,8 +2,10 @@ let fs = require('fs');
 let async = require('async');
 let jsonfile = require('jsonfile');
 
+
 let translationKeys = [];
 let missing = [];
+
 
 let extractKeysFromJadeFile = (content) => {
     var regexp = new RegExp("{{ [A-Z_'\| ]+translate }}", 'g');
@@ -19,6 +21,8 @@ let extractKeysFromJadeFile = (content) => {
     } while(match)
 };
 
+
+
 let extractKeysFromController = (content) => {
     var regexp = new RegExp('sendnotification\\("[A-Z_]+', 'g');
     do {
@@ -31,7 +35,19 @@ let extractKeysFromController = (content) => {
             translationKeys.push(key);
         }
     } while(match)
+    var regexp2 = new RegExp('translate.instant\\("[A-Z_]+', 'g');
+    do {
+        match = regexp2.exec(content);
+        if (match){
+            var key = match[0];
+            // Keep the key only ( translate("ABC )
+            key = key.substr(19);
+            // let length = key.length;
+            translationKeys.push(key);
+        }
+    } while(match)
 };
+
 
 let updateJsonFiles = (keys, cb) => {
     // Get JSON objects

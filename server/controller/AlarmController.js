@@ -29,14 +29,15 @@ function applyApp(app){
 
     app.get('/controller/alarms/nothandled', auth.IsValidUser, function (req, res) {
         self.AlarmPersistence.getAlarms({handled:0}, function (err, data) {
-            if (data)
+            if (data){
+                res.status(200);
                 res.json(data);
+            }
             else {
                 res.status(402);
                 res.send(err);
             }
             res.end();
-				
         });
     });
 	

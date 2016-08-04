@@ -53,7 +53,7 @@ block content
                     button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-disabled="x.shouldChangePassword===1") {{ 'RESET_PASSWORD' | translate }}
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")
-                    button(ng-click="deleteuser(x.id); $event.stopPropagation()", title="Supprimer l'utilisateur", class="icon button-primary", ng-show="newuser === undefined")
+                    button(ng-click="deleteuser(x.id); $event.stopPropagation();", title="Supprimer l'utilisateur", class="icon button-primary", ng-show="newuser === undefined")
                         span(class="glyphicon glyphicon-trash")
 
                 td(ng-show="currentuser !== undefined && currentuser.id === x.id")
@@ -73,7 +73,7 @@ block content
                     td
                         button(ng-click="newuser = undefined", title="Annuler", class="icon button-secondary")
                             span(class="glyphicon glyphicon-remove")
-                        button(title="Valider", class="icon button-primary", ng-click="commitnewuser()") 
+                        button(title="Valider", class="icon button-primary", ng-click="commitnewuser()")
                             span(class="glyphicon glyphicon-ok")
 
 

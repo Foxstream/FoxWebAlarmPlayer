@@ -74,5 +74,12 @@
   "NOTIF_USER_UPDATED": "The information has been saved.  ",
   "NOTIF_ERROR_UPDATING_USER": "An error occured while updating the user.",
   "NOTIF_USER_ADDED": "The user has been added.",
-  "NOTIF_ERROR_ADDING_USER": "An error occured while adding the new user."
+  "NOTIF_ERROR_ADDING_USER": "An error occured while adding the new user.",
+  "CONFIRM_HANDLE_ALARM": "Are you sure you want to mark this alarm as handled?",
+  "CONFIRM_HANDLE_ALL": "Are you sure you want to mark all the alarms as handled?",
+  "CONFIRM_HANDLED": "The selected alarm has been marked as handled.",
+  "CONFIRM_HANDLE_SELECTED": "Are you sure you want to mark all the selected alarms as handled?",
+  "CONRIM_DELETE_SERVER": "Are you sure you want to delete the server?",
+  "CONFIRM_DELETE_USER": "Are you sure you want to delete the user {{ username }}?",
+  "CONFIRM_RESET_PASSWORD": "Are you sure you want to reset {{ username }}'s password?"
 }
