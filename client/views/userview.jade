@@ -35,6 +35,8 @@ block content
                 th {{ 'RESET_PASSWORD' | translate }}
                 th
             tbody
+              tr(ng-show="user.length < 2")
+                  td(colspan="5") {{ 'NO_USER' | translate }}
               tr(ng-repeat='x in users', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)", ng-show="x.id !== user.id")
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id") {{ x.login }}
                 td(ng-show="currentuser !== undefined && currentuser.id === x.id")
@@ -80,6 +82,9 @@ block content
 
 
         div(class="userlist main-element hidden-md hidden-lg" id="userlist", ng-show="newuser === undefined")
+            div(class='panel', ng-show="users.length < 2")
+              h5 
+                a(href='#', class="block-header") {{ 'NO_USER' | translate }}
             div(ng-repeat='x in users', class='panel', ng-show="x.id !== user.id")
               h5 
                 a(href='#collapse{{$index}}', data-toggle='collapse',

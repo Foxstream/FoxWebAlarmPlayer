@@ -31,7 +31,12 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     $scope.selectedcamera = undefined;
 
     live.getCameras(function(cameras){
-        $scope.cameras = cameras;
+        // API needs to be changed, this is not cool
+        if (angular.equals({}, cameras)){
+            $scope.cameras = undefined;
+        } else {
+            $scope.cameras = cameras;
+        }
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
                 live.getLiveImage(cam.serverId, cam.id, function(image){

@@ -81,5 +81,8 @@
   "CONFIRM_HANDLE_SELECTED": "Voulez-vous vraiment acquitter toutes les alarmes sélectionnées ?",
   "CONRIM_DELETE_SERVER": "Voulez-vous vraiment supprimer le serveur ?",
   "CONFIRM_DELETE_USER": "Voulez-vous vraiment supprimer l'utilisateur {{ username }} ?",
-  "CONFIRM_RESET_PASSWORD": "Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur {{ username }} ?"
+  "CONFIRM_RESET_PASSWORD": "Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur {{ username }} ?",
+  "NO_CAMERAS": "Aucune caméra disponible",
+  "NO_SERVER": "Aucun serveur",
+  "NO_USER": "Aucun utilisateur"
 }

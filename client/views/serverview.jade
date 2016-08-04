@@ -38,6 +38,8 @@ block content
                     th 
                     th
                 tbody
+                    tr(ng-show="servers.length == 0")
+                        td(colspan="7") {{ 'NO_SERVER' | translate }}
                     tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}", ng-click="editserver(x.id)")
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
@@ -95,6 +97,9 @@ block content
 
 
         div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")
+            div(ng-show="servers.length == 0", class='panel')
+                h5
+                    a(href='#' class="block-header") {{ 'NO_SERVER' | translate }}
             div(ng-repeat='x in servers', class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',

@@ -12,6 +12,9 @@ block content
         div(class='actions hidden-lg hidden-md')
 
         div(class='col-xs-12 main-element', id='camera-list')
+            div(ng-show="cameras == undefined", class="panel")
+                h5
+                    a(href='#', class="block-header", data-parent='#camera-list') {{ 'NO_CAMERAS' | translate }}
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',

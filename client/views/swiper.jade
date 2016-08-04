@@ -3,6 +3,8 @@ div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousa
         div(class="slide")
             imageplayer(alarm='currentalarm')
             ul(class="alarm-details")
+                li(ng-show='currentalarm.handled === 1')
+                    b(style="color: red;") {{ 'HANDLED' | translate }}
                 li
                     {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 
