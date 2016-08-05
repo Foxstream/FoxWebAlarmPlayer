@@ -97,15 +97,21 @@ function AddAndRequestConnect(s)
 }
 
 function UpdateServer(server, cb) {
+    console.log('update server')
     var self = this;
     var retServers = this.servers.map(function (elem) { return elem.config; });
     var pos = retServers.map(function (elem) { return elem.id; }).indexOf(parseInt(server.id));
-    if (pos == -1)
+    if (pos == -1){
+        console.log('not found')
         cb("Not found");
-    else 
+    }
+    else {
+        console.log('else')
         this.serverPersistence.updateserver(server, function (err, data) {
-            if (err)
+            console.log('server persistence')
+            if (err){
                 cb(err);
+            }
             else {
                 self.servers[pos].config.disconnectOnUpdate = true; // Prevents from sending disconnect notification to client
                 InternalDisconnectServer(self.servers[pos]);
@@ -116,6 +122,7 @@ function UpdateServer(server, cb) {
                 cb(null, data);
             }
         });
+    }
 }
 
 

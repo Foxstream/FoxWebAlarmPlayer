@@ -55,7 +55,7 @@ describe("Server API", function(){
         });
 
         it('Should return code 204 when requesting inexistant server', function(done){
-            agent.get('/users/0')
+            agent.get('/servers/0')
                 .end(function(req, res){
                     expect(res).to.have.status(204);
                     done();
@@ -76,11 +76,11 @@ describe("Server API", function(){
                     server.username = 'test';
                     server.password = 'test';
                     agent.put('/servers/1')
-                        .send(user)
+                        .send(server)
                         .end(function(req, res){
                             expect(res).to.have.status(200);
 
-                            agent.get('/servers/2')
+                            agent.get('/servers/1')
                                 .end(function(req, res){
                                     expect(res.body.address).to.be.equal('1.2.3.4');
                                     expect(res.body.description).to.be.equal('updatedDescription');
@@ -91,7 +91,44 @@ describe("Server API", function(){
                                 });
                             });
                     });
-            });
+        });
+
+        it ("Should return 404 if serverid doesn't exist", function(done){
+            agent.get('/servers/2')
+                .end(function(req, res){
+                    var server = res.body;
+                    server.id = 0;
+                    agent.put('/servers/0')
+                        .send(res.body)
+                        .end(function(req, res){
+                            expect(res).to.have.status(404);
+                            done();
+                        });
+                });
+        });
+
+        it ('Should fail if server object lacks a parameter', function(done){
+            agent.put('/servers/2')
+                .send({ description: 'test' })
+                .end(function(req, res){
+                    expect(res).to.have.status(400);
+                    done();
+                });
+        });
+
+        it ("Should send code 400 if server ids don't match", function(done){
+            agent.get('/servers/2')
+                .end(function(req, res){
+                    var server = res.body;
+                    server.id = 3;
+                    agent.put('/servers/2')
+                        .send(server)
+                        .end(function(req, res){
+                            expect(res).to.have.status(400);
+                            done();
+                        });
+                });
+        });
 
         after(function(done){
             agent.get('/servers/1')
@@ -102,7 +139,7 @@ describe("Server API", function(){
                     server.port = 4000;
                     server.username = 'admin';
                     server.password = 'admin';                    
-                    agent.put('/servers/2')
+                    agent.put('/servers/1')
                         .send(server)
                         .end(function(req, res){
                             expect(res).to.have.status(200);
@@ -112,7 +149,6 @@ describe("Server API", function(){
         })
 
     });
-
     
 });
 

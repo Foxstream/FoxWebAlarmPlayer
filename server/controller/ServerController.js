@@ -9,7 +9,7 @@ function applyApp(app) {
         self.serverManager.getservers(function (err, data) {
             if (err){
                 res.status(500);
-                res.send("Databse error : " + err);
+                res.send(err);
             }
             else {
                 res.status(200);
@@ -23,20 +23,54 @@ function applyApp(app) {
 
         self.serverManager.getserver(req.params.serverid, function (err, data) {
             if (err){
-                res.status(500);
-                res.send(err);
+                if (err === "Not found"){
+                    res.status(204);
+                    res.end();
+                } else {
+                    res.status(500);
+                    res.send(err);
+                }
             }
             else {
-                if (data){
-                    res.status(200);
-                    res.json(data);
-                } else {
-                    res.status(204);
-                }
-                res.end();
+                res.status(200);
+                res.json(data);
             }
         });
 
+    });
+
+
+    app.put('/servers/:serverid', auth.IsAdmin, function(req, res){
+        var server = req.body;
+        if (server.id != req.params.serverid){
+
+            res.status(400);
+            res.end("Wrong server id");
+
+        } else {
+            // Check that userid matches a user or send 404
+            self.serverManager.getserver(req.params.serverid, function(err, data){
+                if (data){
+                    if (server.address && server.description && server.port > 0 && server.username && server.password){
+                        self.serverManager.updateserver(server, function (err) {
+                            if (err){
+                                res.status(500);
+                                res.send("Database error: " + err);
+                            } else {
+                                res.status(200);
+                            }
+                            res.end();  
+                        });
+                    } else {
+                        res.status(400);
+                        res.send("Bad request : parameters address, description, port, username and password expected.");
+                    }
+                } else {
+                    res.status(404);
+                    res.send('Server not found');
+                }
+            });
+        }
     });
 
 

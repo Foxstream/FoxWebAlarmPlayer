@@ -86,39 +86,13 @@ function applyApp(app) {
         }
     });
 
-    app.put('/users/:userid', auth.IsAdmin, function(req, res){
-        var user = req.body;
-
-        // Check that userid corresponds to a user or send 404
-        self.UserPersistence.getUser(req.params.userid, function(err, data){
-            if (data){
-                if (user.displayname && (user.type === 0 || user.type === 1)){
-                    self.UserPersistence.updateUser(user, function (err, data) {
-                        if (err){
-                            res.status(500);
-                            res.send(err);
-                        } else {
-                            res.status(200);
-                        }
-                        res.end();  
-                    });
-                } else {
-                    res.status(400);
-                    res.send("Bad request : parameters type and displayname are required");
-                }
-            } else {
-                res.status(404);
-                res.send('User not found');
-            }
-        });
-    });
 
     app.put('/users/:userid', auth.IsAdmin, function(req, res){
         var user = req.body;
 
         if (user.id != req.params.userid){
             res.status(400);
-            res.end();
+            res.send("Wrong user id");
         } else {
 
             // Check that userid matches a user or send 404

@@ -40,11 +40,11 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
         .pipe(gulp.dest('./release/')); 
 
     // Server files
-    gulp.src('./server/**/*')
+    gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*'])
         .pipe(gulp.dest('./release/server/'));
 
     // Config
-    gulp.src('./config/default.json')
+    gulp.src(['./config/default.json', './config/production.json'])
         .pipe(gulp.dest('./release/config/'));  
 
     // CSS files
@@ -64,7 +64,7 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
         .pipe(gulp.dest('./release/client/vendor'));
 
     // Angular app and front-end dependencies
-    gulp.src(['./client/app.min.js', './client/bower.json', './client/.bowerrc'])
+    gulp.src('./client/app.min.js')
         .pipe(gulp.dest('./release/client'));
 
     // Locale
