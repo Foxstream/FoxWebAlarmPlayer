@@ -103,7 +103,7 @@ function resetuser(userId, cb) {
 
 function adduser(user, cb) {
     var self = this;
-    self.db.run("INSERT INTO user(login, displayname, type) VALUES(?, ?, ?)",
+    self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, '')",
 	                                [user.login, user.displayname, user.type], cb);
 }
 

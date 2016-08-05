@@ -84,5 +84,6 @@
   "CONFIRM_RESET_PASSWORD": "Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur {{ username }} ?",
   "NO_CAMERAS": "Aucune caméra disponible",
   "NO_SERVER": "Aucun serveur",
-  "NO_USER": "Aucun autre utilisateur"
+  "NO_USER": "Aucun autre utilisateur",
+  "EMPTY_PASSWORD": "Mot de passe vide"
 }
