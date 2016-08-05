@@ -156,6 +156,7 @@ function applyApp(app) {
                     res.send(err);
                 } else {
                     user.id = this.lastID;
+                    user.shouldChangePassword = 1;
                     res.status(200);
                     res.send(user);
                 }

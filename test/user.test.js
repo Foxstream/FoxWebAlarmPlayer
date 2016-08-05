@@ -176,6 +176,7 @@ describe("User API (admin)", function(){
                             var userId = res.body.map(function(u){ return u.login }).indexOf('user1');
                             expect(res.body[userId].displayname).to.be.equal('User 1');
                             expect(res.body[userId].type).to.be.equal(0);
+                            expect(res.body[userId].shouldChangePassword).to.be.equal(1);
                             done();
                         });
                 });

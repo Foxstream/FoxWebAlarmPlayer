@@ -55,7 +55,7 @@ app.run(function($rootScope, $timeout, $translate){
         $rootScope.notification.priority = priority;
         $rootScope.notification.show = true;
         $rootScope.notification.params = params;
-        console.log($rootScope.notification)
+
         if (autoHide){
             $rootScope.notification.timeout = $timeout(function(){
                 $rootScope.notification.show = false;
