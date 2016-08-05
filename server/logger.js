@@ -16,7 +16,7 @@ var file = config.get('logFile');
 var logLevel = 0;
 // Log errors only during tests
 if (process.env.NODE_ENV === 'test'){
-    logLevel = 3;
+    logLevel = 2;
 }
 
 

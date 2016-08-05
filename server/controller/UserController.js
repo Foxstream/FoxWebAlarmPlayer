@@ -7,7 +7,7 @@ function applyApp(app) {
         self.UserPersistence.getUsers(function (err, data) {
             if (err){
                 res.status(500);
-                res.send("Database error : ", err);            
+                res.send("Database error : " + err);            
             }
             else {
                 res.status(200);

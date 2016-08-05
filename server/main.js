@@ -38,7 +38,7 @@ var userControler = new UserController(userPers);
 var serverManager = new ServersManager(serverPers, almPers);
 var serverControler = new ServerController(serverManager);
 var liveController = new LiveController(serverManager);
-var alarmRemover = new AlarmRemover(almPers, 60*60*24*7); // 7 days
+var alarmRemover = new AlarmRemover(almPers, config.get('deleteAlarmsOlderThanSeconds'));
 
 log.info('Applying routes.');
 Auth.ApplyToServer(websrv, userPers);

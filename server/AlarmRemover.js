@@ -1,25 +1,25 @@
 ﻿var log = require('./logger');
 
-function apply()
-{
-    log.info('Deleting old alarms')
+function apply(){
+    log.info('Deleting old alarms');
     var now = (new Date().getTime()) / 1000;
     this.alarmPersistence.deleteAlarmsOlderThan(now - this.duration, function () { });
 }
 
-function stop()
-{
-    if (!this.timer) {
+function stop(){
+    if (!this.timer){
         clearInterval(this.timer);
         this.timer = null;
         log.debug('Stopping alarm remover');
     }
 }
 
-function start()
-{    
+function start(){
+    if (process.env.NODE_ENV !== 'test'){
+        this.apply();
+    }
     if (!this.timer){
-        this.timer = setInterval(this.apply.bind(this), 60*60*1000);  
+        this.timer = setInterval(this.apply.bind(this), 60*60*1000);
         log.debug('Starting alarm remover');
     }  
 }

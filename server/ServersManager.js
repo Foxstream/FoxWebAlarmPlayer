@@ -159,14 +159,12 @@ function GetServer(serverId, cb)
 {
     var retServers = this.servers.map(extractServerDataToSend);
     var pos = retServers.map(function (elem) { return elem.id; }).indexOf(parseInt(serverId));
-
-    cb(pos != -1 ? null : "Not found", pos != -1 ? retServers(pos) : null);
+    cb(pos != -1 ? null : "Not found", pos != -1 ? retServers[pos] : null);
 }
 
 function GetServers(cb)
 {
     var retServers = this.servers.map(extractServerDataToSend);
-    
     cb(null, retServers);
 }
 

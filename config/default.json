@@ -1,8 +1,12 @@
 {
-    
+    // Web server
     "port": 8001,
-    "dbHost": "server/data/dev.db",
 
+    // Database
+    "dbHost": "server/data/dev.db",
+    "deleteAlarmsOlderThanSeconds": 604800, // 1 week
+
+    // Logs
     "logFile": "server/alarmplayer.log",
     "logFileSizeMegaBytes": 1
 

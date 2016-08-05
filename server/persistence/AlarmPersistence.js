@@ -262,7 +262,7 @@ function deleteAlarmsOlderThan(timestamp, cb)
             for (var i = 0; i < data.length; ++i) 
                 folderlist.push(buildFolderName(self, data[i].id));                          
             
-            async.each(folderlist, rimraf, function () { cb(err); });
+            async.each(folderlist, rimraf, function (){ cb(err); });
             
         });
 

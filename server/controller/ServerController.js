@@ -5,6 +5,47 @@ function applyApp(app) {
 
     // !! use auth.IsUser
     // Even when user should change password, we want to display the connection errors
+    app.get('/servers', auth.IsUser, function(req, res){
+        self.serverManager.getservers(function (err, data) {
+            if (err){
+                res.status(500);
+                res.send("Databse error : " + err);
+            }
+            else {
+                res.status(200);
+                res.json(data);
+            }
+            res.end();
+        });
+    });
+
+    app.get('/servers/:serverid', auth.IsAdmin, function(req, res){
+
+        self.serverManager.getserver(req.params.serverid, function (err, data) {
+            if (err){
+                res.status(500);
+                res.send(err);
+            }
+            else {
+                if (data){
+                    res.status(200);
+                    res.json(data);
+                } else {
+                    res.status(204);
+                }
+                res.end();
+            }
+        });
+
+    });
+
+
+
+
+
+// ------------------------------------------------------------
+//------------------------------------------------------------
+//-------------------------------------------------------
     app.get('/controller/servers', auth.IsUser, function (req, res) {
         self.serverManager.getservers(function (err, data) {
             if (data){
