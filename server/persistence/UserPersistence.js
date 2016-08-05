@@ -11,10 +11,15 @@ function open(cb) {
             self.db.get("SELECT count(*) as count FROM user WHERE type=1", callback);
         },
         function (countData, callback) {
-            if (countData.count == 0)
-                self.addUser({login:"admin", displayname:"admin", password:"admin", type:1}, callback);
-            else
+            if (countData.count == 0){
+                passwordHash('admin').hash(function(passwd){
+                    self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, ?)",
+                                    ['admin', 'Admin', 1, passwd], cb);
+                })
+            }
+            else {
                 callback(null);
+            }
         },
     ], cb);    
 }
@@ -98,7 +103,7 @@ function resetuser(userId, cb) {
 
 function adduser(user, cb) {
     var self = this;
-    self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, '')",
+    self.db.run("INSERT INTO user(login, displayname, type) VALUES(?, ?, ?)",
 	                                [user.login, user.displayname, user.type], cb);
 }
 
