@@ -198,6 +198,35 @@ describe("Server API", function(){
         });
 
     });
+
+    describe('DELETE /servers', function(){
+
+        it ('Should delete server "Test server"', function(done){
+            agent.get('/servers')
+                .end(function(req, res){
+                    var servers = res.body;
+                    var serverId = servers.map(function(server){ return server.description }).indexOf('Test server');
+                    agent.delete('/servers/' + res.body[serverId].id)
+                        .end(function(req, res){
+                            expect(res).to.have.status(200);
+                            agent.get('/servers')
+                                .end(function(req, res){
+                                expect(res.body.length).to.be.equal(2);
+                                done();
+                            });
+                        })
+                });
+        });
+
+        it ("Should return 404 if server doesn't exist", function(done){
+            agent.delete('/servers/0')
+                .end(function(req, res){
+                    expect(res).to.have.status(404);
+                    done();
+                })
+        });
+
+    });
     
 });
 

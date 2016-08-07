@@ -91,70 +91,32 @@ function applyApp(app) {
         }
     });
 
-
-
-// ------------------------------------------------------------
-//------------------------------------------------------------
-//-------------------------------------------------------
-    app.get('/controller/servers', auth.IsUser, function (req, res) {
-        self.serverManager.getservers(function (err, data) {
-            if (data){
-                res.json(data);
+    app.delete('/servers/:serverid', auth.IsAdmin, function(req, res){
+        self.serverManager.getserver(req.params.serverid, function(err, server){
+            console.log(req.params.serverid);
+            console.log(server);
+            if (err){
+                if (err === "Not found"){
+                    res.status(404);
+                    res.send("Server " + req.params.serverid + "doesn't exist");                   
+                } else {
+                    res.status(500);
+                    res.send(err);
+                }
+            } else {
+                self.serverManager.removeserver(req.params.serverid, function(err){
+                    if(err){
+                        res.status(500);
+                        res.send(err);
+                    } else {
+                        res.status(200);
+                        res.end();
+                    }
+                });
             }
-            else {
-                res.status(402);
-                res.send(err);
-            }
-            res.end();
-				
-        });
-    });
-    
-    app.get('/controller/server/:serverid', auth.IsValidUser, function (req, res) {
-        self.serverManager.getserver(req.params.serverid, function (err, data) {
-            if (data)
-                res.json(data);
-            else {
-                res.status(404);
-                res.send(err);
-            }
-            res.end();				
         });
     });
 
-    app.put('/controller/server', auth.IsAdmin, function (req, res) {
-        var server = req.body;
-        self.serverManager.updateserver(server, function (err) {
-            if (!err){
-                res.json(server);
-            }
-            else {
-                res.status(404);
-                res.send(err);
-            }
-            res.end();
-        });
-    });
-    
-    app.post('/controller/server', auth.IsAdmin, function (req, res) {
-        var server = req.body;
-        self.serverManager.addserver(server, function (err) {
-            if (!err)
-                res.json(server);
-            else {
-                res.status(404);
-                res.send(err);
-            }
-            res.end();
-        })
-    });
-    
-    app.delete('/controller/server/:serverid', auth.IsAdmin, function (req, res) {
-        self.serverManager.removeserver(req.params.serverid, function (err) {
-            res.status(err ? 404 : 200);
-            res.end(err);
-        });
-    });
 }
 
 function serverController(serverManager) {
