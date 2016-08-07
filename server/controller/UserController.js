@@ -124,14 +124,13 @@ function applyApp(app) {
     app.post('/users', auth.IsAdmin, function (req, res) {
         var user = req.body;
         if (user.login && user.displayname && (user.type === 0 || user.type === 1)){
-            self.UserPersistence.addUser(user, function (err){
+            self.UserPersistence.addUser(user, function (err, newUser){
                 if (err){
                     res.status(500);
                     res.send(err);
                 } else {
-                    user.id = this.lastID;
                     res.status(200);
-                    res.send(user);
+                    res.send(newUser);
                 }
             });  
         } else {

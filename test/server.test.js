@@ -149,6 +149,55 @@ describe("Server API", function(){
         })
 
     });
+
+    describe('POST /servers', function(){
+
+        it ('Should create a new server', function(done){
+            var server = {
+                address: '192.168.31.146',
+                port: 1000,
+                username: 'admin',
+                password: 'admin',
+                description: 'Test server'
+            };
+            agent.post('/servers')
+                .send(server)
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+
+                    agent.get('/servers')
+                        .end(function(req, res){
+                            var servers = res.body;
+
+                            var serverId = servers.map(function(server){ return server.description }).indexOf('Test server');
+                            var newServer = servers[serverId];
+
+                            expect(newServer.address).to.be.equal('192.168.31.146');
+                            expect(newServer.port).to.be.equal(1000);
+                            expect(newServer.username).to.be.equal('admin');
+                            expect(newServer.password).to.be.equal('admin');
+
+                            done();
+
+                        });
+                });
+        });
+
+        it ('Should fail if server object is incomplete', function(done){
+            var server = {
+                port: 1000,
+                username: 'admin',
+                password: 'admin',
+                description: 'Test server'
+            };
+            agent.post('/servers')
+                .end(function(req, res){
+                expect(res).to.have.status(400);
+                done();
+            });
+        });
+
+    });
     
 });
 

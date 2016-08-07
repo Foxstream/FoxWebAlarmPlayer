@@ -22,10 +22,12 @@ function addserver(server, cb) {
     this.db.run("INSERT INTO server(id, address, port, username, password, description) VALUES(?, ?, ?, ?, ?, ?)",
 	       [server.id, server.address, server.port, server.username, server.password, server.description],
 	       function (err) {
-        if (!err)
-            server.id = this.lastID;
-        
-        cb(err);
+                if (err){
+                    cb(err, null);
+                } else {
+                    server.id = this.lastID;
+                    cb(null, server);
+                }
     });
 }
 

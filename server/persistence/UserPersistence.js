@@ -99,7 +99,14 @@ function resetuser(userId, cb) {
 function adduser(user, cb) {
     var self = this;
     self.db.run("INSERT INTO user(login, displayname, type) VALUES(?, ?, ?)",
-	                                [user.login, user.displayname, user.type], cb);
+	                                [user.login, user.displayname, user.type], function(err){
+        if (err){
+            cb(err, null);
+        } else {
+            user.id = this.lastId;
+            cb(null, user);
+        }
+    });
 }
 
 function getuser(id, cb){

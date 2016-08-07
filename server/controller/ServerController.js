@@ -73,7 +73,23 @@ function applyApp(app) {
         }
     });
 
-
+    app.post('/servers', auth.IsAdmin, function(req, res){
+        var server = req.body;
+        if (server.address && server.port > 0 && server.username && server.password && server.description){
+            self.serverManager.addserver(server, function(err, newServer){
+                if (err){
+                    res.status(500);
+                    res.send(err);
+                } else {
+                    res.status(200);
+                    res.send(newServer);
+                }
+            });
+        } else {
+            res.status(400);
+            res.send('Bad request: parameters address, port, username, password and description are expected.');
+        }
+    });
 
 
 
