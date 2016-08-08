@@ -1,5 +1,6 @@
 ﻿var async = require("async");
 var passwordHash = require('password-hash-and-salt');
+var logger = require('../logger');
 
 function open(cb) {
     var self = this;
@@ -12,9 +13,14 @@ function open(cb) {
         },
         function (countData, callback) {
             if (countData.count == 0){
-                passwordHash('admin').hash(function(passwd){
-                    self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, ?)",
-                                    ['admin', 'Admin', 1, passwd], cb);
+                passwordHash('admin').hash(function(err, passwd){
+                    if (err){
+                        log.error('Unable to create admin user')
+                        log.error('Password hash error: ' + err);
+                    } else {
+                        self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, ?)",
+                                        ['admin', 'Admin', 1, passwd], cb);
+                    }
                 })
             }
             else {
