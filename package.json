@@ -5,7 +5,6 @@
   "main": "main.js",
   "author": "Foxstream",
   "dependencies": {
-    "angular": "^1.5.6",
     "async": "^1.2.1",
     "body-parser": "^1.13.1",
     "chalk": "^1.1.3",
