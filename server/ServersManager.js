@@ -97,7 +97,6 @@ function AddAndRequestConnect(s)
 }
 
 function UpdateServer(server, cb) {
-    console.log('update server')
     var self = this;
     var retServers = this.servers.map(function (elem) { return elem.config; });
     var pos = retServers.map(function (elem) { return elem.id; }).indexOf(parseInt(server.id));
@@ -106,9 +105,7 @@ function UpdateServer(server, cb) {
         cb("Not found");
     }
     else {
-        console.log('else')
         this.serverPersistence.updateserver(server, function (err, data) {
-            console.log('server persistence')
             if (err){
                 cb(err);
             }

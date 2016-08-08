@@ -1,49 +1,45 @@
-app.factory('alarmdb', ['$http','$rootScope',
-    function($http, $rootScope){
-    	var obj={};
+app.factory('alarmdb', ['$http','$rootScope', function($http, $rootScope){
+    	
+    var obj={};
 
-        obj.getSiteList = function(callback){
-            $http.get("/controller/alarms/sitelist")
-                .success(callback)
-                .error(function(){callback(null);});
-        };
+    obj.getSiteList = function(success, error){
+        $http.get("/alarms/sitelist")
+            .then(success, error);
+    };
 
-        obj.getCameraList = function(callback){
-            $http.get("/controller/alarms/cameralist")
-                .success(callback)
-                .error(function(){callback(null);});
-        };
+    obj.getCameraList = function(success, error){
+        $http.get("/alarms/cameralist")
+            .then(success, error);
+    };
     			
-    	obj.getAlarms = function(conditions, callback){
-            var params = '?';
-            params += 'date=' + conditions.date.getTime() / 1000;
-            if (conditions.sitename !== 'all'){
-                params += '&sitename=' + conditions.sitename.replace(' ', '%20');
-                if (conditions.camera !== 'all'){
-                    // conditions.camera = { cameraname: **, sitename: ** }
-                    params += '&cameraname=' + conditions.camera.replace(' ', '%20');
-                }
+	obj.getAlarms = function(conditions, success, error){
+        var params = '?';
+        params += 'date=' + conditions.date.getTime() / 1000;
+        if (conditions.sitename !== 'all'){
+            params += '&sitename=' + conditions.sitename.replace(' ', '%20');
+            if (conditions.camera !== 'all'){
+                // conditions.camera = { cameraname: **, sitename: ** }
+                params += '&cameraname=' + conditions.camera.replace(' ', '%20');
             }
-    		$http.get("/controller/alarms" + params)
-    			.success(callback)
-    			.error(function(){callback(null);});
-        };
+        }
+		$http.get("/alarms" + params)
+			.then(success, error);
+    };
 
+    obj.getNotHandledAlarms = function(success, error){
+        $http.get("/alarms?handled=1")
+            .then(success, error);
+    };
+        
+    obj.markashandled = function (alarmid, success, error) {
+        $http.put("/alarms/"+alarmid+"/handled")
+		  .then(success, error);
+    };
 
-        obj.getNotHandledAlarms = function(callback){
-            $http.get("/controller/alarms/nothandled")
-                .success(callback)
-                .error(function(){callback(null);});
-        };
-            
-        obj.markashandled = function (alarmid, callback) {
-            $http.put("/controller/alarm/"+alarmid+"/markashandled")
-    		  .success(callback)
-    		  .error(function (data) { callback({response: data}); });
-        };
+    return obj;
 
-        return obj;
 }]);
+
 
 
 app.controller('tabcontroller', ["$scope", function($scope){
@@ -72,12 +68,18 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     var today = new Date();
     today.setHours(0, 0, 0, 0);
-    alarmdb.getSiteList(function(data){
-        $scope.sites = data;
+    alarmdb.getSiteList(function success(response){
+        $scope.sites = response.data;
+    }, function error(response){
+        $scope.logHttpError(response);
+        $scope.sendnotification("NOTIF_ERROR_GETTING_SITE_LIST", false, 1);
     });
 
-    alarmdb.getCameraList(function(data){
-        $scope.cameras = data;
+    alarmdb.getCameraList(function success(response){
+        $scope.cameras = response.data;
+    }, function error(response){
+        $scope.logHttpError(response);
+        $scope.sendnotification("NOTIF_ERROR_GETTING_CAMERA_LIST", false, 1);     
     });
 
     $scope.filters = {
@@ -99,15 +101,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.limit = 30;
         $scope.currentalarm = undefined;
         $scope.currentfilters = angular.copy($scope.filters);
-        alarmdb.getAlarms($scope.filters, function(data){
-            $scope.alarms = data;
+        alarmdb.getAlarms($scope.filters, function success(response){
+            $scope.alarms = response.data;
             $scope.loading = false;
+        }, function error(response){
+            $scope.logHttpError(response);
+            $scope.sendnotification("NOTIF_ERROR_GETTING_ALARMS", false, 1);
         });
     };
-
-    // $scope.$watch('showfilters', function(newVal, oldVal){
-    //     console.log('changed', $scope.showfilters);
-    // })
 
     $scope.resetfilters = function(){
         $scope.filters = angular.copy($scope.currentfilters);
@@ -120,14 +121,20 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.getAlarms = function(){
         if ($scope.tabName === 'notHandled'){
-            alarmdb.getNotHandledAlarms(function(data){
-                $scope.alarms = data;
+            alarmdb.getNotHandledAlarms(function success(response){
+                $scope.alarms = response.data;
                 $scope.loading = false;
+            }, function error(response){
+                $scope.logHttpError(response);
+                $scope.sendnotification("NOTIF_ERROR_GETTING_ALARMS", false, 1);
             });
         } else if ($scope.tabName === 'filteredAlarms'){
-            alarmdb.getAlarms($scope.filters, function(data){
-                $scope.alarms = data;
+            alarmdb.getAlarms($scope.filters, function success(response){
+                $scope.alarms = response.data;
                 $scope.loading = false;
+            }, function error(response){
+                $scope.logHttpError(response);
+                $scope.sendnotification("NOTIF_ERROR_GETTING_ALARMS", false, 1);
             });
         }
         $scope.cancelTabWatcher();
@@ -155,7 +162,12 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                     $scope.currentalarm = undefined;
                 }
             }
-            alarmdb.markashandled(alarmId, function (err) { });
+            alarmdb.markashandled(alarmId, function success(resopnse){ 
+
+            }, function error(response){
+                $scope.logHttpError(response);
+                $scope.sendnotification("NOTIF_ERROR_MARK_HANDLED", false, 1);
+            });
         }
         $event.stopPropagation();
     };
@@ -223,7 +235,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.handleSelected = function(){
         if (window.confirm($translate.instant("CONFIRM_HANDLE_SELECTED"))){
             $scope.selected.forEach(function(alarmid){
-                alarmdb.markashandled(alarmid, function(err){});
+                alarmdb.markashandled(alarmId, function success(resopnse){ 
+
+                }, function error(response){
+                    $scope.logHttpError(response);
+                    $scope.sendnotification("NOTIF_ERROR_MARK_HANDLED", 
+                        false, 
+                        1);
+                });
             });
         }
     };
@@ -236,7 +255,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         });
         if ($window.confirm($translate.instant("CONFIRM_HANDLE_ALL"))){
             alarms.forEach(function(a){
-                alarmdb.markashandled(a.id, function(err){  });
+                alarmdb.markashandled(alarmId, function success(resopnse){ 
+
+                }, function error(response){
+                    $scope.logHttpError(response);
+                    $scope.sendnotification("NOTIF_ERROR_MARK_HANDLED", 
+                        false, 
+                        1);
+                });
             });
             $scope.currentalarm = undefined;
         }

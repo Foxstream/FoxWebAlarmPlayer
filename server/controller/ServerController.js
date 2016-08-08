@@ -3,7 +3,7 @@
 function applyApp(app) {
     var self = this;
 
-    // !! use auth.IsUser
+    // !! use auth.IsUser !!
     // Even when user should change password, we want to display the connection errors
     app.get('/servers', auth.IsUser, function(req, res){
         self.serverManager.getservers(function (err, data) {
@@ -93,8 +93,6 @@ function applyApp(app) {
 
     app.delete('/servers/:serverid', auth.IsAdmin, function(req, res){
         self.serverManager.getserver(req.params.serverid, function(err, server){
-            console.log(req.params.serverid);
-            console.log(server);
             if (err){
                 if (err === "Not found"){
                     res.status(404);

@@ -12,9 +12,9 @@ app.factory('userdb', ['$http', '$rootScope', function($http, $rootScope){
             .then(success, error);
     };
 
-    obj.updateUser = function(user, success, callback){
+    obj.updateUser = function(user, success, error){
         $http.put('/users/' + user.id, user)
-            .then(success, callback);
+            .then(success, error);
     };
 
     obj.updateDisplayName = function(newName, success, error){

@@ -106,7 +106,7 @@ function applyApp(app) {
                             } else {
                                 res.status(200);
                             }
-                            res.end();  
+                            res.end();
                         });
                     } else {
                         res.status(400);

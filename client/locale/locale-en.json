@@ -84,5 +84,14 @@
   "CONFIRM_RESET_PASSWORD": "Are you sure you want to reset {{ username }}'s password?",
   "NO_CAMERAS": "No available cameras",
   "NO_SERVER": "No servers",
-  "NO_USER": "No other users"
+  "NO_USER": "No other users",
+  "NOTIF_ERROR_GETTING_SERVER_LIST": "Unable to access the list of servers.",
+  "NOTIF_ERROR_DELETING_SERVER": "An error occured while deleting the server.",
+  "NOTIF_SERVER_UPDATED": "The server has been updated.",
+  "NOTIF_ERROR_ADDING_SERVER": "An error occured while adding the new server.",
+  "NOTIF_ERROR_UPDATING_SERVER": "An error occured while updating the server.",
+  "NOTIF_ERROR_GETTING_SITE_LIST": "Unable to access the list of sites. You should try to reload the page to be able to use filters.",
+  "NOTIF_ERROR_GETTING_CAMERA_LIST": "Unable to access the list of cameras. You should try to reload the page to be able to use filters.",
+  "NOTIF_ERROR_GETTING_ALARMS": "An error occured while accessing the list of alarms.",
+  "NOTIF_ERROR_MARK_HANDLED": "An error occured, alarms could not be marked as handled."
 }

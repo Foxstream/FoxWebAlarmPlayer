@@ -84,5 +84,14 @@
   "CONFIRM_RESET_PASSWORD": "Voulez-vous vraiment réinitialiser le mot de passe de l'utilisateur {{ username }} ?",
   "NO_CAMERAS": "Aucune caméra disponible",
   "NO_SERVER": "Aucun serveur",
-  "NO_USER": "Aucun autre utilisateur"
+  "NO_USER": "Aucun autre utilisateur",
+  "NOTIF_ERROR_GETTING_SERVER_LIST": "Impossible d'accéder à la liste des serveurs.",
+  "NOTIF_ERROR_DELETING_SERVER": "Une erreur s'est produite lors de la suppression du serveur",
+  "NOTIF_SERVER_UPDATED": "Le serveur a été mis à jour.",
+  "NOTIF_ERROR_ADDING_SERVER": "Une erreur s'est produite lors de l'ajout du nouveau serveur.",
+  "NOTIF_ERROR_UPDATING_SERVER": "Une erreur s'est produite lors de la mise à jour du serveur.",
+  "NOTIF_ERROR_GETTING_SITE_LIST": "Impossible d'accéder à la liste des sites. Vous ne pourrez pas filtrer les alarmes.",
+  "NOTIF_ERROR_GETTING_CAMERA_LIST": "Impossible d'accéder à la liste des caméras. Vous ne pourrez pas filtrer les alarmes.",
+  "NOTIF_ERROR_GETTING_ALARMS": "Une erreur s'est produite lors de la récupération des alarmes.",
+  "NOTIF_ERROR_MARK_HANDLED": "Une erreur s'est produite, les alarmes n'ont pas pu être acquittées."
 }

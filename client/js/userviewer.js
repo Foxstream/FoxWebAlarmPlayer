@@ -83,9 +83,10 @@
                 $scope.users[pos] = $scope.currentuser;
                 $scope.resetuser();
                 $scope.sendnotification("NOTIF_USER_UPDATED", true, 1);
-            }, function error(){
+            }, function error(response){
                 $scope.sendnotification("NOTIF_ERROR_UPDATING_USER" , false, 1);
                 $scope.logHttpError(response);
+                $scope.resetuser();
             });
         };
 
