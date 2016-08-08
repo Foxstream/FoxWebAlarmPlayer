@@ -76,8 +76,7 @@ html
                         a(href='/logout')
                           span(class='link') {{ 'LOGOUT' | translate }}
 
-              li(ng-mouseover="$parent.help = true", 
-                ng-mouseou="$parent.help = false",
+              li(ng-click="$parent.help = !$parent.help"
                 class="hidden-xs hidden-sm help-button",
                 ng-class="{active: help}") ?
               li(ng-mouseover='showLanguagePicker = true',

@@ -13,11 +13,13 @@ block content
         div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
           ul
             li(ng-click="tab = 'notHandled'",
-              ng-class="{active: tab==='notHandled'}") {{ 'NEW_ALARMS' | translate }}
+              ng-class="{active: tab==='notHandled'}") 
+              | {{ 'NEW_ALARMS' | translate }}
+              span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_CLICK_NOT_HANDLED_ALARMS_TAB' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
               ng-class="{active: tab==='filteredAlarms'}") 
                 | {{ 'ALL_ALARMS' | translate }}
-                span(class="help right", ng-show="help") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
+                span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
 
         
@@ -47,6 +49,7 @@ block content
                             tr
                               th(class='check') 
                                 input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
+                                span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_ALARMTABLE_CHECKBOX' | translate }}
                               th(class='play')
                               th(class='date')
                                 a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
@@ -89,6 +92,7 @@ block content
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
+                    span(class="help left", ng-show="help && tab==='notHandled'") {{ 'HELP_PLAYER' | translate }}
                     imageplayer(alarm='currentalarm')
 
             //- Mobile version
@@ -155,6 +159,7 @@ block content
                               option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
                           button(type='submit', class='button-primary icon')
                             span(class="glyphicon glyphicon-search")
+                          span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_FILTERS' | translate }}
                     
                     div(class='table-container alarmtable')
 

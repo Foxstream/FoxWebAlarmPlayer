@@ -87,5 +87,9 @@
   "NO_USER": "Aucun autre utilisateur",
   "EMPTY_PASSWORD": "Mot de passe vide",
   "HELP_CLICK_ALL_ALARMS_TAB": "Vous consultez la liste des alarmes qui n'ont pas été acquittées. Cliquez sur cet onglet pour voir toutes les alarmes.",
-  "HELP_LANGUAGE": "Vous pouvez changer de langue grâce à ce bouton."
+  "HELP_LANGUAGE": "Vous pouvez changer de langue grâce à ce bouton.",
+  "HELP_ALARMTABLE_CHECKBOX": "Sélectionnez plusieurs alarmes pour les acquitter rapidement.",
+  "HELP_PLAYER": "Lorsque vous sélectionnez une alarme, la vidéo correspondante est affichée ici.",
+  "HELP_CLICK_NOT_HANDLED_ALARMS_TAB": "Vous consultez la liste complète des alarmes. Cliquez sur cet onglet pour voir la liste des alarmes qui n'ont pas été acquittées.",
+  "HELP_FILTERS": "Utilisez ces champs pour filtrer les alarmes."
 }

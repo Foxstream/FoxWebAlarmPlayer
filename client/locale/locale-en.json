@@ -87,5 +87,9 @@
   "NO_USER": "No other users",
   "EMPTY_PASSWORD": "Password empty",
   "HELP_CLICK_ALL_ALARMS_TAB": "You are currently viewing alarms that have not been marked as handled. Click on this tab to see a list of all the alarms.",
-  "HELP_LANGUAGE": "You can change the language with this button."
+  "HELP_LANGUAGE": "You can change the language with this button.",
+  "HELP_ALARMTABLE_CHECKBOX": "Select several alarms to mark them as handled quickly.",
+  "HELP_PLAYER": "When you select an alarm, the corresponding video is displayed here.",
+  "HELP_CLICK_NOT_HANDLED_ALARMS_TAB": "You are currently viewing all the alarms. Click on this tab display alarms that have not yet been handled.",
+  "HELP_FILTERS": "Use these fields to filter the alarms."
 }
