@@ -37,6 +37,10 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     
     // package.json
     gulp.src('./package.json')
+        .pipe(gulp.dest('./release/'));
+
+    // npm-shrinkwrap.json
+    gulp.src('./npm-shrinkwrap.json')
         .pipe(gulp.dest('./release/')); 
 
     // Server files
