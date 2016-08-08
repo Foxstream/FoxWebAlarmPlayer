@@ -3,9 +3,12 @@ nav {
 
     ul {
 
-        .lang-picker {
+        .lang-picker, .help-button {
             float: left;
-            margin-left: 10px;
+        }
+        .help-button {
+            margin-left: 15px;
+            width: 2em;
         }
 
         li {

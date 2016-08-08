@@ -82,6 +82,12 @@ app.run(function($rootScope, $timeout, $translate){
         + httpResponse.data;
         console.error(errorMsg);
     }
+
+    $rootScope.help = false;
+    $rootScope.$watch('help', function(newVal, oldVal){
+        console.log(newVal)
+    })
+
 });
 
 

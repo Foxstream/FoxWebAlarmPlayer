@@ -76,11 +76,17 @@ html
                         a(href='/logout')
                           span(class='link') {{ 'LOGOUT' | translate }}
 
+              li(ng-mouseover="$parent.help = true", 
+                ng-mouseou="$parent.help = false",
+                class="hidden-xs hidden-sm help-button",
+                ng-class="{active: help}") ?
               li(ng-mouseover='showLanguagePicker = true',
                   ng-mouseleave='showLanguagePicker = false',
                   class="hidden-xs hidden-sm lang-picker")
                   a(href="#")
-                      span(class='link') {{ getCurrentLanguage() | uppercase }}
+                      span(class='link') 
+                        | {{ getCurrentLanguage() | uppercase }}
+                        span(class="help right", ng-show="help") {{ 'HELP_LANGUAGE' | translate }} 
 
                   div(class="submenu language" ng-show='showLanguagePicker')
                     ul

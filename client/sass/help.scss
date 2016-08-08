@@ -1,0 +1,31 @@
+.help {
+    position: absolute;
+    color: white;
+    background: rgba($fox-dark-gray, 1);
+    padding: 5px 15px;
+    border-radius: 3px;
+    width: auto;
+    min-width: 200px;
+    max-width: 400px;
+    line-height: 1.4;
+    z-index: 10000;
+    text-align: justify;
+}
+
+.help.right {
+    margin-left: 40px;
+}
+.help.right:before {
+    position: absolute;
+    top: 5px;
+    left: -15px;
+    display: block;
+    content: ' ';
+    border-top: solid;
+    width: 0;
+    height: 0;
+    border-top: solid transparent 15px;
+    border-bottom: solid transparent 15px;
+    border-right: solid rgba($fox-dark-gray, 1) 15px;
+    box-shadow: none;
+}

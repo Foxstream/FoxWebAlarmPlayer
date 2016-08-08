@@ -15,7 +15,9 @@ block content
             li(ng-click="tab = 'notHandled'",
               ng-class="{active: tab==='notHandled'}") {{ 'NEW_ALARMS' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms'}") {{ 'ALL_ALARMS' | translate }}
+              ng-class="{active: tab==='filteredAlarms'}") 
+                | {{ 'ALL_ALARMS' | translate }}
+                span(class="help right", ng-show="help") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
 
         
@@ -57,7 +59,7 @@ block content
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
                                   | {{ "CAMERA" | translate }}
                               th(class='site')
-                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
+                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse")
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                   | {{ "SITE" | translate }}
