@@ -1,4 +1,4 @@
-﻿extends ./MainTemplate.jade
+﻿extends ./MainTemplate
 
 block title
   title FoxWebAlarmPlayer
@@ -13,7 +13,7 @@ block content
         div(class='actions hidden-xs hidden-sm')
             button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') {{ 'NEW_USER' | translate }}
 
-         //- Mobile buttons 
+        //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
             button(class="button-secondary back" ng-click='back()', ng-show="currentUser === undefined")

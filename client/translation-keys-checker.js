@@ -7,7 +7,7 @@ let translationKeys = [];
 let missing = [];
 
 
-let extractKeysFromJadeFile = (content) => {
+let extractKeysFromPugFile = (content) => {
     var regexp = new RegExp("{{ [A-Z_'\| ]+translate }}", 'g');
     do {
         match = regexp.exec(content);
@@ -98,7 +98,7 @@ async.series([
                         console.error(err);
                         return;
                     }
-                    extractKeysFromJadeFile(content);
+                    extractKeysFromPugFile(content);
                     callback();
                 });
             }, () => {

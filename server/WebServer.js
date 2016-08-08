@@ -19,8 +19,8 @@ function buildWebServer(){
     
     app.use('/', express.static(__dirname + '/../client'));
     
-    app.set('views', __dirname + '/../client/views')
-    app.set('view engine', 'jade')
+    app.set('views', __dirname + '/../client/views');
+    app.set('view engine', 'pug');
     
     return app;
 }

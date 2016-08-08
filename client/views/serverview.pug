@@ -1,4 +1,4 @@
-extends ./MainTemplate.jade
+extends ./MainTemplate
 
 block title
     title FoxWebAlarmPlayer
@@ -13,7 +13,7 @@ block content
         div(class='actions hidden-xs hidden-sm')
             button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined && currentserver === undefined') {{ 'NEW_SERVER' | translate }}
 
-         //- Mobile buttons 
+        //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
 
             button(class="button-secondary back", ng-click='back()')
@@ -132,7 +132,7 @@ block content
                         button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") {{ 'SAVE' | translate }}
              
-         div(ng-show="newserver !== undefined", class="hidden-md hidden-lg")
+        div(ng-show="newserver !== undefined", class="hidden-md hidden-lg")
             h5(class="block-header") {{ 'NEW_SERVER' | translate }}
             form
                 .form-group
