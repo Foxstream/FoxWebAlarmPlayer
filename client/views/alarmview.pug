@@ -118,10 +118,8 @@ block content
                         li(class="block-header", ng-show="getNotHandledAlarms().length === 0") Aucune alarme
                         li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
-                          span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header",ng-show="getNotHandledAlarms().length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
-                          span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
                   swiper
@@ -262,10 +260,8 @@ block content
                         li(class="block-header", ng-show="alarms.length === 0") {{ 'NO_ALARM' | translate }}
                         li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
-                          span(class="glyphicon glyphicon-menu-right")
                         li(ng-click="showmorealarms()", class="block-header", ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
-                          span(class="glyphicon glyphicon-menu-right")
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
                   swiper

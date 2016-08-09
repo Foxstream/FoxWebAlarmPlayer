@@ -33,6 +33,22 @@
 
 }
 
+.block-header:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e258";
+    float: right;
+}
+.block-header[data-toggle="collapse"].collapsed:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e259";
+    float: right;
+}
+.block-header[data-toggle="collapse"]:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e260";
+    float: right;
+}
+
 // Bootstrap default margin is so big
 .panel {
     margin-bottom: 2px;
