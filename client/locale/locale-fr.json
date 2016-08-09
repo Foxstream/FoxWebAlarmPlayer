@@ -100,5 +100,10 @@
   "HELP_NEWSERVER": "Cliquez ici pour ajouter un nouveau serveur.",
   "HELP_SELECT_SERVER": "Cliquez sur une ligne pour mettre à jour les informations du serveur.",
   "HELP_COMMIT_NEWSERVER": "Remplissez les champs et validez pour vous connecter au nouveau serveur.",
-  "HELP_COMMIT_CURRENTSERVER": "Remplissez les champs et validez pour mettre à jour les informations du serveur."
+  "HELP_COMMIT_CURRENTSERVER": "Saisissez vos modifications et validez pour mettre à jour le serveur.",
+  "HELP_NEWUSER": "Cliquez ici pour ajouter un nouvel utilisateur.",
+  "HELP_SELECT_USER": "Cliquez sur une ligne pour mettre à jour les informations de l'utilisateur.",
+  "HELP_COMMIT_CURRENTUSER": "Saisissez vos modifications et validez pour mettre à jour l'utilisateur.",
+  "HELP_COMMIT_NEWUSER": "Remplissez les champs et validez pour créer un nouvel utilisateur.",
+  "HELP_RESET_PASSWORD": "Cliquez ici pour réinitialiser le mot de passe de cet utilisateur. Il devra choisir un nouveau mot de passe lors de sa prochaine connexion."
 }

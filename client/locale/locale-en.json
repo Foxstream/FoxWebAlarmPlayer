@@ -100,5 +100,10 @@
   "HELP_NEWSERVER": "Click here to add a new server.",
   "HELP_SELECT_SERVER": "Click on a line to update the corresponding server.",
   "HELP_COMMIT_NEWSERVER": "Fill in the fields and validate to connect to the new server.",
-  "HELP_COMMIT_CURRENTSERVER": "Fill in the fields and validate to update the server."
+  "HELP_COMMIT_CURRENTSERVER": "Type your modifications and validate to update the server.",
+  "HELP_NEWUSER": "Click here to add a new user.",
+  "HELP_SELECT_USER": "Click on a line to update the corresponding user.",
+  "HELP_COMMIT_CURRENTUSER": "Type your modifications and validate to update the user.",
+  "HELP_COMMIT_NEWUSER": "Fill in the fields and validate to create a new user.",
+  "HELP_RESET_PASSWORD": "Click here to reset the user's password. He will be asked to choose a new password the next time he logs in to the application."
 }

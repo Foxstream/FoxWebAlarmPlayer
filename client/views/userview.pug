@@ -11,7 +11,8 @@ block content
 
         //- Desktop buttons
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') {{ 'NEW_USER' | translate }}
+            button(class="button-primary help-container", ng-click='initemptyuser()', ng-show='newuser === undefined && currentuser === undefined') {{ 'NEW_USER' | translate }}
+                span(class="help left", ng-show="help") {{ 'HELP_NEWUSER' | translate }}
 
         //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
@@ -37,12 +38,15 @@ block content
             tbody
               tr(ng-show="users.length < 2")
                   td(colspan="5") {{ 'NO_USER' | translate }}
-              tr(ng-repeat='x in users', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)", ng-show="x.id !== user.id")
+              //- Using getUsersExceptMe() is useful to display helpboxes because $index is right
+              tr(ng-repeat='x in getUsersExceptMe(user)', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)")
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id") {{ x.login }}
                 td(ng-show="currentuser !== undefined && currentuser.id === x.id")
                     input(type="text" ng-model="currentuser.login", ng-click="$event.stopPropagation()")
 
-                td(ng-show="currentuser === undefined || currentuser.id !== x.id") {{ x.displayname }}
+                td(ng-show="currentuser === undefined || currentuser.id !== x.id", ng-class="{'help-container': $index===0}")
+                  | {{ x.displayname }}
+                  span(class="help inside", ng-show="help && $index===0 && newuser===undefined && currentuser===undefined") {{ 'HELP_SELECT_USER' | translate }}
                 td(ng-show="currentuser !== undefined && currentuser.id === x.id")
                     input(type="text" ng-model="currentuser.displayname", ng-click="$event.stopPropagation()")
 
@@ -52,18 +56,21 @@ block content
                     input(type="checkbox" ng-model="currentuser.type", ng-click="$event.stopPropagation()", ng-true-value="1", ng-false-value="0")
 
                 td
-                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-show="x.shouldChangePassword===0") {{ 'RESET_PASSWORD' | translate }}
-                    span(ng-show="x.shouldChangePassword===1") {{ 'EMPTY_PASSWORD' | translate }}
+                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary help-container", ng-show="x.shouldChangePassword===0") {{ 'RESET_PASSWORD' | translate }}
+                      span(class="help right", ng-show="help && x.shouldChangePassword===0 && currentuser===undefined && newuser===undefined") {{ 'HELP_RESET_PASSWORD' | translate }}
+                    span(ng-show="x.shouldChangePassword!==0") {{ 'EMPTY_PASSWORD' | translate }}
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")
                     button(ng-click="deleteuser(x.id); $event.stopPropagation();", title="Supprimer l'utilisateur", class="icon button-primary", ng-show="newuser === undefined")
                         span(class="glyphicon glyphicon-trash")
 
-                td(ng-show="currentuser !== undefined && currentuser.id === x.id")
+                td(ng-show="currentuser !== undefined && currentuser.id === x.id", class="help-container")
                     button(ng-click="resetuser(); $event.stopPropagation()", title="Annuler", class="icon button-secondary")
                         span(class="glyphicon glyphicon-remove")
                     button(title="Valider", class="icon button-primary", ng-click="commitcurrentuser(); $event.stopPropagation()") 
                         span(class="glyphicon glyphicon-ok")
+                    span(class="help left", ng-show="help") {{ 'HELP_COMMIT_CURRENTUSER' | translate }}
+
 
                 tr(ng-show="newuser !== undefined", class="active")
                     td
@@ -73,11 +80,13 @@ block content
                     td
                         input(type="checkbox", ng-model="newuser.type", ng-true-value="1", ng-false-value="0")
                     td
-                    td
+                    td(class="help-container")
                         button(ng-click="newuser = undefined", title="Annuler", class="icon button-secondary")
                             span(class="glyphicon glyphicon-remove")
                         button(title="Valider", class="icon button-primary", ng-click="commitnewuser()")
                             span(class="glyphicon glyphicon-ok")
+                        span(class="help left", ng-show="help") {{ 'HELP_COMMIT_NEWUSER' | translate }}
+
 
 
 

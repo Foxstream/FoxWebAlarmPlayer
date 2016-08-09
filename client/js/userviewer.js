@@ -104,6 +104,13 @@
             });
         };
 
+        // We need $index 
+        $scope.getUsersExceptMe = function(me){
+            return $scope.users.filter(function(u){
+                return u.id !== me.id;
+            });
+        }
+
 
 }]);
 

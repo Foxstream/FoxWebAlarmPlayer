@@ -97,7 +97,7 @@ nav {
             display: block;
             position: absolute;
             right: 0;
-            z-index: 10;
+            z-index: 20000; // Should be very high to display over potential help boxes
             background-color: $fox-red;
             min-width: 200px;
 
