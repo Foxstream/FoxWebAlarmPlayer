@@ -17,7 +17,7 @@ block content
               | {{ 'NEW_ALARMS' | translate }}
               span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_CLICK_NOT_HANDLED_ALARMS_TAB' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms', 'help-container':tab==='notHandled'}}") 
+              ng-class="{active: tab==='filteredAlarms', 'help-container':tab==='notHandled'}") 
                 | {{ 'ALL_ALARMS' | translate }}
                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
