@@ -11,7 +11,8 @@ block content
 
         //- Desktop buttons 
         div(class='actions hidden-xs hidden-sm')
-            button(class="button-primary", ng-click='initemptyserver()', ng-show='newserver === undefined && currentserver === undefined') {{ 'NEW_SERVER' | translate }}
+            button(class="button-primary help-container", ng-click='initemptyserver()', ng-show='newserver === undefined && currentserver === undefined') {{ 'NEW_SERVER' | translate }}
+                span(class="help left", ng-show="help") {{ 'HELP_NEWSERVER' | translate }}
 
         //- Mobile buttons 
         div(class='actions hidden-lg hidden-md')
@@ -57,7 +58,9 @@ block content
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.password", ng-click="$event.stopPropagation()")
 
-                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.description }}
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id", ng-class="{'help-container': $index===0}") 
+                            | {{ x.description }}
+                            span(class="help inside", ng-show="help && $index===0 && newserver===undefined && currentserver===undefined") {{ 'HELP_SELECT_SERVER' | translate }}
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.description", ng-click="$event.stopPropagation()")
 
@@ -69,11 +72,13 @@ block content
                             button(ng-click="deleteserver(x.id); $event.stopPropagation()", title="Supprimer le serveur", class="icon button-primary", ng-show="newserver === undefined")
                                 span(class="glyphicon glyphicon-trash")
 
-                        td(ng-show="currentserver !== undefined && currentserver.id === x.id")
+                        td(ng-show="currentserver !== undefined && currentserver.id === x.id", class="help-container")
                             button(ng-click="resetserver(); $event.stopPropagation()", title="Annuler", class="icon button-secondary")
                                 span(class="glyphicon glyphicon-remove")
                             button(title="Valider", class="icon button-primary", ng-click="commitcurrentserver(); $event.stopPropagation()") 
                                 span(class="glyphicon glyphicon-ok")
+                            span(class="help left", ng-show="help") {{ 'HELP_COMMIT_CURRENTSERVER' | translate }}
+
 
                     tr(ng-show="newserver !== undefined", class="active")
                         td
@@ -87,14 +92,12 @@ block content
                         td
                             input(type="text" ng-model="newserver.description")
                         td
-                        td
+                        td(class="help-container")
                             button(ng-click="newserver = undefined", title="Annuler", class="icon button-secondary")
                                 span(class="glyphicon glyphicon-remove")
                             button(title="Valider", class="icon button-primary", ng-click="commitnewserver()") 
                                 span(class="glyphicon glyphicon-ok")
-
-
-
+                            span(class="help left", ng-show="help") {{ 'HELP_COMMIT_NEWSERVER' | translate }}
 
         div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")
             div(ng-show="servers.length == 0", class='panel')

@@ -96,5 +96,9 @@
   "HELP_FULLSCREEN": "Click here to show an enlarged video player for this camera.",
   "HELP_PREVIOUS_CAMERA": "When the player is open, you can navigate through the cameras with the arrows.",
   "HELP_CLOSE_PLAYER": "Click here to close the player.",
-  "HELP_ACCOUNT_SETTINGS": "Use this page to update your user account."
+  "HELP_ACCOUNT_SETTINGS": "Use this page to update your user account.",
+  "HELP_NEWSERVER": "Click here to add a new server.",
+  "HELP_SELECT_SERVER": "Click on a line to update the corresponding server.",
+  "HELP_COMMIT_NEWSERVER": "Fill in the fields and validate to connect to the new server.",
+  "HELP_COMMIT_CURRENTSERVER": "Fill in the fields and validate to update the server."
 }
