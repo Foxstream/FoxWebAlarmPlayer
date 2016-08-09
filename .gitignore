@@ -1,5 +1,7 @@
 npm-debug.log
-data/
+server/data/images
+server/data/alarmplayer.db
+server/data/dev.db
 tests/data/images/
 release/
 release.tar.gz

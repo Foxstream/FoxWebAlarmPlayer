@@ -47,7 +47,7 @@ describe("User API (admin)", function(){
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body.login).to.be.equal('admin');
-                    expect(res.body.displayname).to.be.equal('admin');
+                    expect(res.body.displayname).to.be.equal('Admin');
                     expect(res.body.type).to.be.equal(1);
                     done();
                 });
