@@ -9,9 +9,9 @@
     color: white;
     background: $fox-light-red;
     padding: 6px 15px;
-    width: auto;
-    min-width: 300px;
-    max-width: 400px;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
     line-height: 18px;
     z-index: 10000;
     text-align: justify;
@@ -33,10 +33,7 @@
     right: 10px;
 }
 .help.left {
-    left: -230px;
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+    left: -205px;
 }
 
 .help.right:before, .help.inside:before {

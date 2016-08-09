@@ -13,11 +13,11 @@ block content
         div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
           ul
             li(ng-click="tab = 'notHandled'",
-              ng-class="{active: tab==='notHandled'}", class="help-container") 
+              ng-class="{active: tab==='notHandled', 'help-container':tab==='filteredAlarms'}") 
               | {{ 'NEW_ALARMS' | translate }}
               span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_CLICK_NOT_HANDLED_ALARMS_TAB' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms'}", class="help-container") 
+              ng-class="{active: tab==='filteredAlarms', 'help-container':tab==='notHandled'}}") 
                 | {{ 'ALL_ALARMS' | translate }}
                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
