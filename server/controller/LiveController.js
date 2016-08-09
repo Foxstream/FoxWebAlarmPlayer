@@ -36,7 +36,9 @@ function applyApp(app){
             if (s.config.id == req.params.server){
                 server = s;
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
         });
         // Ask for image for the right camera
         if (!server){
