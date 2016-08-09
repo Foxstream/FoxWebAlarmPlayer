@@ -48,7 +48,9 @@ block content
 						li(ng-click="tab = 'loginForm'",
 							ng-class="{active: tab==='loginForm'}") {{ 'DISPLAYED_INFO' | translate }}
 						li(ng-click="tab = 'passwordForm'",
-							ng-class="{active: tab==='passwordForm'}") {{ 'CHANGE_PASSWORD' | translate }}
+							ng-class="{active: tab==='passwordForm'}", class="help-container") 
+							| {{ 'CHANGE_PASSWORD' | translate }}
+							span(class="help right", ng-show="help") {{ 'HELP_ACCOUNT_SETTINGS' | translate }}
 
 
 				div(class="main-element")

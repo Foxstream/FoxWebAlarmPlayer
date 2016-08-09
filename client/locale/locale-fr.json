@@ -95,5 +95,6 @@
   "HELP_COLLAPSE_LIVE_PANEL": "Cliquez sur le nom d'un site pour afficher ou masquer les caméras dispobibles.",
   "HELP_FULLSCREEN": "Cliquez ici pour afficher la vidéo dans un lecteur plus grand.",
   "HELP_PREVIOUS_CAMERA": "Lorsque le lecteur est affiché, vous pouvez passer à une autre caméra avec les flèches.",
-  "HELP_CLOSE_PLAYER": "Cliquez ici pour fermer le lecteur."
+  "HELP_CLOSE_PLAYER": "Cliquez ici pour fermer le lecteur.",
+  "HELP_ACCOUNT_SETTINGS": "Utilisez cette page pour modifier les informations de votre compte."
 }

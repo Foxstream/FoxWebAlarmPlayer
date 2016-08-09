@@ -95,5 +95,6 @@
   "HELP_COLLAPSE_LIVE_PANEL": "Click on a site to show or hide the available cameras.",
   "HELP_FULLSCREEN": "Click here to show an enlarged video player for this camera.",
   "HELP_PREVIOUS_CAMERA": "When the player is open, you can navigate through the cameras with the arrows.",
-  "HELP_CLOSE_PLAYER": "Click here to close the player."
+  "HELP_CLOSE_PLAYER": "Click here to close the player.",
+  "HELP_ACCOUNT_SETTINGS": "Use this page to update your user account."
 }
