@@ -7,6 +7,7 @@ div(class="liveplayer")
         span(class="glyphicon glyphicon-resize-full", ng-click="playfullscreen({site: site, camera: camera})", ng-show="fullscreen == false")
         span
             span(class="glyphicon glyphicon-resize-small", ng-click="playfullscreen({site: undefined, camera: undefined})", ng-show="fullscreen == true")
-            span(class="help right", ng-show="help") {{ 'HELP_FULLSCREEN' | translate }}
+            span(class="help right", ng-show="help && !fullscreen") {{ 'HELP_FULLSCREEN' | translate }}
     div(class="close-button", ng-if="fullscreen", ng-click="playfullscreen({site: undefined, camera: undefined})")
         span(class="glyphicon glyphicon-remove")
+        span(class="help left", ng-show="help") {{ 'HELP_CLOSE_PLAYER' | translate }}

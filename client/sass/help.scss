@@ -8,12 +8,11 @@
     top: 3px;
     color: white;
     background: $fox-light-red;
-    padding: 5px 15px;
-    border-radius: 3px;
+    padding: 6px 15px;
     width: auto;
     min-width: 300px;
     max-width: 400px;
-    line-height: 1.5;
+    line-height: 18px;
     z-index: 10000;
     text-align: justify;
     font-weight: normal;
@@ -34,37 +33,38 @@
     right: 10px;
 }
 .help.left {
-    left: -205px;
-    top: 30px;
+    left: -230px;
     width: 200px;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .help.right:before, .help.inside:before {
     position: absolute;
-    top: 3px;
-    left: -12px;
+    top: 0;
+    left: -15px;
     display: block;
     content: ' ';
     border-top: solid;
     width: 0;
     height: 0;
-    border-top: solid transparent 12px;
-    border-bottom: solid transparent 12px;
-    border-right: solid $fox-light-red 12px;
+    border-top: solid transparent 15px;
+    border-bottom: solid transparent 15px;
+    border-right: solid $fox-light-red 15px;
     box-shadow: none;
 }
 
 .help.left:after {
     position: absolute;
-    top: 3px;
-    right: -12px;
+    top: 0;
+    right: -15px;
     display: block;
     content: ' ';
     border-top: solid;
     width: 0;
     height: 0;
-    border-top: solid transparent 12px;
-    border-bottom: solid transparent 12px;
-    border-left: solid $fox-light-red 12px;
+    border-top: solid transparent 15px;
+    border-bottom: solid transparent 15px;
+    border-left: solid $fox-light-red 15px;
     box-shadow: none;
 }

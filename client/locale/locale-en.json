@@ -93,5 +93,7 @@
   "HELP_CLICK_NOT_HANDLED_ALARMS_TAB": "You are currently viewing all the alarms. Click on this tab display alarms that have not yet been handled.",
   "HELP_FILTERS": "Use these fields to filter the alarms.",
   "HELP_COLLAPSE_LIVE_PANEL": "Click on a site to show or hide the available cameras.",
-  "HELP_FULLSCREEN": "Click here to show an enlarged video player for this camera."
+  "HELP_FULLSCREEN": "Click here to show an enlarged video player for this camera.",
+  "HELP_PREVIOUS_CAMERA": "When the player is open, you can navigate through the cameras with the arrows.",
+  "HELP_CLOSE_PLAYER": "Click here to close the player."
 }
