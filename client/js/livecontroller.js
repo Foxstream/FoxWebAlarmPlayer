@@ -94,9 +94,8 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         templateUrl: '/liveplayer',
         // "pause" is set to true when a camera is selected for fullscreen : we don't want 
         // to stop playing completely, so that when fullscreen is closed, playing resumes
-        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&', fullscreen: '='},
+        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&', fullscreen: '=', help: '='},
         link: function(scope, elem, attrs){
-
             scope.showcontrols = true;
             scope.playing = undefined;
             scope.togglelivefeed = function(){

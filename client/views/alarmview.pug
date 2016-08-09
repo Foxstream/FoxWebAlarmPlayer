@@ -13,11 +13,11 @@ block content
         div(class="tabs", ng-show="device === 'desktop' || currentalarm === undefined")
           ul
             li(ng-click="tab = 'notHandled'",
-              ng-class="{active: tab==='notHandled'}") 
+              ng-class="{active: tab==='notHandled'}", class="help-container") 
               | {{ 'NEW_ALARMS' | translate }}
               span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_CLICK_NOT_HANDLED_ALARMS_TAB' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms'}") 
+              ng-class="{active: tab==='filteredAlarms'}", class="help-container") 
                 | {{ 'ALL_ALARMS' | translate }}
                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
@@ -47,7 +47,7 @@ block content
                       table
                         thead
                             tr
-                              th(class='check') 
+                              th(class='check help-container') 
                                 input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
                                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_ALARMTABLE_CHECKBOX' | translate }}
                               th(class='play')
@@ -145,7 +145,7 @@ block content
                         button(class='button-primary',
                                 ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
 
-                    div(class="filter")
+                    div(class="filter help-container")
                       form(class="form-inline", ng-submit='applyfilters()')
                           input(type="date", id="datefield", ng-model="filters.date")
                           label {{ 'SITES' | translate }} :

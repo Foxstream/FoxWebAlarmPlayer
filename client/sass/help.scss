@@ -1,31 +1,47 @@
+.help-container {
+    position: relative;
+    z-index: 10000 !important; // Ugly...
+}
+
 .help {
     position: absolute;
+    top: 3px;
     color: white;
-    background: rgba($fox-gray, 0.9);
+    background: $fox-light-red;
     padding: 5px 15px;
     border-radius: 3px;
     width: auto;
-    min-width: 200px;
+    min-width: 300px;
     max-width: 400px;
     line-height: 1.5;
     z-index: 10000;
     text-align: justify;
     font-weight: normal;
-    box-shadow: 2px 2px 5px $fox-gray;
+    font-size: 14px;
     transition: 0.2s linear all;
     opacity: 1;
 }
 
+// For angular animation
 .help.ng-hide {
     opacity: 0;
 }
 
 .help.right {
-    margin-left: 30px;
+    left: 102%;
 }
-.help.right:before {
+.help.inside {
+    right: 10px;
+}
+.help.left {
+    left: -205px;
+    top: 30px;
+    width: 200px;
+}
+
+.help.right:before, .help.inside:before {
     position: absolute;
-    top: 2px;
+    top: 3px;
     left: -12px;
     display: block;
     content: ' ';
@@ -34,15 +50,10 @@
     height: 0;
     border-top: solid transparent 12px;
     border-bottom: solid transparent 12px;
-    border-right: solid rgba($fox-gray, 0.9) 12px;
+    border-right: solid $fox-light-red 12px;
     box-shadow: none;
 }
 
-.help.left {
-    margin-left: -205px;
-    margin-top: 30px;
-    width: 200px;
-}
 .help.left:after {
     position: absolute;
     top: 3px;
@@ -54,6 +65,6 @@
     height: 0;
     border-top: solid transparent 12px;
     border-bottom: solid transparent 12px;
-    border-left: solid rgba($fox-gray, 0.9) 12px;
+    border-left: solid $fox-light-red 12px;
     box-shadow: none;
 }

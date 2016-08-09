@@ -91,5 +91,7 @@
   "HELP_ALARMTABLE_CHECKBOX": "Select several alarms to mark them as handled quickly.",
   "HELP_PLAYER": "When you select an alarm, the corresponding video is displayed here.",
   "HELP_CLICK_NOT_HANDLED_ALARMS_TAB": "You are currently viewing all the alarms. Click on this tab display alarms that have not yet been handled.",
-  "HELP_FILTERS": "Use these fields to filter the alarms."
+  "HELP_FILTERS": "Use these fields to filter the alarms.",
+  "HELP_COLLAPSE_LIVE_PANEL": "Click on a site to show or hide the available cameras.",
+  "HELP_FULLSCREEN": "Click here to show an enlarged video player for this camera."
 }

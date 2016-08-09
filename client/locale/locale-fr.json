@@ -91,5 +91,7 @@
   "HELP_ALARMTABLE_CHECKBOX": "Sélectionnez plusieurs alarmes pour les acquitter rapidement.",
   "HELP_PLAYER": "Lorsque vous sélectionnez une alarme, la vidéo correspondante est affichée ici.",
   "HELP_CLICK_NOT_HANDLED_ALARMS_TAB": "Vous consultez la liste complète des alarmes. Cliquez sur cet onglet pour voir la liste des alarmes qui n'ont pas été acquittées.",
-  "HELP_FILTERS": "Utilisez ces champs pour filtrer les alarmes."
+  "HELP_FILTERS": "Utilisez ces champs pour filtrer les alarmes.",
+  "HELP_COLLAPSE_LIVE_PANEL": "Cliquez sur le nom d'un site pour afficher ou masquer les caméras dispobibles.",
+  "HELP_FULLSCREEN": "Cliquez ici pour afficher la vidéo dans un lecteur plus grand."
 }
