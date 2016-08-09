@@ -13,6 +13,8 @@ var agent = chai.request.agent(server);
 
 describe("User API (admin)", function(){
 
+    this.timeout(10000);
+
     before(function(done){
         agent.post('/login')
             .send({username: 'admin', password: 'admin'})
