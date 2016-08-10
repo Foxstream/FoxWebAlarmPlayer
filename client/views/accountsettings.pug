@@ -11,7 +11,7 @@ block content
 				ul
 					li(class="panel")
 						h5
-							a(href='#', class="block-header")
+							a(href='#', class="block-header no-arrow")
 								span {{ 'LANGUAGE' | translate }}
 								select(ng-change="onLanguageChange()", ng-model="currentLanguage", ng-options="l for l in languages", style="float: right;")
 					li(class="panel")

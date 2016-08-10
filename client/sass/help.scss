@@ -28,14 +28,14 @@
 
 .help.right {
     left: 100%;
-    @include transform(translateX(15px));
+    transform: translateX(15px);
 }
 .help.inside {
     right: 10px;
 }
 .help.left {
     left: 0;
-    @include transform(translateX(-105%));
+    transform: translateX(-105%);
 }
 .help.y-offset {
     top: 100px;

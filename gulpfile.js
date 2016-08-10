@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     bowerFiles = require('bower-files')({ json: './client/bower.json' }),
     gulpFilter = require('gulp-filter'),
     tar = require('gulp-tar'),
-    gzip = require('gulp-gzip');
+    gzip = require('gulp-gzip'),
+    autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('default', ['sass'], function(){
 
@@ -26,6 +27,7 @@ gulp.task('js', function(){
 gulp.task('sass', function(){
     return gulp.src('./client/sass/main.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(uglifycss({
             "maxLineLength": 100
         }))

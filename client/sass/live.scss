@@ -22,7 +22,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            @include transform(translate(-50%, -50%));
+            transform: translate(-50%, -50%);
             font-size: 3em;
             color: white;
         }
@@ -42,7 +42,7 @@
                 display: inline-block;
                 position: absolute;
                 top: 50%;
-                @include transform(translate(0, -50%));
+                transform: translate(0, -50%);
                 width: 20px;
             }
 
@@ -108,7 +108,7 @@
     }
 
     .liveplayer {
-        @include transform(translate(-50%, -50%));
+        transform: translate(-50%, -50%);
         box-shadow: 1px 1px 3px $fox-dark-gray;
         top: 50%;
         left: 50%;

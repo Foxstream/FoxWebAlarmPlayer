@@ -12,7 +12,7 @@ input[type=checkbox]{
 
 // Checkboxes are not big enough (in tables for example)
 input[type=checkbox]{ 
-   @include transform(scale(1.5));
+   transform: scale(1.5);
 }
 
 // Overriding bootstrap blue glow on focus
