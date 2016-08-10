@@ -38,10 +38,12 @@
             line-height: 2.3em;
             bottom: 0;
 
-            .glyphicon {
+            .fullscreen-button, .play-button {
+                display: inline-block;
                 position: absolute;
                 top: 50%;
                 @include transform(translate(0, -50%));
+                width: 20px;
             }
 
             .glyphicon:hover {
@@ -49,11 +51,11 @@
                 font-weight: bold;
             }
 
-            .glyphicon-play, .glyphicon-stop {
+            .play-button {
                 left: 10px;
             }
 
-            .glyphicon-resize-full, .glyphicon-resize-small {
+            .fullscreen-button {
                 right: 10px;
             }
 

@@ -27,7 +27,8 @@
 }
 
 .help.right {
-    left: 102%;
+    left: 100%;
+    @include transform(translateX(15px));
 }
 .help.inside {
     right: 10px;
