@@ -7,11 +7,10 @@
     position: absolute;
     top: 3px;
     color: white;
-    background: $fox-light-red;
+    background: $fox-dark-gray;
     padding: 6px 15px;
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+    min-width: 250px;
+    max-width: 300px;
     line-height: 18px;
     z-index: 10000;
     text-align: justify;
@@ -19,6 +18,7 @@
     font-size: 14px;
     transition: 0.2s linear all;
     opacity: 1;
+    box-shadow: 0 0 4px white;
 }
 
 // For angular animation
@@ -34,7 +34,20 @@
     right: 10px;
 }
 .help.left {
-    left: -205px;
+    left: 0;
+    @include transform(translateX(-105%));
+}
+.help.y-offset {
+    top: 100px;
+}
+.help.small {
+    min-width: 150px;
+    width: 150px;
+}
+.help.floating {
+    position: fixed;
+    top: 25vh;
+    right: 10vw;
 }
 
 .help.right:before, .help.inside:before {
@@ -48,7 +61,7 @@
     height: 0;
     border-top: solid transparent 15px;
     border-bottom: solid transparent 15px;
-    border-right: solid $fox-light-red 15px;
+    border-right: solid $fox-dark-gray 15px;
     box-shadow: none;
 }
 
@@ -63,6 +76,6 @@
     height: 0;
     border-top: solid transparent 15px;
     border-bottom: solid transparent 15px;
-    border-left: solid $fox-light-red 15px;
+    border-left: solid $fox-dark-gray 15px;
     box-shadow: none;
 }

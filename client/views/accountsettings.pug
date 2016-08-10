@@ -1,4 +1,4 @@
-﻿extends ./MainTemplate.pug
+﻿extends ./MainTemplate
 
 block title
 	title FoxWebAlarmPlayer
@@ -50,7 +50,7 @@ block content
 						li(ng-click="tab = 'passwordForm'",
 							ng-class="{active: tab==='passwordForm'}", class="help-container") 
 							| {{ 'CHANGE_PASSWORD' | translate }}
-							span(class="help right", ng-show="help") {{ 'HELP_ACCOUNT_SETTINGS' | translate }}
+							span(class="help floating", ng-show="help") {{ 'HELP_ACCOUNT_SETTINGS' | translate }}
 
 
 				div(class="main-element")

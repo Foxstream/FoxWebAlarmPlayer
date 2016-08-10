@@ -56,8 +56,8 @@ block content
                     input(type="checkbox" ng-model="currentuser.type", ng-click="$event.stopPropagation()", ng-true-value="1", ng-false-value="0")
 
                 td
-                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary help-container", ng-show="x.shouldChangePassword===0") {{ 'RESET_PASSWORD' | translate }}
-                      span(class="help right", ng-show="help && x.shouldChangePassword===0 && currentuser===undefined && newuser===undefined") {{ 'HELP_RESET_PASSWORD' | translate }}
+                    button(ng-click='resetpassword(x.id); $event.stopPropagation();', title='Reset mot de passe', class="button-secondary", ng-show="x.shouldChangePassword===0", ng-class="{'help-container': help && x.shouldChangePassword===0 && currentuser===undefined && newuser===undefined}") {{ 'RESET_PASSWORD' | translate }}
+                      span(class="help right small", ng-show="help && x.shouldChangePassword===0 && currentuser===undefined && newuser===undefined") {{ 'HELP_RESET_PASSWORD' | translate }}
                     span(ng-show="x.shouldChangePassword!==0") {{ 'EMPTY_PASSWORD' | translate }}
 
                 td(ng-show="currentuser === undefined || currentuser.id !== x.id")

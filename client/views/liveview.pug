@@ -20,6 +20,7 @@ block content
                     span(class="help right", ng-show="help") {{ 'HELP_PREVIOUS_CAMERA' | translate }}
                 span(class="next-camera")
                     span(class="glyphicon glyphicon-menu-right hidden-xs hidden-sm", ng-click="shownextcamera()")
+                    span(class="help left", ng-show="help") {{ 'HELP_NEXT_CAMERA' | translate }}
 
             div(ng-show="cameras == undefined", class="panel")
                 h5
