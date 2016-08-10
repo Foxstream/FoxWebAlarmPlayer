@@ -1,5 +1,7 @@
 {
     
+    "appName": "FoxWebAlarmPlayer",
+
     "port": 8001,
     "dbHost": "server/data/dev.db",
 

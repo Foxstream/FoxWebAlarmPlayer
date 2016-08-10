@@ -1,11 +1,12 @@
 ﻿var auth = require("../Authenticator.js");
+var config = require("config");
 
 function applyApp(app, userPers) {
     var self = this;
     
     var showErrorMessage= function(req, res, errMsg)
     {
-        res.render('accountsettings', { user: req.user, message: errMsg});
+        res.render('accountsettings', { user: req.user, message: errMsg, appName: config.get('appName') });
     }
     
     app.get('/accountsettings', auth.IsUser, function (req, res) {
