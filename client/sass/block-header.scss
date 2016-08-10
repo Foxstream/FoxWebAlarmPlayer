@@ -31,19 +31,32 @@
         @include transform(translate(0, -50%));
     }
 
+    .menu-icon {
+        left: 10px;
+    }
+    .menu-icon + span {
+        padding-left: 30px
+    }
+
 }
 
+// There may be a simpler solution, bootstrap doc is not very clear
 .block-header:after {
     font-family: 'Glyphicons Halflings'; 
     content: "\e258";
     float: right;
 }
-.block-header[data-toggle="collapse"].collapsed:after {
+.block-header[data-toggle="collapse"]:after {
     font-family: 'Glyphicons Halflings'; 
     content: "\e259";
     float: right;
 }
-.block-header[data-toggle="collapse"]:after {
+.block-header[data-toggle="collapse"][aria-expanded="false"].collapsed:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e259";
+    float: right;
+}
+.block-header[data-toggle="collapse"][aria-expanded="true"]:after {
     font-family: 'Glyphicons Halflings'; 
     content: "\e260";
     float: right;

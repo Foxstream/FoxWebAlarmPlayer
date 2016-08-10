@@ -17,23 +17,23 @@ block content
 					li(class="panel")
 						h5
 							a(href='#', ng-click='showMenu = false', class="block-header")
-								span(class="glyphicon glyphicon-cog")
+								span(class="glyphicon glyphicon-cog menu-icon")
 								span {{ 'ACCOUNTSETTINGS' | translate }}
 					if user.type == 1
 						li(class="panel")
 							h5
 								a(href='/serverview', class="block-header")
-									span(class="glyphicon glyphicon-hdd")
+									span(class="glyphicon glyphicon-hdd menu-icon")
 									span {{ 'SERVERS' | translate }}
 						li(class="panel")
 							h5
 								a(href='/userview', class="block-header")
-									span(class="glyphicon glyphicon-user")
+									span(class="glyphicon glyphicon-user menu-icon")
 									span {{ 'USERS' | translate }}
 					li(class="panel")
 						h5
 							a(href='/logout', class="block-header")
-								span(class="glyphicon glyphicon-off")
+								span(class="glyphicon glyphicon-off menu-icon")
 								span {{ 'LOGOUT' | translate }}
 
 			div(ng-show="device === 'desktop' || !showMenu")
