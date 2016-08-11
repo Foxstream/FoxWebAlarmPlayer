@@ -41,6 +41,10 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src('./package.json')
         .pipe(gulp.dest('./release/'));
 
+    // main.js
+    gulp.src('./main.js')
+        .pipe(gulp.dest('./release/'));
+
     // Server files
     gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*', '!./server/karma.conf.js'])
         .pipe(gulp.dest('./release/server/'));
