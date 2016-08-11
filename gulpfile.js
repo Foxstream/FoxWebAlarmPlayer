@@ -77,8 +77,8 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src(['./client/locale/*'])
         .pipe(gulp.dest('./release/client/locale'));
 
-    // Windiws service
-    gulp.src('./install.js')
+    // Windows service
+    gulp.src('./win-service.js')
         .pipe(gulp.dest('./release/'));
 
 });
