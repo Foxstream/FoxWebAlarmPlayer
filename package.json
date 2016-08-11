@@ -4,27 +4,26 @@
   "description": "FoxWebAlarmPlayer",
   "main": "main.js",
   "author": "Foxstream",
-
   "engines": {
     "node": ">=4.0.0",
     "npm": ">=3.0.0"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/Foxstream/FoxWebAlarmPlayer.git"
   },
-
   "scripts": {
     "start": "set NODE_ENV='production' && node server/main.js",
     "start-dev": "set NODE_ENV='development' && nodemon server/main.js",
     "test": "mocha test/ --recursive --reporter spec",
     "debug": "node-debug main.js"
   },
-
-  "os": ["win32", "win64"],
-
+  "os": [
+    "win32",
+    "win64"
+  ],
   "dependencies": {
+    "angular": "^1.5.8",
     "async": "^1.2.1",
     "body-parser": "^1.13.1",
     "chalk": "^1.1.3",
@@ -46,7 +45,6 @@
     "xml-stream": "^0.4.5",
     "xml2js": "^0.4.16"
   },
-
   "devDependencies": {
     "angular-mocks": "^1.5.6",
     "bower-files": "^3.13.3",
@@ -71,6 +69,5 @@
     "superagent": "^2.1.0",
     "supertest": "^1.2.0"
   },
-
   "license": "ISC"
 }
