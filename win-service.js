@@ -9,7 +9,7 @@ var svc = new Service({
   script: __dirname + '\\main.js',
   env: [
     {name: "NODE_ENV", value: "production"},
-    {name: "NODE_CONFIG_DIR", value: "C:\\Users\\notte\\Documents\\AlarmPlayer\\config"}
+    {name: "NODE_CONFIG_DIR", value: __dirname + "\\config"}
   ]
 });
 
