@@ -104,3 +104,27 @@ gulp.task('tar', function(){
 gulp.task('clean', function(){
     return del(['./release', './release.tar.gz']);
 });
+
+gulp.task('web-assets', function(){
+    gulp.src([
+            './node_modules/angular/angular.js',
+            './node_modules/angular-animate/angular-animate.min.js',
+            './node_modules/angular-touch/angular-touch.min.js',
+            './node_modules/angular-translate/dist/angular-translate.min.js',
+            './node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
+            './node_modules/bootstrap/dist/css/bootstrap.min.css',
+            './node_modules/bootstrap/dist/js/bootstrap.min.js',
+            './node_modules/jquery/dist/jquery.min.js'
+        ])
+        .pipe(gulp.dest('./client/vendor'));
+});
+
+
+
+
+
+
+
+
+
+

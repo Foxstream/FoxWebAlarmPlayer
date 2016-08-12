@@ -22,7 +22,7 @@ app.run(function($rootScope, $timeout, $translate){
 
     $rootScope.changeLanguage = function(langKey){
         $translate.use(langKey);
-        localStorage.setItem('language', langKey)
+        localStorage.setItem('language', langKey);
     };
 
     $rootScope.getCurrentLanguage = function(){

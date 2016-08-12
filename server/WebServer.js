@@ -101,7 +101,6 @@ function applyRoutes(app) {
         res.render('logviewer');
     });
 
-
 }
 
 module.exports.BuildWebServer = buildWebServer;

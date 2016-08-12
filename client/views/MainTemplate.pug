@@ -3,16 +3,15 @@ html
   head
     meta(name="viewport",content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no")
     meta(name="mobile-web-app-capable", content="yes")
-    script(src='/vendor/jquery/jquery.min.js')
-    script(src='/vendor/jquery-ui/jquery-ui.min.js')
-    script(src='/vendor/bootstrap/js/bootstrap.min.js')
-    script(src='/vendor/angular/angular.min.js')
-    script(src='/vendor/angular-translate/angular-translate.min.js')
-    script(src='/vendor/translate-loader/translate-loader.min.js')
-    script(src='/vendor/angular-touch/angular-touch.min.js')
-    script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src='/vendor/jquery.min.js')
+    script(src='/vendor/bootstrap.min.js')
+    script(src='/vendor/angular.js')
+    script(src='/vendor/angular-translate.min.js')
+    script(src='/vendor/angular-translate-loader-static-files.min.js')
+    script(src='/vendor/angular-touch.min.js')
+    script(src="/vendor/angular-animate.min.js")
     script(src='/app.min.js')
-    link(rel="stylesheet", href="/vendor/bootstrap/css/bootstrap.min.css", media="screen")
+    link(rel="stylesheet", href="/vendor/bootstrap.min.css", media="screen")
     link(rel="stylesheet", href="/css/main.css", media="screen")
     title #{appName}
   body(ng-app='alarmviewer' class="ng-cloak")
@@ -44,7 +43,7 @@ html
                       span(class='link') {{ 'ALARMS' | translate }}
                   span(class="navbar-notif", ng-show="alarmcounter > 0") {{ alarmcounter < 10 ? alarmcounter : '!' }}
               li(ng-class='{ active: isActive("live") }')
-                  a(href="/live") 
+                  a(href="/live")
                     i(class='glyphicon glyphicon-play') 
                     span(class='link') {{ 'LIVE' | translate }}
               li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") || isActive("logview") }',
