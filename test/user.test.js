@@ -47,7 +47,7 @@ describe("User API (admin)", function(){
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('object');
                     expect(res.body.login).to.be.equal('admin');
-                    expect(res.body.displayname).to.be.equal('admin');
+                    expect(res.body.displayname).to.be.equal('Admin');
                     expect(res.body.type).to.be.equal(1);
                     done();
                 });
@@ -356,9 +356,11 @@ describe("Password reset", function(){
         agent.post('/login')
             .send({username: 'admin', password: 'admin'})
             .end(function(req, res){
-
-                expect(res).to.have.status(200);
-                done();
+                agent.get('/users/me')
+                    .end(function(req, res){
+                        expect(res).to.have.status(200);
+                        done();
+                    })
             });
     });
 
@@ -368,11 +370,9 @@ describe("Password reset", function(){
                 expect(res).to.have.status(200);
                 agent.get('/logout')
                     .end(function(req, res){
-                        expect(res).to.have.status(200);
                         agent.post('/login')
                             .send({username: 'test', password: ' '})
                             .end(function(req, res){
-                                expect(res).to.have.status(200);
                                 agent.get('/users/me')
                                     .end(function(req, res){
                                         expect(res.body.shouldChangePassword).to.be.equal(1);
