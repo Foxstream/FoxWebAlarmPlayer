@@ -1,7 +1,7 @@
 // Switch to test environment (uses database test.db)
 process.env.NODE_ENV = 'test';
 
-var server = require('../server/main.js');
+var server = require('../main.js');
 
 var chai = require('chai'),
     chaiHttp = require('chai-http'),
@@ -12,6 +12,8 @@ chai.use(chaiHttp);
 var agent = chai.request.agent(server);
 
 describe("User API (admin)", function(){
+
+    this.timeout(10000);
 
     before(function(done){
         agent.post('/login')
@@ -176,6 +178,7 @@ describe("User API (admin)", function(){
                             var userId = res.body.map(function(u){ return u.login }).indexOf('user1');
                             expect(res.body[userId].displayname).to.be.equal('User 1');
                             expect(res.body[userId].type).to.be.equal(0);
+                            expect(res.body[userId].shouldChangePassword).to.be.equal(1);
                             done();
                         });
                 });

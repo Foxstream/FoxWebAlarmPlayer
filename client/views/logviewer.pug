@@ -2,5 +2,5 @@ div(class="logviewer")
     button(class="button-primary", ng-show="oldlog !== false && !showOldLog", ng-click="showOldLog = true") {{ 'SHOW_OLD_LOG' | translate }}
     br
     div(ng-show="showOldLog")
-        {{ oldlog }}
+        | {{ oldlog }}
     | {{ log }}

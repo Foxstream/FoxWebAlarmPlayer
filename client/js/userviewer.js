@@ -95,13 +95,22 @@
         $scope.commitnewuser = function(){
             userdb.createUser($scope.newuser, function success(response){
                 $scope.newuser = undefined;
+                console.log(response.data);
                 $scope.users.push(response.data);
+                console.log($scope.users);
                 $scope.sendnotification("NOTIF_USER_ADDED", true, 1);
             }, function error(response){
                 $scope.sendnotification("NOTIF_ERROR_ADDING_USER" , false, 1);
                 $scope.logHttpError(response);
             });
         };
+
+        // We need $index 
+        $scope.getUsersExceptMe = function(me){
+            return $scope.users.filter(function(u){
+                return u.id !== me.id;
+            });
+        }
 
 
 }]);

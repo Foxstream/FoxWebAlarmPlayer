@@ -4,12 +4,12 @@ div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousa
             imageplayer(alarm='currentalarm')
             ul(class="alarm-details")
                 li(ng-show='currentalarm.handled === 1')
-                    b(style="color: red;") {{ 'HANDLED' | translate }}
+                    b(style="color: red") {{ 'HANDLED' | translate }}
                 li
-                    {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                    | {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
                 li 
                     b {{ 'CAMERA' | translate }} : 
-                    {{ currentalarm.cameraname }}
+                    | {{ currentalarm.cameraname }}
                 li  
                     b {{ 'SITE' | translate }} : 
-                    {{ currentalarm.sitename }}
+                    | {{ currentalarm.sitename }}

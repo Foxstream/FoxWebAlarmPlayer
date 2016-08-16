@@ -1,5 +1,6 @@
 ﻿var async = require("async");
 var passwordHash = require('password-hash-and-salt');
+var logger = require('../logger');
 
 function open(cb) {
     var self = this;
@@ -11,10 +12,20 @@ function open(cb) {
             self.db.get("SELECT count(*) as count FROM user WHERE type=1", callback);
         },
         function (countData, callback) {
-            if (countData.count == 0)
-                self.addUser({login:"admin", displayname:"admin", password:"admin", type:1}, callback);
-            else
+            if (countData.count == 0){
+                passwordHash('admin').hash(function(err, passwd){
+                    if (err){
+                        log.error('Unable to create admin user')
+                        log.error('Password hash error: ' + err);
+                    } else {
+                        self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, ?)",
+                                        ['admin', 'Admin', 1, passwd], cb);
+                    }
+                })
+            }
+            else {
                 callback(null);
+            }
         },
     ], cb);    
 }
@@ -98,7 +109,7 @@ function resetuser(userId, cb) {
 
 function adduser(user, cb) {
     var self = this;
-    self.db.run("INSERT INTO user(login, displayname, type) VALUES(?, ?, ?)",
+    self.db.run("INSERT INTO user(login, displayname, type, password) VALUES(?, ?, ?, '')",
 	                                [user.login, user.displayname, user.type], function(err){
         if (err){
             cb(err, null);

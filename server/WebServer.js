@@ -19,8 +19,8 @@ function buildWebServer(){
     
     app.use('/', express.static(__dirname + '/../client'));
     
-    app.set('views', __dirname + '/../client/views')
-    app.set('view engine', 'jade')
+    app.set('views', __dirname + '/../client/views');
+    app.set('view engine', 'pug');
     
     return app;
 }
@@ -32,19 +32,19 @@ function applyRoutes(app) {
     });
 
     app.get('/alarmview', auth.IsValidUser, function (req, res) {
-        res.render('alarmview', { user: req.user });
+        res.render('alarmview', { user: req.user, appName: config.get('appName') });
     });
 
     app.get('/live', auth.IsValidUser, function (req, res) {
-        res.render('liveview', { user: req.user });
+        res.render('liveview', { user: req.user, appName: config.get('appName')  });
     });
     
     app.get('/userview', auth.IsAdmin, function (req, res) {
-        res.render('userview', { user: req.user });
+        res.render('userview', { user: req.user, appName: config.get('appName')  });
     });
     
     app.get('/serverview', auth.IsAdmin, function (req, res) {
-        res.render('serverview', { user: req.user });
+        res.render('serverview', { user: req.user, appName: config.get('appName')  });
     });
     
     app.get('/imageplayer', auth.IsValidUser, function (req, res) {
@@ -94,13 +94,12 @@ function applyRoutes(app) {
     });
 
     app.get('/logview', auth.IsAdmin, function(req, res){
-        res.render('logview', { user: req.user });
+        res.render('logview', { user: req.user, appName: config.get('appName')  });
     });
 
     app.get('/logviewer', auth.IsAdmin, function(req, res){
         res.render('logviewer');
     });
-
 
 }
 

@@ -4,8 +4,8 @@
 .table-container {
 
     width: 100%;
-    max-height: 45vh;
-    overflow: scroll;
+    height: 45vh;
+    overflow-y: scroll;
 
     table {
         width: 100%;

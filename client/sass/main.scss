@@ -127,7 +127,7 @@ ul {
             - $header-height
             - $navbar-desktop-height
             - 10vh;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 }
 
@@ -212,7 +212,6 @@ canvas {
 /*
 **************************************************************** Imports
 */
-@import "mixins.scss";
 @import "swiper.scss";
 @import "form.scss";
 @import "table.scss";
@@ -226,3 +225,4 @@ canvas {
 @import "tabs.scss";
 @import "block-header.scss";
 @import "notifications.scss";
+@import "help.scss";

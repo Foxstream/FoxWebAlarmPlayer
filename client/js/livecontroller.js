@@ -10,11 +10,12 @@ app.factory('live', ['$http','$rootScope',
         };
 
         obj.getLiveImage = function(serverId, camId, callback){
+            console.log('fetching live image')
             $http.get('/controller/live/' + serverId + '/' + camId)
-            .success(function(image){
+            .success(function(image){ 
                 callback('data:image/jpeg;base64,' + image);
             })
-            .error(function(err){ 
+            .error(function(err){
                 callback('/img/no_video.png');
             });
         };
@@ -48,16 +49,13 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 
     $scope.playfullscreen = function(site, camera){
-        if (site){
-            console.log('Playfullscreen')
+        if (site && camera){
             $scope.selectedcamera = {
                 site: site,
                 camera: camera
             };
-            console.log($scope.selectedcamera);
         } else {
             $scope.selectedcamera = undefined;
-            console.log($scope.selectedcamera)
         }
     };
 
@@ -94,9 +92,8 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         templateUrl: '/liveplayer',
         // "pause" is set to true when a camera is selected for fullscreen : we don't want 
         // to stop playing completely, so that when fullscreen is closed, playing resumes
-        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&', fullscreen: '='},
+        scope: {site: "=", camera: "=", pause: "=", playfullscreen: '&', fullscreen: '=', help: '='},
         link: function(scope, elem, attrs){
-
             scope.showcontrols = true;
             scope.playing = undefined;
             scope.togglelivefeed = function(){
@@ -116,9 +113,16 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                 }
             };
 
-            if (scope.fullscreen && !scope.playing){
-                scope.togglelivefeed();
-            }
+            scope.$watch('camera', function(newVal, oldVal){
+                if (newVal === oldVal) return;
+                if (newVal){
+                    if(!scope.playing){
+                        scope.togglelivefeed();
+                    }
+                } else if (scope.playing){
+                    scope.togglelivefeed();
+                }
+            });
 
         }
     };

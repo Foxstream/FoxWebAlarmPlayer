@@ -9,7 +9,8 @@ var gulp = require('gulp'),
     bowerFiles = require('bower-files')({ json: './client/bower.json' }),
     gulpFilter = require('gulp-filter'),
     tar = require('gulp-tar'),
-    gzip = require('gulp-gzip');
+    gzip = require('gulp-gzip'),
+    autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('default', ['sass'], function(){
 
@@ -26,6 +27,7 @@ gulp.task('js', function(){
 gulp.task('sass', function(){
     return gulp.src('./client/sass/main.scss')
         .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(uglifycss({
             "maxLineLength": 100
         }))
@@ -37,10 +39,14 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     
     // package.json
     gulp.src('./package.json')
-        .pipe(gulp.dest('./release/')); 
+        .pipe(gulp.dest('./release/'));
+
+    // main.js
+    gulp.src('./main.js')
+        .pipe(gulp.dest('./release/'));
 
     // Server files
-    gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*'])
+    gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*', '!./server/karma.conf.js'])
         .pipe(gulp.dest('./release/server/'));
 
     // Config
@@ -71,6 +77,10 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src(['./client/locale/*'])
         .pipe(gulp.dest('./release/client/locale'));
 
+    // Windows service
+    gulp.src('./win-service.js')
+        .pipe(gulp.dest('./release/'));
+
 });
 
 gulp.task('watch', function(){
@@ -94,3 +104,27 @@ gulp.task('tar', function(){
 gulp.task('clean', function(){
     return del(['./release', './release.tar.gz']);
 });
+
+gulp.task('web-assets', function(){
+    gulp.src([
+            './node_modules/angular/angular.js',
+            './node_modules/angular-animate/angular-animate.min.js',
+            './node_modules/angular-touch/angular-touch.min.js',
+            './node_modules/angular-translate/dist/angular-translate.min.js',
+            './node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
+            './node_modules/bootstrap/dist/css/bootstrap.min.css',
+            './node_modules/bootstrap/dist/js/bootstrap.min.js',
+            './node_modules/jquery/dist/jquery.min.js'
+        ])
+        .pipe(gulp.dest('./client/vendor'));
+});
+
+
+
+
+
+
+
+
+
+

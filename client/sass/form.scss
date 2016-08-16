@@ -12,7 +12,7 @@ input[type=checkbox]{
 
 // Checkboxes are not big enough (in tables for example)
 input[type=checkbox]{ 
-   @include transform(scale(1.5));
+   transform: scale(1.5);
 }
 
 // Overriding bootstrap blue glow on focus
@@ -88,7 +88,7 @@ button.back::before {
     left: -0.3em;
     height: 1.27em;
     width: 1.27em;
-    background: linear-gradient(45deg, $fox-dark-gray, $fox-gray);
+    background: $fox-dark-gray;
     border-top-left-radius: 0.6em;
     -webkit-transform : rotate(-45deg);
 

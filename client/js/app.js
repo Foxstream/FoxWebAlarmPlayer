@@ -22,7 +22,7 @@ app.run(function($rootScope, $timeout, $translate){
 
     $rootScope.changeLanguage = function(langKey){
         $translate.use(langKey);
-        localStorage.setItem('language', langKey)
+        localStorage.setItem('language', langKey);
     };
 
     $rootScope.getCurrentLanguage = function(){
@@ -55,6 +55,10 @@ app.run(function($rootScope, $timeout, $translate){
         $rootScope.notification.priority = priority;
         $rootScope.notification.show = true;
         $rootScope.notification.params = params;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         if (autoHide){
             $rootScope.notification.timeout = $timeout(function(){
                 $rootScope.notification.show = false;
@@ -81,6 +85,12 @@ app.run(function($rootScope, $timeout, $translate){
         + httpResponse.data;
         console.error(errorMsg);
     }
+
+    $rootScope.help = false;
+    $rootScope.$watch('help', function(newVal, oldVal){
+        console.log(newVal)
+    })
+
 });
 
 

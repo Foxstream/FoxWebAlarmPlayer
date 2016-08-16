@@ -1,5 +1,6 @@
 ﻿var passport = require("passport");
 var passportlocal = require("passport-local").Strategy;
+var config = require("config");
 
 function isUser(req, res, next)
 {
@@ -46,7 +47,7 @@ function applyToServer(app, userPers)
     passport.use(new passportlocal(userPers.checkUser.bind(userPers)));
 
     app.get('/login', function (req, res) {
-        res.render('login');
+        res.render('login', {appName: config.get('appName') });
     });
     
     app.post('/login', passport.authenticate('local', {

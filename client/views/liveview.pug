@@ -1,0 +1,43 @@
+extends ./MainTemplate
+
+block content
+  div(class='container-fluid content')
+
+    div(ng-controller='livecontroller')
+
+        //- Mobile buttons
+        div(class='actions hidden-lg hidden-md')
+
+        div(class='col-xs-12 main-element', id='camera-list')
+
+            div(class="fullscreen-player", ng-show="selectedcamera !== undefined", class="fullscreen-animation", ng-swipe-left="showpreviouscamera()", ng-swipe-right="shownextcamera()")
+                liveplayer(site="selectedcamera.site", camera="selectedcamera.camera", pause="false", playfullscreen="playfullscreen(site, serverId, camId, fps)", fullscreen="true", help="help")
+                span(class="previous-camera")
+                    span(class="glyphicon glyphicon-menu-left hidden-xs hidden-sm", ng-click="showpreviouscamera()")
+                    span(class="help right", ng-show="help") {{ 'HELP_PREVIOUS_CAMERA' | translate }}
+                span(class="next-camera")
+                    span(class="glyphicon glyphicon-menu-right hidden-xs hidden-sm", ng-click="shownextcamera()")
+                    span(class="help left", ng-show="help") {{ 'HELP_NEXT_CAMERA' | translate }}
+
+            div(ng-show="cameras == undefined", class="panel")
+                h5
+                    a(href='#', class="block-header", data-parent='#camera-list') {{ 'NO_CAMERAS' | translate }}
+            div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
+                h5
+                    a(href='#collapse{{$index}}', data-toggle='collapse',
+                        class="block-header", data-parent='#camera-list') {{ site }}
+                        span(class="help inside", ng-show="help && $index===0") {{ 'HELP_COLLAPSE_LIVE_PANEL' | translate }}
+                div(id='collapse{{ $index }}',
+                    class='collapse')
+                        div(class="camera-picker")
+                            liveplayer(ng-repeat='c in cams | orderBy: "id" track by $index', site="site", camera="c", pause="selectedcamera !== undefined", playfullscreen="playfullscreen(site, camera)", fullscreen="false", help="help && $index===0")
+
+
+
+
+
+
+
+
+
+                                

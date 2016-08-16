@@ -1,4 +1,6 @@
 {
+    "appName": "FoxWebAlarmPlayer",
+
     // Web server
     "port": 8001,
 

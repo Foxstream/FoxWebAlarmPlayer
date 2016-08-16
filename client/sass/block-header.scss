@@ -28,9 +28,43 @@
         position: absolute;
         top: 50%;
         right: 3%;
-        @include transform(translate(0, -50%));
+        transform: translate(0, -50%);
     }
 
+    .menu-icon {
+        left: 10px;
+    }
+    .menu-icon + span {
+        padding-left: 30px;
+    }
+
+}
+
+// Little arrows
+// There may be a simpler solution, bootstrap doc is not very clear
+.block-header:after { // > (not collapsible)
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e258";
+    float: right;
+}
+// When the page is loaded, bootstrap doesn't apply aria-expanded=false before element has been collapsed once
+.block-header[data-toggle="collapse"]:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e259";
+    float: right;
+}
+.block-header[data-toggle="collapse"][aria-expanded="false"].collapsed:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e259";
+    float: right;
+}
+.block-header[data-toggle="collapse"][aria-expanded="true"]:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e260";
+    float: right;
+}
+.block-header.no-arrow:after {
+    display: none;
 }
 
 // Bootstrap default margin is so big

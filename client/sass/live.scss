@@ -22,7 +22,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            @include transform(translate(-50%, -50%));
+            transform: translate(-50%, -50%);
             font-size: 3em;
             color: white;
         }
@@ -38,10 +38,12 @@
             line-height: 2.3em;
             bottom: 0;
 
-            .glyphicon {
+            .fullscreen-button, .play-button {
+                display: inline-block;
                 position: absolute;
                 top: 50%;
-                @include transform(translate(0, -50%));
+                transform: translate(0, -50%);
+                width: 20px;
             }
 
             .glyphicon:hover {
@@ -49,11 +51,11 @@
                 font-weight: bold;
             }
 
-            .glyphicon-play, .glyphicon-stop {
+            .play-button {
                 left: 10px;
             }
 
-            .glyphicon-resize-full, .glyphicon-resize-small {
+            .fullscreen-button {
                 right: 10px;
             }
 
@@ -78,14 +80,14 @@
 // Fullscreen
 .fullscreen-player {
     position: fixed;
-    z-index: 10000;
+    z-index: 20000; // Very high, should display over help boxes (10000)
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background: rgba($fox-light-gray, 0.7);
 
-    .glyphicon-menu-left, .glyphicon-menu-right {
+    .previous-camera, .next-camera {
         display: block;
         position: absolute;
         color: $fox-red;
@@ -97,16 +99,16 @@
         cursor: pointer;
     }
 
-    .glyphicon-menu-left {
+    .previous-camera {
         left: 50px;
     }
 
-    .glyphicon-menu-right {
+    .next-camera {
         right: 50px;
     }
 
     .liveplayer {
-        @include transform(translate(-50%, -50%));
+        transform: translate(-50%, -50%);
         box-shadow: 1px 1px 3px $fox-dark-gray;
         top: 50%;
         left: 50%;

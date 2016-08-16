@@ -11,28 +11,34 @@ var imgDefaultFilename='img';
 
 function open(callback)
 {	
-	this.db.run("CREATE TABLE IF NOT EXISTS alarm (id INTEGER PRIMARY KEY, timestamp INTEGER, cameraname TEXT, hostname TEXT, sitename TEXT, handled INTEGER, nbimages INTEGER)", callback);
-    this.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
-        if (data){
-            // For each site, let's build a list of cameras
-            data.forEach( (s) => {
-                this.siteList.push(s.sitename);
-            });
-        } else {
-            process.exit(1);
-        }
-    });
-
-    this.db.all("SELECT DISTINCT cameraname, sitename FROM alarm", (err, data) => {
-        if (data){
-            // For each site, let's build a list of cameras
-            data.forEach( (s) => {
-                this.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
-            });
-        } else {
-            process.exit(1);
-        }
-    });
+    var self = this;
+    async.series([function(done){
+        self.db.run("CREATE TABLE IF NOT EXISTS alarm (id INTEGER PRIMARY KEY, timestamp INTEGER, cameraname TEXT, hostname TEXT, sitename TEXT, handled INTEGER, nbimages INTEGER)", done);
+    }, function(done){
+        self.db.all("SELECT DISTINCT sitename FROM alarm", (err, data) => {
+            if (data){
+                // For each site, let's build a list of cameras
+                data.forEach( (s) => {
+                    self.siteList.push(s.sitename);
+                });
+                done();
+            } else {
+                process.exit(1);
+            }
+        });
+    }, function(done){
+        self.db.all("SELECT DISTINCT cameraname, sitename FROM alarm", (err, data) => {
+            if (data){
+                // For each site, let's build a list of cameras
+                data.forEach( (s) => {
+                    self.cameraList.push({ cameraname: s.cameraname, sitename: s.sitename });
+                });
+                done();
+            } else {
+                process.exit(1);
+            }
+        });
+    }], callback)
 }
 
 // TODO : what is it ?
