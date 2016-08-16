@@ -20,6 +20,16 @@ function applyApp(app){
         });
     });
 
+    app.get('/alarms/sitelist', auth.IsValidUser, function(req, res){
+        res.status(200);
+        res.send(self.AlarmPersistence.getSiteList());
+    });
+
+    app.get('/alarms/cameralist', auth.IsValidUser, function(req, res){
+        res.status(200);
+        res.send(self.AlarmPersistence.getCameraList());
+    });
+
     app.get('/alarms/:alarmid', auth.IsValidUser, function(req, res){     
         self.AlarmPersistence.getAlarm(req.params.alarmid, function(err, data){
             if(err){
@@ -38,19 +48,10 @@ function applyApp(app){
         });
     });
 
-    app.get('/alarms/sitelist', auth.IsValidUser, function(req, res){
-        res.status(200);
-        res.send(self.AlarmPersistence.getSiteList());
-    });
-
-    app.get('/alarms/cameralist', auth.IsValidUser, function(req, res){
-        res.status(200);
-        res.send(self.AlarmPersistence.getCameraList());
-    });
 
     app.put('/alarms/:alarmid/handled', auth.IsValidUser, function (req, res) {
         self.AlarmPersistence.getAlarm(req.params.alarmid, function (err, data) {
-            if (data) {
+            if (data){
                 data.handled = 1;
                 self.AlarmPersistence.saveAlarm(data, function (err, data) {
                     if (!err) {
@@ -73,7 +74,7 @@ function applyApp(app){
     });
 
 	app.get('/alarms/:alarmid/image/:imgid', auth.IsValidUser, function(req, res){		
-		res.redirect('/controller/alarm/'+req.params.alarmid+'/images/'+req.params.imgid+'/jpg');
+		res.redirect('/alarms/'+req.params.alarmid+'/image/'+req.params.imgid+'/jpg');
 	});
 	
 	app.get('/alarms/:alarmid/image/:imgid/jpg', auth.IsValidUser, function(req, res){			

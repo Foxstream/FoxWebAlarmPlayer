@@ -13,13 +13,16 @@ app.factory('alarmdb', ['$http','$rootScope', function($http, $rootScope){
     };
     			
 	obj.getAlarms = function(conditions, success, error){
-        var params = '?';
-        params += 'date=' + conditions.date.getTime() / 1000;
-        if (conditions.sitename !== 'all'){
-            params += '&sitename=' + conditions.sitename.replace(' ', '%20');
-            if (conditions.camera !== 'all'){
-                // conditions.camera = { cameraname: **, sitename: ** }
-                params += '&cameraname=' + conditions.camera.replace(' ', '%20');
+        var params = '';
+        if (Object.keys(conditions).length > 0){
+            params += '?';
+            params += 'date=' + conditions.date.getTime() / 1000;
+            if (conditions.sitename !== 'all'){
+                params += '&sitename=' + conditions.sitename.replace(' ', '%20');
+                if (conditions.camera !== 'all'){
+                    // conditions.camera = { cameraname: **, sitename: ** }
+                    params += '&cameraname=' + conditions.camera.replace(' ', '%20');
+                }
             }
         }
 		$http.get("/alarms" + params)
@@ -27,7 +30,7 @@ app.factory('alarmdb', ['$http','$rootScope', function($http, $rootScope){
     };
 
     obj.getNotHandledAlarms = function(success, error){
-        $http.get("/alarms?handled=1")
+        $http.get("/alarms?handled=0")
             .then(success, error);
     };
         
@@ -69,6 +72,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     alarmdb.getSiteList(function success(response){
+        console.log('Site list', response)
         $scope.sites = response.data;
     }, function error(response){
         $scope.logHttpError(response);
@@ -255,7 +259,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         });
         if ($window.confirm($translate.instant("CONFIRM_HANDLE_ALL"))){
             alarms.forEach(function(a){
-                alarmdb.markashandled(alarmId, function success(resopnse){ 
+                alarmdb.markashandled(a.id, function success(resopnse){ 
 
                 }, function error(response){
                     $scope.logHttpError(response);

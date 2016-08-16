@@ -1,7 +1,7 @@
 // Switch to test environment (uses database test.db)
 process.env.NODE_ENV = 'test';
 
-var server = require('../server/main.js');
+var server = require('../main.js');
 
 var chai = require('chai'),
     chaiHttp = require('chai-http'),
@@ -13,6 +13,9 @@ var agent = chai.request.agent(server);
 
 describe("Server API", function(){
 
+    // Safer (default is 2000, sometimes callbacks are called too late and it crashes the tests for no reason)
+    this.timeout(10000);
+    
     before(function(done){
         agent.post('/login')
             .send({username: 'admin', password: 'admin'})

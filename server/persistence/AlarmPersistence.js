@@ -41,7 +41,7 @@ function open(callback)
     }], callback)
 }
 
-// TODO : what is it ?
+// TODO : should there be somthing there ?
 function close(){
 
 }

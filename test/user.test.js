@@ -13,6 +13,7 @@ var agent = chai.request.agent(server);
 
 describe("User API (admin)", function(){
 
+    // Safer (default is 2000, sometimes callbacks are called too late and it crashes the tests for no reason)
     this.timeout(10000);
 
     before(function(done){
