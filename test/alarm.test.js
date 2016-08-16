@@ -52,8 +52,36 @@ describe('Alarm API', function(){
                 .end(function(req, res){
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('array');
-                    expect(res.body.length).to.be.equal(1);
+                    expect(res.body.length).to.be.equal(2);
                     expect(res.body[0].timestamp).to.be.equal(1470391066);
+                    expect(res.body[1].timestamp).to.be.equal(1470350141);
+                    done();
+                });
+        });
+
+        it ('Should return alarms for a specific day', function(done){
+            agent.get('/alarms?date=1470348000')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('array');
+                    expect(res.body.length).to.be.equal(2);
+                    expect(res.body[0].timestamp).to.be.equal(1470391066);
+                    expect(res.body[1].timestamp).to.be.equal(1470350141);
+                    done();
+                });
+        });
+
+        it ('Should return information on alarm 2', function(done){
+            agent.get('/alarms/2')
+                .end(function(req, res){
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.timestamp).to.be.equal(1470347866);
+                    expect(res.body.cameraname).to.be.equal('Cam_2');
+                    expect(res.body.hostname).to.be.equal('Server');
+                    expect(res.body.sitename).to.be.equal('Site2');
+                    expect(res.body.handled).to.be.equal(1);
+                    expect(res.body.nbimages).to.be.equal(25);
                     done();
                 });
         });
