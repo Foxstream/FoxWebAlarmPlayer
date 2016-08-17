@@ -488,3 +488,17 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
     };
 }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
