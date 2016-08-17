@@ -116,5 +116,6 @@
   "HELP_COMMIT_CURRENTUSER": "Saisissez vos modifications et validez pour mettre à jour l'utilisateur",
   "HELP_COMMIT_NEWUSER": "Remplissez les champs et validez pour créer un nouvel utilisateur",
   "HELP_RESET_PASSWORD": "Cliquez ici pour réinitialiser le mot de passe de cet utilisateur. Il devra choisir un nouveau mot de passe lors de sa prochaine connexion",
-  "HELP_LIVE_PLAY": "Lancer la vidéo en direct"
+  "HELP_LIVE_PLAY": "Lancer la vidéo en direct",
+  "NOTIF_ERROR_GETTING_CAMERAS": "Impossible d'obtenir la liste des caméras"
 }

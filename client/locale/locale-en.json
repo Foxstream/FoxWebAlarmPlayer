@@ -116,5 +116,6 @@
   "HELP_COMMIT_CURRENTUSER": "Type your modifications and validate to update the user",
   "HELP_COMMIT_NEWUSER": "Fill in the fields and validate to create a new user",
   "HELP_RESET_PASSWORD": "Click here to reset the user's password. He will be asked to choose a new password the next time he logs in to the application",
-  "HELP_LIVE_PLAY": "Play live video"
+  "HELP_LIVE_PLAY": "Play live video",
+  "NOTIF_ERROR_GETTING_CAMERAS": "Unable to get the list of available cameras"
 }

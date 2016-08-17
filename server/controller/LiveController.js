@@ -6,30 +6,37 @@ var auth = require("../Authenticator.js"),
 function applyApp(app){
     var self = this;
 
-     app.get('/controller/live/cameras', function(req, res){
+     app.get('/cameras', function(req, res){
        
         var cameras = {},
             servers = self.serverManager.servers;
 
-        servers.forEach(function(s){
-            if (s.xmlclient.Configuration){
-                var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
-                    c.serverId = s.config.id;
-                    return c;
-                });
-                var site = s.xmlclient.Configuration.equipment.site;
-                if (site in cameras){
-                    cameras[site] = cameras[site].concat(cameraList);
-                } else {
-                    cameras[site] = cameraList;
+            servers.forEach(function(s){
+                if (s.xmlclient.Configuration){
+                    var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
+                        c.serverId = s.config.id;
+                        return c;
+                    });
+                    var site = s.xmlclient.Configuration.equipment.site;
+                    if (site in cameras){
+                        cameras[site] = cameras[site].concat(cameraList);
+                    } else {
+                        cameras[site] = cameraList;
+                    }
                 }
+            });
+
+            if (Object.keys(cameras).length === 0){
+                res.status(204);
+                res.end();
+            } else {
+                res.status(200);
+                res.send(cameras);
             }
-        });
-        res.send(cameras);
 
     });
 
-     app.get('/controller/live/:server/:camid', function(req, res){
+     app.get('/cameras/:server/:camid/live', function(req, res){
         // Get the right server by its id
         var server = undefined;
         self.serverManager.servers.some(function(s){
