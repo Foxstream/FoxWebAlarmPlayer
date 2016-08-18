@@ -19,7 +19,8 @@
     "start": "set NODE_ENV='production' && node server/main.js",
     "start-dev": "set NODE_ENV='development' && nodemon server/main.js",
     "test": "mocha test/ --recursive --reporter spec",
-    "debug": "node-debug main.js"
+    "debug": "node-debug main.js",
+    "start-unix": "NODE_ENV='development' && nodemon main.js"
   },
   
   "os": [

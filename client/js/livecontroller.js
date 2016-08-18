@@ -78,7 +78,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
             var currentSite = $scope.selectedcamera.site;
             var index = $scope.cameras[currentSite].map(function(c){ return c.id }).indexOf($scope.selectedcamera.camera.id);
             index--;
-            if (index <= 0){
+            if (index < 0){
                 index = $scope.cameras[currentSite].length - 1;
             }
             $scope.selectedcamera.camera = $scope.cameras[currentSite][index];

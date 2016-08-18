@@ -9,7 +9,7 @@ function applyApp(app){
      app.get('/cameras', function(req, res){
        
         var cameras = {},
-            servers = self.serverManager.servers;
+            servers = self.serversManager.servers;
 
             servers.forEach(function(s){
                 if (s.xmlclient.Configuration){
@@ -39,7 +39,7 @@ function applyApp(app){
      app.get('/cameras/:server/:camid/live', function(req, res){
         // Get the right server by its id
         var server = undefined;
-        self.serverManager.servers.some(function(s){
+        self.serversManager.servers.some(function(s){
             if (s.config.id == req.params.server){
                 server = s;
                 return true;
@@ -70,10 +70,10 @@ function applyApp(app){
 
 }
 
-function LiveController(serverManager) {
-    if (!this) return new LiveController(serverManager);
+function LiveController(serversManager) {
+    if (!this) return new LiveController(serversManager);
 
-    this.serverManager = serverManager;
+    this.serversManager = serversManager;
 }
 
 LiveController.prototype.ApplyLiveRoutes = applyApp;

@@ -10,7 +10,7 @@ block content
 
         div(class='col-xs-12 main-element', id='camera-list')
 
-            div(class="fullscreen-player", ng-show="selectedcamera !== undefined", class="fullscreen-animation", ng-swipe-left="showpreviouscamera()", ng-swipe-right="shownextcamera()")
+            div(class="fullscreen-player", ng-show="selectedcamera !== undefined", class="fullscreen-animation", ng-swipe-left="shownextcamera()", ng-swipe-right="showpreviouscamera()")
                 liveplayer(site="selectedcamera.site", camera="selectedcamera.camera", pause="false", playfullscreen="playfullscreen(site, serverId, camId, fps)", fullscreen="true", help="help")
                 span(class="previous-camera")
                     span(class="glyphicon glyphicon-menu-left hidden-xs hidden-sm", ng-click="showpreviouscamera()")
