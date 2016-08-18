@@ -1,7 +1,7 @@
 var net = require('net');
 var XmlStream = require('xml-stream'); //use npm config set python /path/to/executable/python2.7 to install if needed
 var xml2js = require('xml2js');
-var through=require("through");
+var through = require("through");
 var events = require('events');
 var util = require("util");
 var _ = require("lodash");
@@ -24,7 +24,7 @@ function connect(successCallback)
 		log.info('Connected with '+self.Host);
 		
 		var first = true;
-		self.xml=new XmlStream(self.client.pipe(through(function(data){//prepend at the very begining root element; move as own function
+		self.xml = new XmlStream(self.client.pipe(through(function(data){//prepend at the very begining root element; move as own function
 				if(first)this.queue("<root>");
 				first=false;
 				this.queue(data);
@@ -43,7 +43,7 @@ function connect(successCallback)
 }
 
 function receivingData(data)
-{	
+{
 	log.info("Got data from "+this.Host+" of type "+data.$.type);
 	
 	if(data.$.id && this.Callbacks[parseInt(data.$.id)])
@@ -113,7 +113,7 @@ function setNodeAsArray(elem)
 
 function XmlClient(address, port)
 {
-	if(!this)return new FoxXmlClient(address,port);
+	if(!this)return new XmlClient(address,port);
 
 	events.EventEmitter.call(this);
  

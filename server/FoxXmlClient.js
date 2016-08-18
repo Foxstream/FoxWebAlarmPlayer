@@ -31,8 +31,8 @@ function getConfig()
 {
 	var self=this;	
 	
-	this.Client.send({"$":{type:"config"}}, function(err, data)
-	{		
+	this.client.send({"$":{type:"config"}}, function(err, data)
+	{
 		if(data && data.equipment)
 		{
 			self.Configuration = 
@@ -62,7 +62,6 @@ function getConfig()
 						};
 				})
 			};
-			
 			self.emit('configReceived', self.Configuration);
 		}
 		else {
@@ -75,11 +74,11 @@ function connectClient()
 {
 	var self=this;
 	
-	this.Client.setNodeAsArray("camera");
-	this.Client.setNodeAsArray("image");
+	this.client.setNodeAsArray("camera");
+	this.client.setNodeAsArray("image");
 	
-	this.Client.connect(function(){		
-		self.Client.send({"$":{type:"auth", user:self.User, pass:self.Pass, appli:"NodeServer"}},
+	this.client.connect(function(){		
+		self.client.send({"$":{type:"auth", user:self.User, pass:self.Pass, appli:"NodeServer"}},
 			handleAuthResponse.bind(self));		
 	});
 }
@@ -89,8 +88,8 @@ function connect(){
 	connectClient.call(this);
 	schedulePeriodicTest.call(this);
 	
-	this.Client.on('disconnected', function(err){ self.ConnectionEstablished=false; self.emit('connectionLost', err);});
-	this.Client.on('unexpectedData', gotUnexpectedMessage.bind(this));
+	this.client.on('disconnected', function(err){ self.ConnectionEstablished=false; self.emit('connectionLost', err);});
+	this.client.on('unexpectedData', gotUnexpectedMessage.bind(this));
 }
 
 function gotUnexpectedMessage(data)
@@ -105,7 +104,7 @@ function gotUnexpectedMessage(data)
 				   activation:data.$.mode
 				   };
 				   				   		
-		log.info('Alarm received from '+this.Client.Host+':'+this.Client.Port);
+		log.info('Alarm received from '+this.client.Host+':'+this.client.Port);
 		
 		this.emit('alarm',alarm);
 	}
@@ -115,14 +114,14 @@ function disconnect()
 {
     clearTimeout(this.CallbackTimer);
     this.CallbackTimer = undefined;
-	this.Client.disconnect();
+	this.client.disconnect();
 }
 
 function periodic_test()
 {	
 	if(this.ConnectionEstablished) //send ping
 	{		
-		this.Client.send({"$":{type:"ping"}},function(){});
+		this.client.send({"$":{type:"ping"}},function(){});
 	}
 	else//reconnect
 	{
@@ -134,7 +133,7 @@ function periodic_test()
 
 function send(message, responseCallback)
 {
-	return this.Client.send(message, responseCallback);
+	return this.client.send(message, responseCallback);
 }
 
 function FoxXmlClient(address, port, user, password)
@@ -143,13 +142,13 @@ function FoxXmlClient(address, port, user, password)
 
 	events.EventEmitter.call(this);
 	
-	this.Client = new XmlClient(address, port, user, password);	
+	this.client = new XmlClient(address, port, user, password);	
 	this.User = user;
 	this.Pass = password;
 	
 	this.ReconnectInterval=30;	
-	this.AutoRequestConfig=true;
-	this.ConnectionEstablished=false;
+	this.AutoRequestConfig = true;
+	this.ConnectionEstablished = false;
 	
 }
 

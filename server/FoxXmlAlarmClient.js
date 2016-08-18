@@ -55,7 +55,7 @@ function FoxXmlAlarmClient(foxxmlclient)
 
 	events.EventEmitter.call(this);
 	
-	this.foxxmlclient=foxxmlclient;
+	this.foxxmlclient = foxxmlclient;
 	
 	foxxmlclient.on('alarm',scheduleRequestAlarmInfo.bind(this));
 }

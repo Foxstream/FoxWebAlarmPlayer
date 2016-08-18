@@ -83,7 +83,6 @@ function BuildInternalServer(srv)
 
     var xmlclient = new FoxXmlClient(srv.address, srv.port, srv.username, srv.password);
     var alarmclient = new FoxXmlAlarmClient(xmlclient);
-
     return { config : srv, alarmclient : alarmclient, xmlclient : xmlclient };
 }
 
