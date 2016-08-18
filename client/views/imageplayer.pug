@@ -1,5 +1,5 @@
-div(class="imageplayer", ng-click="showcontrols = !showcontrols")
-    imagewithosd(image='alarm.Images[currentIdx].Image', osd='showOsd ? alarm.Images[currentIdx].OSD : undefined')
+div(class="imageplayer")
+    imagewithosd(image='alarm.Images[currentIdx].Image', osd='showOsd ? alarm.Images[currentIdx].OSD : undefined', ng-click="showcontrols = !showcontrols")
     div(class="alarm-info notif-animation", ng-show="alarm !== undefined && showcontrols")
         h5 {{ alarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{alarm.cameraname}} ({{alarm.sitename}})
     div(class='player-controls notif-animation' ng-show="showcontrols")
