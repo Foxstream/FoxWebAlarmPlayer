@@ -50,7 +50,7 @@ describe("Server API", function(){
                 .end(function(req, res){
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('object');
-                    expect(res.body.address).to.be.equal('192.168.0.118');
+                    expect(res.body.address).to.be.equal('1.2.3.4');
                     expect(res.body.port).to.be.equal(4000);
                     expect(res.body.description).to.be.equal('PC-Foxstream');
                     done();
