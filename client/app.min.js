@@ -11,13 +11,21 @@ app.config(function($translateProvider){
 // Notification system
 app.run(function($rootScope, $timeout, $translate){
 
-    // localStorage.setItem('language', 'fr');
 
+    /* For now, there is no way of asking angular-translate-loader what 
+    languages are available */
     $rootScope.languages = ['fr', 'en'];
 
     var language = localStorage.getItem('language');
     if (language){
         $translate.use(language);
+    } else {
+        language = navigator.language || navigator.userLanguage;
+        if (language.substr(0, 2) == "fr"){
+            $translate.use("fr");
+        } else {
+            $translate.use("en");
+        }
     }
 
     $rootScope.changeLanguage = function(langKey){
