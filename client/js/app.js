@@ -125,22 +125,31 @@ app.animation('.notif-animation', function (){
     };
 });
 
-var tabletBreakpoint = 992;
-var mobileBreakpoint = 768;
-var viewportWidth = document.documentElement.clientWidth;
 
-var device;
-if (viewportWidth < mobileBreakpoint){
-    device = 'mobile';
-} else if (viewportWidth < tabletBreakpoint){
-    device = 'tablet';
-} else {
-    device = 'desktop';
+function getClientDevice(){
+
+    var tabletBreakpoint = 992;
+    var mobileBreakpoint = 768;
+    var viewportWidth = document.documentElement.clientWidth;
+
+    if (viewportWidth < mobileBreakpoint){
+        return 'mobile';
+    } else if (viewportWidth < tabletBreakpoint){
+        return 'tablet';
+    } else {
+        return 'desktop';
+    }
+
 }
 
-
+var device = getClientDevice();
 app.value('device', device);
-
+angular.element(window).bind("resize", function(){
+    var deviceUpdated = getClientDevice();
+    if (deviceUpdated !== device){
+        location.reload();
+    }
+});
 
 app.directive('spinner', function(){
     return {
