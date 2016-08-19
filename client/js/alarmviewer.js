@@ -128,9 +128,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
 
-    /**
-      * GETTING ALARMS LISTS
-      */
+    //  *** GETTING ALARMS LISTS ***
     // When this is executed (on page load), ng-init hasn't been run, 
     // so we don't know which tab we're working in yet
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
@@ -178,11 +176,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm($translate.instant("CONFIRM_HANDLE_ALARM"))) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
-                var previousAlarm = $scope.getPreviousAlarm();
-                if (previousAlarm !== -1){
-                    $scope.currentalarm = $scope.alarms[previousAlarm];
+                var nextAlarm = $scope.getNextAlarm();
+                if (nextAlarm !== -1){
+                    $scope.currentalarm = $scope.alarms[nextAlarm];
                 } else {
-                    $scope.currentalarm = undefined;
+                    $scope.currentalarm = undefined; // No more alarms to show
                 }
             }
             alarmdb.markashandled(alarmId, function success(resopnse){ 
@@ -343,19 +341,31 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         }
     };
 
+
+    // Alarm updates from server
     var alarmUpdate = function(event, data){
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0) {
-            if ($scope.currentalarm !== undefined && $scope.currentalarm.id == data.id && data.handled != 0){
+
+            // Current alarm was markes as handled by another client
+            if ($scope.currentalarm !== undefined 
+                    && $scope.currentalarm.id == data.id 
+                    && data.handled != 0){
                 $window.alert($translate.instant("CONFIRM_HANDLED"));
                 $scope.currentalarm = undefined;
             }
-            $scope.alarms[pos] = data;
+
+            if ($scope.tabName === 'notHandled'){
+                $scope.alarms.splice(pos, 1);
+            } else {
+                $scope.alarms[pos] = data;
+            }
+            console.log($scope.tabName);
+            console.log($scope.alarms.length);
             if ($scope.selected.indexOf(data.id) >= 0){
                 $scope.selected.splice($scope.selected.indexOf(data.id), 1);
             }
-        }
-		else {
+        } else {
             $scope.limit++;
             if ($scope.tabName === 'notHandled'){
                 $scope.alarms.push(data);
