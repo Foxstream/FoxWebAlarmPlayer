@@ -117,5 +117,6 @@
   "HELP_COMMIT_NEWUSER": "Remplissez les champs et validez pour créer un nouvel utilisateur",
   "HELP_RESET_PASSWORD": "Cliquez ici pour réinitialiser le mot de passe de cet utilisateur. Il devra choisir un nouveau mot de passe lors de sa prochaine connexion",
   "HELP_LIVE_PLAY": "Lancer la vidéo en direct",
-  "NOTIF_ERROR_GETTING_CAMERAS": "Impossible d'obtenir la liste des caméras"
+  "NOTIF_ERROR_GETTING_CAMERAS": "Impossible d'obtenir la liste des caméras",
+  "HELP_LIVE_NO_CAMERAS": "Aucun caméra n'a été détectée pour la visualisation de vidéo en direct. Essayez de vous connecter à un serveur."
 }
