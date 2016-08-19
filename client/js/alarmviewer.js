@@ -53,7 +53,7 @@ app.controller('tabcontroller', ["$scope", function($scope){
 app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb", 'alarmevents', 'device', '$window', '$translate', function($scope, $rootScope, $window, alarmdb, alarmevents, device, $window, $translate) {
 
     $scope.device = device;
-    // alert($window.innerHeight);
+
     $scope.sortType = 'timestamp';
     $scope.sortReverse = true;
 
@@ -63,14 +63,14 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.loading = true; // Displays loading wheel
 
-    $scope.limit = 20;
-    $scope.limitStep = 20;
+    // We don't want to display all alarms at once, loading is too long
+    var initialNbDisplayedAlarms = 20;
+    var stepShowMoreAlarms = 20;
+    $scope.limit = initialNbDisplayedAlarms;
     $scope.showmorealarms = function(){
-        $scope.limit += $scope.limitStep;
+        $scope.limit += stepShowMoreAlarms;
     };
 
-    var today = new Date();
-    today.setHours(0, 0, 0, 0);
     alarmdb.getSiteList(function success(response){
         console.log('Site list', response)
         $scope.sites = response.data;
@@ -86,14 +86,21 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.sendnotification("NOTIF_ERROR_GETTING_CAMERA_LIST", false, 1);     
     });
 
+
+    // Filters
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     $scope.filters = {
         sitename: 'all',
         camera: 'all',
         date: today
     };
-    // Stores current values, ena   bles an easy form reset
+    $scope.showfilters = false;
+    // Stores current values, enables an easy form reset
     $scope.currentfilters = angular.copy($scope.filters);
 
+    // Reset camera filter to 'all' when site is changed
     $scope.$watch('filters.sitename', function(newVal, oldVal){
         if (newVal !== oldVal){
             $scope.filters.camera = 'all';
@@ -102,7 +109,8 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     $scope.applyfilters = function(){
         $scope.loading = true;
-        $scope.limit = 30;
+        $scope.showfilters = false;
+        $scope.limit = initialNbDisplayedAlarms; // Don't show all alarms at once
         $scope.currentalarm = undefined;
         $scope.currentfilters = angular.copy($scope.filters);
         alarmdb.getAlarms($scope.filters, function success(response){
@@ -115,16 +123,26 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.resetfilters = function(){
+        $scope.showfilters = false;
         $scope.filters = angular.copy($scope.currentfilters);
     };
 
-    /* When this is executed for the first time, ng-init hasn't been run, so we don't know which tab we're working in yet */
+
+    /**
+      * GETTING ALARMS LISTS
+      */
+    // When this is executed (on page load), ng-init hasn't been run, 
+    // so we don't know which tab we're working in yet
     $scope.cancelTabWatcher = $scope.$watch('tabName', function(newVal, oldVal){
         $scope.getAlarms();
     });
 
     $scope.getAlarms = function(){
+        // ng-init has been run, stop watching tab changes
+        $scope.cancelTabWatcher();
+
         if ($scope.tabName === 'notHandled'){
+
             alarmdb.getNotHandledAlarms(function success(response){
                 $scope.alarms = response.data;
                 $scope.loading = false;
@@ -132,7 +150,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.logHttpError(response);
                 $scope.sendnotification("NOTIF_ERROR_GETTING_ALARMS", false, 1);
             });
+
         } else if ($scope.tabName === 'filteredAlarms'){
+
             alarmdb.getAlarms($scope.filters, function success(response){
                 $scope.alarms = response.data;
                 $scope.loading = false;
@@ -140,14 +160,13 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.logHttpError(response);
                 $scope.sendnotification("NOTIF_ERROR_GETTING_ALARMS", false, 1);
             });
-        }
-        $scope.cancelTabWatcher();
-    };
 
+        }
+    };
 
     $scope.playalarm = function(alarmid){
         // Mobile devices : if the user clicked on alarm while the filter pop-up was visible, make sure that it is hidden when going back to alarm list
-        // $scope.showfilters = false;
+        $scope.showfilters = false;
         $scope.resetfilters();
 
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
@@ -470,7 +489,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
             });
 		  
             scope.$watch('alarm', function (newVal, oldVal){
-                console.log(newVal)
                 if (newVal === oldVal) return;
                 if (!newVal) return;
                 scope.playing = false;
