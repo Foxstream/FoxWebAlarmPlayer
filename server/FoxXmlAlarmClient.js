@@ -11,10 +11,10 @@ function scheduleRequestAlarmInfo(alarmInfo)
 		
 	if(this.foxxmlclient.Configuration)	
 	{
-		var cam=_.find(this.foxxmlclient.Configuration.cameras, function(cam){return cam.id==alarmInfo.camid;})
+		var cam = _.find(this.foxxmlclient.Configuration.cameras, function(cam){return cam.id==alarmInfo.camid;})
 		
 		if(cam){
-			setTimeout(getAlarm.bind(this,alarmInfo), 1000+(cam.buffer.after*cam.buffer.interval));	
+			setTimeout(getAlarm.bind(this,alarmInfo), 1000+(cam.buffer.after*cam.buffer.interval));
 		}
 		else {
 			log.warn("Alarm received for undefined camera");
@@ -28,7 +28,13 @@ function scheduleRequestAlarmInfo(alarmInfo)
 function getAlarm(alarmInfo)
 {
 	var self=this;
-	this.foxxmlclient.send({"$":{type:"getalarm", timestamp:alarmInfo.timestamp, camid:alarmInfo.camid, subtype:alarmInfo.type, mode:"bulk"}}, function(err, data)
+	this.foxxmlclient.send({"$": {
+			type: "getalarm", 
+			timestamp: alarmInfo.timestamp, 
+			camid: alarmInfo.camid, 
+			subtype: alarmInfo.type,
+			mode: "bulk"
+		}}, function(err, data)
 	{
 		if(err)
 			log.error('Unable to get alam : ' + err);
