@@ -61,12 +61,12 @@
 /* Line colors 
    Not applied in .table-container, because these rules would 
    be too specific to be overwritten elsewhere (i.e. alarmtable) */
-tbody tr:nth-child(odd){
+tbody tr:nth-child(odd):not(.nohover){
     background-color: $fox-light-gray;
 }
 
-tbody tr:hover {
-    background-color: $fox-light-gray;
+tbody tr:not(.nohover):hover {
+    background-color: $fox-gray-table-row;
     cursor: pointer;
 }
 

@@ -14,7 +14,7 @@ block content
               | {{ 'NEW_ALARMS' | translate }}
               span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_CLICK_NOT_HANDLED_ALARMS_TAB' | translate }}
             li(ng-click="tab = 'filteredAlarms'",
-              ng-class="{active: tab==='filteredAlarms', 'help-container':tab==='notHandled'}") 
+              ng-class="{active: tab==='filteredAlarms', 'help-container':tab==='notHandled'}")
                 | {{ 'ALL_ALARMS' | translate }}
                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_CLICK_ALL_ALARMS_TAB' | translate }}
 
@@ -71,7 +71,7 @@ block content
                               tr(ng-repeat='x in (filteredalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
                               ng-click='playalarm(x.id)'
                               id='alarm-{{ ::x.id }}'
-                              ng-class="{active: x.id==currentalarm.id}")
+                              ng-class="{active: x.id==currentalarm.id, nohover: x.nbimages==0}")
                                 td(class='check')
                                   input(type='checkbox' ng-checked='isSelected(x.id)' ng-click='updateSelection(x.id, $event)', ng-show="!x.handled")
                                 td(class='play')
@@ -83,8 +83,8 @@ block content
                                 td(class='handle')
                                   button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") {{ 'HANDLE' | translate }}
                                   span(ng-show="x.nbimages === 0") {{ 'LOADING' | translate }}...
-                              tr(ng-if="limit < alarms.length")
-                                  td(colspan="6") 
+                              tr(ng-if="limit < alarms.length", class="nohover")
+                                  td(colspan="6")
                                     button(ng-click="showmorealarms()", class="button-primary") {{ 'SHOW_MORE' | translate}}
 
                 //- Video player
@@ -112,8 +112,8 @@ block content
 
                 div(class="main-element" ng-show="currentalarm === undefined")
                     ul
-                        li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
-                        li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
+                        li(class="block-header no-arrow", ng-show="alarms.length === 0") Aucune alarme
+                        li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", ng-class="{'alarm-loading': x.nbimages==0, 'no-arrow': x.nbimages==0}") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                         li(ng-click="showmorealarms()", class="block-header",ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
@@ -199,7 +199,7 @@ block content
                                   td(class='handle')
                                     button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") {{ 'HANDLE' | translate }}
                                     span(ng-show="x.handled") {{ 'HANDLED' | translate }}
-                                tr(ng-if="limit < alarms.length")
+                                tr(ng-if="limit < alarms.length", class="nohover")
                                   td(colspan="6") 
                                     button(ng-click="showmorealarms()", class="button-primary") {{ 'SHOW_MORE' | translate }}
 
@@ -251,8 +251,8 @@ block content
 
                 div(class="main-element" ng-show="currentalarm === undefined")
                     ul
-                        li(class="block-header", ng-show="alarms.length === 0") {{ 'NO_ALARM' | translate }}
-                        li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
+                        li(class="block-header no-arrow", ng-show="alarms.length === 0") {{ 'NO_ALARM' | translate }}
+                        li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", ng-class="{'alarm-loading': x.nbimages==0, 'no-arrow': x.nbimages==0}") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                         li(ng-click="showmorealarms()", class="block-header", ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}

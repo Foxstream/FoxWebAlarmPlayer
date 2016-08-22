@@ -142,6 +142,8 @@ function getClientDevice(){
 
 }
 
+// This whole system is not clean and could be replaced by css classes (hidden-*), but it has the advantage
+// of allowing us to use angular's ng-if to show/hide some elements (much more efficient for big HTML pages)
 var device = getClientDevice();
 app.value('device', device);
 angular.element(window).bind("resize", function(){
