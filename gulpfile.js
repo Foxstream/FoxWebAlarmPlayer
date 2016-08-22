@@ -57,6 +57,9 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
     gulp.src('./client/css/*')
         .pipe(gulp.dest('./release/client/css'));
 
+    gulp.src('./client/fonts/*')
+        .pipe(gulp.dest('./release/client/fonts'))
+
     // Images
     gulp.src('./client/img/*')
         .pipe(gulp.dest('./release/client/img'));
