@@ -45,7 +45,7 @@ block content
                         thead
                             tr
                               th(class='check help-container') 
-                                input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
+                                input(type='checkbox' ng-click='selectall()' ng-checked='selected.length == filteredalarms.length')
                                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_ALARMTABLE_CHECKBOX' | translate }}
                               th(class='play')
                               th(class='date')
@@ -162,7 +162,7 @@ block content
                           thead
                               tr
                                 th(class='check')
-                                  input(type='checkbox' ng-click='selectall()' ng-checked='isSelectedAll')
+                                  input(type='checkbox' ng-click='selectall()' ng-checked='selected.length == filteredalarms.length')
                                 th(class='play')
                                 th(class='date')
                                   a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
