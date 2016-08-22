@@ -103,7 +103,7 @@ block content
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='$parent.currentalarm = undefined')
-                        span Liste
+                        span {{ 'LIST' | translate }}
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') {{ 'HANDLE' | translate }}
@@ -221,7 +221,7 @@ block content
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='$parent.currentalarm = undefined')
-                        span Liste
+                        span {{ 'LIST' | translate }}
                     button(class='button-primary',
                         ng-show='currentalarm !== undefined && currentalarm.handled === 0',
                         ng-click='markcurrentashandled($event)') {{ 'HANDLE' | translate }}

@@ -118,5 +118,6 @@
   "HELP_RESET_PASSWORD": "Click here to reset the user's password. He will be asked to choose a new password the next time he logs in to the application",
   "HELP_LIVE_PLAY": "Play live video",
   "NOTIF_ERROR_GETTING_CAMERAS": "Unable to get the list of available cameras",
-  "HELP_LIVE_NO_CAMERAS": "No available cameras were detected for live video. Try connecting to a server using the \"Servers\" page."
+  "HELP_LIVE_NO_CAMERAS": "No available cameras were detected for live video. Try connecting to a server using the \"Servers\" page.",
+  "LIST": "List"
 }
