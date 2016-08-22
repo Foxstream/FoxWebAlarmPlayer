@@ -48,10 +48,11 @@ function receivingData(data)
 	
 	if(data.$.id && this.Callbacks[parseInt(data.$.id)])
 	{
-		if(data.$.type=="error")			
+		if(data.$.type=="error"){		
 			this.Callbacks[parseInt(data.$.id)](data.$text, null);
-		else
+		} else {
 			this.Callbacks[parseInt(data.$.id)](null, data);
+		}
 			
 		delete this.Callbacks[parseInt(data.$.id)];
 	}

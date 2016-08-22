@@ -14,7 +14,7 @@ function schedulePeriodicTest()
 function handleAuthResponse(err, data)
 {				
 	if(!err)
-	{	
+	{
 		this.ConnectionEstablished=true;
 		this.emit('connected');
 		
@@ -50,18 +50,20 @@ function getConfig()
 				cameras:_.map(data.camera?data.camera:[], function(cam)
 				{
 					return {
-						name: cam.$.name,
 						id : cam.$.camid,
+						name: cam.$.name,
+						src: cam.$.src,
 						buffer:
 							{
 								before:cam.buffer.$.before,
 								after:cam.buffer.$.after,
-								interval:cam.buffer.$.interval
+								interval:cam.buffer.$.interval,
 							}
 						
 						};
 				})
 			};
+			console.log(self.Configuration);
 			self.emit('configReceived', self.Configuration);
 		}
 		else {
@@ -146,7 +148,7 @@ function FoxXmlClient(address, port, user, password)
 	this.User = user;
 	this.Pass = password;
 	
-	this.ReconnectInterval=30;	
+	this.ReconnectInterval=30;
 	this.AutoRequestConfig = true;
 	this.ConnectionEstablished = false;
 	

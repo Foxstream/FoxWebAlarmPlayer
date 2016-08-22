@@ -58,7 +58,7 @@ function RequestServerConnect(srv)
     
     srv.alarmclient.on("alarmimages", function (data) {        
         
-        if (data && data.dbobject) {
+        if (data && data.dbobject){
             data.dbobject.images = data.images;
             
             self.alarmPersistence.saveAlarm(data.dbobject, function (err, obj) {                
@@ -80,7 +80,6 @@ function InternalDisconnectServer(server)
 
 function BuildInternalServer(srv)
 {
-
     var xmlclient = new FoxXmlClient(srv.address, srv.port, srv.username, srv.password);
     var alarmclient = new FoxXmlAlarmClient(xmlclient);
     return { config : srv, alarmclient : alarmclient, xmlclient : xmlclient };

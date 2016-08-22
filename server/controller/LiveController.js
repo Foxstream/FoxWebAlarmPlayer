@@ -8,10 +8,12 @@ function applyApp(app){
 
      app.get('/cameras', function(req, res){
        
+
         var cameras = {},
             servers = self.serversManager.servers;
 
             servers.forEach(function(s){
+
                 if (s.xmlclient.Configuration){
                     var cameraList = s.xmlclient.Configuration.cameras.map(function(c){
                         c.serverId = s.config.id;
@@ -72,6 +74,9 @@ function applyApp(app){
 
 function LiveController(serversManager) {
     if (!this) return new LiveController(serversManager);
+
+    // Building list of live feeds
+    this.liveFeeds = {};
 
     this.serversManager = serversManager;
 }

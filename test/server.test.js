@@ -212,7 +212,7 @@ describe("Server API", function(){
                     agent.delete('/servers/' + res.body[serverId].id)
                         .end(function(req, res){
                             expect(res).to.have.status(200);
-                            agent.get('/servers')
+                            agent.get('/servers'
                                 .end(function(req, res){
                                 expect(res.body.length).to.be.equal(2);
                                 done();
