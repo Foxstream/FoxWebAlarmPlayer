@@ -25,7 +25,7 @@ block content
         div(ng-controller='alarmcontroller', ng-show="tab === 'notHandled'", ng-init="tabName='notHandled'")
 
             //- Desktop version
-            div(ng-if="device === 'desktop'")
+            div(ng-show="device === 'desktop'")
 
                 div(class='col-md-7')
 
@@ -37,7 +37,7 @@ block content
                                 ng-click='handleSelected()',
                                 ng-show='selected.length > 0') {{ 'HANDLE' | translate }} {{ selected.length }} {{ 'ALARM' | translate }}{{ (selected.length > 1)?'s':'' }}
                         button(class='button-primary',
-                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
+                                ng-click='handleall()', ng-show="alarms.length > 0") {{ 'HANDLE_ALL' | translate }}
 
                     div(class='table-container alarmtable')
 
@@ -66,9 +66,9 @@ block content
                               th(class='handle')
 
                             tbody
-                              tr(ng-show='getNotHandledAlarms().length === 0') 
+                              tr(ng-show='alarms.length === 0') 
                                 td(colspan="6") {{ "NO_ALARM" | translate }}
-                              tr(ng-repeat='x in alarms | filter: {handled: 0} | orderBy: sortType:sortReverse | limitTo: limit as filtered',
+                              tr(ng-repeat='x in (filteredalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
                               ng-click='playalarm(x.id)'
                               id='alarm-{{ ::x.id }}'
                               ng-class="{active: x.id==currentalarm.id}")
@@ -83,7 +83,7 @@ block content
                                 td(class='handle')
                                   button(ng-click='markashandled(x.id, $event)', ng-show='!x.handled && x.nbimages>0', title='Acquitter',class="button-primary-nofill") {{ 'HANDLE' | translate }}
                                   span(ng-show="x.nbimages === 0") {{ 'LOADING' | translate }}...
-                              tr(ng-if="limit < getNotHandledAlarms().length")
+                              tr(ng-if="limit < alarms.length")
                                   td(colspan="6") 
                                     button(ng-click="showmorealarms()", class="button-primary") {{ 'SHOW_MORE' | translate}}
 
@@ -98,7 +98,7 @@ block content
                 div(class='actions')
                     button(class='button-primary',
                             ng-click='handleall()',
-                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') {{ 'HANDLE_ALL' | translate }}
+                            ng-show='currentalarm === undefined && alarms.length > 0') {{ 'HANDLE_ALL' | translate }}
 
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
@@ -112,10 +112,10 @@ block content
 
                 div(class="main-element" ng-show="currentalarm === undefined")
                     ul
-                        li(class="block-header", ng-show="getNotHandledAlarms().length === 0") Aucune alarme
+                        li(class="block-header", ng-show="alarms.length === 0") Aucune alarme
                         li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header") 
                           b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
-                        li(ng-click="showmorealarms()", class="block-header",ng-show="getNotHandledAlarms().length - filtered.length > 0") 
+                        li(ng-click="showmorealarms()", class="block-header",ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
 
                 div(class="main-element", ng-show='currentalarm !== undefined')
@@ -138,7 +138,7 @@ block content
                                 ng-click='handleSelected()',
                                 ng-show='selected.length > 0') {{ 'HANDLE' | translate }} {{ selected.length }} {{ 'ALARM' | translate }}{{ (selected.length > 1)?'s':'' }}
                         button(class='button-primary',
-                                ng-click='handleall()', ng-show="getNotHandledAlarms().length > 0") {{ 'HANDLE_ALL' | translate }}
+                                ng-click='handleall()', ng-show="alarms.length > 0") {{ 'HANDLE_ALL' | translate }}
 
                     div(class="filter help-container")
                       form(class="form-inline", ng-submit='applyfilters()')
@@ -217,7 +217,7 @@ block content
                             ng-show='currentalarm === undefined') {{ 'FILTER' | translate }}
                     button(class='button-primary',
                             ng-click='handleall()',
-                            ng-show='currentalarm === undefined && getNotHandledAlarms().length > 0') {{ 'HANDLE_ALL' | translate }}
+                            ng-show='currentalarm === undefined && alarms.length > 0') {{ 'HANDLE_ALL' | translate }}
                     button(class='button-secondary back',
                         ng-show='currentalarm != undefined',
                         ng-click='$parent.currentalarm = undefined')

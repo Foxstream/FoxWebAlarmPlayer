@@ -103,7 +103,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Reset camera filter to 'all' when site is changed
     $scope.$watch('filters.sitename', function(newVal, oldVal){
         if (newVal !== oldVal){
-            $scope.filters.camera = 'all';
+            $scope.filters.czamera = 'all';
         }
     });
 
@@ -310,7 +310,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         if ($scope.isSelectedAll){
             $scope.selected = [];
         } else {
-            $scope.alarms.forEach(function(a){
+            $scope.filteredalarms.forEach(function(a){
                 if ($scope.selected.indexOf(a.id) < 0){
                     $scope.selected.push(a.id);
                 }
