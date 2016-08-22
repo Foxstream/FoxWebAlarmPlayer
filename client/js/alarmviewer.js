@@ -349,7 +349,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
                 $scope.currentalarm = undefined;
             }
 
-            if ($scope.tabName === 'notHandled'){
+            if ($scope.tabName === 'notHandled' && data.handled != 0){
                 $scope.alarms.splice(pos, 1);
             } else {
                 $scope.alarms[pos] = data;
