@@ -45,21 +45,21 @@ block content
                         thead
                             tr
                               th(class='check help-container') 
-                                input(type='checkbox' ng-click='selectall()' ng-checked='selected.length == filteredalarms.length')
+                                input(type='checkbox' ng-click='selectall()' ng-checked='filteredalarms.length > 0 && selected.length == filteredalarms.length')
                                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_ALARMTABLE_CHECKBOX' | translate }}
                               th(class='play')
                               th(class='date')
-                                a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
+                                a(ng-click="selected=[]; selected=[]; sortType = 'timestamp'; sortReverse = !sortReverse;") 
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
                                   | {{ "DATE" | translate }}
                               th(class='camera')
-                                a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
+                                a(ng-click="selected=[]; sortType = 'cameraname'; sortReverse = !sortReverse") 
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
                                   | {{ "CAMERA" | translate }}
                               th(class='site')
-                                a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse")
+                                a(ng-click="selected=[]; sortType = 'sitename'; sortReverse = !sortReverse")
                                   span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
                                   span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                   | {{ "SITE" | translate }}
@@ -127,7 +127,7 @@ block content
         div(ng-show="tab === 'filteredAlarms'", ng-controller='alarmcontroller', ng-init="tabName='filteredAlarms'")
 
             //- Desktop version
-            div(ng-if="device === 'desktop'")
+            div(ng-show="device === 'desktop'")
 
                 div(class='col-md-7')
 
@@ -162,20 +162,20 @@ block content
                           thead
                               tr
                                 th(class='check')
-                                  input(type='checkbox' ng-click='selectall()' ng-checked='selected.length == filteredalarms.length')
+                                  input(type='checkbox' ng-click='selectall()' ng-checked='filteredalarms.length > 0 && selected.length == filteredalarms.length')
                                 th(class='play')
                                 th(class='date')
-                                  a(ng-click="sortType = 'timestamp'; sortReverse = !sortReverse") 
+                                  a(ng-click="selected=[]; sortType = 'timestamp'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'timestamp' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'timestamp' && sortReverse === true")
                                     | {{ 'DATE' | translate }}
                                 th(class='camera')
-                                  a(ng-click="sortType = 'cameraname'; sortReverse = !sortReverse") 
+                                  a(ng-click="selected=[]; sortType = 'cameraname'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'cameraname' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'cameraname' && sortReverse === true")
                                     | {{ 'CAMERA' | translate }}
                                 th(class='site')
-                                  a(ng-click="sortType = 'sitename'; sortReverse = !sortReverse") 
+                                  a(ng-click="selected=[]; sortType = 'sitename'; sortReverse = !sortReverse") 
                                     span(class="glyphicon glyphicon-triangle-bottom", ng-show="sortType === 'sitename' && sortReverse === false")
                                     span(class="glyphicon glyphicon-triangle-top", ng-show="sortType === 'sitename' && sortReverse === true")
                                     | {{ 'SITE' | translate }}
@@ -184,7 +184,7 @@ block content
                               tbody
                                 tr(ng-show='alarms.length === 0') 
                                   td(colspan="6") {{ 'NO_ALARM' | translate }}
-                                tr(ng-repeat='x in alarms | orderBy: sortType:sortReverse | limitTo: limit as filtered',
+                                tr(ng-repeat='x in (filteredalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
                                 ng-click='playalarm(x.id)'
                                 id='alarm-{{ ::x.id }}'
                                 ng-class="{active: x.id==currentalarm.id}")

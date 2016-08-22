@@ -306,7 +306,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
             $scope.selected = [];
         } else {
             $scope.filteredalarms.forEach(function(a){
-                if ($scope.selected.indexOf(a.id) < 0){
+                if ($scope.selected.indexOf(a.id) < 0 && a.handled === 0){
                     $scope.selected.push(a.id);
                 }
             });
