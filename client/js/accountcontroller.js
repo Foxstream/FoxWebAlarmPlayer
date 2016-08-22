@@ -1,4 +1,4 @@
-app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'userdb', '$translate', function($scope, $rootScope, $window, device, userdb, $translate) {
+app.controller('accountController', ["$scope", '$rootScope', '$window', 'device', 'userdb', '$translate', '$timeout', function($scope, $rootScope, $window, device, userdb, $translate, $timeout) {
     
     $scope.device = device;
     $scope.showMenu = true;
@@ -42,6 +42,9 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
         if ($scope.password.new === $scope.password.confirm){
             userdb.changePassword($scope.password.old, $scope.password.new, function success(response){
                 $scope.sendnotification("NOTIF_PASSWORD_CHANGED", true, 1);
+                $timeout(function(){
+                    $window.location.href = '/';
+                },3000);
             }, function error(response){
                 if (response.status === 401){
                     $scope.sendnotification("NOTIF_INCORRECT_PASSWORD", false, 1);
