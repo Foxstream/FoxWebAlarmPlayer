@@ -13,11 +13,11 @@
     "url": "https://github.com/Foxstream/FoxWebAlarmPlayer.git"
   },
   "scripts": {
-    "start": "set NODE_ENV='production' && node server/main.js",
-    "start-dev": "set NODE_ENV='development' && nodemon server/main.js",
+    "start": "set NODE_ENV=production&&node main.js",
+    "start-dev": "set NODE_ENV=development&&nodemon main.js",
     "test": "mocha test/ --recursive --reporter spec",
     "debug": "node-debug main.js",
-    "start-unix": "NODE_ENV='development' && nodemon main.js"
+    "start-unix": "NODE_ENV=development nodemon main.js"
   },
   "os": [
     "win32",
