@@ -137,7 +137,7 @@ describe("Server API", function(){
             agent.get('/servers/1')
                 .end(function(req, res){
                     var server = res.body;
-                    server.address = '192.168.31.20';
+                    server.address = '0.1.2.3';
                     server.description = 'Foxbox';
                     server.port = 4000;
                     server.username = 'admin';
@@ -157,7 +157,7 @@ describe("Server API", function(){
 
         it ('Should create a new server', function(done){
             var server = {
-                address: '192.168.31.146',
+                address: '1.1.1.1',
                 port: 1000,
                 username: 'admin',
                 password: 'admin',
@@ -175,7 +175,7 @@ describe("Server API", function(){
                             var serverId = servers.map(function(server){ return server.description }).indexOf('Test server');
                             var newServer = servers[serverId];
 
-                            expect(newServer.address).to.be.equal('192.168.31.146');
+                            expect(newServer.address).to.be.equal('1.1.1.1');
                             expect(newServer.port).to.be.equal(1000);
                             expect(newServer.username).to.be.equal('admin');
                             expect(newServer.password).to.be.equal('admin');
