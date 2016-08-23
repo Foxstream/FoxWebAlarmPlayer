@@ -24,6 +24,7 @@ gulp.task('js', function(){
         .pipe(gulp.dest('./client/'))
 });
 
+
 gulp.task('sass', function(){
     return gulp.src('./client/sass/main.scss')
         .pipe(sass().on('error', sass.logError))
@@ -33,6 +34,8 @@ gulp.task('sass', function(){
         }))
         .pipe(gulp.dest('./client/css'));
 });
+
+
 
 // Create a ready-to-install "release" directory
 gulp.task('release', ['clean', 'sass', 'js'], function(){
@@ -46,7 +49,7 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
         .pipe(gulp.dest('./release/'));
 
     // Server files
-    gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*', '!./server/karma.conf.js'])
+    gulp.src(['./server/**/*', '!./server/data/**/*', '!./server/*.log*'])
         .pipe(gulp.dest('./release/server/'));
 
     // Config
@@ -54,31 +57,8 @@ gulp.task('release', ['clean', 'sass', 'js'], function(){
         .pipe(gulp.dest('./release/config/'));  
 
     // CSS files
-    gulp.src('./client/css/*')
-        .pipe(gulp.dest('./release/client/css'));
-
-    gulp.src('./client/fonts/*')
-        .pipe(gulp.dest('./release/client/fonts'))
-
-    // Images
-    gulp.src('./client/img/*')
-        .pipe(gulp.dest('./release/client/img'));
-
-    // Views
-    gulp.src('./client/views/*')
-        .pipe(gulp.dest('./release/client/views'));
-
-    // Vendor
-    gulp.src('./client/vendor/**/*')
-        .pipe(gulp.dest('./release/client/vendor'));
-
-    // Angular app and front-end dependencies
-    gulp.src('./client/app.min.js')
-        .pipe(gulp.dest('./release/client'));
-
-    // Locale
-    gulp.src(['./client/locale/*'])
-        .pipe(gulp.dest('./release/client/locale'));
+    gulp.src(['./client/**/*', '!./client/js/', '!./client/js/**', '!./client/sass/', '!./client/sass/**', '!./client/update-locale-files.js'])
+        .pipe(gulp.dest('./release/client/'));
 
     // Windows service
     gulp.src('./win-service.js')

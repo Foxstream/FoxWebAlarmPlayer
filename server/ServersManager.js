@@ -57,7 +57,6 @@ function RequestServerConnect(srv)
     });
     
     srv.alarmclient.on("alarmimages", function (data) {        
-        
         if (data && data.dbobject) {
             data.dbobject.images = data.images;
             
