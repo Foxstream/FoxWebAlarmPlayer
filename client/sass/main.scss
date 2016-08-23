@@ -149,6 +149,9 @@ ul {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
         padding-bottom: $navbar-tablet-height + 2vmax;       
     }
+    .newserver, .newuser {
+        padding-top: $action-bar-tablet-height + 3vmax;
+    }
 }
 
 // Tablet, landscape mode
@@ -156,6 +159,9 @@ ul {
     .main-element {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
         padding-bottom: 2vmax;       
+    }
+    .newserver, .newuser {
+        padding-top: $action-bar-tablet-height + 3vmax;
     }
 }
 
@@ -166,6 +172,9 @@ ul {
         padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
         padding-bottom: $navbar-mobile-height + 2vmax;
     }
+    .newserver, .newuser {
+        padding-top: $action-bar-mobile-height + 3vmax;
+    }
 
 }
 
@@ -175,6 +184,9 @@ ul {
     .main-element {
         padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
         padding-bottom: 2vmax;
+    }
+    .newserver, .newuser {
+        padding-top: $action-bar-mobile-height + 3vmax;
     }
 
 }

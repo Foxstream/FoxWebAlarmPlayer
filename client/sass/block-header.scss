@@ -67,6 +67,15 @@
     display: none;
 }
 
+.block-header.alert {
+    color: $fox-red;
+}
+.block-header.alert:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e209";
+    float: right;
+}
+
 // Bootstrap default margin is so big
 .panel {
     margin-bottom: 2px;

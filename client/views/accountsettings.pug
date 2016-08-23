@@ -17,9 +17,9 @@ block content
 								span(class="glyphicon glyphicon-cog menu-icon")
 								span {{ 'ACCOUNTSETTINGS' | translate }}
 					if user.type == 1
-						li(class="panel")
+						li(class="panel", ng-controller="servercontroller")
 							h5
-								a(href='/serverview', class="block-header")
+								a(href='/serverview', class="block-header", ng-class="{'alert': getDisconnectedServers().length > 0}")
 									span(class="glyphicon glyphicon-hdd menu-icon")
 									span {{ 'SERVERS' | translate }}
 						li(class="panel")

@@ -103,9 +103,10 @@ block content
             div(ng-repeat='x in servers', class='panel')
                 h5
                     a(href='#collapse{{$index}}', data-toggle='collapse',
-                        class="block-header", data-parent='#serverlist', ng-click="editserver(x.id)") {{ x.description }}
-                        span(class='glyphicon glyphicon-ok', ng-show='x.connected', title='Connected')
-                        span(class='glyphicon glyphicon-alert', ng-show='!x.connected', title='Disconnected')
+                        class="block-header", data-parent='#serverlist', ng-click="editserver(x.id)")
+                        span(class='glyphicon glyphicon-ok menu-icon', ng-if='x.connected', title='Connected')
+                        span(class='glyphicon glyphicon-alert menu-icon', ng-if='!x.connected', title='Disconnected')
+                        span {{ x.description }}
                 div(id='collapse{{ $index }}', class='collapse')
                     form(name="serverform", ng-show="currentserver !== undefined && currentserver.id === x.id")
                         .form-group
@@ -132,8 +133,8 @@ block content
                         button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") {{ 'SAVE' | translate }}
              
-        div(ng-show="newserver !== undefined", class="hidden-md hidden-lg")
-            h5(class="block-header") {{ 'NEW_SERVER' | translate }}
+        div(ng-show="newserver !== undefined", class="hidden-md hidden-lg main-element newserver")
+            h5(class="block-header no-arrow") {{ 'NEW_SERVER' | translate }}
             form
                 .form-group
                     label(for="address") {{ 'ADDRESS' | translate }}
