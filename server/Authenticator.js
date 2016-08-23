@@ -50,10 +50,24 @@ function applyToServer(app, userPers)
         res.render('login', {appName: config.get('appName') });
     });
     
-    app.post('/login', passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    }));
+    app.post('/login', function(req, res, next){
+        if (req.body.password == '')
+            req.body.password = ' '; // Passport doesn't accept empty passwords
+        passport.authenticate('local', function(err, user, info) {
+            if (err){ 
+                return next(err);
+            }
+            if (!user){ 
+                return res.redirect('/login'); 
+            }
+            req.logIn(user, function(err){
+                if (err){ 
+                    return next(err); 
+                }
+                return res.redirect('/');
+            });
+        })(req, res, next);
+    });
     
     app.get('/logout', function (req, res) {
         req.logout();
