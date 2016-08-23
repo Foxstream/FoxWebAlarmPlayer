@@ -4,10 +4,9 @@ nav {
     ul {
 
         .lang-picker, .help-button {
-            float: left;
+            float: right;
         }
         .help-button {
-            margin-left: 15px;
             width: 2em;
         }
 
@@ -43,7 +42,6 @@ nav {
         margin-bottom: 5vh;
         height: $navbar-desktop-height;
         margin-top: 1vh;
-        text-align: right;
         background-color: $fox-red;
         color: white;
         height: $navbar-desktop-height;
@@ -118,6 +116,10 @@ nav {
 
         .submenu.language {
             min-width: 100%;
+        }
+
+        .settings-button {
+            float: right;
         }
 
         .navbar-notif {

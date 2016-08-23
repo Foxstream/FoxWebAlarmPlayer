@@ -48,7 +48,7 @@ html
                     span(class='link') {{ 'LIVE' | translate }}
               li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") || isActive("logview") }',
                   ng-mouseover='showsubmenu = true',
-                  ng-mouseleave='showsubmenu = false', ng-controller="servercontroller")
+                  ng-mouseleave='showsubmenu = false', ng-controller="servercontroller", class="settings-button")
                   a(href='/accountsettings')
                       i(class='glyphicon glyphicon-cog')
                       span(class='link') {{ 'SETTINGS' | translate }}
@@ -74,22 +74,22 @@ html
                         a(href='/logout')
                           span(class='link') {{ 'LOGOUT' | translate }}
 
-              li(ng-click="$parent.help = !$parent.help"
-                class="hidden-xs hidden-sm help-button",
-                ng-class="{active: help}") ?
               li(ng-mouseover='showLanguagePicker = true',
                   ng-mouseleave='showLanguagePicker = false',
                   class="hidden-xs hidden-sm lang-picker")
                   a(href="#")
                       span(class='link') 
                         | {{ getCurrentLanguage() | uppercase }}
-                        span(class="help right", ng-show="help") {{ 'HELP_LANGUAGE' | translate }} 
 
                   div(class="submenu language" ng-show='showLanguagePicker')
                     ul
                       li(ng-repeat="l in languages", ng-if="l !== getCurrentLanguage()")
                         a(href='#', ng-click="changeLanguage(l)")
                           span(class='link') {{ l | uppercase }}
+
+              li(ng-click="$parent.help = !$parent.help"
+                class="hidden-xs hidden-sm help-button",
+                ng-class="{active: help}") ?
 
 
       div(class="page-content")
