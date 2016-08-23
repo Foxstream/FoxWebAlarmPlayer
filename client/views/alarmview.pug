@@ -151,7 +151,7 @@ block content
                             label {{ 'CAMERAS' | translate }} :
                             select(ng-model='filters.camera')
                               option(value="all") {{ 'ALL_' | translate }}
-                              option(ng-repeat="c in cameras", value="{{ c.cameraname }}") {{ c.cameraname }}
+                              option(ng-repeat="c in cameras | filter: {sitename: filters.sitename}", value="{{ c.cameraname }}") {{ c.cameraname }}
                           button(type='submit', class='button-primary icon')
                             span(class="glyphicon glyphicon-search")
                           span(class="help right", ng-show="help && tab==='filteredAlarms'") {{ 'HELP_FILTERS' | translate }}
