@@ -119,5 +119,6 @@
   "HELP_LIVE_PLAY": "Lancer la vidéo en direct",
   "NOTIF_ERROR_GETTING_CAMERAS": "Impossible d'obtenir la liste des caméras",
   "HELP_LIVE_NO_CAMERAS": "Aucun caméra n'a été détectée pour la visualisation de vidéo en direct. Essayez de vous connecter à un serveur.",
-  "LIST": "Liste"
+  "LIST": "Liste",
+  "NOTIF_INVALID_IP_ADDRESS": "Veuillez saisir une adresse IP valide"
 }
