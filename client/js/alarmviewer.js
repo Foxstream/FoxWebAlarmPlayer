@@ -102,7 +102,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     // Reset camera filter to 'all' when site is changed
     $scope.$watch('filters.sitename', function(newVal, oldVal){
         if (newVal !== oldVal){
-            $scope.filters.czamera = 'all';
+            $scope.filters.camera = 'all';
         }
     });
 

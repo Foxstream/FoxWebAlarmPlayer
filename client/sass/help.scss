@@ -7,7 +7,7 @@
     position: absolute;
     top: 3px;
     color: white;
-    background: $fox-red;
+    background: $fox-light-red;
     padding: 6px 15px;
     min-width: 250px;
     max-width: 300px;
@@ -61,7 +61,7 @@
     height: 0;
     border-top: solid transparent 15px;
     border-bottom: solid transparent 15px;
-    border-right: solid $fox-red 15px;
+    border-right: solid $fox-light-red 15px;
     box-shadow: none;
 }
 
@@ -76,6 +76,6 @@
     height: 0;
     border-top: solid transparent 15px;
     border-bottom: solid transparent 15px;
-    border-left: solid $fox-red 15px;
+    border-left: solid $fox-light-red 15px;
     box-shadow: none;
 }
