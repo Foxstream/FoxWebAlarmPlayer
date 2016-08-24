@@ -10,11 +10,6 @@ input[type=checkbox]{
     margin-right: 10px;
 }
 
-// Checkboxes are not big enough (in tables for example)
-input[type=checkbox]{ 
-   transform: scale(1.5);
-}
-
 // Overriding bootstrap blue glow on focus
 input:focus {
     border: solid 1px rgba($fox-red, 0.8) !important;
