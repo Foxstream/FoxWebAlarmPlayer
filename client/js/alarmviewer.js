@@ -202,7 +202,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.markashandled($scope.currentalarm.id, $event);
     };
 
-
+    // Next alarm in the list of filtered alarms displayed in view (depends on sorting options chosen by the user)
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
         if (nextAlarm !== -1){

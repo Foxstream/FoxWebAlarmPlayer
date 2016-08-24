@@ -6,7 +6,7 @@ div(class="swiper" ng-swipe-left='shownextalarm()' ng-swipe-right='showpreviousa
                 li(ng-show='currentalarm.handled === 1')
                     b(style="color: red") {{ 'HANDLED' | translate }}
                 li
-                    | {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                    | {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }}
                 li 
                     b {{ 'CAMERA' | translate }} : 
                     | {{ currentalarm.cameraname }}

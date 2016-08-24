@@ -77,7 +77,7 @@ block content
                                 td(class='play')
                                   span(class='glyphicon glyphicon-play')
                                 td(class='date')
-                                  | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                                  | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }}
                                 td(class='camera') {{ ::x.cameraname }}
                                 td(class='site') {{ ::x.sitename }}
                                 td(class='handle')
@@ -114,7 +114,7 @@ block content
                     ul
                         li(class="block-header no-arrow", ng-show="alarms.length === 0") Aucune alarme
                         li(ng-repeat="x in alarms | filter: {handled: 0} | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", ng-class="{'alarm-loading': x.nbimages==0, 'no-arrow': x.nbimages==0}") 
-                          b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
+                          b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                         li(ng-click="showmorealarms()", class="block-header",ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
 
@@ -193,7 +193,7 @@ block content
                                   td(class='play')
                                     span(class='glyphicon glyphicon-play')
                                   td(class='date')
-                                     | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }}
+                                     | {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }}
                                   td(class='camera') {{ ::x.cameraname }}
                                   td(class='site') {{ ::x.sitename }}
                                   td(class='handle')
@@ -253,7 +253,7 @@ block content
                     ul
                         li(class="block-header no-arrow", ng-show="alarms.length === 0") {{ 'NO_ALARM' | translate }}
                         li(ng-repeat="x in alarms | orderBy: '-timestamp' | limitTo: limit as filtered" ng-click="playalarm(x.id)", class="block-header", ng-class="{'alarm-loading': x.nbimages==0, 'no-arrow': x.nbimages==0}") 
-                          b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
+                          b {{ ::x.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }} - {{ ::x.cameraname }} ({{ ::x.sitename }})
                         li(ng-click="showmorealarms()", class="block-header", ng-show="alarms.length - filtered.length > 0") 
                           | {{ 'SHOW_MORE' | translate }}
 

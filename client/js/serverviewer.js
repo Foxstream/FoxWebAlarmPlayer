@@ -81,12 +81,12 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             }
             serverdb.deleteserver(serverId, function success(response){
                 $scope.servers.splice(pos, 1);
-                $scope.sendnotification("NOTIF_SERVER_DELETED", true, 1);
+                $scope.sendnotification("NOTIF_SERVER_DELETED", true, 2000);
             }, function error(response){
                 $scope.logHttpError(response);
                 $scope.sendnotification("NOTIF_ERROR_DELETING_SERVER", 
                         false, 
-                        1); 
+                        2000); 
             });
         };
 
@@ -96,16 +96,17 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                     var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
                     $scope.servers[pos] = $scope.currentserver;
                     $scope.resetserver();
-                    $scope.sendnotification("NOTIF_SERVER_UPDATED", true, 1);
+                    $scope.sendnotification("NOTIF_SERVER_UPDATED", true, 2001);
                 }, function error(response){
                     $scope.resetserver();
                     $scope.logHttpError(response);
                     $scope.sendnotification("NOTIF_ERROR_UPDATING_SERVER", 
                             false, 
-                            1);
+                            2001);
                 });
             } else {
-                $scope.sendnotification("NOTIF_INVALID_IP_ADDRESS", false, 1);
+                // Priority 2000 : should overwrite connection errors
+                $scope.sendnotification("NOTIF_INVALID_IP_ADDRESS", false, 2000);
             }
         };
 
@@ -114,13 +115,13 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
                 serverdb.addserver($scope.newserver, function success(response){
                     $scope.newserver = undefined;
                     $scope.servers.push(response.data);
-                    $scope.sendnotification("NOTIF_SERVER_ADDED", true, 1);
+                    $scope.sendnotification("NOTIF_SERVER_ADDED", true, 2001);
                 }, function error(response){
-                    $scope.sendnotification("NOTIF_ERROR_ADDING_SERVER" , false, 1);
+                    $scope.sendnotification("NOTIF_ERROR_ADDING_SERVER" , false, 2001);
                     $scope.logHttpError(response);               
                 });
             } else {
-                $scope.sendnotification("NOTIF_INVALID_IP_ADDRESS", false, 1);
+                $scope.sendnotification("NOTIF_INVALID_IP_ADDRESS", false, 2000);
             }
         };
 
