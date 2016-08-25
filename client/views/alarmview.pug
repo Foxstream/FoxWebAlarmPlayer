@@ -90,7 +90,7 @@ block content
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
                     span(class="help left y-offset", ng-show="help && tab==='notHandled'") {{ 'HELP_PLAYER' | translate }}
-                    imageplayer(alarm='currentalarm')
+                    imageplayer(alarm='currentalarm', help='help')
 
             //- Mobile version
             div(ng-if="device !== 'desktop'")
@@ -206,7 +206,7 @@ block content
 
                 //- Video player
                 div(class='col-md-5 desktop-video-player')
-                    imageplayer(alarm='currentalarm')
+                    imageplayer(alarm='currentalarm', help='help')
 
             //- Mobile version
             div(ng-if="device !== 'desktop'")

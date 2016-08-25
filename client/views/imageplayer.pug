@@ -8,7 +8,9 @@ div(class="imageplayer")
         span(class="glyphicon", ng-class='{ "glyphicon-play": !playing, "glyphicon-pause": playing }', ng-click="playing=!playing", ng-show="alarm !== undefined")
         span(class="glyphicon glyphicon-stop", ng-show="alarm === undefined")
         span(class='glyphicon glyphicon-step-forward', ng-click="nextImage()", ng-show="alarm !== undefined")
-        img(src="/img/osd-silhouette.png", ng-show="!showOsd && alarm !== undefined", class="osd-icon", ng-click="toggleOsd()")
-        img(src="/img/osd.png", ng-show="showOsd && alarm !== undefined", class="osd-icon", ng-click="toggleOsd()")
+        span(class="osd-icon", ng-show="alarm !== undefined")
+            img(src="/img/osd-silhouette.png", ng-show="!showOsd", ng-click="toggleOsd()")
+            img(src="/img/osd.png", ng-show="showOsd", ng-click="toggleOsd()")
+            span(class="help left", ng-show="help") {{ 'HELP_OSD' | translate }}
 
     spinner(ng-show="loading")

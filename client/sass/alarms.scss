@@ -88,12 +88,20 @@
         }
 
         .osd-icon {
+            width: 15px;
             display: inline-block;
             height: 70%;
             position: absolute;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
         }
 
         .osd-icon:hover {

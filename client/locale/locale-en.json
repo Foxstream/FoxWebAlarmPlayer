@@ -95,7 +95,7 @@
   "NOTIF_ERROR_GETTING_ALARMS": "An error occurred while accessing the list of alarms.",
   "NOTIF_ERROR_MARK_HANDLED": "An error occurred, the alarms could not be acknowledged.",
   "EMPTY_PASSWORD": "Password empty",
-  "HELP_CLICK_ALL_ALARMS_TAB": "You are currently viewing alarms that have not been acknowledged. Click on this tab to see a list of all the alarms",
+  "HELP_CLICK_ALL_ALARMS_TAB": "You are currently viewing alarms that have not been acknowledged. Click on this tab to see the list of all alarms",
   "HELP_LANGUAGE": "You can change the language with this button",
   "HELP_ALARMTABLE_CHECKBOX": "Select several alarms to quickly acknowledge them",
   "HELP_PLAYER": "When you select an alarm, the corresponding video is displayed here",
@@ -122,5 +122,6 @@
   "LIST": "List",
   "NOTIF_INVALID_IP_ADDRESS": "Please enter a valid IP address",
   "NOTIF_INVALID_DATE_FORMAT": "The specified date is invalid. The expected format is yyyy-mm-dd",
-  "AUTH_FAILURE": "The username or password is incorrect"
+  "AUTH_FAILURE": "The username or password is incorrect",
+  "HELP_OSD": "Use this button to show or hide the OSD"
 }

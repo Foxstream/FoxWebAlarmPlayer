@@ -124,5 +124,6 @@
   "LIST": "",
   "NOTIF_INVALID_IP_ADDRESS": "",
   "NOTIF_INVALID_DATE_FORMAT": "",
-  "AUTH_FAILURE": ""
+  "AUTH_FAILURE": "",
+  "HELP_OSD": ""
 }

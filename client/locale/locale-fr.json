@@ -122,5 +122,6 @@
   "LIST": "Liste",
   "NOTIF_INVALID_IP_ADDRESS": "Veuillez saisir une adresse IP valide",
   "NOTIF_INVALID_DATE_FORMAT": "La date saisie est invalide. Le format attendu est yyyy-mm-dd",
-  "AUTH_FAILURE": "Le nom d'utilisateur ou le mot de passe sont incorrects"
+  "AUTH_FAILURE": "Le nom d'utilisateur ou le mot de passe sont incorrects",
+  "HELP_OSD": "Utilisez ce bouton pour afficher ou cacher l'OSD"
 }
