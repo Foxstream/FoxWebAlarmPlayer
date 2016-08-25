@@ -47,7 +47,11 @@ function applyToServer(app, userPers)
     passport.use(new passportlocal(userPers.checkUser.bind(userPers)));
 
     app.get('/login', function (req, res) {
-        res.render('login', {appName: config.get('appName'), status: 200 });
+        if (req.user){
+            res.redirect('/');
+        } else {
+            res.render('login', {appName: config.get('appName'), status: 200 });
+        }
     });
     
     app.post('/login', function(req, res, next){
