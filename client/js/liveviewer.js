@@ -115,6 +115,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                 } else {
                     $interval.cancel(scope.playing);
                     scope.playing = undefined;
+                    scope.showcontrols = true;
                 }
             };
 
