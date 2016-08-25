@@ -180,9 +180,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.markashandled = function (alarmId, $event){
         if (($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId) || $window.confirm($translate.instant("CONFIRM_HANDLE_ALARM"))) {
             if ($scope.currentalarm !== undefined && $scope.currentalarm.id == alarmId){
-                var previousAlarm = $scope.getPreviousAlarm();
+                var previousAlarm = $scope.getPreviousDisplayedAlarm();
                 if (previousAlarm !== -1){
-                    $scope.currentalarm = $scope.filteredalarms[previousAlarm];
+                    $scope.currentalarm = $scope.displayedalarms[previousAlarm];
                 } else {
                     $scope.currentalarm = undefined; // No more alarms to show
                 }
@@ -202,11 +202,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         $scope.markashandled($scope.currentalarm.id, $event);
     };
 
-    // Next alarm in the list of filtered alarms displayed in view (depends on sorting options chosen by the user)
+    // Used by swuper
     $scope.shownextalarm = function(){
         var nextAlarm = $scope.getNextAlarm();
         if (nextAlarm !== -1){
-            var alarmid = $scope.filteredalarms[nextAlarm].id;
+            var alarmid = $scope.alarms[nextAlarm].id;
             $scope.playalarm(alarmid);
         } else {
             $scope.currentalarm = undefined;
@@ -216,7 +216,7 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     $scope.showpreviousalarm = function(){
         var previousAlarm = $scope.getPreviousAlarm();
         if (previousAlarm !== -1){
-            var alarmid = $scope.filteredalarms[previousAlarm].id;
+            var alarmid = $scope.alarms[previousAlarm].id;
             $scope.playalarm(alarmid);
         } else {
             $scope.currentalarm = undefined;
@@ -224,11 +224,11 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getNextAlarm = function(){
-        if ($scope.filteredalarms.length < 2){
+        if ($scope.alarms.length < 2){
             return -1;
         } else {
-            var position = $scope.filteredalarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
-            if (position === $scope.filteredalarms.length - 1){
+            var position = $scope.alarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
+            if (position === $scope.alarms.length - 1){
                 return 0;
             } else {
                 return position + 1;
@@ -237,12 +237,39 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.getPreviousAlarm = function(){
-        if ($scope.filteredalarms.length < 2){
+        if ($scope.alarms.length < 2){
             return -1;
         } else {
-            var position = $scope.filteredalarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
+            var position = $scope.alarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
             if (position === 0){
-                return $scope.filteredalarms.length - 1;
+                return $scope.alarms.length - 1;
+            } else {
+                return position - 1;
+            }
+        }
+    };
+
+    // Returns id of next alarm among the displayed alarms (not all alarms + sorted by the user)
+    $scope.getNextDisplayedAlarm = function(){
+        if ($scope.displayedalarms.length < 2){
+            return -1;
+        } else {
+            var position = $scope.displayedalarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
+            if (position === $scope.displayedalarms.length - 1){
+                return 0;
+            } else {
+                return position + 1;
+            }
+        }
+    };
+
+    $scope.getPreviousDisplayedAlarm = function(){
+        if ($scope.displayedalarms.length < 2){
+            return -1;
+        } else {
+            var position = $scope.displayedalarms.map(function(a){ return a.id; }).indexOf($scope.currentalarm.id);
+            if (position === 0){
+                return $scope.displayedalarms.length - 1;
             } else {
                 return position - 1;
             }
@@ -300,10 +327,10 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     $scope.selectall = function(){
-        if ($scope.selected.length == $scope.filteredalarms.length){
+        if ($scope.selected.length == $scope.displayedalarms.length){
             $scope.selected = [];
         } else {
-            $scope.filteredalarms.forEach(function(a){
+            $scope.displayedalarms.forEach(function(a){
                 if ($scope.selected.indexOf(a.id) < 0 && a.handled === 0){
                     $scope.selected.push(a.id);
                 }
@@ -507,8 +534,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
     };
 }]);
-
-
 
 
 

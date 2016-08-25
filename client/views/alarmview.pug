@@ -45,7 +45,7 @@ block content
                         thead
                             tr
                               th(class='check help-container') 
-                                input(type='checkbox' ng-click='selectall()' ng-checked='filteredalarms.length > 0 && selected.length == filteredalarms.length')
+                                input(type='checkbox' ng-click='selectall()' ng-checked='displayedalarms.length > 0 && selected.length == displayedalarms.length')
                                 span(class="help right", ng-show="help && tab==='notHandled'") {{ 'HELP_ALARMTABLE_CHECKBOX' | translate }}
                               th(class='play')
                               th(class='date')
@@ -68,7 +68,7 @@ block content
                             tbody
                               tr(ng-show='alarms.length === 0') 
                                 td(colspan="6") {{ "NO_ALARM" | translate }}
-                              tr(ng-repeat='x in (filteredalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
+                              tr(ng-repeat='x in (displayedalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
                               ng-click='playalarm(x.id)'
                               id='alarm-{{ ::x.id }}'
                               ng-class="{active: x.id==currentalarm.id, nohover: x.nbimages==0}")
@@ -162,7 +162,7 @@ block content
                           thead
                               tr
                                 th(class='check')
-                                  input(type='checkbox' ng-click='selectall()' ng-checked='filteredalarms.length > 0 && selected.length == filteredalarms.length')
+                                  input(type='checkbox' ng-click='selectall()' ng-checked='displayedalarms.length > 0 && selected.length == displayedalarms.length')
                                 th(class='play')
                                 th(class='date')
                                   a(ng-click="selected=[]; sortType = 'timestamp'; sortReverse = !sortReverse") 
@@ -184,7 +184,7 @@ block content
                               tbody
                                 tr(ng-show='alarms.length === 0') 
                                   td(colspan="6") {{ 'NO_ALARM' | translate }}
-                                tr(ng-repeat='x in (filteredalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
+                                tr(ng-repeat='x in (displayedalarms = (alarms | orderBy: sortType:sortReverse | limitTo: limit))',
                                 ng-click='playalarm(x.id)'
                                 id='alarm-{{ ::x.id }}'
                                 ng-class="{active: x.id==currentalarm.id}")
