@@ -47,22 +47,22 @@ function applyToServer(app, userPers)
     passport.use(new passportlocal(userPers.checkUser.bind(userPers)));
 
     app.get('/login', function (req, res) {
-        res.render('login', {appName: config.get('appName') });
+        res.render('login', {appName: config.get('appName'), status: 200 });
     });
     
     app.post('/login', function(req, res, next){
         if (req.body.password == '')
             req.body.password = ' '; // Passport doesn't accept empty passwords
         passport.authenticate('local', function(err, user, info) {
-            if (err){ 
+            if (err){
                 return next(err);
             }
             if (!user){ 
-                return res.redirect('/login'); 
+                return res.render('login', {status: 401});
             }
             req.logIn(user, function(err){
                 if (err){ 
-                    return next(err); 
+                    return res.render('login', {status: 401});
                 }
                 return res.redirect('/');
             });

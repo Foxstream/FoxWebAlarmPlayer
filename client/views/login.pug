@@ -15,12 +15,17 @@ html
     link(rel="stylesheet", href="/css/main.css", media="screen")
     title #{appName}
 
-  body(ng-app="alarmviewer", ng-controller="navbarcontroller", translate-cloak)
+  body(ng-app="alarmviewer", ng-controller="navbarcontroller", translate-cloak, class="ng-cloak")
 
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
-          img(src='/img/logo-foxstream.gif')
-          h1(class='app-name') FoxWebAlarmPlayer
+            a(href="http://www.foxstream.fr")
+                img(src='/img/logo-foxstream.gif')
+            if status == 401
+                div(class="notifications hidden-xs hidden-sm")
+                    p 
+                        span {{ 'AUTH_FAILURE' | translate }}
+            h1(class='app-name') FoxWebAlarmPlayer
 
     nav(role='navigation' class='nav-connection')
         ul
@@ -52,4 +57,4 @@ html
                 .form-group
                     label(for='password') {{ 'PASSWORD' | translate }} :
                     input(type='password', class='form-control', name='password', placeholder='Password')
-                button(type='submit' class='button-primary full-width submit') {{ 'LOGIN_BUTTON' | translate }}          
+                button(type='submit' class='button-primary full-width submit') {{ 'LOGIN_BUTTON' | translate }}

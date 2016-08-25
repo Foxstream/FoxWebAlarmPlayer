@@ -16,7 +16,7 @@ function buildWebServer(){
         saveUninitialized : true,
         cookie: { httpOnly: true }
     }));
-    
+
     app.use('/', express.static(__dirname + '/../client'));
     
     app.set('views', __dirname + '/../client/views');

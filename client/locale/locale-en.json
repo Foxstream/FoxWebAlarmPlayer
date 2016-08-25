@@ -120,5 +120,7 @@
   "NOTIF_ERROR_GETTING_CAMERAS": "Unable to get the list of available cameras",
   "HELP_LIVE_NO_CAMERAS": "No available cameras were detected for live video. Try connecting to a server using the \"Servers\" page.",
   "LIST": "List",
-  "NOTIF_INVALID_IP_ADDRESS": "Please enter a valid IP address"
+  "NOTIF_INVALID_IP_ADDRESS": "Please enter a valid IP address",
+  "NOTIF_INVALID_DATE_FORMAT": "The specified date is invalid. The expected format is yyyy-mm-dd",
+  "AUTH_FAILURE": "The username or password is incorrect"
 }

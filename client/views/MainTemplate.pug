@@ -19,7 +19,8 @@ html
       div(class='container-fluid')
 
         header(class='hidden-xs hidden-sm')
-          img(src='/img/logo-foxstream.gif')
+          a(href="http://www.foxstream.fr")
+              img(src='/img/logo-foxstream.gif')
           div(class="notifications hidden-xs hidden-sm notif-animation", ng-show="notification.show")
               p 
                 span(ng-if="!notification.params") {{ notification.message | translate }}
