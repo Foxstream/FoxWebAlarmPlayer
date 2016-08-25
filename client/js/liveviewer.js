@@ -107,7 +107,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                             live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){
                                 scope.camera.image = 'data:image/jpeg;base64,' + response.data;
                             }, function error(response){
-                                $scope.logHttpError(response);
+                                scope.logHttpError(response);
                                 scope.camera.image = '/img/no_video.png';
                             });
                         }
