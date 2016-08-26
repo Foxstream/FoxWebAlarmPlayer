@@ -89,7 +89,7 @@ block content
 
 
 
-        div(class="userlist main-element hidden-md hidden-lg" id="userlist", ng-show="newuser === undefined")
+        div(class="main-element no-tabs hidden-md hidden-lg" id="userlist", ng-show="newuser === undefined")
             div(class='panel', ng-show="users.length < 2")
               h5 
                 a(href='#', class="block-header") {{ 'NO_USER' | translate }}
@@ -116,7 +116,7 @@ block content
                   button(ng-click='commitcurrentuser()', title='Valider', class="button-primary", ng-show="userform.$dirty") {{ 'SAVE' | translate }}
                 
 
-        div(ng-show='newuser !== undefined', class="hidden-md hidden-lg main-element newuser")
+        div(ng-show='newuser !== undefined', class="hidden-md hidden-lg main-element no-tabs")
             .h5(class="block-header") {{ 'NEW_USER' | translate }}
             form
               .form-group

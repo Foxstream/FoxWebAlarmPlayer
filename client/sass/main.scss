@@ -149,7 +149,7 @@ ul {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
         padding-bottom: $navbar-tablet-height + 2vmax;       
     }
-    .newserver, .newuser {
+    .no-tabs {
         padding-top: $action-bar-tablet-height + 3vmax;
     }
 }
@@ -160,7 +160,7 @@ ul {
         padding-top: $action-bar-tablet-height + $tabs-tablet-height + 3vmax;
         padding-bottom: 2vmax;       
     }
-    .newserver, .newuser {
+    .no-tabs  {
         padding-top: $action-bar-tablet-height + 3vmax;
     }
 }
@@ -172,7 +172,7 @@ ul {
         padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
         padding-bottom: $navbar-mobile-height + 2vmax;
     }
-    .newserver, .newuser {
+    .no-tabs  {
         padding-top: $action-bar-mobile-height + 3vmax;
     }
 
@@ -185,7 +185,7 @@ ul {
         padding-top: $action-bar-mobile-height + $tabs-mobile-height + 3vmax;
         padding-bottom: 2vmax;
     }
-    .newserver, .newuser {
+    .no-tabs {
         padding-top: $action-bar-mobile-height + 3vmax;
     }
 

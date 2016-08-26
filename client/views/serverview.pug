@@ -96,7 +96,7 @@ block content
                                 span(class="glyphicon glyphicon-ok")
                             span(class="help left", ng-show="help") {{ 'HELP_COMMIT_NEWSERVER' | translate }}
 
-        div(class="serverlist main-element hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")
+        div(class="serverlist main-element no-tabs hidden-md hidden-lg" id="serverlist", ng-show="newserver === undefined")
             div(ng-show="servers.length == 0", class='panel')
                 h5
                     a(href='#' class="block-header") {{ 'NO_SERVER' | translate }}
@@ -133,7 +133,7 @@ block content
                         button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") {{ 'SAVE' | translate }}
              
-        div(ng-show="newserver !== undefined", class="hidden-md hidden-lg main-element newserver")
+        div(ng-show="newserver !== undefined", class="hidden-md hidden-lg main-element no-tabs")
             h5(class="block-header no-arrow") {{ 'NEW_SERVER' | translate }}
             form
                 .form-group

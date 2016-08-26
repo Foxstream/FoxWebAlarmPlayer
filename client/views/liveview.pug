@@ -8,7 +8,7 @@ block content
         //- Mobile buttons
         div(class='actions hidden-lg hidden-md')
 
-        div(class='col-xs-12 main-element', id='camera-list')
+        div(class='col-xs-12 main-element no-tabs', id='camera-list')
 
             div(class="fullscreen-player", ng-show="selectedcamera !== undefined", class="fullscreen-animation", ng-swipe-left="shownextcamera()", ng-swipe-right="showpreviouscamera()")
                 liveplayer(site="selectedcamera.site", camera="selectedcamera.camera", pause="false", playfullscreen="playfullscreen(site, serverId, camId, fps)", fullscreen="true", help="help")
