@@ -136,7 +136,7 @@ ul {
 @media screen and (max-width: $tablet-breakpoint - 1px)
 {
 
-    .main-element {
+    .main-element, .settings-menu {
         height: 100vh;
         overflow: scroll;
     }
