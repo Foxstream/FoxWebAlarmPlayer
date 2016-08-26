@@ -29,7 +29,7 @@
   "PORT": "Port",
   "USERNAME": "Nom d'utilisateur",
   "DESCRIPTION": "Description",
-  "ADMIN": "Admin",
+  "ADMIN": "Droits d'administrateur",
   "DISPLAYED_INFO": "Informations affichées",
   "CHANGE_PASSWORD": "Changer de mot de passe",
   "CURRENT_PASSWORD": "Mot de passe actuel",
@@ -43,7 +43,7 @@
   "NEW_SERVER": "Nouveau serveur",
   "DELETE_SERVER": "Supprimer le serveur",
   "NEW_USER": "Nouvel utilisateur",
-  "RESET_PASSWORD": "Réinitialiser le mot de passe",
+  "RESET_PASSWORD": "Réiinitialiser le mot de passe",
   "DELETE_USER": "Supprimer l'utilisateur",
   "NEW_ALARMS": "Nouvelles alarmes",
   "ALL_ALARMS": "Toutes les alarmes",
@@ -115,7 +115,7 @@
   "HELP_SELECT_USER": "Cliquez sur une ligne pour mettre à jour les informations de l'utilisateur",
   "HELP_COMMIT_CURRENTUSER": "Saisissez vos modifications et validez pour mettre à jour l'utilisateur",
   "HELP_COMMIT_NEWUSER": "Remplissez les champs et validez pour créer un nouvel utilisateur",
-  "HELP_RESET_PASSWORD": "Cliquez ici pour réinitialiser le mot de passe de cet utilisateur. Il devra choisir un nouveau mot de passe lors de sa prochaine connexion",
+  "HELP_RESET_PASSWORD": "Utilisez cette colonne si vous souhaitez réinitialiser le mot de passe d'un autre utilisateur. Celui-ci devra choisir un nouveau mot de passe lors de sa prochaine connexion",
   "HELP_LIVE_PLAY": "Lancer la vidéo en direct",
   "NOTIF_ERROR_GETTING_CAMERAS": "Impossible d'obtenir la liste des caméras",
   "HELP_LIVE_NO_CAMERAS": "Aucun caméra n'a été détectée pour la visualisation de vidéo en direct. Essayez de vous connecter à un serveur.",
@@ -123,5 +123,6 @@
   "NOTIF_INVALID_IP_ADDRESS": "Veuillez saisir une adresse IP valide",
   "NOTIF_INVALID_DATE_FORMAT": "La date saisie est invalide. Le format attendu est yyyy-mm-dd",
   "AUTH_FAILURE": "Le nom d'utilisateur ou le mot de passe sont incorrects",
-  "HELP_OSD": "Utilisez ce bouton pour afficher ou cacher l'OSD"
+  "HELP_OSD": "Utilisez ce bouton pour afficher ou cacher l'OSD",
+  "HELP_ACK_ALL": "Cliquez ici pour acquitter l'intégralité des alarmes"
 }

@@ -12,7 +12,7 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
 
     setTimeout(function(){
         $scope.currentLanguage = $scope.getCurrentLanguage();
-    }, 0);
+    }, 100);
 
     $scope.onLanguageChange = function(){
         $scope.changeLanguage($scope.currentLanguage);

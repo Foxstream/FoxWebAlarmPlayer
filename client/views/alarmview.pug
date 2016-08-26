@@ -36,8 +36,10 @@ block content
                         button(class='button-secondary',
                                 ng-click='handleSelected()',
                                 ng-show='selected.length > 0') {{ 'HANDLE' | translate }} {{ selected.length }} {{ 'ALARM' | translate }}{{ (selected.length > 1)?'s':'' }}
-                        button(class='button-primary',
-                                ng-click='handleall()', ng-show="alarms.length > 0") {{ 'HANDLE_ALL' | translate }}
+                        button(class='button-primary help-container',
+                                ng-click='handleall()', ng-show="alarms.length > 0") 
+                                | {{ 'HANDLE_ALL' | translate }}
+                                span(class="help right", ng-show="help") {{ 'HELP_ACK_ALL' | translate }}
 
                     div(class='table-container alarmtable')
 

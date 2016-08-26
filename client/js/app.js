@@ -11,7 +11,6 @@ app.config(function($translateProvider){
 // Notification system
 app.run(function($rootScope, $timeout, $translate){
 
-
     /* For now, there is no way of asking angular-translate-loader what 
     languages are available */
     $rootScope.languages = ['fr', 'en'];

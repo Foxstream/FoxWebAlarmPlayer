@@ -17,12 +17,17 @@ html
 
   body(ng-app="alarmviewer", ng-controller="navbarcontroller", translate-cloak, class="ng-cloak")
 
+    if status == 401
+        div(class="notifications hidden-md hidden-lg")
+            p 
+                span {{ 'AUTH_FAILURE' | translate }}
+
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
             a(href="http://www.foxstream.fr")
                 img(src='/img/logo-foxstream.gif')
             if status == 401
-                div(class="notifications hidden-xs hidden-sm")
+                div(class="notifications")
                     p 
                         span {{ 'AUTH_FAILURE' | translate }}
             h1(class='app-name') FoxWebAlarmPlayer

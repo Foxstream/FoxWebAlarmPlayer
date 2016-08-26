@@ -51,7 +51,7 @@ block content
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.username", ng-click="$event.stopPropagation()")
 
-                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.password }}
+                        td(ng-show="currentserver === undefined || currentserver.id !== x.id") 
                         td(ng-show="currentserver !== undefined && currentserver.id === x.id")
                             input(type="text" ng-model="currentserver.password", ng-click="$event.stopPropagation()")
 
