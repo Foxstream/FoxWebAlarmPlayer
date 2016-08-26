@@ -10,10 +10,7 @@ app.controller('accountController', ["$scope", '$rootScope', '$window', 'device'
     };
     $scope.tab = 'loginForm';
 
-    setTimeout(function(){
-        $scope.currentLanguage = $scope.getCurrentLanguage();
-        alert($scope.currentLanguage);
-    }, 0);
+    $scope.currentLanguage = $scope.getCurrentLanguage();
 
     $scope.onLanguageChange = function(){
         $scope.changeLanguage($scope.currentLanguage);

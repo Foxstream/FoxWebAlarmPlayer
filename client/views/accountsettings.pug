@@ -7,10 +7,11 @@ block content
 			div(class='settings-menu', ng-show="showMenu && device !== 'desktop'")
 				ul
 					li(class="panel")
-						h5
-							a(href='#', class="block-header no-arrow")
+						h5(class="block-header no-arrow")
+							a(href='#')
 								span {{ 'LANGUAGE' | translate }}
-								select(ng-change="onLanguageChange()", ng-model="currentLanguage", ng-options="l for l in languages", style="float: right;")
+							span(style="float: right")
+								select(ng-change="onLanguageChange()", ng-model="currentLanguage", ng-options="l for l in languages")
 					li(class="panel")
 						h5
 							a(href='#', ng-click='showMenu = false', class="block-header")
