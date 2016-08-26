@@ -5,6 +5,8 @@ div(class="swiper" ng-swipe-left='showpreviousalarm()' ng-swipe-right='shownexta
             ul(class="alarm-details")
                 li(ng-show='currentalarm.handled === 1')
                     b(style="color: red") {{ 'HANDLED' | translate }}
+                li(ng-show='currentalarm.nbimages == 0')
+                    b(style="color: red") {{ 'NO_IMAGES' | translate }}
                 li
                     | {{ currentalarm.timestamp*1000 | date:'dd/MM/yyyy - HH:mm:ss' }}
                 li 

@@ -126,5 +126,6 @@
   "NOTIF_INVALID_DATE_FORMAT": "",
   "AUTH_FAILURE": "",
   "HELP_OSD": "",
-  "HELP_ACK_ALL": ""
+  "HELP_ACK_ALL": "",
+  "NO_IMAGES": ""
 }

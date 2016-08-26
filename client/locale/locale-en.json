@@ -124,5 +124,6 @@
   "NOTIF_INVALID_DATE_FORMAT": "The specified date is invalid. The expected format is yyyy-mm-dd",
   "AUTH_FAILURE": "The username or password is incorrect",
   "HELP_OSD": "Use this button to show or hide the OSD",
-  "HELP_ACK_ALL": "Click here to acknowledge all the alarms."
+  "HELP_ACK_ALL": "Click here to acknowledge all the alarms.",
+  "NO_IMAGES": "No images"
 }
