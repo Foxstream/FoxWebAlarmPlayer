@@ -174,9 +174,9 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
         var pos = $scope.alarms.map(function(e){ return e.id; }).indexOf(alarmid);
         var selectedAlarm = (pos==-1) ? undefined : $scope.alarms[pos];
 
-        if (selectedAlarm.nbimages > 0){
+        // if (selectedAlarm.nbimages > 0){
             $scope.currentalarm = selectedAlarm;
-        }
+        // }
         
     };
         
@@ -531,7 +531,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                         // Find the first image with OSD
                         var firstImageWithOSD = 0;
                         scope.alarm.Images.some(function(img, index){
-                            if (img.OSD.length > 0){
+                            if (img.OSD && img.OSD.length > 0){
                                 firstImageWithOSD = index;
                                 return true;
                             } else {
