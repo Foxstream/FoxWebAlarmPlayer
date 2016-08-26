@@ -525,6 +525,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (newVal.nbimages > 0){
                     scope.loading = true;
                     scope.currentIdx = 0;
+                    scope.playing = false;
 
                     LoadImages($http, newVal, function () {
                         $timeout(function () {
@@ -539,7 +540,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                                     return false;
                                 }
                             }); 
-                            scope.currentIdx = firstImageWithOSD - 1;
+                            scope.currentIdx = firstImageWithOSD;
                             scope.playing = true;
                         }, 0);
                     });
