@@ -42,6 +42,11 @@
             }
         };
 
+        $scope.resetcurrentuser = function(){
+            var pos = $scope.users.map(function (e) { return e.id; }).indexOf($scope.currentuser.id);
+            $scope.currentuser = angular.copy($scope.users[pos]);
+        }
+
         $scope.resetuser = function(){
             $scope.currentuser = undefined;
         };
@@ -89,8 +94,6 @@
                 $scope.resetuser();
             });
         };
-
-        
 
         $scope.commitnewuser = function(){
             userdb.createUser($scope.newuser, function success(response){

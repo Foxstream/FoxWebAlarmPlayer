@@ -126,6 +126,7 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                         scope.togglelivefeed();
                     }
                 } else if (scope.playing){
+                    $interval.cancel(scope.playing);
                     scope.togglelivefeed();
                 }
             });

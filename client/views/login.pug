@@ -1,8 +1,7 @@
 ﻿doctype html
 html
   head
-    meta(name="viewport",content="width=device-width, initial-scale=1")
-    meta(name="mobile-web-app-capable", content="yes")
+    meta(name="viewport",content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no")
     script(src='/vendor/jquery.min.js')     
     script(src='/vendor/js/bootstrap.min.js')  
     script(src='/vendor/angular.js')
@@ -25,7 +24,7 @@ html
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
             a(href="http://www.foxstream.fr")
-                img(src='/img/logo-foxstream.gif')
+                img(src='/img/logo-foxstream.png')
             if status == 401
                 div(class="notifications")
                     p 
@@ -49,7 +48,7 @@ html
 
         //- Header for mobile devices
         div(class='foxstream-header hidden-md hidden-lg')
-            img(src='/img/logo-foxstream.gif')
+            img(src='/img/logo-foxstream.png')
             br
             span(class='app-name') FoxWebAlarmPlayer
 

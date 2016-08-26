@@ -130,7 +130,7 @@ block content
                             input(type="text", class="form-control",
                               id="description", ng-model="currentserver.description")
                         button(ng-click='deleteserver(x.id)', title='Supprimer le serveur', class="button-primary full-width", ng-show="serverform.$pristine") {{ 'DELETE_SERVER' | translate }}
-                        button(ng-click="editserver(x.id); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
+                        button(ng-click="resetcurrentserver(); serverform.$setPristine()", title="Annuler", class="button-secondary", ng-show="serverform.$dirty") {{ 'CANCEL' | translate }}
                         button(ng-click='commitcurrentserver()', title='Valider', class="button-primary", ng-show="serverform.$dirty") {{ 'SAVE' | translate }}
              
         div(ng-show="newserver !== undefined", class="hidden-md hidden-lg main-element no-tabs")

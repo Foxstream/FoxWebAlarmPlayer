@@ -106,15 +106,18 @@ block content
                   .form-group
                     label(for="displayname") {{ 'DISPLAYNAME' | translate }}
                     input(type="text", class="form-control",
-                      id="displayname", ng-model=" currentuser.displayname")
+                      id="displayname", ng-model="currentuser.displayname")
                   div(style="text-align: center")
                         input(type="checkbox", id="admin", ng-model="currentuser.type", ng-true-value="1", ng-false-value="0")
-                        label(for="admin") {{ 'ADMIN' | translate }}
-                  button(ng-click='resetpassword(x.id)', class="button-secondary", ng-show="userform.$pristine", ng-disabled="x.shouldChangePassword===1") {{ 'RESET_PASSWORD' | translate }}
-                  button(ng-click='deleteuser(x.id)', title="Supprimer l'utilisateur", class="button-primary", ng-show="userform.$pristine") {{ 'DELETE_USER' | translate }}
-                  button(ng-click="edituser(x.id); userform.$setPristine()", title="Annuler", class="button-secondary", ng-show="userform.$dirty") {{ 'CANCEL' | translate }}
+                        label {{ 'ADMIN' | translate }}
+                  button(ng-click='resetpassword(x.id)', class="button-secondary full-width", ng-show="userform.$pristine", ng-disabled="x.shouldChangePassword===1") {{ 'RESET_PASSWORD' | translate }}
+                  button(ng-click='deleteuser(x.id)', title="Supprimer l'utilisateur", class="button-primary full-width", ng-show="userform.$pristine") {{ 'DELETE_USER' | translate }}
+                  button(ng-click="resetcurrentuser(); userform.$setPristine()", title="Annuler", class="button-secondary", ng-show="userform.$dirty") {{ 'CANCEL' | translate }}
                   button(ng-click='commitcurrentuser()', title='Valider', class="button-primary", ng-show="userform.$dirty") {{ 'SAVE' | translate }}
                 
+
+
+
 
         div(ng-show='newuser !== undefined', class="hidden-md hidden-lg main-element no-tabs")
             .h5(class="block-header no-arrow") {{ 'NEW_USER' | translate }}

@@ -115,11 +115,16 @@ button.back::before {
         // height: 90%;
     }
 
+    input[type=checkbox]{
+        transform: scale(1.5);
+    }
+
     // Default : two buttons of the same size on one line
     button {
         width: 48%; 
         margin-left: 0;
         margin-right: 0;
+        margin-top: 10px;
         font-size: 1.2em;
     }
 

@@ -74,6 +74,11 @@ app.controller('servercontroller', ["$rootScope", "$scope", "$window", "serverdb
             $scope.currentserver = undefined;
         };
 
+        $scope.resetcurrentserver = function(){
+            var pos = $scope.servers.map(function (e) { return e.id; }).indexOf($scope.currentserver.id);
+            $scope.currentserver = angular.copy($scope.servers[pos]);
+        }
+
         $scope.deleteserver = function (serverId) {
             var pos = $scope.servers.map(function (e) { return e.id; }).indexOf(serverId);
             if (pos === -1 || !$window.confirm($translate.instant("CONRIM_DELETE_SERVER"))){
