@@ -148,7 +148,9 @@ app.value('device', device);
 angular.element(window).bind("resize", function(){
     var deviceUpdated = getClientDevice();
     if (deviceUpdated !== device){
-        location.reload();
+        setTimeout(function(){
+            location.reload();
+        }, 0);
     }
 });
 
