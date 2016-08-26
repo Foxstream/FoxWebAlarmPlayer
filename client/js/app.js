@@ -33,7 +33,7 @@ app.run(function($rootScope, $timeout, $translate){
     };
 
     $rootScope.getCurrentLanguage = function(){
-        return $translate.use();
+        return $translate.use() || $translate.proposedLanguage();
     }
 
     $rootScope.notification = {
