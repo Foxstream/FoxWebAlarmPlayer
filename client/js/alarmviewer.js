@@ -523,7 +523,6 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                 if (!newVal) return;
 
                 if (newVal.nbimages > 0){
-                    scope.playing = true;
                     scope.loading = true;
                     scope.currentIdx = 0;
 
@@ -541,7 +540,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                                 }
                             }); 
                             scope.currentIdx = firstImageWithOSD - 1;
-                            scope.nextImage();
+                            scope.playing = true;
                         }, 0);
                     });
                 } else {
