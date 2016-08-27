@@ -36,7 +36,7 @@ block content
                     th 
                     th
                 tbody
-                    tr(ng-show="servers.length == 0")
+                    tr(ng-show="servers.length == 0 && newserver == undefined")
                         td(colspan="7") {{ 'NO_SERVER' | translate }}
                     tr(ng-repeat='x in servers', ng-class="{active: currentserver !== undefined && currentserver.id === x.id}", ng-click="editserver(x.id)")
                         td(ng-show="currentserver === undefined || currentserver.id !== x.id") {{ x.address }}

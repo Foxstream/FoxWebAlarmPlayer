@@ -35,7 +35,7 @@ block content
                   span(class="help right small", ng-show="help") {{ 'HELP_RESET_PASSWORD' | translate }}
                 th
             tbody
-              tr(ng-show="users.length < 2")
+              tr(ng-show="users.length < 2 && newuser == undefined")
                   td(colspan="5") {{ 'NO_USER' | translate }}
               //- Using getUsersExceptMe() is useful to display helpboxes because $index is right
               tr(ng-repeat='x in getUsersExceptMe(user)', ng-class="{active: currentuser !== undefined && currentuser.id === x.id}", ng-click="edituser(x.id)")
