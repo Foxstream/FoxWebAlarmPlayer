@@ -6,6 +6,7 @@ app.config(function($translateProvider){
         suffix: '.json'
     });
     $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy('escape');
 });
 
 // Notification system
@@ -91,9 +92,6 @@ app.run(function($rootScope, $timeout, $translate){
     }
 
     $rootScope.help = false;
-    $rootScope.$watch('help', function(newVal, oldVal){
-        console.log(newVal)
-    })
 
 });
 

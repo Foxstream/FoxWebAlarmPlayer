@@ -71,7 +71,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
     };
 
     alarmdb.getSiteList(function success(response){
-        console.log('Site list', response)
         $scope.sites = response.data;
     }, function error(response){
         $scope.logHttpError(response);

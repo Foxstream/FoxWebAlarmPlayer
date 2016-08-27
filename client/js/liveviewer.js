@@ -9,7 +9,6 @@ app.factory('live', ['$http','$rootScope',
         };
 
         obj.getLiveImage = function(serverId, camId, success, error){
-            console.log('fetching live image')
             $http.get('/cameras/' + serverId + '/' + camId + '/live')
                 .then(success, error);
         };
@@ -26,7 +25,6 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     $scope.selectedcamera = undefined;
 
     live.getCameras(function success(response){
-        console.log(response);
         if (response.status === 204){ // empty result, no cameras
             $scope.cameras = undefined;
         } else {
