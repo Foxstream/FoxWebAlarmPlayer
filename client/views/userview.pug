@@ -128,8 +128,8 @@ block content
               .form-group
                   label(for="displayname") {{ 'DISPLAYNAME' | translate }}
                   input(type='text', id='displayname', ng-model='newuser.displayname', class="form-control")
-              .form-group
-                  label(for="admin") {{ 'ADMIN' | translate }}
-                  input(type='checkbox', id='admin', ng-model='newuser.type', class="form-control", ng-true-value="1", ng-false-value="0")
+              div(style="text-align: center")
+                  input(type="checkbox", id="admin", ng-model="newuser.type", ng-true-value="1", ng-false-value="0")
+                  label {{ 'ADMIN' | translate }}
               button(ng-click="newuser = undefined", title="Annuler", class="button-secondary") {{ 'CANCEL' | translate }}
               button(ng-click='commitnewuser()', title='Valider', class="button-primary") {{ 'SAVE' | translate }}

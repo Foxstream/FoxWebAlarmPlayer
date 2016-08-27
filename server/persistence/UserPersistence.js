@@ -114,7 +114,8 @@ function adduser(user, cb) {
         if (err){
             cb(err, null);
         } else {
-            user.id = this.lastId;
+            debugger;
+            user.id = this.lastID;
             cb(null, user);
         }
     });
