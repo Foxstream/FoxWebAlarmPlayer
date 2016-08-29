@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>200</x>
+      <y>568</y>
+      <w>44</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>SQLite 
+Database</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>68</x>
+      <y>512</y>
+      <w>112</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>AlarmPersistence
+--
+siteList: Array[String]
+cameraList: Array[{site: String,
+     cameraname: String} ]
+--
+getAlarm(alarmid)
+...
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>188</x>
+      <y>512</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>UserPersistence
+--
+getUser(userid)
+...
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>512</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>ServerPersistence
+--
+getServer(serverid)
+...
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>132</x>
+      <y>552</y>
+      <w>76</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>536</y>
+      <w>80</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;180.0;110.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>536</y>
+      <w>12</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>64</x>
+      <y>380</y>
+      <w>348</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>60</x>
+      <y>496</y>
+      <w>320</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Persistence
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>436</x>
+      <y>448</y>
+      <w>148</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>ServersManager
+--
+serverPersistence: ServerPersistence
+alarmPersistence: AlarmPersistence
+servers: Array [srvElement]
+--
+start()
+stop()
+addServer()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>396</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ServerController
+--
+serversManager: ServerManager
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>404</y>
+      <w>56</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0;120.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>480</y>
+      <w>84</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;120.0;10.0;120.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>76</x>
+      <y>436</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>AlarmController
+--
+alarmPersistence: AlarmPersistence
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>128</x>
+      <y>456</y>
+      <w>12</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>436</y>
+      <w>100</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>UserController
+--
+userPersistence: UserPersistence
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>456</y>
+      <w>12</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>436</y>
+      <w>100</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>LiveController
+--
+serversManager: ServersManager
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>448</y>
+      <w>48</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>396</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>
+AccountSettingsController
+layer=1
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>460</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>srvElement
+--
+xmlClient: FoxXmlClient
+alarmClient: FoxXmlAlarmClient
+config: Server
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>524</x>
+      <y>580</y>
+      <w>84</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>Server
+--
+id: Number
+address: String
+port: Number
+username: String
+password: String
+description: String
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>580</y>
+      <w>84</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>User
+--
+id: Number
+login: String
+displayname: String
+password: String
+type: Number (0 | 1)
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>428</x>
+      <y>580</y>
+      <w>84</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Alarm
+--
+id: Number
+timestamp: Number
+cameraname: String
+hostname: String
+sitename: String
+handled: Number (0 | 1)
+nbimages: Number
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>472</y>
+      <w>36</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>384</y>
+      <w>148</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>FoxXmlClient
+--
+client: XmlClient
+user: String
+password: String
+--
+connect</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>404</y>
+      <w>36</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>70.0;10.0;40.0;10.0;40.0;170.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>604</x>
+      <y>484</y>
+      <w>120</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;280.0;10.0;280.0;300.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>476</y>
+      <w>40</w>
+      <h>116</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>80.0;270.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>584</y>
+      <w>148</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>FoxXmlAlarmClient
+--
+foxxmlclient: FoxXmlClient
+FoxXmlAlarmClient(xmlClient: FoxXmlClient)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>784</x>
+      <y>424</y>
+      <w>12</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>472</y>
+      <w>288</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>700.0;10.0;10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>624</x>
+      <y>276</y>
+      <w>84</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>XmlClient
+--
+Host: String
+port: Number
+--
+connect()
+disconnect()
+send(message)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>836</x>
+      <y>280</y>
+      <w>44</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>
+FoxServer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>716</x>
+      <y>288</y>
+      <w>116</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+XML
+</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>320</y>
+      <w>72</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;160.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>424</y>
+      <w>168</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+alarm</panel_attributes>
+    <additional_attributes>10.0;70.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>424</y>
+      <w>24</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+alarm</panel_attributes>
+    <additional_attributes>10.0;400.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>496</y>
+      <w>156</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+          alarmimages</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>436</x>
+      <y>268</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+sse: ServerSideEvent 
+userController: UserController
+alarmController: AlarmController
+liveController: LiveController
+serverController: ServerController
+accountSettingsController: AccountSettingsController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>296</y>
+      <w>84</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>464</x>
+      <y>320</y>
+      <w>12</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;320.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>196</x>
+      <y>268</y>
+      <w>148</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>ServerSideEvent
+--
+sendMessage(type, content)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>276</y>
+      <w>104</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>60</x>
+      <y>260</y>
+      <w>44</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>
+HTTP client</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>76</x>
+      <y>288</y>
+      <w>68</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+   HTTP requests
+    ex: GET /alarms</panel_attributes>
+    <additional_attributes>70.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>104</x>
+      <y>268</y>
+      <w>96</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+ alarm_update
+ alarm_create</panel_attributes>
+    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>328</x>
+      <y>564</y>
+      <w>292</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Database objects
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>320</y>
+      <w>24</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+   alarm</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+</diagram>

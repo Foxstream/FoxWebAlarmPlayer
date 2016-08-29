@@ -19,8 +19,8 @@ gulp.task('default', ['sass'], function(){
 gulp.task('js', function(){
     return gulp.src(['./client/js/app.js', './client/js/*.js'])
             .pipe(concat('app.min.js'))
-            // .pipe(ngAnnotate())
-            // .pipe(uglify({compress: {hoist_funs: false, hoist_vars: false}}))
+            .pipe(ngAnnotate())
+            .pipe(uglify({compress: {hoist_funs: false, hoist_vars: false}}))
         .pipe(gulp.dest('./client/'))
 });
 

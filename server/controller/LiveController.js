@@ -62,6 +62,7 @@ function applyApp(app){
                         res.status(500);
                         res.send(err);
                     } else {
+                        res.status(200);
                         res.send(img.image[0].data);
                     }
                 });
