@@ -19,9 +19,9 @@ block content
                     span(class="glyphicon glyphicon-menu-right hidden-xs hidden-sm", ng-click="shownextcamera()")
                     span(class="help left", ng-show="help") {{ 'HELP_NEXT_CAMERA' | translate }}
 
-            div(ng-show="cameras == undefined", class="panel")
+            div(ng-show="!cameras", class="panel")
                 h5
-                    a(href='#', class="block-header no-arrow", data-parent='#camera-list') {{ 'NO_CAMERAS' | translate }}
+                    a(href='#', class="block-header no-arrow", data-parent='#camera-list') {{ cameras===undefined ? 'LOADING' : 'NO_CAMERAS' | translate }}
                     span(class="help inside", ng-show="help") {{ 'HELP_LIVE_NO_CAMERAS' | translate }}
             div(ng-repeat='(site, cams) in cameras track by $index' class='panel')
                 h5
