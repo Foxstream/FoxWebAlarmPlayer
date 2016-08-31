@@ -7,3 +7,4 @@ release/
 release.tar.gz
 *.log
 *.log.old 
+/node_modules
