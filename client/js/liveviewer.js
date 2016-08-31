@@ -62,15 +62,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     $scope.shownextcamera = function(){
         if ($scope.selectedcamera){
             var currentSite = $scope.selectedcamera.site;
-            var index;
-            $scope.cameras[currentSite].some(function(camera, i){
-                if (camera.id === $scope.selectedcamera.camera.id && camera.serverId === $scope.selectedcamera.camera.serverId){
-                    index = i;
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+            var index = $scope.cameras[currentSite].indexOf($scope.selectedcamera.camera);
             index++;
             if (index >= $scope.cameras[currentSite].length){
                 index = 0;
@@ -82,7 +74,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
     $scope.showpreviouscamera = function(){
         if ($scope.selectedcamera){
             var currentSite = $scope.selectedcamera.site;
-            var index = $scope.cameras[currentSite].map(function(c){ return c.id }).indexOf($scope.selectedcamera.camera.id);
+            var index = $scope.cameras[currentSite].indexOf($scope.selectedcamera.camera);
             index--;
             if (index < 0){
                 index = $scope.cameras[currentSite].length - 1;
@@ -110,8 +102,10 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
                 if (!scope.playing){
                     scope.playing = $interval(function(){
                         if (!scope.pause){
+						    var cid = scope.camera.id;
                             live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){
-                                scope.camera.image = 'data:image/jpeg;base64,' + response.data;
+								if (scope.camera && cid === scope.camera.id)// we did not change the camera during the request
+									scope.camera.image = 'data:image/jpeg;base64,' + response.data;
                             }, function error(response){
                                 scope.logHttpError(response);
                                 scope.camera.image = '/img/no_video.png';
