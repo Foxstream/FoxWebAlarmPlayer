@@ -523,7 +523,7 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
 
                 if (newVal.nbimages > 0){
                     scope.loading = true;
-                    scope.currentIdx = 0;
+                    scope.currentIdx = -1;
                     scope.playing = false;
 
                     LoadImages($http, newVal, function () {
@@ -532,12 +532,8 @@ app.directive('imageplayer', ["$http","$interval", "$timeout", function($http, $
                             // Find the first image with OSD
                             var firstImageWithOSD = 0;
                             scope.alarm.Images.some(function(img, index){
-                                if (img.OSD && img.OSD.length > 0){
-                                    firstImageWithOSD = index;
-                                    return true;
-                                } else {
-                                    return false;
-                                }
+								firstImageWithOSD = index;
+                                return (img.OSD && img.OSD.length > 0);                                
                             }); 
                             scope.currentIdx = firstImageWithOSD;
                             scope.playing = true;
