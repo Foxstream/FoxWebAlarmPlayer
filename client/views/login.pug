@@ -23,7 +23,7 @@ html
 
     div(class='container-fluid')
         header(class='hidden-sm hidden-xs')
-            a(href="http://www.foxstream.fr")
+            a(href="{{ 'FOXURL' | translate }}")
                 img(src='/img/logo-foxstream.png')
             if status == 401
                 div(class="notifications")
