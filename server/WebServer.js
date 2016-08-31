@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 var expressSession = require('express-session');
 var auth = require('./Authenticator.js');
 var fs = require('fs');
@@ -8,6 +9,7 @@ var config = require('config');
 
 function buildWebServer(){    
     var app = express();
+	app.use(favicon(__dirname + '/../client/img/icon-foxstream.gif'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession({

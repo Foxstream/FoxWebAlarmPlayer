@@ -8,3 +8,6 @@ release.tar.gz
 *.log
 *.log.old 
 /node_modules
+/client/app.min.js
+/client/css/main.css.map
+/client/css/main.css
