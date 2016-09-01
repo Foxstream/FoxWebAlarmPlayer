@@ -26,7 +26,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
     live.getCameras(function success(response){
         if (response.status === 204){ // empty result, no cameras
-            $scope.cameras = undefined;
+            $scope.cameras = [];
         } else {
             $scope.cameras = response.data;
         }
