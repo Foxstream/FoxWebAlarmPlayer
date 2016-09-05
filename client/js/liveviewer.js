@@ -85,7 +85,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
 
 }]);
 
-app.directive('liveplayer', ["live", "$interval", "device", function(live, $interval, device){
+app.directive('liveplayer', ["live", "$timeout", "device", function(live, $timeout, device){
     return {
         restrict: 'E',
         replace: true,
@@ -96,38 +96,63 @@ app.directive('liveplayer', ["live", "$interval", "device", function(live, $inte
         link: function(scope, elem, attrs){
             scope.showcontrols = true;
             scope.playing = undefined;
+			
+			scope.startlive = function()			
+			{				
+				function updateImageForCurrentCamera()				
+				{
+					if (scope.pause) return scheduleNextRequest();
+					
+					var cid = scope.camera.id;
+					live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){
+						if (scope.camera && cid === scope.camera.id)// we did not change the camera during the request
+							scope.camera.image = 'data:image/jpeg;base64,' + response.data;
+						
+						scheduleNextRequest(false);
+						
+					}, function error(response){
+						scope.logHttpError(response);
+						scope.camera.image = '/img/no_video.png';
+						
+						scheduleNextRequest(false);
+					});
+				}
+				
+				function scheduleNextRequest(createNew)
+				{
+					if(createNew || scope.playing)
+						scope.playing = $timeout(updateImageForCurrentCamera, 200);
+				}
+								
+				scheduleNextRequest(true);
+			}
+			
+			scope.stoplive = function()
+			{
+				if(!scope.playing)return;
+				
+				$timeout.cancel(scope.playing);
+                scope.playing = undefined;
+                scope.showcontrols = true;
+			}
+			
             scope.togglelivefeed = function(){
                 elem.find('.big-playing-indicator').show().fadeOut(500);
 
                 if (!scope.playing){
-                    scope.playing = $interval(function(){
-                        if (!scope.pause){
-						    var cid = scope.camera.id;
-                            live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){
-								if (scope.camera && cid === scope.camera.id)// we did not change the camera during the request
-									scope.camera.image = 'data:image/jpeg;base64,' + response.data;
-                            }, function error(response){
-                                scope.logHttpError(response);
-                                scope.camera.image = '/img/no_video.png';
-                            });
-                        }
-                    }, 200);
+                   scope.startlive();
                 } else {
-                    $interval.cancel(scope.playing);
-                    scope.playing = undefined;
-                    scope.showcontrols = true;
+                   scope.stoplive();
                 }
             };
 
             scope.$watch('camera', function(newVal, oldVal){
                 if (newVal === oldVal) return;
+				
                 if (newVal){
-                    if(!scope.playing){
-                        scope.togglelivefeed();
-                    }
-                } else if (scope.playing){
-                    $interval.cancel(scope.playing);
-                    scope.togglelivefeed();
+                    scope.startlive();
+                } else {
+                    scope.stoplive();
                 }
             });
 
