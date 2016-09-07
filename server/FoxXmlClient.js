@@ -108,6 +108,15 @@ function gotUnexpectedMessage(data)
 		
 		this.emit('alarm',alarm);
 	}
+	else if(data.$.type=='alarm')
+	{
+		var self=this;
+		this.client.disconnect();
+		this.ConnectionEstablished=false; 
+		this.emit('connectionLost','Bye received');
+		
+		log.info('Bye received from '+this.client.Host+':'+this.client.Port);
+	}
 }
 
 function disconnect()
