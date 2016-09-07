@@ -33,7 +33,7 @@ app.controller('livecontroller', ["$scope", '$rootScope', '$window', "live", "de
         for (var site in $scope.cameras){
             $scope.cameras[site].forEach(function(cam){
                 live.getLiveImage(cam.serverId, cam.id, function success(response){
-                    cam.image = 'data:image/jpeg;base64,' + response.data;
+                    cam.image = 'data:image/jpeg;base64,' + response.data.image_base64;
                 }, function error(response){
                     cam.image = '/img/no_video.png';
                     $scope.logHttpError(response);
@@ -97,6 +97,39 @@ app.directive('liveplayer', ["live", "$timeout", "device", function(live, $timeo
             scope.showcontrols = true;
             scope.playing = undefined;
 			
+			scope.lastTimestamp = 0;
+			scope.lastTimestampCount = 0;
+			
+			function gotNewImageWithTimestamp(timestamp)
+			{
+				if(timestamp == scope.lastTimestamp)
+					scope.lastTimestampCount++;
+				else
+				{
+					scope.lastTimestampCount = 0;
+					scope.lastTimestamp = timestamp;
+				}				
+			}
+			
+			function setNoVideoImage()
+			{
+				scope.camera.image = '/img/no_video.png';
+			}
+			
+			function handleNewImageForCamera(cameraId, response)
+			{
+				if (scope.camera && cameraId === scope.camera.id)// we did not change the camera during the request
+				{						
+					gotNewImageWithTimestamp(response.data.timestamp);
+					
+					if(scope.lastTimestampCount > 10)
+						setNoVideoImage();
+					else
+						scope.camera.image = 'data:image/jpeg;base64,' + response.data.image_base64;
+				}
+			}
+			
+			
 			scope.startlive = function()			
 			{				
 				function updateImageForCurrentCamera()				
@@ -104,15 +137,12 @@ app.directive('liveplayer', ["live", "$timeout", "device", function(live, $timeo
 					if (scope.pause) return scheduleNextRequest();
 					
 					var cid = scope.camera.id;
-					live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){
-						if (scope.camera && cid === scope.camera.id)// we did not change the camera during the request
-							scope.camera.image = 'data:image/jpeg;base64,' + response.data;
-						
-						scheduleNextRequest(false);
-						
+					live.getLiveImage(scope.camera.serverId, scope.camera.id, function success(response){						
+						handleNewImageForCamera(cid, response);						
+						scheduleNextRequest(false);						
 					}, function error(response){
 						scope.logHttpError(response);
-						scope.camera.image = '/img/no_video.png';
+						setNoVideoImage();
 						
 						scheduleNextRequest(false);
 					});

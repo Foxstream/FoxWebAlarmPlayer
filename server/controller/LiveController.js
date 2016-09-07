@@ -63,7 +63,10 @@ function applyApp(app){
                         res.send(err);
                     } else {
                         res.status(200);
-                        res.send(img.image[0].data);
+                        res.json({
+							image_base64: img.image[0].data,
+							timestamp: img.image[0].$.timestamp
+						});
                     }
                 });
         }
