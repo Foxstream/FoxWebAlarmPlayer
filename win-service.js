@@ -32,7 +32,7 @@ function updateConfFile(done){
             process.exit(1);
         }
         config["dbHost"] = __dirname + "\\server\\data\\alarmplayer.db";
-        config["logFile"] = __dirname + "\\server\\alarmplayer.log";
+        config["logFile"] = __dirname + "\\server\\data\\alarmplayer.log";
         jsonfile.writeFile('./config/production.json', config, {spaces: 2}, (err) => {
             if (err){
                 console.log("Unabl to update config file");
