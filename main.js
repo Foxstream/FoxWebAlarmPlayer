@@ -31,7 +31,7 @@ log.debug('Used database : ' + config.get('dbHost'));
 
 var db = new sqlite3.Database(config.get('dbHost'));
 
-var almPers = new AlarmPersistence(db, path.dirname(config.get('dbHost')) + "/data");
+var almPers = new AlarmPersistence(db, path.dirname(config.get('dbHost')));
 var userPers = new UserPersistence(db);
 var serverPers = new ServerPersistence(db);
 var almControler = new AlarmController(almPers);

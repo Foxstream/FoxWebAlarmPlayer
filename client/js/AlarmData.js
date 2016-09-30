@@ -10,6 +10,7 @@
         for (var i = 0; i < alarm.nbimages; i++) {
             alarm.Images[i] = { Image : new Image() };
             alarm.Images[i].Image.addEventListener("load", dataLoaded);
+            alarm.Images[i].Image.addEventListener("error", dataLoaded);
             alarm.Images[i].Image.src = "/alarms/" + alarm.id + "/image/"+i+"/jpg";
 
             httpService.get("/alarms/" + alarm.id + "/image/" + i + "/osd").success(function (idx) {

@@ -78,23 +78,32 @@ function applyApp(app){
 	});
 	
 	app.get('/alarms/:alarmid/image/:imgid/jpg', auth.IsValidUser, function(req, res){			
-		var stream = self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid);		
-		stream.on('error', function(err){
-            res.status(500);
-            res.send(err);
-        });
-		res.writeHead(200, {'Content-Type': 'image/jpeg'});
-		stream.pipe(res);
+        self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid, false, function (err, stream) {
+            if (err) {
+                res.status(404);
+                res.json(err);
+            }
+            else {
+                stream.on('error', function (err) { });//ignore errors
+                res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+                stream.pipe(res);
+            }
+        });	
 	})
 	
 	app.get('/alarms/:alarmid/image/:imgid/osd', auth.IsValidUser, function(req, res){				
-		var stream = self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid, true);	
-		stream.on('error', function(err){
-            res.status(500);
-            res.send(err);
-        });
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		stream.pipe(res);
+        self.AlarmPersistence.getStreamAlarmImage(req.params.alarmid, req.params.imgid, true, function (err, stream) {
+            if (err) {
+                res.status(404);
+                res.json(err);
+            }
+            else {
+                stream.on('error', function (err) { });//ignore errors
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                stream.pipe(res);
+            }
+        });	
+        
     });
 
 }

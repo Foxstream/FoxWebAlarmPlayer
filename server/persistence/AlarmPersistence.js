@@ -1,7 +1,7 @@
 var mkdirp = require('mkdirp');
 var path = require('path');
 var _ = require("lodash");
-var fs = require('fs');
+var fs = require("fs");
 var async = require("async");
 var rimraf = require("rimraf");
 var log = require("../logger.js");
@@ -213,9 +213,14 @@ function saveAlarm(alarm, callback)
 		updateAlarm.call(this,alarm, alarm.images ? insertCb : callback);		
 }
 
-function getStreamAlarmImage(id, imageidx, bOsd)
+function getStreamAlarmImage(id, imageidx, bOsd, cb)
 {	
-	return fs.createReadStream(buildPathName(this, id, imageidx) + (bOsd?".osd":".jpg") );
+    var filename = buildPathName(this, id, imageidx) + (bOsd ? ".osd" : ".jpg");
+
+    fs.access(filename, fs.R_OK, (err) => {
+        cb(err, err ? null : fs.createReadStream(filename));
+    });
+	
 }
 
 function getAlarms(conditions, callback)
