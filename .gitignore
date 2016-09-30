@@ -11,3 +11,4 @@ release.tar.gz
 /client/app.min.js
 /client/css/main.css.map
 /client/css/main.css
+/typings

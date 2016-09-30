@@ -15,6 +15,7 @@ var Auth = require('./server/Authenticator.js');
 var sqlite3 = require('sqlite3').verbose();
 var AlarmRemover = require('./server/AlarmRemover.js');
 var fs = require('fs');
+var path = require('path');
 
 var config = require('config');
 
@@ -30,7 +31,7 @@ log.debug('Used database : ' + config.get('dbHost'));
 
 var db = new sqlite3.Database(config.get('dbHost'));
 
-var almPers = new AlarmPersistence(db, "server/data");
+var almPers = new AlarmPersistence(db, path.dirname(config.get('dbHost')) + "/data");
 var userPers = new UserPersistence(db);
 var serverPers = new ServerPersistence(db);
 var almControler = new AlarmController(almPers);
