@@ -44,22 +44,34 @@ function connect(successCallback)
 
 function receivingData(data)
 {
-	log.info("Got data from "+this.Host+" of type "+data.$.type);
+    log.info("Got data from " + this.Host + " of type " + data.$.type);
+
+    function sendResponseToCallback(data, cbId) {
+        if (data.$.type == "error")
+            this.Callbacks[cbId](data.$text, null);
+        else
+            this.Callbacks[cbId](null, data);
+
+        delete this.Callbacks[cbId];
+    }
 	
 	if(data.$.id && this.Callbacks[parseInt(data.$.id)])
 	{
-		if(data.$.type=="error")			
-			this.Callbacks[parseInt(data.$.id)](data.$text, null);
-		else
-			this.Callbacks[parseInt(data.$.id)](null, data);
-			
-		delete this.Callbacks[parseInt(data.$.id)];
+        sendResponseToCallback.call(this, data, parseInt(data.$.id));
 	}
 	else if(data.$.query=="none"){
 		this.emit("unexpectedData", data);
 	}
-	else {
-		log.error("Error : message not requested "+JSON.stringify(data));
+    else {
+        //FoxBox v 1.3.x does not properly set its id in some responses (mainly ping)
+        //so we handle this case by assuming that if there is a single callback waiting for a response
+        //the response is for it
+        if (_.size(this.Callbacks) == 1) {
+            var ids = _.keys(this.Callbacks);
+            sendResponseToCallback.call(this, data, ids[0]);
+        }
+        else
+		    log.error("Error : message not requested "+JSON.stringify(data));
 	}
 }
 

@@ -91,7 +91,7 @@ function buildPathName(obj, alarmId, imageIdx)
 
 function extractOsdDataFromBinary(buffer)
 {
-	if(buffer.length<4)return [];
+	if(!buffer || buffer.length<4)return [];
 	
 	var objList=[];
 	var obj=[];
@@ -125,7 +125,7 @@ function saveImageAndOsd(rootFilname, image, osd, callback)
 			fs.writeFile(rootFilname+".jpg", image, {encoding:"base64"},cb);
 		},
 		function(cb){			
-			fs.writeFile(rootFilname+".osd", extractOsdDataFromBinary(new Buffer(osd.$text, "base64")), cb);
+            fs.writeFile(rootFilname + ".osd", extractOsdDataFromBinary(osd.$text ? new Buffer(osd.$text, "base64") : null), cb);
 		}],
 		callback);
 }
