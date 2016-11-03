@@ -18,7 +18,7 @@ Type: filesandordirs; Name: "{app}\server\data"
 Type: dirifempty; Name: "{app}"
 
 [Files]
-;Source: ".\release\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
+Source: ".\release\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
 
 ; Fichiers d'installation de nodejs
 ;Source: ".\node-v6.9.1-x86.msi"; DestDir: "{app}"; Check: Not IsWin64; Flags: deleteafterinstall
