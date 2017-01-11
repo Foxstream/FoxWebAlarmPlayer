@@ -28,7 +28,7 @@ Source: ".\node-v6.9.1-x86.msi"; DestDir: "{app}"; Flags: deleteafterinstall
 [Run]
 ;Filename: "{app}\node-v6.9.1-x86.msi"; Check: Not IsWin64; Description: "Install NodeJS v6.9.1"; Flags: postinstall shellexec waituntilterminated skipifsilent
 ;Filename: "{app}\node-v6.9.1-x64.msi"; Check: IsWin64; Description: "Install NodeJS v6.9.1"; Flags: postinstall shellexec waituntilterminated skipifsilent
-Filename: "{app}\node-v6.9.1-x86.msi"; Description: "Install NodeJS v6.9.1"; Flags: postinstall shellexec waituntilterminated skipifsilent
+Filename: "{app}\node-v6.9.1-x86.msi"; Parameters: "/qn"; Description: "Install NodeJS v6.9.1"; Flags: runascurrentuser shellexec waituntilterminated skipifsilent
 Filename: "{cmd}"; Parameters: "/C cd ""{app}"" && node win-service.js"; Flags: runascurrentuser
 
 [UninstallRun]
