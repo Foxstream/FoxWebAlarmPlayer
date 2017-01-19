@@ -364,7 +364,6 @@ app.controller('alarmcontroller', ["$scope", '$rootScope', '$window', "alarmdb",
 
     // Alarm updates from server
     var alarmUpdate = function(event, data){
-		if(!$scope.alarms)return;
 		var pos = $scope.alarms.map(function(e) { return e.id; }).indexOf(data.id);
         if (pos >= 0){
 

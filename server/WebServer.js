@@ -5,6 +5,7 @@ var expressSession = require('express-session');
 var auth = require('./Authenticator.js');
 var fs = require('fs');
 var config = require('config');
+var version = require('./ProductVersion');
 
 
 function buildWebServer(){    
@@ -27,6 +28,11 @@ function buildWebServer(){
     return app;
 }
 
+function getDefaultParamObject(req)
+{
+	return { user: req.user, appName: config.get('appName'), version : version };
+}
+
 function applyRoutes(app) {
         
     app.get('/', function (req, res) {   
@@ -34,19 +40,19 @@ function applyRoutes(app) {
     });
 
     app.get('/alarmview', auth.IsValidUser, function (req, res) {
-        res.render('alarmview', { user: req.user, appName: config.get('appName') });
+        res.render('alarmview', getDefaultParamObject(req));
     });
 
     app.get('/live', auth.IsValidUser, function (req, res) {
-        res.render('liveview', { user: req.user, appName: config.get('appName')  });
+        res.render('liveview',  getDefaultParamObject(req));
     });
     
     app.get('/userview', auth.IsAdmin, function (req, res) {
-        res.render('userview', { user: req.user, appName: config.get('appName')  });
+        res.render('userview',  getDefaultParamObject(req));
     });
     
     app.get('/serverview', auth.IsAdmin, function (req, res) {
-        res.render('serverview', { user: req.user, appName: config.get('appName')  });
+        res.render('serverview',  getDefaultParamObject(req));
     });
     
     app.get('/imageplayer', auth.IsValidUser, function (req, res) {
