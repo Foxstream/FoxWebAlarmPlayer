@@ -102,7 +102,7 @@ function applyRoutes(app) {
     });
 
     app.get('/logview', auth.IsAdmin, function(req, res){
-        res.render('logview', { user: req.user, appName: config.get('appName')  });
+        res.render('logview', getDefaultParamObject(req));
     });
 
     app.get('/logviewer', auth.IsAdmin, function(req, res){
