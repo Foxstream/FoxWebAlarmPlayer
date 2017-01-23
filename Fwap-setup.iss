@@ -18,7 +18,7 @@ Type: filesandordirs; Name: "{app}\server\data"
 Type: dirifempty; Name: "{app}"
 
 [Files]
-Source: ".\release\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
+Source: ".\release\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs restartreplace
 
 ; Fichiers d'installation de nodejs
 ;Source: ".\node-v6.9.1-x86.msi"; DestDir: "{app}"; Check: Not IsWin64; Flags: deleteafterinstall
@@ -26,6 +26,7 @@ Source: ".\release\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
 Source: ".\node-v6.9.1-x86.msi"; DestDir: "{app}"; Flags: deleteafterinstall
 
 [Run]
+Filename: "{cmd}"; Parameters: "/C net stop foxwebalarmplayer.exe"; Description: "Stop existing service..."; Flags: runascurrentuser
 ;Filename: "{app}\node-v6.9.1-x86.msi"; Check: Not IsWin64; Description: "Install NodeJS v6.9.1"; Flags: postinstall shellexec waituntilterminated skipifsilent
 ;Filename: "{app}\node-v6.9.1-x64.msi"; Check: IsWin64; Description: "Install NodeJS v6.9.1"; Flags: postinstall shellexec waituntilterminated skipifsilent
 Filename: "{app}\node-v6.9.1-x86.msi"; Parameters: "/qn"; Description: "Install NodeJS v6.9.1"; Flags: shellexec waituntilterminated skipifsilent
