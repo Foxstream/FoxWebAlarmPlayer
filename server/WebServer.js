@@ -6,6 +6,7 @@ var auth = require('./Authenticator.js');
 var fs = require('fs');
 var config = require('config');
 var version = require('./ProductVersion');
+var LokiStore  = require('connect-loki')(expressSession);
 
 
 function buildWebServer(){    
@@ -14,6 +15,7 @@ function buildWebServer(){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession({
+		store: new LokiStore ({path : __dirname + '/../_sessions.db'}),
         secret: 'azzfze6498ze7f9zef64f846&"(54f6efzeze',
         resave : false,
         saveUninitialized : true,
