@@ -7,7 +7,7 @@ app.controller('navbarcontroller', ["$scope", '$rootScope', '$location', 'alarme
 
     $scope.currentpage = $location.absUrl();
 
-    $scope.alarmcounter = appstate.getState('alarmcounter')
+    $scope.alarmcounter = appstate.getState('alarmcounter') || 0;
 
     if ($scope.currentpage.indexOf('alarmview') > -1){
         $scope.alarmcounter = 0;
