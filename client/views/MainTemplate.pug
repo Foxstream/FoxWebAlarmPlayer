@@ -1,4 +1,4 @@
-﻿doctype html
+doctype html
 html
   head
     meta(name="viewport",content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no")
@@ -9,8 +9,23 @@ html
     script(src='/vendor/angular-translate.min.js')
     script(src='/vendor/angular-translate-loader-static-files.min.js')
     script(src='/vendor/angular-touch.min.js')
-    script(src="/vendor/angular-animate.min.js")
-    script(src='/app.min.js')
+    script(src="/vendor/angular-animate.min.js")        
+    script(src='/js/app.js')
+    script(src='/js/accountcontroller.js')
+    script(src='/js/AlarmData.js')
+    script(src='/js/alarmviewer.js')    
+    script(src='/js/appState.js')
+    script(src='/js/async.min.js')
+    script(src='/js/EventSource.js')
+    script(src='/js/EventSource4IE.js')
+    script(src='/js/liveviewer.js')
+    script(src='/js/logviewer.js')
+    script(src='/js/navbarcontroller.js')
+    script(src='/js/serverviewer.js')
+    script(src='/js/serverstatecontroller.js')  
+    script(src='/js/spin.min.js.js')
+    script(src='/js/userdb.js')
+    script(src='/js/userviewer.js')
     link(rel="stylesheet", href="/vendor/bootstrap.min.css", media="screen")
     link(rel="stylesheet", href="/css/main.css", media="screen")
     title #{appName}
@@ -37,7 +52,7 @@ html
               span(ng-if="notification.params") {{ notification.message | translate:notification.params }}
             i(class="glyphicon glyphicon-remove", ng-click="hidenotification()")
 
-          ul
+          ul(ng-controller='serverstatecontroller')
               li(ng-class='{ active: isActive("alarmview") }')
                   a(href="/alarmview"
                     class='nav-link') 
@@ -48,6 +63,16 @@ html
                   a(href="/live")
                     i(class='glyphicon glyphicon-play') 
                     span(class='link') {{ 'LIVE' | translate }}
+              if user.type == 1
+                  li(title='Traitement en cours', ng-show='!ServerStateInit')
+                      span(class='glyphicon glyphicon-time')
+                  li(title='Cameras activées', ng-show='ServerStateInit')
+                      span {{ CameraAnalysis }} / {{ TotalCameras }}  
+                      span(class='glyphicon glyphicon-equalizer')
+                  li(ng-show='ServerStateInit')
+                      span(class='link', ng-click='EnableAnalysis()', ng-show='CameraAnalysis==0') {{ 'Activer' | translate }}
+                      span(class='link', ng-click='DisableAnalysis()', ng-show='CameraAnalysis>0') {{ 'Désactiver' | translate }}
+                  
               li(ng-class='{ active: isActive("accountsettings") || isActive("userview") || isActive("serverview") || isActive("logview") }',
                   ng-mouseover='showsubmenu = true',
                   ng-mouseleave='showsubmenu = false', ng-controller="servercontroller", class="settings-button")
@@ -92,7 +117,7 @@ html
               li(ng-click="$parent.help = !$parent.help"
                 class="hidden-xs hidden-sm help-button",
                 ng-class="{active: help}",
-				title="FoxWebAlarmPlayer "+version.Major+"."+version.Minor+"."+version.Revision) ?
+                title="FoxWebAlarmPlayer "+version.Major+"."+version.Minor+"."+version.Revision) ?
 
 
       div(class="page-content")

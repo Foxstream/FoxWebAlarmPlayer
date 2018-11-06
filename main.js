@@ -52,28 +52,32 @@ AccountSettingsController(websrv, userPers);
 
 var sse = new ServerSideEvent(websrv, "/events");
 
-async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function (err) {
-    
-    serverManager.on("connectionLost", function (srv){ 
-        log.info('Sending connection message to client for server', srv.address);
-        sse.sendMessage('connection', JSON.stringify(srv)); 
-    });
+async.parallel([almPers.open.bind(almPers), userPers.open.bind(userPers), serverPers.open.bind(serverPers)], function(err) {
 
-    serverManager.on("connectionEstablished", function (srv) { 
+    serverManager.on("connectionLost", function(srv) {
         log.info('Sending connection message to client for server', srv.address);
         sse.sendMessage('connection', JSON.stringify(srv));
     });
-    
-    serverManager.on("alarm", function (alarm) { sse.sendMessage('alarm_create', JSON.stringify(alarm)); });
-    serverManager.on("alarm_update", function (alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
+
+    serverManager.on("connectionEstablished", function(srv) {
+        log.info('Sending connection message to client for server', srv.address);
+        sse.sendMessage('connection', JSON.stringify(srv));
+    });
+
+    serverManager.on("analysisState", function(state) {
+        sse.sendMessage('analysisState', JSON.stringify(state));
+    });
+
+    serverManager.on("alarm", function(alarm) { sse.sendMessage('alarm_create', JSON.stringify(alarm)); });
+    serverManager.on("alarm_update", function(alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
 
     serverManager.start();
-    
+
     alarmRemover.start();
-    
-    almControler.on("alarm_handled", function (alarm){ sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
-    almControler.on("all_alarms_handled", function(alarm){ sse.sendMessage('all_alarms_handled') });
-    almControler.on("alarm_deleted", function (alarmId){ sse.sendMessage('alarm_deleted', alarmId) });
+
+    almControler.on("alarm_handled", function(alarm) { sse.sendMessage('alarm_update', JSON.stringify(alarm)); });
+    almControler.on("all_alarms_handled", function(alarm) { sse.sendMessage('all_alarms_handled') });
+    almControler.on("alarm_deleted", function(alarmId) { sse.sendMessage('alarm_deleted', alarmId) });
 
     var port = config.get('port');
     websrv.listen(port);

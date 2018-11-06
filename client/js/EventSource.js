@@ -14,6 +14,7 @@ app.factory('alarmevents', ['$rootScope',
         source.addEventListener('alarm_update', eventForwarder, false);
         source.addEventListener('alarm_deleted', eventForwarder, false);
         source.addEventListener('connection', eventForwarder, false);
+		source.addEventListener('analysisState', eventForwarder, false);
         
         return source;
     }

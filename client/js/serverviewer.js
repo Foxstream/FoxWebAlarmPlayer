@@ -22,6 +22,12 @@
                 .then(success, error);
         };
         
+		obj.enableanalysis = function(bState, success,error){
+			var url = bState ? '/servers/enable' : '/servers/disable';
+			$http.post(url)
+				.then(success, error);
+		}
+		
         return obj;
 
     }]);
